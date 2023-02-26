@@ -1,0 +1,9 @@
+{
+    "routes" : [
+        {"method" : "GET", "pattern": "/", "handler" : "MainpageController@show"},
+        {"method" : "GET", "pattern": "/administrador", "handler" : "LoginController@showLoginForm"},
+        {"method": "POST", "pattern": "/administrador/app" , "handler": "LoginController@processLoginForm"},
+        {"method": "POST", "pattern": "/administrador/@me", "handler": "admin/MainPageAdmin@show"},
+        {"method" : "GET", "pattern": "/404", "handler" : "NotFoundController@show"}    
+    ]
+}

@@ -1,13 +1,18 @@
 <?php
 
-class NotFoundController extends FrontController{
+require_once _ROOT_CONTROLLER . 'AbstractController.php';
 
-    public function template()
+class NotFoundController extends AbstractController{
+
+    public function show()
     {
         $this->renderView('header');
         $this->renderView('ErrorView');
         $this->renderView('footer');
          
+    }
+    protected function SanitizeVar( string $var){
+        
     }
 
 }
