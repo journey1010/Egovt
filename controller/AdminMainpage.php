@@ -7,8 +7,16 @@ class AdminMainpage extends AbstractController {
     public function show()
     
     {  
-        if(isset()){
-
+        session_start();
+        echo "adadad";
+        if(isset($_SESSION['username']) && isset($_SESSION['tipoUser']) ){
+            echo "hola";
+            $this->renderView(_ROOT_VIEWS_ADMIN . 'header');
+            //agregar demas comandos
+            $this->renderView(_ROOT_VIEWS_ADMIN . 'footer');
+        }else{
+            header('Location: /administrador');
+            exit;
         }
 
         
@@ -20,7 +28,6 @@ class AdminMainpage extends AbstractController {
     protected function SanitizeVar( string $var){
         
     }
-
     
 }
   
