@@ -1,15 +1,21 @@
 <?php
 require_once _ROOT_CONTROLLER . 'AbstractController.php';
-class MainpageController extends AbstractController {
+
+class AdminMainpage extends AbstractController {
 
     
     public function show()
+    
     {  
-        $this->renderView('header');
-        $this->renderView('main');
-        $this->renderView('footer');
+        if(isset()){
+
+        }
+
         
     }
+
+
+
 
     protected function SanitizeVar( string $var){
         

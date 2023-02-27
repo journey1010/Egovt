@@ -3,80 +3,82 @@
 require_once _ROOT_CONTROLLER . 'AbstractController.php';
 require_once _ROOT_MODEL . 'conexion.php';
 
-class LoginController extends AbstractController {
+class LoginController extends AbstractController
+{
 
     public function showLoginForm()
-    {   
+    {
+        if (isset($_COOKIE['user'])) {
+            $username = $_COOKIE['user'];
+            $conexion = new MySQLConnection();
+            $sqlSentences = "SELECT nombre, estado_usuario, tipo_usuario from usuarios where nombre = ? ";
+            $arrayParams = [$username];
+            $consulta  = $conexion->query($sqlSentences, $arrayParams, '', false);
+            $ResultadoConsulta = $consulta->fetchAll();
+            foreach ($ResultadoConsulta as $columna) {
+                $usernameToCompare = $columna['nombre'];
+                $estadoUsuario = $columna['estado_usuario'];
+                $tipoUsuario = $columna['tipo_usuario'];
+            }
+            if ($estadoUsuario === '0') {
+                setcookie("user", "", time() - 3600);
+                $conexion->close();
+                $this->renderView('admin/login');
+            }
+            session_start();
+            $_SESSION['username'] = $username;
+            $_SESSION['tipoUser'] = $tipoUsuario;
+            $conexion->close();
+            header('Location: /administrador/app');
+        }
         $this->renderView('admin/login');
+        return;
     }
 
     public function processLoginForm()
-    {   
-
+    {
         $username = $this->SanitizeVar($_POST['username']) ?? '';
         $password = $this->SanitizeVar($_POST['password']) ?? '';
 
         $conexion = new MySQLConnection();
-        $sqlSentences = "SELECT nombre, contrasena, estado_usuario from usuarios where usuario = ? and contrasena = ? ";
-        $arrayParams = [':usuario' => $username, ':contrasena' => $password];
-        $consulta  = $conexion->query($sqlSentences, $arrayParams, '', false );
-        $ResultadoConsulta = $consulta->fetchAll();;
-        foreach ($ResultadoConsulta as $columna){
-            $usernameToCompare = $columna['nombre'];
-            $passwordToCompare = $columna['contrasena'];
-            $userEstado = $columna['estado_usuario'];
-        }
+        $sqlSentences = "SELECT nombre, contrasena, tipo_usuario from usuarios where nombre = ? ";
+        $arrayParams = [$username];
+        $consulta  = $conexion->query($sqlSentences, $arrayParams, '', false);
+        $ResultadoConsulta = $consulta->fetchAll();
 
-        ##Comprobar estado de session y crear sessiones para los usuarios 
-        ##Redirigir a la /admnistrador/@me si el usuario a iniciado sessión correctamente
-        ##/administrador/@me comprueba la existencia de la cookie phpsessid de lo contrario redirige al login
-        ##Mejorar fonde de login. 
-        if( isset($_SESSION['username']) ){
-            $existeSession = false ; 
+        if (count($ResultadoConsulta) == 0) {
+            $response = array('error' => 'Puede que no exista el usuario');
+            echo json_encode($response);
         } else {
-             $existeSession = true; 
-        }
-        switch($existeSession){
-            case true:  
-                $url = _BASE_URL . '/administrador/@me';
-                header("Location: $url");
 
-            break;
-            case false:
-
-            break;
-        }
-
-
-        if($username === $usernameToCompare && $password === $passwordToCompare){
-            if($userEstado == 1){
-
-            }else{
-
+            foreach ($ResultadoConsulta as $columna) {
+                $usernameToCompare = $columna['nombre'];
+                $passwordToCompare = $columna['contrasena'];
+                $userTipo = $columna['tipo_usuario'];
             }
-        }else{
-
+            if (!empty($passwordToCompare) && password_verify($password, $passwordToCompare) &&  $username == $usernameToCompare) {
+                session_start();
+                $_SESSION['username'] = $username;
+                $_SESSION['tipoUser'] = $userTipo;
+                setcookie("user", $username, time() + (90 * 24 * 60 * 60), "/");
+                $conexion->close();
+                $response = array('success' => true, 'redirect' => '/administrador/app');
+                print_r(json_encode($response));
+                exit;
+            } else {
+                $conexion->close();
+                $response = array('error' => 'Usuario o contraseña incorrectos');
+                print_r(json_encode($response));
+            }
         }
-
-        ##Fin Comprobar estado de session y crear sessiones para los usuarios 
-
-        // Aquí iría la lógica de autenticación del usuario, por ejemplo:
-        /*if ($username === 'admin' && $password === 'admin') {
-            $_SESSION['user'] = $username;
-            header('Location: /');
-            exit();
-        } else {
-            $_SESSION['error_message'] = 'Nombre de usuario o contraseña incorrectos.';
-            header('Location: /login');
-            exit();
-        }*/
     }
+
 
     protected function SanitizeVar(string $var)
     {
-        $var = filter_var($var , FILTER_SANITIZE_SPECIAL_CHARS);
+        $var = filter_var($var, FILTER_SANITIZE_SPECIAL_CHARS);
         $var = htmlspecialchars($var, ENT_QUOTES);
-        $var = preg_match('/[^a-zA-Z0-9.+*-@]/', '', $var) ;
-        return $var; 
+        $var = preg_replace('/[^a-zA-Z0-9.+*-@]/', '', $var);
+        return $var;
     }
 }

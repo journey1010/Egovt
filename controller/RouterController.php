@@ -44,6 +44,7 @@ class Router extends AbstractController{
     public function handleRequest() 
     {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
+        //obtener el metodo de
         $url = $this->SanitizeVar($_SERVER['REQUEST_URI']);
         $requestUrl = parse_url($url, PHP_URL_PATH);
 
@@ -51,7 +52,6 @@ class Router extends AbstractController{
             if ($method !== $requestMethod) {
                 continue;
             }
-
             $matches = [];
             if (preg_match($this->compileRouteRegex($pattern), $requestUrl, $matches)) {
                 array_shift($matches); 
@@ -62,15 +62,15 @@ class Router extends AbstractController{
                 }
 
                 list($controllerName, $methodName) = explode('@', $handler);
+
                 require_once _ROOT_CONTROLLER . $controllerName . '.php'; 
                 $controller = new $controllerName();
                 $controller->$methodName(...$matches);
                 return;
             }
-
         }
 
-        $this->renderView('NotFoundController');
+        $this->renderView('ErrorView');
     }
 
     protected function compileRouteRegex($pattern) {
