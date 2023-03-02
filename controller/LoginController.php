@@ -16,7 +16,6 @@ class LoginController extends AbstractController
             $consulta  = $conexion->query($sqlSentences, $arrayParams, '', false);
             $ResultadoConsulta = $consulta->fetchAll();
             foreach ($ResultadoConsulta as $columna) {
-                $usernameToCompare = $columna['nombre'];
                 $estadoUsuario = $columna['estado_usuario'];
                 $tipoUsuario = $columna['tipo_usuario'];
             }
@@ -24,6 +23,7 @@ class LoginController extends AbstractController
                 setcookie("user", "", time() - 3600);
                 $conexion->close();
                 $this->renderView('admin/login');
+                exit;
             }
             session_start();
             $_SESSION['username'] = $username;
@@ -72,8 +72,7 @@ class LoginController extends AbstractController
             }
         }
     }
-
-
+    
     protected function SanitizeVar(string $var)
     {
         $var = filter_var($var, FILTER_SANITIZE_SPECIAL_CHARS);

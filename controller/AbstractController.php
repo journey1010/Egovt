@@ -2,8 +2,6 @@
 
 abstract class AbstractController {
     
-
-  
     abstract protected function SanitizeVar( string $var);
 
     protected function errorLog(Exception $e){
@@ -15,13 +13,12 @@ abstract class AbstractController {
     {
 
         $viewName = ($viewName == 'ErrorCritico') ? 'ErrorCritico' : $viewName;
-
+        
         $fullpath = _ROOT_VIEWS .  $viewName . '.php';
 
         try {
 
             if(!file_exists($fullpath)){
-                include_once _ROOT_CONTROLLER . 'NotFoundController.php';
                 throw new Exception ('Vista no encontrada' . $viewName);
             }
             if(pathinfo($fullpath, PATHINFO_EXTENSION)!== 'php'){

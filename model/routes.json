@@ -1,9 +1,14 @@
 {
     "routes" : [
-        {"method" : "GET", "pattern": "/", "handler" : "MainpageController@show"},
-        {"method" : "GET", "pattern": "/administrador", "handler" : "LoginController@showLoginForm"},
-        {"method" : "POST", "pattern": "/administrador/processlogin" , "handler": "LoginController@processLoginForm"},
+        {"method" : "GET", "pattern" : "/", "handler" : "MainpageController@show"},
+        {"method" : "GET", "pattern" : "/administrador", "handler" : "LoginController@showLoginForm"},
+        {"method" : "POST", "pattern" : "/administrador/processlogin" , "handler": "LoginController@processLoginForm"},
         {"method" : "GET", "pattern": "/administrador/app", "handler": "AdminMainPage@show"},
-        {"method" : "GET", "pattern": "/404", "handler" : "NotFoundController@show"}    
+        {"method" : "GET", "pattern" : "/administrador/visitas/registro", "handler": "AdminMainPage@show"},
+        {"method" : "POST", "pattern" : "/changelogo", "handler" : "settingsUser@changeLogo" },
+        {"method" : "POST", "pattern" : "/changePassword", "handler" : "settingsUser@changePassword"},
+        {"method" : "POST", "pattern" : "/signOut", "handler" : "settingsUser@signOut"},
+        {"method" : "GET", "pattern" : "/forbbiden", "handler" : "NotFoundController@show"},
+        {"method" : "GET", "pattern" : "/404", "handler" : "NotFoundController@show"}    
     ]
 }

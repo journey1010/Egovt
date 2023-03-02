@@ -5,7 +5,15 @@ $(document).ready(function(){
         var username = $('#inputFirstName').val();
         var password = $('#inputChoosePassword').val();
         var terms = $('#flexSwitchCheckChecked').is(":checked");
-        $.ajax({
+
+        if ($.trim(username) == '' || $.trim(password) == '' || !terms ) {
+          isValid = false;
+          ohSnap('Por favor ingrese todos los datos', {'color':'red'});
+        }else{
+          isValid = true;
+        }
+        if (isValid){
+          $.ajax({
             method: "POST",
             url: '/administrador/processlogin',
             data: { username: username, password: password},
@@ -23,7 +31,8 @@ $(document).ready(function(){
               $("#submitButton").prop("disabled", false);
               ohSnap('Ha ocurrido un error al enviar los datos', { 'color': 'red' });          
             }
-          });
+        });
+        }
     });
 });
 

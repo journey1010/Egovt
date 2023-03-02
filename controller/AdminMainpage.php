@@ -1,33 +1,46 @@
 <?php
-require_once _ROOT_CONTROLLER . 'AbstractController.php';
 
-class AdminMainpage extends AbstractController {
+class AdminMainpage{
 
-    
-    public function show()
-    
+    public function show( $contenido = 'Hola mundo')
     {  
         session_start();
-        echo "adadad";
         if(isset($_SESSION['username']) && isset($_SESSION['tipoUser']) ){
-            echo "hola";
-            $this->renderView(_ROOT_VIEWS_ADMIN . 'header');
-            //agregar demas comandos
-            $this->renderView(_ROOT_VIEWS_ADMIN . 'footer');
+            $this->renderView('admin/plantillaAdmin', $_SESSION['username'], $_SESSION['tipoUser'], $contenido);
         }else{
             header('Location: /administrador');
             exit;
         }
-
-        
     }
 
+    private function renderView(string $viewName, $userName, $tipoUser, $contenidoPage)
+    {
+        $viewName = ($viewName == 'ErrorCritico') ? 'ErrorCritico' : $viewName;
 
+        $fullpath = _ROOT_VIEWS .  $viewName . '.php';
 
+        try {
 
-    protected function SanitizeVar( string $var){
-        
+            if(!file_exists($fullpath)){
+                include_once _ROOT_CONTROLLER . 'NotFoundController.php';
+                throw new Exception ('Vista no encontrada' . $viewName);
+            }
+            if(pathinfo($fullpath, PATHINFO_EXTENSION)!== 'php'){
+                throw new Exception ('Archivo de tipo no permitido' . $viewName);
+            }
+            ob_start();
+            include_once $fullpath;
+            echo ob_get_clean();
+            return;
+
+        }catch (Exception $e){
+            $this->errorLog($e);
+            return;
+        }
     }
-    
+
+    protected function errorLog(Throwable $e){
+        $errorMessage = date("Y-m-d H:i:s") . " : " . $e->getMessage() .  "\n";
+        error_log($errorMessage, 3, _ROOT_PATH . '/log/error.log'  );
+    }
 }
-  

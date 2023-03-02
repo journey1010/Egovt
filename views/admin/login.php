@@ -11,13 +11,9 @@
 	<link href="<?php echo _ROOT_ASSETS_ADMIN . 'css/icons.css' ?>" rel="stylesheet">
 	<link href="<?php echo _ROOT_ASSETS_ADMIN . 'css/styles.css' ?>" rel="stylesheet">
 	<title>Administrador Egovt</title>
-	<style type="text/css">
-
-	</style>
 </head>
 
 <body>
-<div id="ohsnap"></div>
 	<div class="wrapper">
 		<div class="authentication-header">
 			<img src="<?php echo _ROOT_ASSETS . 'images/banners/portada1.jpg' ?>" class="img-fluid oscurecer-imagen">
@@ -69,10 +65,12 @@
 			</div>
 		</div>
 	</div>
+	<div class="ohsnap">
+		<div id="ohsnap"></div>
+	</div>
 </body>
-<script src="<?php echo _ROOT_ASSETS_ADMIN . 'js/bootstrap.bundle.min.js' ?>"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="<?php echo _ROOT_ASSETS . 'js/ohsnap/ohsnap.js' ?>"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="<?php echo _ROOT_ASSETS_ADMIN . 'js/bootstrap.bundle.min.js' ?>"></script>
 <script src="<?php echo _ROOT_ASSETS_ADMIN . 'js/login.js' ?>"></script>
-
 </html>
