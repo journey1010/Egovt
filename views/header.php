@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>GOREL - Gobierno regiónal de Loreto</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com/css2">
 	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">	<!-- include the site bootstrap stylesheet -->
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS .'css/bootstrap.css' ?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/style.css'?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS .'css/colors.css'?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS .'css/responsive.css'?>">
-	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS .'fonts/icomoon.ttf'?>">
-	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS .'fonts/icomoon.woff'?>">
+	<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> <!-- include the site bootstrap stylesheet -->
+	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/bootstrap.css' ?>">
+	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/style.css' ?>">
+	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/colors.css' ?>">
+	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/responsive.css' ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.ttf' ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.woff' ?>">
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-	<link rel='icon' type='image/x-icon' href = '<?php echo _ROOT_ASSETS . 'images/gorel_favicon.png'?>'>
-	<script src="<?php echo _ROOT_ASSETS . 'js/bootstrap.min.js.map'?>"></script>
+	<link rel='icon' type='image/x-icon' href='<?php echo _ROOT_ASSETS . 'images/gorel_favicon.png' ?>'>
+	<script src="<?php echo _ROOT_ASSETS . 'js/bootstrap.min.js.map' ?>"></script>
 </head>
+
 <body>
 	<div id="pageWrapper">
 		<div class="phStickyWrap">
@@ -35,7 +37,7 @@
 									<li>
 										<time datetime="2011-01-12">
 											<i class="icomoon-clock align-middle icn"><span class="sr-only">icon</span></i>
-											Horario de atención: Lun - Vier 7:00 - 15:00 
+											Horario de atención: Lun - Vier 7:00 - 15:00
 										</time>
 									</li>
 								</ul>
@@ -127,7 +129,7 @@
 											</div>
 										</li>
 										<li class="nav-item dropdown ddohOpener">
-											<a class="nav-link dropdown-toggle " href="contact-1.php"  aria-haspopup="true" aria-expanded="false">Contacto</a>
+											<a class="nav-link dropdown-toggle " href="contact-1.php" aria-haspopup="true" aria-expanded="false">Contacto</a>
 										</li>
 										<button class="navbar-toggler pgNavOpener ml-2 bdrWidthAlter position-relative" type="button" data-toggle="collapse" data-target="#pageMainNavCollapse" aria-controls="pageMainNavCollapse" aria-expanded="false" aria-label="Toggle navigation">
 											<span class="navbar-toggler-icon"></span>
@@ -149,7 +151,7 @@
 								</button>
 							</div>
 						</nav>
-					</div>	
+					</div>
 				</div>
 			</header>
 		</div>

@@ -1,14 +1,16 @@
 <?php
-include_once _ROOT_VIEWS . 'admin/admiVistasController.php';
-$vistasAdmin = new admiVistasController($userName, $tipoUser, $contenidoPage);
+include_once _ROOT_CONTROLLER . 'admin/constructViewPanelAdmin.php';
+$vistasAdmin = new viewConstruct($userName, $permisos, $contenidoPage);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="Admin GOREL" content="admin region loreto, admin gobierno regional de loreto, administrador gobierno regional de loreto"> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Administrador | Egovt</title>
+  <link rel='icon' type='image/x-icon' href = '<?php echo _ROOT_ASSETS . 'images/gorel_favicon.png'?>'>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="<?php echo _ROOT_ASSETS_ADMIN . 'css/all.min.css' ?> ">
   <link rel="stylesheet" href="<?php echo _ROOT_ASSETS_ADMIN . 'css/adminlte.min.css' ?> ">
@@ -52,7 +54,7 @@ $vistasAdmin = new admiVistasController($userName, $tipoUser, $contenidoPage);
           </div>
         </li>
         <!-- Notifications Dropdown Menu -->
-        <?= $vistasAdmin->notificaciones($tipoUser) ?>
+        <?= $vistasAdmin->notificaciones($permisos) ?>
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown"  title="Ajuste de usuario" href="#">
             <i class="fa fa-cogs"></i>
@@ -260,6 +262,9 @@ $vistasAdmin = new admiVistasController($userName, $tipoUser, $contenidoPage);
   <script src="<?= _ROOT_ASSETS_ADMIN . 'js/adminlte.min.js' ?> "></script>
   <script src="<?= _ROOT_ASSETS . 'js/ohsnap/ohsnap.js' ?>"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    var username = "<?php echo $_SESSION['username']; ?>";
+  </script>
   <script src="<?= _ROOT_ASSETS_ADMIN . 'js/main.js' ?>"></script>
 </body>
 

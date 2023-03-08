@@ -50,7 +50,6 @@ class LoginController extends AbstractController
             $response = array('error' => 'Puede que no exista el usuario');
             echo json_encode($response);
         } else {
-
             foreach ($ResultadoConsulta as $columna) {
                 $usernameToCompare = $columna['nombre'];
                 $passwordToCompare = $columna['contrasena'];
@@ -75,9 +74,8 @@ class LoginController extends AbstractController
     
     protected function SanitizeVar(string $var)
     {
-        $var = filter_var($var, FILTER_SANITIZE_SPECIAL_CHARS);
-        $var = htmlspecialchars($var, ENT_QUOTES);
-        $var = preg_replace('/[^a-zA-Z0-9.+*-@]/', '', $var);
+        $var = htmlspecialchars( $var,  ENT_QUOTES);
+        $var = preg_replace('/[^a-zA-Z0-9.=+-_@^]/', 'a', $var);
         return $var;
     }
 }

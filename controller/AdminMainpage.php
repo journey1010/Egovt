@@ -2,7 +2,7 @@
 
 class AdminMainpage{
 
-    public function show( $contenido = 'Hola mundo')
+    public function show( $contenido = '')
     {  
         session_start();
         if(isset($_SESSION['username']) && isset($_SESSION['tipoUser']) ){

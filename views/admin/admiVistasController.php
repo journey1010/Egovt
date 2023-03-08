@@ -1,7 +1,8 @@
 <?php
 require_once _ROOT_MODEL . 'conexion.php';
 
-class admiVistasController {
+class admiVistasController
+{
     private $userName;
     private $tipoUser;
     private $contenidoPage;
@@ -11,42 +12,6 @@ class admiVistasController {
         $this->tipoUser = $tipoUser;
         $this->userName = $userName;
         $this->contenidoPage = $contenidoPage;
-    }
-    //modificar funcion en le futuro para que muestre noticiciones al admin
-    public function notificaciones()
-    {
-        if ($this->tipoUser == '0'){
-            $html = <<<Html
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-header">15 Notifications</span>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                </div>
-            </li>
-            Html;
-            echo $html;
-        }
-        return;
     }
 
     public function logoUser()
@@ -59,55 +24,124 @@ class admiVistasController {
         foreach ($ResultadoConsulta as $columna) {
             $rutaImagen = $columna['user_img'];
         }
-        $rutaImagen = ($rutaImagen == '') ? 'default.jpg' :  _ROOT_ASSETS_ADMIN. 'img/iconUser/'. $rutaImagen;
+        $rutaImagen = ($rutaImagen == '') ? 'default.jpg' :  _ROOT_ASSETS_ADMIN . 'img/iconUser/' . $rutaImagen;
         $conexion->close();
         return $rutaImagen;
     }
 
     public function sideBarConstruct()
-    {   
-        switch ($this->tipoUser){
+    {
+        switch ($this->tipoUser) {
             case '0':
-                
-            break;
-
+                echo $this->rosterSideBar( 1, $this->tipoUser);
+                break;
             case '1':
-            break;
-            
+                break;
+
             case '2':
-                $this->optionsSideBar('visitas');
-            break;
-        } 
+
+                break;
+        }
     }
 
-    private function optionsSideBar ($opcion)
+    private function rosterSideBar($opcion, $tipoUser)
     {
-        switch ($opcion){
+        switch ($tipoUser){
+            case '0':
+                $menuOpen = 'menu-open';
+            break;
+        }
+        switch ($opcion) {
             case 'visitas':
                 $html = <<<Html
-
+                <li class="nav-item menu-open">
+                    <a href="" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Pagina principal
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Inactive Page</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
                 Html;
             break;
 
+            default:
+                $html =<<<Html
+                <li class="nav-item $menuOpen">
+                    <a href="/administrador/app" class="nav-link active">
+                    <i class="fal fa-globe"></i>
+                    <p>
+                        Página principal
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/administrador/dashboard" class="nav-link active">
+                            <i class="fal fa-chart-line"></i>
+                            <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/administrador/sitos-externos" class="nav-link">
+                            <i class="fal fa-external-link-square-alt"></i>
+                            <p>Sitios externos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/administrador/informacion-departamental" class="nav-link">
+                            <i class="fal fa-info"></i>
+                            <p>Información departamental</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/administrador/info-gobernador" class="nav-link">
+                            <i class="fal fa-info"></i>
+                            <p>Info Gobernador</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/administrador/banners" class="nav-link">
+                            <i class="fal fa-image"></i>
+                            <p>Baners</p>
+                            </a>
+                        </li>                                                
+                    </ul>
+                </li>
+                Html;
+                return $html;
+            break;
         }
     }
 
     public function contenido()
     {
-        switch ($this->contenidoPage){
+        switch ($this->contenidoPage) {
             case '':
-            break;
+                break;
             case '':
-            break;
-            
+                break;
         }
-
     }
 
     private function handleError(Throwable $e)
     {
         $errorMessage = date('Y-m-d H:i:s') . ' : Error AdminMainpage' . $e->getMessage() . "\n";
-        error_log( $errorMessage, 3, _ROOT_PATH . 'log/error.log');
+        error_log($errorMessage, 3, _ROOT_PATH . 'log/error.log');
     }
-
 }
