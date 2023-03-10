@@ -712,6 +712,6 @@
 	<!-- include plugins JavaScript -->
 	<script src="js/plugins.js"></script>
 	<!-- include fontAwesome -->
-	<script src="../../391f644c42.js"></script>
+	<script src="https://kit.fontawesome.com/391f644c42.js" crossorigin="anonymous"></script>
 </body>
 </html>

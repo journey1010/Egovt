@@ -9,6 +9,7 @@
         {"method" : "POST", "pattern" : "/changePassword", "handler" : "settingsUser@changePassword"},
         {"method" : "POST", "pattern" : "/signOut", "handler" : "settingsUser@signOut"},
         {"method" : "GET", "pattern" : "/forbbiden", "handler" : "NotFoundController@show"},
-        {"method" : "GET", "pattern" : "/404", "handler" : "NotFoundController@show"}    
+        {"method" : "GET", "pattern" : "/404", "handler" : "NotFoundController@show"},
+        {"method" : "GET", "pattern" : "/transparencia/visitas", "handler" : "transparenciaController@visitas"}   
     ]
 }

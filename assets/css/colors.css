@@ -50,7 +50,7 @@
 .ui-widget.ui-slider.ui-slider-horizontal .ui-widget-header,
 .vssDropdownList li,
 .newsSingleWrap .dropCap {
-	background-color: #0e5916;
+	background-color: #06163a;
 }
 
 .btnTheme.btnNoOver:hover,
@@ -113,7 +113,7 @@
 .newsSingleWrap .tagList a.active,
 .widget h3,
 .widget .h3 {
-	color: #0e5916;
+	color: #06163a;
 }
 
 .btnTheme.btnNoOver,
@@ -135,5 +135,5 @@
 .btnLinkShare:hover,
 .arddColumnSlider .slick-arrow:hover,
 .nwssHolder .vssOpener.hover {
-	border-color: #0e5916;
+	border-color: #06163a;
 }

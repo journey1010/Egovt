@@ -75,7 +75,7 @@ body {
 	line-height: 1.5294117647;
 	color: #62718d;
 	text-align: left;
-	background-color: #fff;
+	background-color: #e9ecef;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -2720,7 +2720,7 @@ pre code {
 	border-top: 1px solid #dee2e6;
 }
 .table thead th {
-	vertical-align: bottom;
+	vertical-align: middle;
 	border-bottom: 2px solid #dee2e6;
 }
 .table tbody + tbody {
@@ -2986,7 +2986,7 @@ pre code {
 
 .table .thead-dark th {
 	color: #fff;
-	background-color: #343a40;
+	background-color: #06163a;
 	border-color: #454d55;
 }
 

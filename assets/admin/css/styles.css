@@ -17,10 +17,6 @@
   clear: right;
 }
 
-.alert+.alert {
-  margin-bottom: 10px;
-}
-
 
 .alert-red {
   color: white;
@@ -49,5 +45,6 @@
 
 /*Configuracion de imagen  bg de login*/
 .oscurecer-imagen {
+  width: 100%;
   filter: brightness(0.5);
 }

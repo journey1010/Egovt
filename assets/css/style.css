@@ -7693,8 +7693,21 @@ input[type=number] {
 	cursor: pointer;
 }
 
+.widgetFiltersNav h4,
+.widgetFiltersNav .h4 {
+	cursor: pointer;
+}
+
 .widgetFiltersNav h3:after,
 .widgetFiltersNav .h3:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 0;
+}
+
+.widgetFiltersNav h4:after,
+.widgetFiltersNav .h4:after {
 	content: "";
 	position: absolute;
 	top: 50%;
@@ -7717,12 +7730,35 @@ input[type=number] {
 	height: 8px;
 }
 
+.widgetFiltersNav h4:after,
+.widgetFiltersNav .h4:after {
+	border: solid currentColor;
+	border-width: 0 0 2px 2px;
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	margin-top: -5px;
+	-webkit-transition: -webkit-transform .3s ease;
+	transition: -webkit-transform .3s ease;
+	transition: transform .3s ease;
+	transition: transform .3s ease, -webkit-transform .3s ease;
+	width: 8px;
+	height: 8px;
+}
+
 .widgetFiltersNav.openActive {
 	max-height: 999px;
 }
 
 .widgetFiltersNav.openActive h3:after,
 .widgetFiltersNav.openActive .h3:after {
+	-webkit-transform: rotate(-225deg);
+	-ms-transform: rotate(-225deg);
+	transform: rotate(-225deg);
+}
+
+.widgetFiltersNav.openActive h4:after,
+.widgetFiltersNav.openActive .h4:after {
 	-webkit-transform: rotate(-225deg);
 	-ms-transform: rotate(-225deg);
 	transform: rotate(-225deg);
