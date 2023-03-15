@@ -25,7 +25,6 @@ $(document).ready(function(){
                 ohSnap(objResponse['error'], { 'color': 'red' });
                 $("#submitButton").prop("disabled", false);
               }
-              
           },
             error: function (xhr, status, error) {
               $("#submitButton").prop("disabled", false);

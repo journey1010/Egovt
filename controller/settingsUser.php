@@ -27,7 +27,7 @@ class settingsUser extends AbstractController{
 
             $conexion =  new MySQLConnection();
 
-            $sqlSentence = "select user_img from usuarios where nombre = ?";
+            $sqlSentence = "select user_img from usuarios where nombre_usuario = ?";
             $params = [$userName];
             $resultado = $conexion->query($sqlSentence, $params, '', false);
             $fileToDelete = $resultado->fetchColumn();
@@ -35,7 +35,7 @@ class settingsUser extends AbstractController{
 
             $filename = pathinfo($file, PATHINFO_FILENAME). '.'. $extensionFile;
             $params2 = [$filename, $userName];
-            $sqlSentence2 = "update usuarios set user_img = ? where nombre = ?";
+            $sqlSentence2 = "update usuarios set user_img = ? where nombre_usuario = ?";
             $conexion->query($sqlSentence2, $params2, '', false);
             $conexion->close();
 
@@ -66,7 +66,7 @@ class settingsUser extends AbstractController{
             $password = password_hash($password, PASSWORD_ARGON2I, ['cost' => 8, 'memory_cost' => 1<<10, 'time_cost' => 2, 'threads' => 2]);
             
             $conexion = new MySQLConnection();
-            $sqlSentence = "Update usuarios set contrasena = ? where nombre = ?";
+            $sqlSentence = "Update usuarios set contrasena = ? where nombre_usuario = ?";
             $params = [$password, $userName];
             $conexion->query($sqlSentence, $params, '', false);
             $conexion->close();

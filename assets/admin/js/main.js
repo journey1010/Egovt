@@ -1,11 +1,24 @@
 
 $(document).ready(function () {
-
+  
+  //cambiar clase active del sidebar menu
+  let linkActive = document.querySelectorAll('.nav-link');
+  linkActive.forEach(function(item) {
+    item.addEventListener('click', function() {
+      // Elimina la clase "active" de todos los elementos de la lista
+      linkActive.forEach(function(item) {
+        item.classList.remove('active');
+      });
+      // Agrega la clase "active" solo al elemento seleccionado
+      this.classList.add('active');
+    });
+  });
   //Cambiar logo user
   let change_logo_user = document.getElementById('change_logo_user');
   change_logo_user.addEventListener('click', changeLogo, false);
 
-  function changeLogo() {
+  function changeLogo()
+  {
     Swal.fire({
       title: 'Ingrese su nuevo avatar',
       html: `
@@ -78,7 +91,8 @@ $(document).ready(function () {
 let change_password = document.getElementById('change_password_user');
 change_password.addEventListener('click', changePassword, false);
 
-function changePassword() {
+function changePassword()
+{
   Swal.fire({
     title: 'Ingresa tu nueva contraseña',
     input: 'password',
@@ -162,32 +176,36 @@ function changePassword() {
   });
 }
   
-  //cerrar sesión 
-  let cerrar_sesion = document.getElementById('cerrar_sesion');
-  cerrar_sesion.addEventListener('click', cerrarSesion, false);
-  function cerrarSesion(){
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: '¿Quieres cerrar sesión?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, cerrar sesión',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      // Si el usuario confirma que quiere cerrar sesión
-      if (result.isConfirmed) {
-        // Llama a la función signOut() usando AJAX
-        $.ajax({
-          method: "POST",
-          url: "/signout",
-          success: function() {
-            // Si la función se ejecutó correctamente, redirige al usuario a la página de inicio de sesión
-            window.location.href = '/administrador';
-          }
-        });
-      }
-    });
-  }
+//cerrar sesión 
+let cerrar_sesion = document.getElementById('cerrar_sesion');
+cerrar_sesion.addEventListener('click', cerrarSesion, false);
+function cerrarSesion()
+{
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: '¿Quieres cerrar sesión?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, cerrar sesión',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    // Si el usuario confirma que quiere cerrar sesión
+    if (result.isConfirmed) {
+      // Llama a la función signOut() usando AJAX
+      $.ajax({
+        method: "POST",
+        url: "/signout",
+        success: function() {
+          // Si la función se ejecutó correctamente, redirige al usuario a la página de inicio de sesión
+          window.location.href = '/administrador';
+        }
+      });
+    }
+  });
+}
+
+//carga dinamica de las opciones del sidebar
+
 });

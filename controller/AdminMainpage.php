@@ -2,11 +2,22 @@
 
 class AdminMainpage{
 
-    public function show( $contenido = '')
+    public function show( $contenidoPage =  '')
     {  
         session_start();
         if(isset($_SESSION['username']) && isset($_SESSION['tipoUser']) ){
-            $this->renderView('admin/plantillaAdmin', $_SESSION['username'], $_SESSION['tipoUser'], $contenido);
+            $this->renderView('admin/plantillaAdmin', $_SESSION['username'], $_SESSION['tipoUser'], $contenidoPage);
+        }else{
+            header('Location: /administrador');
+            exit;
+        }
+    }
+
+    public function showContentPage($contenidoPage)
+    {
+        session_start();
+        if(isset($_SESSION['username']) && isset($_SESSION['tipoUser']) ){
+            $this->renderView('admin/plantillaAdmin', $_SESSION['username'], $_SESSION['tipoUser'], $contenidoPage);
         }else{
             header('Location: /administrador');
             exit;
@@ -15,14 +26,13 @@ class AdminMainpage{
 
     private function renderView(string $viewName, $userName, $tipoUser, $contenidoPage)
     {
-        $viewName = ($viewName == 'ErrorCritico') ? 'ErrorCritico' : $viewName;
+        $viewName = ($viewName == 'ErrorView') ? 'ErrorView' : $viewName;
 
         $fullpath = _ROOT_VIEWS .  $viewName . '.php';
 
         try {
 
             if(!file_exists($fullpath)){
-                include_once _ROOT_CONTROLLER . 'NotFoundController.php';
                 throw new Exception ('Vista no encontrada' . $viewName);
             }
             if(pathinfo($fullpath, PATHINFO_EXTENSION)!== 'php'){

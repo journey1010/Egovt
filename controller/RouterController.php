@@ -26,7 +26,7 @@ class Router extends AbstractController{
         try{
             $jsonFile = file_get_contents( _ROOT_MODEL . 'routes.json');
             if(!$jsonFile){
-                $this->renderView('ErrorCritico');
+                $this->renderView('ErrorView');
                 throw new Exception('Archivo routes.json no existe en el directorio model/');
             }
         }catch(Exception $e){
@@ -55,14 +55,13 @@ class Router extends AbstractController{
             $matches = [];
             if (preg_match($this->compileRouteRegex($pattern), $requestUrl, $matches)) {
                 array_shift($matches); 
-
+                $matches = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
                 if (is_callable($handler)) {
                     call_user_func_array($handler, $matches);
                     return;
                 }
 
                 list($controllerName, $methodName) = explode('@', $handler);
-
                 require_once _ROOT_CONTROLLER . $controllerName . '.php'; 
                 $controller = new $controllerName();
                 $controller->$methodName(...$matches);
@@ -88,5 +87,4 @@ class Router extends AbstractController{
         $var = preg_replace('/[^a-zA-Z0-9\/.=~-]/', '', $var);
         return $var;
     }
-
 }
