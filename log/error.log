@@ -688,3 +688,14 @@
 2023-03-02 14:39:31: Url not found/images/img21.jpg
 2023-03-02 14:39:31: Url not found/images/img22.jpg
 2023-03-02 14:39:31: Url not found/images/bgPattern2.jpg
+2023-03-13 18:33:15 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1
+2023-03-13 18:33:58 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1
+2023-03-13 18:34:17 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1
+2023-03-13 18:35:38 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1
+2023-03-13 18:35:41 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1
+2023-03-13 18:38:05 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1
+2023-03-13 18:39:18 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1
+2023-03-13 18:39:24 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1
+2023-03-13 18:40:30 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1
+2023-03-13 19:30:58 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1
+2023-03-14 14:35:27 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hora_de_ingreso desc' at line 1

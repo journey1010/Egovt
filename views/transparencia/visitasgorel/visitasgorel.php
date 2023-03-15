@@ -1,3 +1,7 @@
+<?php
+require_once (_ROOT_MODEL . 'transparencia.php');
+$visitas = new transparencia();
+?>
 <main class="breadcrumb">
     <div class="container-fluid">
         <div class="containe">
@@ -32,126 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheputk</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
-                    <tr>
-                        <td>Zumaeta Freitas Renzo</td>
-                        <td>75896425</td>
-                        <td>Regional Director</td>
-                        <td>Jhon Pimentel Fernandez</td>
-                        <td>08:30</td>
-                        <td>12:30</td>
-                        <td>Juan Carlos Del Aguila Sheput</td>
-                        <td>Entega de Comida</td>
-                    </tr>
+                    <?php $visitas->tableViews(); ?>
                 </tbody>
             </table>
         </div>
@@ -159,14 +44,14 @@
 </main>
 
 
-<script src="assets/js/bootstrap-datepicker.js"></script>
-<script src="assets/js/material-kit.js"></script>
-<script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="assets/js/dataTables.responsive.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#ocultar').DataTable({
-            responsive: true
-        });
-    });
-</script>
+    <script src="<?php echo _ROOT_ASSETS . 'js/bootstrap-datepicker.js' ?>"></script>
+	<script src="<?php echo _ROOT_ASSETS . 'js/material-kit.js' ?>"></script>
+	<script src="<?php echo _ROOT_ASSETS . 'js/jquery.dataTables.min.js' ?>"></script>
+	<script src="<?php echo _ROOT_ASSETS . 'js/dataTables.responsive.min.js' ?>"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#ocultar').DataTable({
+				responsive: true
+			});
+		});
+	</script>
