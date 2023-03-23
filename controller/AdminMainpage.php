@@ -1,12 +1,19 @@
 <?php
 
+require_once (_ROOT_VIEWS . 'admin/ConstructViewPanelAdmin.php');
+
 class AdminMainpage{
 
     public function show( $contenidoPage =  '')
     {  
         session_start();
         if(isset($_SESSION['username']) && isset($_SESSION['tipoUser']) ){
-            $this->renderView('admin/plantillaAdmin', $_SESSION['username'], $_SESSION['tipoUser'], $contenidoPage);
+            if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest' ) {
+                //renderizar contenido de manera dinamica 
+                $this->renderContentPage($_SESSION['username'] ,$_SESSION['tipoUser'], $contenidoPage);                
+            } else {
+                $this->renderView('admin/plantillaAdmin', $_SESSION['username'], $_SESSION['tipoUser'], $contenidoPage);
+            }
         }else{
             header('Location: /administrador');
             exit;
@@ -16,12 +23,29 @@ class AdminMainpage{
     public function showContentPage($contenidoPage)
     {
         session_start();
-        if(isset($_SESSION['username']) && isset($_SESSION['tipoUser']) ){
-            $this->renderView('admin/plantillaAdmin', $_SESSION['username'], $_SESSION['tipoUser'], $contenidoPage);
+        //verifica si hay variables session disponibles
+        if (isset($_SESSION['username']) && isset($_SESSION['tipoUser']) ){
+            //verifica si se ha enviado una solicitud ajax
+            if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest' ) {
+                //renderizar contenido de manera dinamica 
+                $this->renderContentPage($_SESSION['username'] ,$_SESSION['tipoUser'], $contenidoPage);                
+            } else {
+                $this->renderView('admin/plantillaAdmin', $_SESSION['username'], $_SESSION['tipoUser'], $contenidoPage);
+            }
+            
         }else{
             header('Location: /administrador');
             exit;
         }
+    }
+
+    private function renderContentPage($userName, $tipoUser, $contenidoPage)
+    {
+        $contenido = new viewConstruct($userName, $tipoUser, $contenidoPage);
+        ob_clean();
+        echo $contenido->buildContentPage();
+        ob_end_flush();
+        return;
     }
 
     private function renderView(string $viewName, $userName, $tipoUser, $contenidoPage)

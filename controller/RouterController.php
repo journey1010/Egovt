@@ -63,6 +63,15 @@ class Router extends AbstractController{
 
                 list($controllerName, $methodName) = explode('@', $handler);
                 require_once _ROOT_CONTROLLER . $controllerName . '.php'; 
+                if (strpos($controllerName, 'admin/') !== false) {
+                    session_start();
+                    if (isset($_SESSION['username']) && isset($_SESSION['tipoUser'])) {
+                        $controllerName = str_replace('admin/', '', $controllerName);
+                    } else {
+                        session_destroy();
+                        die;
+                    }    
+                }
                 $controller = new $controllerName();
                 $controller->$methodName(...$matches);
                 return;

@@ -6,11 +6,14 @@
         {"method" : "GET", "pattern" : "/administrador/app", "handler": "AdminMainPage@show"},
         {"method" : "GET", "pattern" : "/administrador/app/{contenidoPage}", "handler" : "AdminMainPage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/usuarios/{contenidoPage}", "handler" : "AdminMainPage@showContentPage"},
-        {"method" : "GET", "pattern" : "/administrador/visitas/{contenidoPage}", "handler": "AdminMainPage@showContentPage"},
-        {"method" : "POST", "pattern" : "/administrador/ver-dni", "handler": "admin/Usuarios@verDni"},
+        {"method" : "GET", "pattern" : "/administrador/visitas/{contenidoPage}", "handler" : "AdminMainPage@showContentPage"},
+        {"method" : "GET", "pattern" : "/administrador/obras/{contenidoPage}", "handler" : "AdminMainPage@showContentPage"},
+        {"method" : "GET", "pattern" : "/administrador/obras/{contenidoPage}", "handler" : "AdminMainPage@showContentPage"},
+        {"method" : "POST", "pattern" : "/administrador/resgistrarusuarios", "handler": "admin/Usuarios@RegistrarUsuario"},
+        {"method" : "POST", "pattern" : "/administrador/resgistravisitas", "handler": "admin/visitas@RegistrarVisita"},
+        {"method" : "POST", "pattern" : "/administrador/actualizarvisitas", "handler": "admin/visitas@ActualizarVisita"},
         {"method" : "POST", "pattern" : "/changelogo", "handler" : "settingsUser@changeLogo" },
         {"method" : "POST", "pattern" : "/changepassword", "handler" : "settingsUser@changePassword"},
-        {"method" : "POST", "pattern" : "/signout", "handler" : "settingsUser@signOut"},
-        {"method" : "GET", "pattern": "/mapa-de-sitio", "handler" : ""}  
+        {"method" : "POST", "pattern" : "/signout", "handler" : "settingsUser@signOut"}  
     ]
 }

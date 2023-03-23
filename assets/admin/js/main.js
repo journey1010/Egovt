@@ -1,6 +1,5 @@
-
 $(document).ready(function () {
-  
+  //Inicializar select2
   //cambiar clase active del sidebar menu
   let linkActive = document.querySelectorAll('.nav-link');
   linkActive.forEach(function(item) {
@@ -87,125 +86,157 @@ $(document).ready(function () {
     });
   }
 
-//cambiar contraseñas
-let change_password = document.getElementById('change_password_user');
-change_password.addEventListener('click', changePassword, false);
+  //cambiar contraseñas
+  let change_password = document.getElementById('change_password_user');
+  change_password.addEventListener('click', changePassword, false);
 
-function changePassword()
-{
-  Swal.fire({
-    title: 'Ingresa tu nueva contraseña',
-    input: 'password',
-    inputLabel: 'Contraseña ',
-    inputPlaceholder: 'Nueva contraseña',
-    inputAttributes: {
-      maxlength: 10,
-      autocapitalize: 'off',
-      autocorrect: 'off'
-    },
-    preConfirm: function (password) {
-      if (!password) {
-        Swal.showValidationMessage('Debe ingresar una contraseña');
-        return false;
-      }
+  function changePassword()
+  {
+    Swal.fire({
+      title: 'Ingresa tu nueva contraseña',
+      input: 'password',
+      inputLabel: 'Contraseña ',
+      inputPlaceholder: 'Nueva contraseña',
+      inputAttributes: {
+        maxlength: 10,
+        autocapitalize: 'off',
+        autocorrect: 'off'
+      },
+      preConfirm: function (password) {
+        if (!password) {
+          Swal.showValidationMessage('Debe ingresar una contraseña');
+          return false;
+        }
 
-      let formData = new FormData();
-      formData.append('username',username);
-      formData.append('password', password);
-      
-      return $.ajax({
-        url: "/changepassword",
-        method: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-          let jsonResponse = JSON.parse(response);
-          if (jsonResponse.respuesta === true) {
-            Swal.fire({
-              title: 'Contraseña actualizada',
-              text: `La contraseña ha sido actualizada exitosamente para el usuario ${$('#username').val()}`,
-              icon: 'success'
-            });
-          } else if (jsonResponse.respuesta === false) {
+        let formData = new FormData();
+        formData.append('username',username);
+        formData.append('password', password);
+        
+        return $.ajax({
+          url: "/changepassword",
+          method: "POST",
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            let jsonResponse = JSON.parse(response);
+            if (jsonResponse.respuesta === true) {
+              Swal.fire({
+                title: 'Contraseña actualizada',
+                text: `La contraseña ha sido actualizada exitosamente para el usuario ${$('#username').val()}`,
+                icon: 'success'
+              });
+            } else if (jsonResponse.respuesta === false) {
+              Swal.fire({
+                title: 'Error',
+                text: 'Ha ocurrido un fallo al cambiar la contraseña',
+                icon: 'error'
+              });
+            } else {
+              Swal.fire({
+                title: 'Error',
+                text: 'Ha fallado el envío de datos. Vuelva a intentar más tarde.',
+                icon: 'error'
+              });
+            }
+          },
+          error: function (response) {
             Swal.fire({
               title: 'Error',
-              text: 'Ha ocurrido un fallo al cambiar la contraseña',
-              icon: 'error'
-            });
-          } else {
-            Swal.fire({
-              title: 'Error',
-              text: 'Ha fallado el envío de datos. Vuelva a intentar más tarde.',
+              text: `Request failed: ${response.statusText}`,
               icon: 'error'
             });
           }
-        },
-        error: function (response) {
+        });
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (result.value.respuesta == false ) {
           Swal.fire({
             title: 'Error',
-            text: `Request failed: ${response.statusText}`,
+            text: `Ha ocurrido un fallo al cambiar la contraseña`,
             icon: 'error'
-          });
+          })
+        } else if (result.value.respuesta == true ) {
+          Swal.fire({
+            title: 'Contraseña actualizada',
+            text: 'La contraseña ha sido actualizada exitosamente para el usuario : '+username,
+            icon: 'success'
+          })
+        }else if (result.value.respuesta == 'Error de datos'){
+          Swal.fire({
+            title: 'Error',
+            text: 'Ha fallado el envío de datos. Vuelva a intentar más tarde.',
+            icon: 'error'
+          })
         }
-      });
-    },
-    allowOutsideClick: () => !Swal.isLoading()
-  }).then((result) => {
-    if (result.isConfirmed) {
-      if (result.value.respuesta == false ) {
-        Swal.fire({
-          title: 'Error',
-          text: `Ha ocurrido un fallo al cambiar la contraseña`,
-          icon: 'error'
-        })
-      } else if (result.value.respuesta == true ) {
-        Swal.fire({
-          title: 'Contraseña actualizada',
-          text: 'La contraseña ha sido actualizada exitosamente para el usuario : '+username,
-          icon: 'success'
-        })
-      }else if (result.value.respuesta == 'Error de datos'){
-        Swal.fire({
-          title: 'Error',
-          text: 'Ha fallado el envío de datos. Vuelva a intentar más tarde.',
-          icon: 'error'
-        })
       }
-    }
-  });
-}
-  
-//cerrar sesión 
-let cerrar_sesion = document.getElementById('cerrar_sesion');
-cerrar_sesion.addEventListener('click', cerrarSesion, false);
-function cerrarSesion()
-{
-  Swal.fire({
-    title: '¿Estás seguro?',
-    text: '¿Quieres cerrar sesión?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Sí, cerrar sesión',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    // Si el usuario confirma que quiere cerrar sesión
-    if (result.isConfirmed) {
-      // Llama a la función signOut() usando AJAX
-      $.ajax({
-        method: "POST",
-        url: "/signout",
-        success: function() {
-          // Si la función se ejecutó correctamente, redirige al usuario a la página de inicio de sesión
-          window.location.href = '/administrador';
-        }
-      });
-    }
-  });
-}
+    });
+  }
+    
+  //cerrar sesión 
+  let cerrar_sesion = document.getElementById('cerrar_sesion');
+  cerrar_sesion.addEventListener('click', cerrarSesion, false);
+  function cerrarSesion()
+  {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres cerrar sesión?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, cerrar sesión',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      // Si el usuario confirma que quiere cerrar sesión
+      if (result.isConfirmed) {
+        // Llama a la función signOut() usando AJAX
+        $.ajax({
+          method: "POST",
+          url: "/signout",
+          success: function() {
+            // Si la función se ejecutó correctamente, redirige al usuario a la página de inicio de sesión
+            window.location.href = '/administrador';
+          }
+        });
+      }
+    });
+  }
 
-//carga dinamica de las opciones del sidebar
+  //carga dinamica de las opciones del sidebar
 
+  $('a[name="sidebarEnlace').click(function(e) {
+    e.preventDefault();
+    var page = $(this).data('page');
+    var progressBar = $('.progress-bar');
+    var progressBarContainer = $('.progress-bar-container');
+
+    $.ajax({
+      url: '/administrador/' + page,
+      beforeSend: function(){
+        progressBar.width('0%');
+        progressBarContainer.show();
+      },
+      success: function(html) {
+        $('#contentPage').html(html);
+        window.history.pushState(null, null, '/administrador/' + page);
+        $('#contentPage').append("<script>$('.select2').select2({closeOnSelect: true });</script>");
+      },
+      complete: function() {
+        progressBarContainer.hide();
+      }, 
+      xhr: function() {
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener('progress', function(event) {
+          if (event.lengthComputable) {
+            var percentComplete = (event.loaded / event.total) * 100;
+            progressBar.width(percentComplete + '%');
+          }
+        }, false);
+        return xhr;
+      }
+    });
+  });
 });

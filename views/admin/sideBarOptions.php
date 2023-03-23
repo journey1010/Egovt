@@ -13,13 +13,13 @@ class sideBarOptions {
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" name="sidebarEnlace" data-page="">
                 <i class="fas fa-book"></i>
                 <p></p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" name="sidebarEnlace" data-page="">
                 <i class="fas fa-edit"></i>
                 <p>---</p>
                 </a>
@@ -35,7 +35,7 @@ class sideBarOptions {
         $html = <<<Html
         <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="fas fa-table"></i>
+            <i class="fas fa-table" style="color: #8C92E9;"></i>
             <p>
                 Oficinas
                 <i class="right fas fa-angle-left"></i>
@@ -43,7 +43,7 @@ class sideBarOptions {
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="/administrador/app/oficinas" class="nav-link">
+                <a href="/administrador/app/oficinas" name="sidebarEnlace" class="nav-link" data-page="app/oficinas">
                 <i class="fas fa-table"></i>
                 <p>Administrar oficinas</p>
                 </a>
@@ -56,11 +56,10 @@ class sideBarOptions {
 
     public function visitas()
     {
-        
         $html = <<<Html
         <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="fas fa-id-card-alt"></i>
+            <i class="fas fa-id-card-alt" style="color: #8A47FF;"></i>
             <p>
                 Visitas
                 <i class="right fas fa-angle-left"></i>
@@ -68,13 +67,13 @@ class sideBarOptions {
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="/administrador/visitas/registrar-visitas" class="nav-link">
+                <a href="/administrador/visitas/registrar-visitas" name="sidebarEnlace" class="nav-link" data-page="visitas/registrar-visitas">
                 <i class="fas fa-book"></i>
                 <p>Registrar</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/administrador/visitas/actualizar-visitas" class="nav-link">
+                <a href="/administrador/visitas/actualizar-visitas" name="sidebarEnlace" class="nav-link"data-page="visitas/actualizar-visitas">
                 <i class="fas fa-edit"></i>
                 <p>Actualizar</p>
                 </a>
@@ -90,7 +89,7 @@ class sideBarOptions {
         $html = <<<Html
         <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="fas fa-users"></i>
+            <i class="fas fa-users" style="color: #F21331;"></i>
             <p>
                 Usuarios
                 <i class="right fas fa-angle-left"></i>
@@ -98,13 +97,13 @@ class sideBarOptions {
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="/administrador/usuarios/registrar-usuarios" class="nav-link">
+                <a href="/administrador/usuarios/registrar-usuarios" name="sidebarEnlace" class="nav-link" data-page="usuarios/registrar-usuarios">
                 <i class="fas fa-book"></i>
                 <p>Registrar</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/administrador/usuarios/actualizar-usuarios" class="nav-link">
+                <a href="/administrador/usuarios/actualizar-usuarios" name="sidebarEnlace" class="nav-link" data-page="usuarios/actualizar-usuarios">
                 <i class="fas fa-edit"></i>
                 <p>Administrar usuarios</p>
                 </a>
@@ -115,5 +114,34 @@ class sideBarOptions {
         return $html;
     }
     
+    public function obras()
+    {
+        $html = <<<Html
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fas fa-hard-hat" style="color: #edf019;"></i>
+            <p>
+                Obras 
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrador/obras/registrar-obras" name="sidebarEnlace" class="nav-link" data-page="usuarios/registrar-usuarios">
+                <i class="fas fa-book"></i>
+                <p>Registrar</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/administrador/obras/actualizar-obras" name="sidebarEnlace" class="nav-link" data-page="usuarios/actualizar-usuarios">
+                <i class="fas fa-edit"></i>
+                <p>Administrar obras</p>
+                </a>
+            </li>
+            </ul>
+        </li>
+        Html;
+        return $html;
+    }
 }
 ?>

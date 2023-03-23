@@ -4,6 +4,7 @@ require_once _ROOT_VIEWS . 'admin/sideBarOptions.php';
 require_once _ROOT_VIEWS . 'admin/contentPageOptions.php';
 
 class viewConstruct{
+    
     private $user;
     private $tipoUser;
     private $contenido;
@@ -59,12 +60,10 @@ class viewConstruct{
             $sqlSentences = "SELECT user_img from usuarios where nombre_usuario = ? ";
             $arrayParams = [$this->user];
             $consulta  = $conexion->query($sqlSentences, $arrayParams, '', false);
-            $ResultadoConsulta = $consulta->fetchAll();
-            foreach ($ResultadoConsulta as $columna) {
-                $rutaImagen = $columna['user_img'];
-            }
-            $rutaImagen = ($rutaImagen == '') ? 'default.jpg' :  _ROOT_ASSETS_ADMIN . 'img/iconUser/' . $rutaImagen;
+            $ResultadoConsulta = $consulta->fetchColumn();
             $conexion->close();
+            $ImageName = (!empty($ResultadoConsulta)) ? $ResultadoConsulta : 'journii.jpg';
+            $rutaImagen = _ROOT_ASSETS_ADMIN . 'img/iconUser/' . $ImageName;
             return $rutaImagen;
         }catch (Throwable $e){
             $this->handlerError($e);
@@ -78,10 +77,13 @@ class viewConstruct{
         try {
             switch($tipoUser){
                 case 'admin':
-                    $opciones = array ('principalPage', 'oficinas', 'usuarios', 'visitas');
+                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras');
                 break;
                 case 'visitor':
                     $opciones = array ('visitas');
+                break;
+                case 'obra':
+                    $opciones = array ( 'obras' );
                 break; 
                 default:
                     throw new Exception('Clase de usuario no valido');
@@ -112,13 +114,21 @@ class viewConstruct{
                     'oficinas' => $contentPage->Oficinas(),
                     'registrar-usuarios' => $contentPage->RegistrarUsuarios(),
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
-                    'actualizar-visitas' => $contentPage->ActualizarVisitas()
+                    'actualizar-visitas' => $contentPage->ActualizarVisitas(),
+                    'actualizar-obras' => $contentPage->ActualizarObras()
                 ],
 
                 'visitor' =>[
                     '' => $contentPage->RegistrarVisitas(),
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
                     'actualizar-visitas' => $contentPage->ActualizarVisitas(),
+                    'contacto' => $contentPage->Contacto()
+                ],
+                
+                'obras' =>[
+                    '' => $contentPage->RegistrarObras(),
+                    'registrar-obras' => $contentPage->RegistrarObras(),
+                    'actualizar-obras' => $contentPage->ActualizarObras(),
                     'contacto' => $contentPage->Contacto()
                 ]
             ];

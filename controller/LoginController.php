@@ -41,7 +41,7 @@ class LoginController extends AbstractController
         $password = $this->SanitizeVar($_POST['password']) ?? '';
 
         $conexion = new MySQLConnection();
-        $sqlSentences = "SELECT nombre_usuario, contrasena, tipo_usuario from usuarios where nombre_usuario = ? ";
+        $sqlSentences = "SELECT nombre_usuario, contrasena, tipo_usuario FROM usuarios WHERE nombre_usuario = ? ";
         $arrayParams = [$username];
         $consulta  = $conexion->query($sqlSentences, $arrayParams, '', false);
         $ResultadoConsulta = $consulta->fetchAll();

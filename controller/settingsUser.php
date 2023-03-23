@@ -63,7 +63,14 @@ class settingsUser extends AbstractController{
             }
             $userName = $_POST['username'] ?? '';
             $password = $this->SanitizeVar($_POST['password']);
-            $password = password_hash($password, PASSWORD_ARGON2I, ['cost' => 8, 'memory_cost' => 1<<10, 'time_cost' => 2, 'threads' => 2]);
+            $password = password_hash($password, PASSWORD_ARGON2I, 
+                [
+                    'cost' => 8, 
+                    'memory_cost' => 1<<10,
+                    'time_cost' => 2, 
+                    'threads' => 2
+                ]
+            );
             
             $conexion = new MySQLConnection();
             $sqlSentence = "Update usuarios set contrasena = ? where nombre_usuario = ?";

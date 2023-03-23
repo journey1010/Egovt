@@ -14,9 +14,12 @@ $vistasAdmin = new viewConstruct($userName, $tipoUser, $contenidoPage);
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="<?php echo _ROOT_ASSETS_ADMIN . 'css/all.min.css' ?> ">
   <link rel="stylesheet" href="<?php echo _ROOT_ASSETS_ADMIN . 'css/adminlte.min.css' ?> ">
-</head>
-
+  <link rel="stylesheet" href="<?= _ROOT_ASSETS_ADMIN . 'css/styles.css'?>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"  >
 <body class="hold-transition sidebar-mini">
+  <div class="progress-bar-container">
+    <div class="progress-bar"></div>
+  </div>
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -129,30 +132,31 @@ $vistasAdmin = new viewConstruct($userName, $tipoUser, $contenidoPage);
     <div class="content-wrapper">
       <div class="content">
         <div class="container-fluid">
-          <div class="row">
+          <div class="row" id="contentPage">
           <?php echo $vistasAdmin->buildContentPage() ?>
           </div>          
         </div>
       </div>
     </div>
     <!-- /.content-wrapper -->
-
-
+    
     <footer class="main-footer">
       <strong>Derechos reservados @ 2023 <a href="https://regionloreto.gob.pe">Gobierno Regional de Loreto</a>.</strong>
     </footer>
   </div>
 
-
   <script src="<?= _ROOT_ASSETS_ADMIN . 'js/jquery.min.js' ?>"></script>
-  <script src="<?= _ROOT_ASSETS_ADMIN . 'js/bootstrap.bundle.min.js' ?> "></script>
   <script src="<?= _ROOT_ASSETS_ADMIN . 'js/adminlte.min.js' ?> "></script>
   <script src="<?= _ROOT_ASSETS . 'js/ohsnap/ohsnap.js' ?>"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+  <!-- select2-->
   <script>
     var username = "<?php echo $_SESSION['username']; ?>";
   </script>
   <script src="<?= _ROOT_ASSETS_ADMIN . 'js/main.js' ?>"></script>
-  <!--<script src="<?= _ROOT_ASSETS_ADMIN . 'js/forms.js' ?>" async></script>-->
+  <script src="<?= _ROOT_ASSETS_ADMIN . 'js/forms.js' ?>"></script>
 </body>
 </html>
