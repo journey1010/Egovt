@@ -1,0 +1,202 @@
+[
+    {
+        "nombre":"Consejo Regional",
+        "sigla": "CR",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Gobernación Regional",
+        "sigla": "GR",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Gerencia General Regional",
+        "sigla": "GGR",
+        "jerarquia": "GERENCIA"
+    },
+    {
+        "nombre":"Consejo de Coordinación Regional",
+        "sigla": "CCR",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Comité Regional de Seguridad Ciudadana",
+        "sigla": "CORESEC",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Centro de Operaciones de Emergencia Regional",
+        "sigla": "COER",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Directorio de Gerencias Regionales",
+        "sigla": "DGR",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Órgano de Control Institucional Regional",
+        "sigla": "OCIR",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Procuraduría Pública Regional",
+        "sigla": "PPR",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Oficina Regional de Defensa Nacional y Gestión de Riesgos de Desastres",
+        "sigla": "ORDNGRD",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Oficina Regional de Participación Ciudadana",
+        "sigla": "ORPAC",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Oficina Regional de Diálogo, Prevención y Gestión de Conflictos Sociales",
+        "sigla": "ORDPGCS",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Gerencia Regional de Asesoría Jurídica",
+        "sigla": "GRAJ",
+        "jerarquia": "GERENCIA"
+    },
+    {
+        "nombre":"Gerencia Regional de Planeamiento, Presupuesto e Inversión Pública",
+        "sigla": "GRPPIP",
+        "jerarquia": "GERENCIA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Planeamiento y Estadística",
+        "sigla": "OEPE",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Presupuesto",
+        "sigla": "OEP",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Programación Multianual de Inversiones",
+        "sigla": "OEPMI",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Acondicionamiento Territorial y Desarrollo Fronterizo",
+        "sigla": "OEATDF",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Desarrollo Institucional y Procesos",
+        "sigla": "OEDIP",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Oficina Regional de Comunicaciones e Imagen Institucional",
+        "sigla": "ORCII",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Archivo Regional",
+        "sigla": "ARL",
+        "jerarquia": "ÓRGANO"
+    },
+    {
+        "nombre":"Gerencia Regional de Administración",
+        "sigla": "GRA",
+        "jerarquia": "GERENCIA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Logística y Servicios Generales",
+        "sigla": "OELSG",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Maquinarias, Vehículos Menores y Fluviales",
+        "sigla": "OEMVMF",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Control Patrimonial",
+        "sigla": "OECP",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Cobranza Coactiva",
+        "sigla": "OECC",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Contabilidad",
+        "sigla": "OEC",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Tesorería",
+        "sigla": "OET",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Gestión Documental y Atención al Ciudadano",
+        "sigla": "OEGDAC",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Gerencia Regional de Recursos Humanos",
+        "sigla": "GRRRHH",
+        "jerarquia": "GERENCIA"
+    },
+    {
+        "nombre":"Gerencia Regional de Tecnologías de la Información",
+        "sigla": "GERTI",
+        "jerarquia": "GERENCIA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Infraestructura Tecnológica",
+        "sigla": "OETI",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Oficina Ejecutiva de Sistemas de Información",
+        "sigla": "OESI",
+        "jerarquia": "OFICINA"
+    },
+    {
+        "nombre":"Gerencia Regional de Desarrollo Económico",
+        "sigla": "GRDE",
+        "jerarquia": "GERENCIA"
+    },
+    {
+        "nombre":"Sub Gerencia Regional de Promoción de Inversiones",
+        "sigla": "SGRPI",
+        "jerarquia": "SUBGERENCIA"
+    },
+    {
+        "nombre":"Sub Gerencia Regional de Promoción Comercial",
+        "sigla": "SGRPC",
+        "jerarquia": "SUBGERENCIA"
+    },
+    {
+        "nombre":"Programa Regional de Créditos",
+        "sigla": "PRC",
+        "jerarquia": "DIRECCIÓN"
+    },
+    {
+        "nombre":"Dirección Regional de la Producción",
+        "sigla": "DIREPRO",
+        "jerarquia": "DIRECCIÓN"
+    },
+    {
+        "nombre":"Dirección Regional de Energía y Minas",
+        "sigla": "",
+        "jerarquia": "DIRECCIÓN"
+    },
+    {
+        "nombre":"",
+        "sigla": "",
+        "jerarquia": ""
+    }
+]

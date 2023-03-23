@@ -8,7 +8,6 @@ if($router->secure){
     $router->loadRoutesFromJson();
     $router->handleRequest();
 }else{
-    
     header('Location: https://' . $_SERVER['HTTP_HOST'] . filter_var( $_SERVER['REQUEST_URI']), FILTER_SANITIZE_URL);
     exit;
 }

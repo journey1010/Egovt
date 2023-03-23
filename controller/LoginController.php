@@ -11,7 +11,7 @@ class LoginController extends AbstractController
         if (isset($_COOKIE['user'])) {
             $username = $_COOKIE['user'];
             $conexion = new MySQLConnection();
-            $sqlSentences = "SELECT nombre, estado_usuario, tipo_usuario from usuarios where nombre = ? ";
+            $sqlSentences = "select nombre_usuario, estado_usuario, tipo_usuario from usuarios where nombre_usuario =  ? ";
             $arrayParams = [$username];
             $consulta  = $conexion->query($sqlSentences, $arrayParams, '', false);
             $ResultadoConsulta = $consulta->fetchAll();
@@ -41,7 +41,7 @@ class LoginController extends AbstractController
         $password = $this->SanitizeVar($_POST['password']) ?? '';
 
         $conexion = new MySQLConnection();
-        $sqlSentences = "SELECT nombre, contrasena, tipo_usuario from usuarios where nombre = ? ";
+        $sqlSentences = "SELECT nombre_usuario, contrasena, tipo_usuario FROM usuarios WHERE nombre_usuario = ? ";
         $arrayParams = [$username];
         $consulta  = $conexion->query($sqlSentences, $arrayParams, '', false);
         $ResultadoConsulta = $consulta->fetchAll();
@@ -50,9 +50,8 @@ class LoginController extends AbstractController
             $response = array('error' => 'Puede que no exista el usuario');
             echo json_encode($response);
         } else {
-
             foreach ($ResultadoConsulta as $columna) {
-                $usernameToCompare = $columna['nombre'];
+                $usernameToCompare = $columna['nombre_usuario'];
                 $passwordToCompare = $columna['contrasena'];
                 $userTipo = $columna['tipo_usuario'];
             }
@@ -75,9 +74,8 @@ class LoginController extends AbstractController
     
     protected function SanitizeVar(string $var)
     {
-        $var = filter_var($var, FILTER_SANITIZE_SPECIAL_CHARS);
-        $var = htmlspecialchars($var, ENT_QUOTES);
-        $var = preg_replace('/[^a-zA-Z0-9.+*-@]/', '', $var);
+        $var = htmlspecialchars( $var,  ENT_QUOTES);
+        $var = preg_replace('/[^a-zA-Z0-9.=+-_@^]/', 'a', $var);
         return $var;
     }
 }

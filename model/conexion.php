@@ -30,7 +30,7 @@ class MySQLConnection {
         return $this->pdo;
     }
     
-    public function execute($sql, $params = array()) {
+    public function execute($sql, $params= array()) {
         $pdo = $this->connect();
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
@@ -49,7 +49,13 @@ class MySQLConnection {
                 unset($this->cachedQueries[$cacheKey]);
             }
         }
-        $stmt = $this->execute($sql, $params);
+        
+        if (empty($params)) {
+            $stmt = $this->execute($sql);
+        } else {
+            $stmt = $this->execute($sql, $params);
+        }
+
         if ($useCache && !empty($cacheKey)) {
             // Almacenamos la consulta en la caché con una marca de tiempo
             $this->cachedQueries[$cacheKey] = array(
