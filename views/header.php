@@ -19,12 +19,24 @@
 	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/datepicker.css' ?>">
 	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/jquery.dataTables.min.css' ?>">
 	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/responsive.dataTables.min.css' ?>">
-	
+
 	<script src="<?php echo _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
 	<script src="<?php echo _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
 	<script src="<?php echo _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
+	<style>
+		@media(max-width: 991px){
+		.navbar-collapse{
+			position: fixed;
+			top: 56px;
+			left: 0;
+			z-index: 1;
+			display: block !important;
+			background-color: #f8f9fa;
+			overflow-y: auto;
+			} 
+		}
+	</style>
 </head>
 
 <body>
@@ -34,17 +46,17 @@
 				<div class="d-none d-md-block">
 					<div class="hdTopBar py-2 py-xl-3 bg-dark">
 						<div class="row align-items-center">
-							<div class="col-md-8">
-								<ul class="list-unstyled hdScheduleList mb-0 text-center text-md-left">
+							<div class="col-md-8 align-items-center">
+								<ul class="list-unstyled hdScheduleList mb-0 text-center text-md-left d-flex" style="margin-left: 3%;">
 									<li class="mb-2 mb-md-0">
 										<a href="tel:18001234567">
-											<i class="icomoon-telRcv align-middle icn"><span class="sr-only">icon</span></i>
+											<i class="icomoon-telRcv align-middle icn" style="color: white !important"><span class="sr-only">icon</span></i>
 											Llamar a : cambiar número
 										</a>
 									</li>
 									<li>
 										<time datetime="2011-01-12">
-											<i class="icomoon-clock align-middle icn"><span class="sr-only">icon</span></i>
+											<i class="icomoon-clock align-middle icn" style="color: white !important"><span class="sr-only">icon</span></i>
 											Horario de atención: Lun - Vier 7:00 - 15:00
 										</time>
 									</li>
@@ -52,8 +64,10 @@
 							</div>
 							<div class="col-md-4 text-center text-md-right">
 								<ul class="list-unstyled hdAlterLinksList mb-0 d-flex justify-content-center justify-content-md-end">
-									<li class="mb-2 mb-md-0">
-										<a href="<?php ?>">Directorio</a>
+									<li class="mb-2 mb-md-0" style="margin-top: 3%">
+										<a href="/directorio" target="_blank">
+											Directorio
+										</a>
 									</li>
 									<li class="mb-2 mb-md-0">
 										<a href="https://www.transparencia.gob.pe/" alt="enlace portal de transparencia" target="_blank">
@@ -70,7 +84,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="hdFixerWrap py-2 py-md-3 py-xl-5 sSticky bg-white">
 					<div class="container">
 						<nav class="navbar navbar-expand-md navbar-light p-0">
@@ -119,7 +132,7 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transparencia</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/transparencia/visitas">Visitas</a></li>
+													<li><a class=\"dropdown-item" href="/transparencia/visitas">Visitas</a></li>
 												</ul>
 											</div>
 										</li>
@@ -144,7 +157,7 @@
 							<div class="hdRighterWrap d-flex align-items-center justify-content-end">
 								<div class="dropdown hdLangDropdown ddohOpener d-none d-lg-block">
 									<a class="d-inline-block align-top dropdown-toggle dropIcn" href="javascript:void(0);" role="button" id="hdLanguagedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Esp</a>
-									<div class="dropdown-menu dropdown-menu-right rounded-lg overflow-hidden desktopDropOnHover p-0" aria-labelledby="hdLanguagedropdown">
+									<div class="dropdown-menu dropdown-menu-right rounded-lg overflow-hidden desktopDropOnHover p-0 w-100" aria-labelledby="hdLanguagedropdown">
 										<a class="dropdown-item text-center active" href="javascript:void(0);">Esp</a>
 										<a class="dropdown-item text-center" href="javascript:void(0);">Eng</a>
 										<a class="dropdown-item text-center" href="javascript:void(0);">Quech</a>
