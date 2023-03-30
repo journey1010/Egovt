@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  //Inicializar select2
   //cambiar clase active del sidebar menu
   let linkActive = document.querySelectorAll('.nav-link');
   linkActive.forEach(function(item) {

@@ -121,19 +121,19 @@ class sideBarOptions {
             <a href="#" class="nav-link">
             <i class="fas fa-hard-hat" style="color: #edf019;"></i>
             <p>
-                Obras 
+                Obras
                 <i class="right fas fa-angle-left"></i>
             </p>
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="/administrador/obras/registrar-obras" name="sidebarEnlace" class="nav-link" data-page="usuarios/registrar-usuarios">
+                <a href="/administrador/obras/registrar-obras" name="sidebarEnlace" class="nav-link" data-page="obras/registrar-obras">
                 <i class="fas fa-book"></i>
                 <p>Registrar</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/administrador/obras/actualizar-obras" name="sidebarEnlace" class="nav-link" data-page="usuarios/actualizar-usuarios">
+                <a href="/administrador/obras/actualizar-obras" name="sidebarEnlace" class="nav-link" data-page="obras/actualizar-obras">
                 <i class="fas fa-edit"></i>
                 <p>Administrar obras</p>
                 </a>

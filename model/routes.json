@@ -12,6 +12,12 @@
         {"method" : "POST", "pattern" : "/administrador/resgistrarusuarios", "handler": "admin/Usuarios@RegistrarUsuario"},
         {"method" : "POST", "pattern" : "/administrador/resgistravisitas", "handler": "admin/visitas@RegistrarVisita"},
         {"method" : "POST", "pattern" : "/administrador/actualizarvisitas", "handler": "admin/visitas@ActualizarVisita"},
+        {"method" : "POST", "pattern" : "/administrador/registraroficina", "handler": "admin/oficinas@RegistrarOficina"},
+        {"method" : "POST", "pattern" : "/administrador/actualizaroficina", "handler": "admin/oficinas@ActualizarOficina"},
+        {"method" : "POST", "pattern" : "/administrador/actualizaroficina", "handler": "admin/oficinas@ActualizarOficina"},
+        {"method" : "POST", "pattern" : "/administrador/registrarobra", "handler": "admin/obra@RegistrarObra"},
+        {"method" : "POST", "pattern" : "/administrador/actualizarobra", "handler": "admin/obra@ActualizarObra"},
+        {"method" : "POST", "pattern" : "/administrador/buscarobra", "handler": "admin/obra@BuscarObra"},
         {"method" : "POST", "pattern" : "/changelogo", "handler" : "settingsUser@changeLogo" },
         {"method" : "POST", "pattern" : "/changepassword", "handler" : "settingsUser@changePassword"},
         {"method" : "POST", "pattern" : "/signout", "handler" : "settingsUser@signOut"}  

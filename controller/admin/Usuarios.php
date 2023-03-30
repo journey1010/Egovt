@@ -1,8 +1,8 @@
 <?php
-
+require_once (_ROOT_CONTROLLER . 'admin/handleSanitize.php');
 require_once  (_ROOT_MODEL . 'conexion.php');
 
-class Usuarios {
+class Usuarios extends handleSanitize {
     
     public function RegistrarUsuario()
     {   
@@ -100,21 +100,8 @@ class Usuarios {
                 print_r(json_encode($respuesta));
             }
         }catch (Throwable $e) {
-            $this->handleError($e);
+            $this->handlerError($e);
         }
         return;
-    }
-
-    private function handleError(Throwable $e)
-    {   
-        $errorMessage = date('Y-m-d H:i:s') . ' : ' . $e->getMessage() . "\n"; 
-        error_log($errorMessage, 3, _ROOT_PATH . '/log/error.log');
-    }
-
-    private function SanitizeVarInput(string $var)
-    {
-        $varSanitize = filter_var($var, FILTER_SANITIZE_SPECIAL_CHARS);
-        $varSanitize = htmlentities($var, ENT_QUOTES);
-        return $varSanitize;
     }
 }

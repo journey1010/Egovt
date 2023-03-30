@@ -61,7 +61,7 @@
 
 .progress-bar {
   height: 100%;
-  background-color: #b60707;
+  background-color: rgba(156, 9, 9, 0.765);
   width: 0;
   transition: width 0.3s ease-out;
 }
@@ -69,3 +69,34 @@
 .select2-selection{  
   height: calc(2.25rem + 2px) !important
 } 
+
+table.table thead th {
+  white-space: nowrap;
+}
+table.table thead td {
+  vertical-align: middle;
+}
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+  content: "Elegir archivo";
+}
+
+.custom-file-label {
+  height: calc(2.25rem + 2px);
+  overflow: hidden;
+}
+
+.custom-file-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  opacity: 0;
+  z-index: -1;
+}
+
+.archivo-elegido {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}

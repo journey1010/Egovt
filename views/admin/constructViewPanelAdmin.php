@@ -82,7 +82,7 @@ class viewConstruct{
                 case 'visitor':
                     $opciones = array ('visitas');
                 break;
-                case 'obra':
+                case 'obras':
                     $opciones = array ( 'obras' );
                 break; 
                 default:
@@ -115,6 +115,7 @@ class viewConstruct{
                     'registrar-usuarios' => $contentPage->RegistrarUsuarios(),
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
                     'actualizar-visitas' => $contentPage->ActualizarVisitas(),
+                    'registrar-obras' => $contentPage->RegistrarObras(),
                     'actualizar-obras' => $contentPage->ActualizarObras()
                 ],
 

@@ -10,3 +10,4 @@ define('_BASE_URL', PROTOCOL . '://' . $_SERVER['HTTP_HOST'], false);
 define('_ROOT_ASSETS', _BASE_URL.'/assets/', false);
 define('_ROOT_ASSETS_ADMIN', _BASE_URL.'/assets/admin/', false);
 define('_ROOT_CACHE', _ROOT_PATH. '/resources/cache/', false);
+define('_ROOT_FILES', _ROOT_PATH . '/files/', false);
