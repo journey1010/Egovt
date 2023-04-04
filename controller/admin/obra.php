@@ -269,6 +269,7 @@ class obra extends handleSanitize {
             $sql .= " WHERE id = :id";
             $params[":id"] = $id;
             $conexion->query($sql, $params, '', false);
+            $conexion->close();
             $respuesta = array ("success" => "Registro actualizado exitosamente.");
             print_r(json_encode($respuesta));
 
