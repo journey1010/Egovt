@@ -12,7 +12,7 @@ class handleSanitize {
     protected function SanitizeVarInput (string $var ): string
     {
         $varSanitize = filter_var($var, FILTER_SANITIZE_SPECIAL_CHARS);
-        $varSanitize = htmlentities($var, ENT_QUOTES);
+        $varSanitize = htmlentities($var, ENT_QUOTES, "UTF-8");
         return $varSanitize;
     }
 }

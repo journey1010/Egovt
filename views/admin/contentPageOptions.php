@@ -227,7 +227,7 @@ class contentPageOptions
             </div>
         </section>
         <script type="module" src="$ruta"></script>
-        <script>
+        <script defer>
             $(document).ready(function (){
                 $.getScript('https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js', function (){
                    $('#actualizarOficinas').DataTable({
@@ -408,7 +408,13 @@ class contentPageOptions
                         <div class="col-md-6">
                             <label for="archivoObra">Seleccione un archivo *</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="archivoObra" onchange="document.querySelector('.custom-file-label').innerHTML = this.files[0].name">
+                                <input type="file" class="custom-file-input" id="archivoObra" onchange="
+                                    if (this.files.length > 0) {
+                                        document.querySelector('.custom-file-label').innerHTML = this.files[0].name
+                                    } else {
+                                            document.querySelector('.custom-file-label').innerHTML = 'Seleccione un archivo'
+                                    }
+                                ">
                                 <label class="custom-file-label" for="archivoObra" data-browse="Elegir archivo">Elegir archivo</label>
                           </div>
                         </div>
@@ -513,8 +519,6 @@ class contentPageOptions
                 </form>
             </div>
             <div class="card-body table-responsive p-2 mt-3 mx-auto" id="respuestaBusqueda">     
-            </div>
-            <div class="card-body table-responsive p-2 mt-3 mx-auto" id="editarRegistro">    
             </div>
         </div>
         <script  type ="module" src="$ruta"></script>

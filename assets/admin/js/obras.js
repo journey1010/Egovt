@@ -101,6 +101,12 @@ function limpiarFiltro() {
 
 $(document).on('click', '#aplicarFiltro', searchObra);
 $(document).on('click', '#buscarPalabra', searchObra);
+$(document).on('keydown', '#palabraClave', function(e){
+  if (e.keyCode === 13) {
+    searchObra();
+    return false;
+  }
+});
 function searchObra() {
   if (
     $('#tipoObraActualizar option:selected').val() == '' &&
@@ -127,14 +133,13 @@ function searchObra() {
         $('#spinner').show();
       },
       success: function (data) {
-        if (typeof data == 'array' ) {
-          console.log(data.error);
+        try {
+          let jsonData = JSON.parse(data);
           Toast.fire({
             icon: "error",
-            title: data.error,
-            background: "#ff0000",
+            title: jsonData.error,
           });
-        } else {
+        } catch (e) {
           $('#respuestaBusqueda').html(data);
         }
         $('#spinner').hide();
@@ -151,8 +156,6 @@ function searchObra() {
   }
 }
 
-let activeButton = null; //variable super global para cambiar el icono edit y cancel
-
 $(document).on('click', '.edit-icon', function () {
   let row = $(this).closest("tr");
   let id = row.find("td:eq(0)").text();
@@ -161,53 +164,75 @@ $(document).on('click', '.edit-icon', function () {
   let tipo = row.find("td:eq(3)").text();
   let fecha = row.find("td:eq(4)").text();
 
-  if (activeButton != null) {
-    activeButton.show();
-    activeButton.siblings('.cancel-icon').hide();
-  }
+  row.find(".edit-icon").hide();
+  row.find(".cancel-icon").show();
 
-  activeButton = $(this);
-  activeButton.hide();
-  activeButton.siblings('.cancel-icon').show();
-  $('#editarRegistro').html(formToUpdate(id,titulo,descripcion, tipo, fecha));
+  Swal.fire({
+    width: 'auto',
+    heightAuto: false,
+    html: formToUpdate(id, titulo, descripcion, tipo, fecha),
+    showCancelButton: true,
+    confirmButtonText: 'Guardar',
+    cancelButtonText: 'Cancelar',
+    preConfirm: () => {
+      row.find(".cancel-icon").show();
+      actualizarObra();
+    }, 
+    willClose: function() {
+      row.find(".cancel-icon").hide();
+      row.find(".edit-icon").show();
+    }
+  });
 });
 
-$(document).on('click', '.cancel-icon', function () {
-  $('#editarRegistro').empty();
-  activeButton.show();
-  activeButton.siblings('.cancel-icon').hide();
-  activeButton = null;
-});
 //Formulario de actualizacion
 function formToUpdate(id,titulo,descripcion, tipo, fecha) {
   let htmlContent = `
-    <form id="actualizarObras" enctype="multipart/form-data">
-          <div class="card-header bg-secondary">
-            <h3 class="card-title">Actualizar proyecto de inversión pública</h3>
-          </div>
-          <div class="card-body">
+    <style>
+      .custom-select {
+        width: 100%;
+      }
+      .custom-select option {
+        font-size: 16px; 
+      }
+      .custom-select.hovered:hover option:hover {
+        background-color: blue;
+      }
+    </style>
+    <div class="card card-success mt-0 mx-auto w-100">
+    <div class="card-header">
+        <h3 class="card-title">Editar proyecto de inversión pública</h3>
+    </div>
+    <form id="actualizarObra" enctype="multipart/form-data">
+        <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <label for="titulo">Título*</label>
-                    <input type="text" class="form-control" id="idObraUpdate" value="${id}" style="display:none">
+                    <input type="text" class="form-control" id="idObraUpdate" value="${id}" style="display: none;">
                     <input type="text" class="form-control" id="tituloObra" value="${titulo}">
                 </div>
                 <div class="col-md-6">
-                    <label for="tipo de obra">Tipo *</label>
-                    <select id="tipoObraUpdate" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona un tipo de proyecto de inversión" style="width: 100%; 
-                        height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
-                        <option value="Adicionales de obra">Adicionales de obra</option>
-                        <option value="Liquidacíon de obras">Liquidacíon de obras</option>
-                        <option value="Supervisión de contrataciones">Supervisión de contrataciones</option>
-                        <option value="Historico">Historico</option>
-                        <option value="Información Adicional">Información Adicional</option>
+                    <label for="tipoObraUpdate">Tipo *</label>
+                    <select id="tipoObraUpdate" class="custom-select" data-placeholder="Selecciona un tipo de proyecto de inversión" style="width: 100%; height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+                      <option value="Adicionales de obra" ${tipo === "" ? "selected" : ""}>Selecciona un tipo de proyecto</option>
+                      <option value="Adicionales de obra" ${tipo === "Adicionales de obra" ? "selected" : ""}>Adicionales de obra</option>
+                      <option value="Liquidacíon de obras" ${tipo === "Liquidacíon de obras" ? "selected" : ""}>Liquidacíon de obras</option>
+                      <option value="Supervisión de contrataciones" ${tipo === "Supervisión de contrataciones" ? "selected" : ""}>Supervisión de contrataciones</option>
+                      <option value="Historico" ${tipo === "Historico" ? "selected" : ""}>Historico</option>
+                      <option value="Información Adicional" ${tipo === "Información Adicional" ? "selected" : ""}>Información Adicional</option>
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="archivoObra">Seleccione un archivo *</label>
+                    <label for="archivoObraUpdate">Seleccione un archivo *</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="archivoObraUpdate" onchange="document.querySelector('.custom-file-label').innerHTML = this.files[0].name">
-                        <label class="custom-file-label" for="archivoObra" data-browse="Elegir archivo">${titulo}</label>
+                        <input type="file" class="custom-file-input" id="archivoObraUpdate" onchange="
+                            if (this.files.length > 0) {
+                                document.querySelector('.custom-file-label').innerHTML = this.files[0].name
+                            } else {
+                                    document.querySelector('.custom-file-label').innerHTML = 'Seleccione un archivo'
+                            }
+                        ">
+                        <label class="custom-file-label" for="archivoObraUpdate" data-browse="${titulo}">${titulo}</label>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -216,42 +241,33 @@ function formToUpdate(id,titulo,descripcion, tipo, fecha) {
                 </div>
                 <div class="col-md-12">
                     <label for="descripcion">Descripción *</label>
-                    <textarea type="text" class="form-control text-content" id="descripcionObraUpdate"  style="min-height: 100px; max-width: 100%">${descripcion}</textarea>
+                    <textarea type="text" class="form-control text-content" id="descripcionObraUpdate" placeholder="Por favor ingrese una descripción..." style="min-height: 100px; max-width: 100%">${descripcion}</textarea>
                     <div id="contadorPalabras" style="color: red;"></div>
                 </div>
             </div>
-          </div>
-          <div class="card-footer mt-3">
+        </div>
+        <div class="card-footer mt-3">
             <div class="progress">
                 <div class="progress-bar active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; border-radius: 10px;">
                     0%
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-2">Guardar</button>
-          </div>
-    </form>
-    <script defer>
-      $(document).ready(select2);
-      function select2() {
-        $(".select2").select2({
-          closeOnSelect: true,
-        });
-      }
-    </script>
-    <script>
-      function giveValueSelect2() {
-        $("#tipoObraUpdate").val('${tipo}');
-        $("#tipoObraUpdate").trigger('change');
-      }
-      $(document).ready(giveValueSelect2)
-    </script>
+        </div>
+  </form>
+  <script>
+    document.querySelector('#tipoObraUpdate').addEventListener('mouseenter', function() {
+      this.classList.add('hovered');
+    });
+
+    document.querySelector('#tipoObraUpdate').addEventListener('mouseleave', function() {
+      this.classList.remove('hovered');
+    });
+  </script>
   `;
   return htmlContent;
 }
 
-//enviar info actualizada
-$(document).on('submit', '#actualizarObras', function(event) {
-  event.preventDefault();
+function actualizarObra () {
   let formData  = new FormData();
   formData.append('id', $('#idObraUpdate').val());
   formData.append('titulo', $('#tituloObra').val());
@@ -289,8 +305,6 @@ $(document).on('submit', '#actualizarObras', function(event) {
       switch (indice) {
         case "error":
           Toast.fire({
-            background: "#E75E15",
-            iconColor: "#000000",
             icon: "error",
             title: resp[indice],
           });
@@ -307,7 +321,6 @@ $(document).on('submit', '#actualizarObras', function(event) {
       Toast.fire({
         icon: "error",
         title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
-        background: "#ff0000",
       });
     },
     complete: function () {
@@ -315,4 +328,4 @@ $(document).on('submit', '#actualizarObras', function(event) {
       progressBar.text('100%');
     }
   });
-});
+}

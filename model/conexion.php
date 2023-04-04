@@ -74,8 +74,4 @@ class MySQLConnection {
         $this->close();
     }
 
-    public function handleException($e){
-        $errorMessage = date("Y-m-d H:i:s") . ":" . $e->getMessage() . "||" . $e .  "\n";
-        error_log($errorMessage, 3, _ROOT_PATH . '/log/conexiones.log'  );
-    }
 }
