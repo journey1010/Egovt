@@ -26,19 +26,18 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	<style>
 		@media(max-width: 991px){
-		.navbar-collapse{
-			position: fixed;
-			top: 56px;
-			left: 0;
-			z-index: 1;
-			display: block !important;
-			background-color: #f8f9fa;
-			overflow-y: auto;
+			.navbar-collapse{
+				position: fixed;
+				top: 56px;
+				left: 0;
+				z-index: 1;
+				display: block !important;
+				background-color: #f8f9fa;
+				overflow-y: auto;
 			} 
 		}
 	</style>
 </head>
-
 <body>
 	<div id="pageWrapper">
 		<div class="phStickyWrap">
