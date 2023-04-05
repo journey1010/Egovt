@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?= $link ?>">
+<link rel="stylesheet" href="https://egovt.test/assets/css/datepicker.css">
 <main class="breadcrumb">
     <div class="container-fluid">
         <div class="container bg-white p-3">
@@ -33,11 +33,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td>asdas</td>
+                            <td>Document 1</td>
+                            <td>Area 1</td>
+                            <td>Visitado 1</td>
+                            <td>01-01-2022</td>
+                            <td>02-01-2022</td>
+                            <td>Autorizado</td>
+                            <td>Motivo 1</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+
     </div>
 </main>
-<script src="<?= $jsDatapicker ?>"></script>
-<script src="<?= $jsMaterialkit ?>"></script>
+<script src="https://egovt.test/assets/js/bootstrap-datepicker.js"></script>
+<script src="https://egovt.test/assets/js/material-kit.js"></script>
