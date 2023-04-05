@@ -137,8 +137,5 @@
 			</footer>
 		</div>
 	</div>
-	<script src="<?php echo _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
 	</body>
 </html>
