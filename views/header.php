@@ -16,21 +16,16 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.woff' ?>">
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 	<link rel='icon' type='image/x-icon' href='<?php echo _ROOT_ASSETS . 'images/gorel_favicon.png' ?>'>
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/datepicker.css' ?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/jquery.dataTables.min.css' ?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/responsive.dataTables.min.css' ?>">
-
 	<script src="<?php echo _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
 	<script src="<?php echo _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
 	<script src="<?php echo _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	<style>
-		@media(max-width: 991px){
+		@media(max-width: 1180px){
 			.navbar-collapse{
 				position: fixed;
 				top: 56px;
 				left: 0;
-				z-index: 1;
+				z-index: 9999;
 				display: block !important;
 				background-color: #f8f9fa;
 				overflow-y: auto;

@@ -20,6 +20,9 @@
         {"method" : "POST", "pattern" : "/administrador/buscarobra", "handler": "admin/obra@BuscarObra"},
         {"method" : "POST", "pattern" : "/changelogo", "handler" : "settingsUser@changeLogo" },
         {"method" : "POST", "pattern" : "/changepassword", "handler" : "settingsUser@changePassword"},
-        {"method" : "POST", "pattern" : "/signout", "handler" : "settingsUser@signOut"}  
+        {"method" : "POST", "pattern" : "/signout", "handler" : "settingsUser@signOut"},
+        {"method" : "GET", "pattern" : "/transparencia/visitas", "handler" : "transparenciaController@visitasMain"},
+        {"method" : "GET", "pattern" : "/transparencia/visitas-nuevas", "handler" : "transparenciaController@visitasNew"},
+        {"method" : "GET", "pattern" : "/transparencia/visitas-antiguas", "handler" : "transparenciaController@visitasOld"}
     ]
 }

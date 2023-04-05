@@ -1,7 +1,4 @@
-<?php
-require_once (_ROOT_MODEL . 'transparencia.php');
-$visitas = new transparencia();
-?>
+<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/datepicker.css' ?>">
 <main class="breadcrumb">
     <div class="container-fluid">
         <div class="containe">
@@ -42,16 +39,5 @@ $visitas = new transparencia();
         </div>
     </div>
 </main>
-
-
-    <script src="<?php echo _ROOT_ASSETS . 'js/bootstrap-datepicker.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/material-kit.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/jquery.dataTables.min.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/dataTables.responsive.min.js' ?>"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#ocultar').DataTable({
-				responsive: true
-			});
-		});
-	</script>
+<script src="<?php echo _ROOT_ASSETS . 'js/bootstrap-datepicker.js' ?>"></script>
+<script src="<?php echo _ROOT_ASSETS . 'js/material-kit.js' ?>"></script>
