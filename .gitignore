@@ -1,8 +1,0 @@
-.gitignore
-log/*
-!log/
-plantillas/
-files/transparencia/obras/*
-files/transparencia/old_visitas/*
-!files/transparencia/obras/
-!files/transparencia/old_visitas/
