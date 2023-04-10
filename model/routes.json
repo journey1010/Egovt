@@ -23,6 +23,8 @@
         {"method" : "POST", "pattern" : "/signout", "handler" : "settingsUser@signOut"},
         {"method" : "GET", "pattern" : "/transparencia/visitas", "handler" : "transparenciaController@visitasMain"},
         {"method" : "GET", "pattern" : "/transparencia/visitas-nuevas", "handler" : "transparenciaController@visitasNew"},
+        {"method" : "GET", "pattern" : "/transparencia/visitas-nuevas/?page={pagina}", "handler" : "transparenciaController@visitasNew"},
+        {"method" : "POST", "pattern" : "/transparencia/visitas-nuevas/post", "handler" : "transparenciaController@visitasNewPost"},
         {"method" : "GET", "pattern" : "/transparencia/visitas-antiguas", "handler" : "transparenciaController@visitasOld"}
     ]
 }

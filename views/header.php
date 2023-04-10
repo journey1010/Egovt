@@ -43,9 +43,9 @@
 							<div class="col-md-8 align-items-center">
 								<ul class="list-unstyled hdScheduleList mb-0 text-center text-md-left d-flex" style="margin-left: 3%;">
 									<li class="mb-2 mb-md-0">
-										<a href="tel:18001234567">
+										<a href="tel:065-266969">
 											<i class="icomoon-telRcv align-middle icn" style="color: white !important"><span class="sr-only">icon</span></i>
-											Llamar a : cambiar número
+											Llamar a : 065-266969  o 065-267010
 										</a>
 									</li>
 									<li>

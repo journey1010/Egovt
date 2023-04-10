@@ -49,29 +49,30 @@ class Paginator {
         return $stmt->fetchAll();
     }
 
-    public function obtenerPaginador($color) {
-        $paginador = '';
+    public function obtenerPaginador() {
+
+        $paginador = '<nav aria-label="Page navigation">';
 
         if ($this->totalDePaginas > 1) {
-            $paginador .= '<ul class="pagination justify-content-center">';
+            $paginador .= '<ul class="pagination justify-content-center pt-2">';
 
             if ($this->paginaActual > 1) {
-              $paginador .= '<li class="page-item"><a class="page-link" href="?pagina=' . ($this->paginaActual - 1) . '">Anterior</a></li>';
+              $paginador .= '<li class="page-item disabled"><a class="page-link" href="?page=' . ($this->paginaActual - 1) . '">Anterior</a></li>';
             }
 
             for ($i = 1; $i <= $this->totalDePaginas; $i++) {
               if ($i == $this->paginaActual) {
-                $paginador .= '<li class="page-item active bg-'.$color.'"><a class="page-link" href="#">' . $i . '</a></li>';
+                $paginador .= '<li class="page-item active"><a class="page-link" href="#">' . $i . '<span class="sr-only">(current)</span></a></li>';
               } else {
-                $paginador .= '<li class="page-item"><a class="page-link" href="?pagina=' . $i . '">' . $i . '</a></li>';
+                $paginador .= '<li class="page-item"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
               }
             }
 
             if ($this->paginaActual < $this->totalDePaginas) {
-              $paginador .= '<li class="page-item"><a class="page-link" href="?pagina=' . ($this->paginaActual + 1) . '">Siguiente</a></li>';
+              $paginador .= '<li class="page-item"><a class="page-link" href="?page=' . ($this->paginaActual + 1) . '">Siguiente <i class="fa fa-chevron-right icn"><span class="sr-only">icon</span></i></a></li>';
             }
 
-            $paginador .= '</ul>';
+            $paginador .= '</ul></nav>';
         }
 
         return $paginador;
@@ -80,5 +81,4 @@ class Paginator {
     private function calcularTotalPaginas() {  
         return ceil($this->getTotalResultados() / $this->resultadosPorPagina);
     }
-
 }
