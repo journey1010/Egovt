@@ -18,13 +18,8 @@ function buscarDNI() {
     });
   } else {
     $.ajax({
-      url: "https://apiperu.dev/api/dni/" + dni,
+      url: "https://dniruc.apisperu.com/api/v1/dni/" + dni+"?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imdpbm9fcGFyZWRlc0BvdXRsb29rLmNvbS5wZSJ9.1rXghi0JQb2I-COt_4J7juPDkIgCBZZbHcixnwGF0mI",
       method: "GET",
-      headers: {
-        Authorization:
-          "Bearer " +
-          "8bb1d335dc684d6c54e94e6ba34654b9b926a7b436cf92046a514b7ee1898992",
-      },
       beforeSend: function () {
         $("#searchDNI").html("Buscando ...");
       },
@@ -37,9 +32,9 @@ function buscarDNI() {
               "Ha ocurrido un error en la solicitud! En este momento no se puede Consultar a la API.",
           });
         } else {
-          $("#nombre").val(data.data.nombres);
-          $("#apellido_paterno").val(data.data.apellido_paterno);
-          $("#apellido_materno").val(data.data.apellido_materno);
+          $("#nombre").val(data.nombres);
+          $("#apellido_paterno").val(data.apellidoPaterno);
+          $("#apellido_materno").val(data.apellidoMaterno);
         }
       },
       error: function (jqXHR, textStatus, errorThrown) {
