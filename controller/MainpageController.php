@@ -1,22 +1,18 @@
 <?php
 
-class MainpageController extends FrontController {
+class MainpageController extends AbstractController {
 
     
-    public function template ()
+    public function show()
     {  
+
         $this->renderView('header');
-        $this->renderView('main');
+        $this->renderView( 'main');
         $this->renderView('footer');
+    }
+
+    protected function SanitizeVar( string $var){
         
     }
 
-    protected function scrapingLastNews(){
-        $page = file_get_contents('https://www.gob.pe/regionloreto/');
-        curl_init($page);
-
-
-    }
-    
 }
-  

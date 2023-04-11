@@ -117,7 +117,7 @@
 									<li>
 										<i class="fa fa-phone icn mr-1 mr-sm-0"><span class="sr-only">icon</span></i>
 										<strong class="title font-weight-normal text-white">Teléfono:</strong>
-										<a href="tel:18001234567" title="Teléfono del GORE-LORETO">cambiar teléfono</a>
+										<a href="tel:065-266969" title="Teléfono del GORE-LORETO">065-266969 o 065-267010</a>
 									</li>
 									<li>
 										<i class="fa fa-envelope icn mr-1 mr-sm-0"><span class="sr-only">icon</span></i>
@@ -137,8 +137,5 @@
 			</footer>
 		</div>
 	</div>
-	<script src="<?php echo _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
 	</body>
 </html>

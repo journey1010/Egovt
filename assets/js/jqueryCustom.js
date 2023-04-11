@@ -1,5 +1,11 @@
 jQuery(window).on('load', function() {
 
+	if(jQuery(window).width() < 992){
+		jQuery('.widgetFiltersNav > h4').on('click', function(){
+			jQuery(this).parents('.widgetFiltersNav').toggleClass('openActive');
+		});
+	}
+
 	initIsoTop();
 	// IsoTop init
 	function initIsoTop() {
