@@ -25,7 +25,6 @@ class obra extends handleSanitize {
             }
 
             $titulo = $this->SanitizeVarInput($_POST["titulo"]);
-            
             $tipo = $this->SanitizeVarInput($_POST["tipo"]);
             $fecha = $this->SanitizeVarInput($_POST["fecha"]);
             $descripcion = $this->SanitizeVarInput($_POST["descripcion"]);
@@ -38,12 +37,10 @@ class obra extends handleSanitize {
         
             $pathFullFile = $this->guardarFichero($archivo, $titulo);
             $this->registrarIntoBd ($titulo, $tipo, $fecha, $descripcion, $pathFullFile );
-        
             $respuesta = array("success" => "Datos guardados con éxito.");
             print_r(json_encode($respuesta));
         } catch (Throwable $e) {
-            $respuesta = array ("error" => $e->getMessage());
-            print_r(json_encode($respuesta));
+            $this->handlerError($e);
             return;
         }
     }
