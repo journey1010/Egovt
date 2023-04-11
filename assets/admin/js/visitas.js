@@ -19,13 +19,8 @@ function buscarDNIVisita(e) {
     });
   } else {
     $.ajax({
-      url: "https://apiperu.dev/api/dni/" + dni,
+      url: "https://dniruc.apisperu.com/api/v1/dni/" + dni+"?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imdpbm9fcGFyZWRlc0BvdXRsb29rLmNvbS5wZSJ9.1rXghi0JQb2I-COt_4J7juPDkIgCBZZbHcixnwGF0mI",
       method: "GET",
-      headers: {
-        Authorization:
-          "Bearer " +
-          "8bb1d335dc684d6c54e94e6ba34654b9b926a7b436cf92046a514b7ee1898992",
-      },
       beforeSend: function () {
         $("#BuscarDNIVisita").html("Buscando ...");
       },
@@ -39,11 +34,11 @@ function buscarDNIVisita(e) {
           });
         } else {
           $("#apellidos_nombres").val(
-            data.data.nombres +
-              "" +
-              data.data.apellido_paterno +
-              "" +
-              data.data.apellido_materno
+            data.nombres+
+              " " +
+              data.apellidoPaterno +
+              " " +
+              data.apellidoMaterno
           );
         }
       },
