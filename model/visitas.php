@@ -14,9 +14,9 @@ class visitas
                 v.motivo as motivo FROM visitas AS v INNER JOIN oficinas AS o ON v.area_que_visita =  o.id ";
             $params = '';
         }
-
+        
+        session_set_cookie_params(900);
         session_start();
-
         if (isset($_SESSION['visitas_instance'])) {
             $paginador = $_SESSION['visitas_instance'];
             $paginadorHTM = $paginador->setResultadosPorPagina($resultadosPorPagina);

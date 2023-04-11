@@ -25,6 +25,7 @@ class obra extends handleSanitize {
             }
 
             $titulo = $this->SanitizeVarInput($_POST["titulo"]);
+            
             $tipo = $this->SanitizeVarInput($_POST["tipo"]);
             $fecha = $this->SanitizeVarInput($_POST["fecha"]);
             $descripcion = $this->SanitizeVarInput($_POST["descripcion"]);

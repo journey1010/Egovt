@@ -93,10 +93,10 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gobierno</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="#">Acerca de nosotros</a></li>
-													<li><a class="dropdown-item" href="#">Normatividad</a></li>
-													<li><a class="dropdown-item" href="#">Organigrama</a></li>
-													<li><a class="dropdown-item" href="#">Directorio</a></li>
+													<li><a class="dropdown-item" href="/">Acerca de nosotros</a></li>
+													<li><a class="dropdown-item" href="/">Normatividad</a></li>
+													<li><a class="dropdown-item" href="/">Organigrama</a></li>
+													<li><a class="dropdown-item" href="/">Directorio</a></li>
 												</ul>
 											</div>
 										</li>
@@ -104,10 +104,10 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Noticias y eventos</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="#">Noticias</a></li>
-													<li><a class="dropdown-item" href="#">Próximos eventos</a></li>
-													<li><a class="dropdown-item" href="#">Comunicados</a></li>
-													<li><a class="dropdown-item" href="#">Informes y publicaciones</a></li>
+													<li><a class="dropdown-item" href="/">Noticias</a></li>
+													<li><a class="dropdown-item" href="/">Próximos eventos</a></li>
+													<li><a class="dropdown-item" href="/">Comunicados</a></li>
+													<li><a class="dropdown-item" href="/">Informes y publicaciones</a></li>
 												</ul>
 											</div>
 										</li>
@@ -115,10 +115,10 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servicios</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="#">Correo Institucional</a></li>
-													<li><a class="dropdown-item" href="#">Consulta tu tramite</a></li>
-													<li><a class="dropdown-item" href="#">Mesa de partes virtuales</a></li>
-													<li><a class="dropdown-item" href="#">Formularios y procedimientos</a></li>
+													<li><a class="dropdown-item" href="/">Correo Institucional</a></li>
+													<li><a class="dropdown-item" href="/">Consulta tu tramite</a></li>
+													<li><a class="dropdown-item" href="/">Mesa de partes virtuales</a></li>
+													<li><a class="dropdown-item" href="/">Formularios y procedimientos</a></li>
 												</ul>
 											</div>
 										</li>
@@ -126,7 +126,8 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transparencia</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class=\"dropdown-item" href="/transparencia/visitas">Visitas</a></li>
+													<li><a class="dropdown-item" href="/transparencia/visitas">Visitas</a></li>
+													<li><a class="dropdown-item" href="/transparencia/proyecto-de-inversion-publica">Proyectos de inversión pública</a></li>
 												</ul>
 											</div>
 										</li>
@@ -134,11 +135,11 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Entidades relacionadas</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="#">Corcytec</a></li>
-													<li><a class="dropdown-item" href="#">Consejo Regional</a></li>
-													<li><a class="dropdown-item" href="#">Ordenamiento territorial</a></li>
-													<li><a class="dropdown-item" href="#">Gerencias y subgerencias</a></li>
-													<li><a class="dropdown-item" href="#">Ordenamiento territorial</a></li>
+													<li><a class="dropdown-item" href="/">Corcytec</a></li>
+													<li><a class="dropdown-item" href="/">Consejo Regional</a></li>
+													<li><a class="dropdown-item" href="/">Ordenamiento territorial</a></li>
+													<li><a class="dropdown-item" href="/">Gerencias y subgerencias</a></li>
+													<li><a class="dropdown-item" href="/">Ordenamiento territorial</a></li>
 												</ul>
 											</div>
 										</li>
