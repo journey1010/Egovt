@@ -1,0 +1,7 @@
+---
+  deployment:
+    tasks:
+      - export DEPLOYPATH=/home/gorel/public_html/
+      - /bin/rsync -av assets/ $DEPLOYPATH
+      - export DEPLOYPATH=/home/gorel/web_egovt/
+      - /bin/rsync -av ./ $DEPLOYPATH
