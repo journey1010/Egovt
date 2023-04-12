@@ -15,6 +15,7 @@ class AdminMainpage{
                 $this->renderView('admin/plantillaAdmin', $_SESSION['username'], $_SESSION['tipoUser'], $contenidoPage);
             }
         }else{
+            
             header('Location: /administrador');
             exit;
         }
