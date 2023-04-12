@@ -1,5 +1,5 @@
 <?php
-  include_once _ROOT_VIEWS. 'admin/constructViewPanelAdmin.php';
+  include_once _ROOT_VIEWS. 'admin/constrctviewadmin.php';
   $vistasAdmin = new viewConstruct($userName, $tipoUser, $contenidoPage);
 ?>
 <!DOCTYPE html>
