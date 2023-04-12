@@ -115,7 +115,7 @@ class visitas
     public function visitasOld()
     {
         $conexion = new MySQLConnection();
-        $sql = " SELECT id, descripcion, fecha, ruta_archivo FROM old_visitas";
+        $sql = "SELECT id, descripcion, fecha, ruta_archivo FROM old_visitas ORDER BY id DESC";
         $stmt = $conexion->query($sql, '',  '', false);
         $resultados = $stmt->fetchAll();
         $tablaFila = '';

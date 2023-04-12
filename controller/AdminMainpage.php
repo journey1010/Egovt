@@ -1,6 +1,6 @@
 <?php
 
-include_once (_ROOT_VIEWS . 'admin/ConstructViewPanelAdmin.php');
+require_once (_ROOT_VIEWS . 'admin/ConstructViewPanelAdmin.php');
 
 class AdminMainpage{
 
