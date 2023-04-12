@@ -24,8 +24,6 @@
         </div>
     </div>
 </main>
-<script src="<?= $jsDatapicker ?>"></script>
-<script src="<?= $jsMaterialkit ?>"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script id="rowChildDatatable">
     $(document).ready(function() {
