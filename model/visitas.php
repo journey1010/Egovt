@@ -129,7 +129,7 @@ class visitas
                 <td class="text-nowrap">$id</td>
                 <td class="text-nowrap">$descripcion</td>    
                 <td>$fecha</td>
-                <td class="text-nowrap"><a href="$archivo" target="_blank" style="color: red"><i class="fa fa-file-pdf-o"></i> $fecha</a></td>
+                <td class="text-nowrap"><a href="$archivo" style="color: red"><i class="fa fa-file-pdf-o"></i> $fecha</a></td>
             </tr>
             Html;
         }
