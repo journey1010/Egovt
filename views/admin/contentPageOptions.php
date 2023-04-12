@@ -372,6 +372,7 @@ class contentPageOptions
                 </table>  
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
         <script type ="module" src="$ruta"></script>
         Html;
         return $html;

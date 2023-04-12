@@ -19,7 +19,7 @@ function buscarDNIVisita(e) {
     });
   } else {
     $.ajax({
-      url: "https://dniruc.apisperu.com/api/v1/dni/" + dni+"?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imdpbm9fcGFyZWRlc0BvdXRsb29rLmNvbS5wZSJ9.1rXghi0JQb2I-COt_4J7juPDkIgCBZZbHcixnwGF0mI",
+      url: "https://dniruc.apisperu.com/api/v1/dni/" + dni + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imdpbm9fcGFyZWRlc0BvdXRsb29rLmNvbS5wZSJ9.1rXghi0JQb2I-COt_4J7juPDkIgCBZZbHcixnwGF0mI",
       method: "GET",
       beforeSend: function () {
         $("#BuscarDNIVisita").html("Buscando ...");
@@ -34,11 +34,11 @@ function buscarDNIVisita(e) {
           });
         } else {
           $("#apellidos_nombres").val(
-            data.nombres+
-              " " +
-              data.apellidoPaterno +
-              " " +
-              data.apellidoMaterno
+            data.nombres +
+            " " +
+            data.apellidoPaterno +
+            " " +
+            data.apellidoMaterno
           );
         }
       },
@@ -139,24 +139,10 @@ function edit() {
   row.find(".cancel-icon").show();
   row.find(".save-icon").show();
 
-  let fecha = new Date();
-  let opciones = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-    timeZone: "America/Bogota",
-  };
-  let fechaISO = fecha.toISOString();
-  let fechaNow = fechaISO
-    .replace("T", " ")
-    .replace("Z", "")
-    .replace(/\.\d+/, "");
+  let hora = moment().zone('America/Phoenix').format('YYYY-MM-DD HH:mm:ss');
   let horaSalida = row.find("td:eq(3)");
-  horaSalida.text(fechaNow);
+  horaSalida.text(hora);
+
 }
 
 $(document).on("click", ".cancel-icon", cancel);
