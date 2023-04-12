@@ -61,7 +61,9 @@ class LoginController extends AbstractController
                 $_SESSION['tipoUser'] = $userTipo;
                 setcookie("user", $username, time() + (90 * 24 * 60 * 60), "/");
                 $conexion->close();
-                header('Location: https://regionloreto.gob.pe/administrador/app');
+                $response = array('success' => true, 'redirect' => '/administrador/app');
+                print_r(json_encode($response));
+                exit;
             } else {
                 $conexion->close();
                 $response = array('error' => 'Usuario o contraseña incorrectos');
