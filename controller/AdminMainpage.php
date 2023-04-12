@@ -1,6 +1,6 @@
 <?php
 
-require_once (_ROOT_VIEWS . 'admin/ConstructViewPanelAdmin.php');
+include_once (_ROOT_VIEWS . 'admin/ConstructViewPanelAdmin.php');
 
 class AdminMainpage{
 
@@ -15,7 +15,7 @@ class AdminMainpage{
                 $this->renderView('admin/plantillaAdmin', $_SESSION['username'], $_SESSION['tipoUser'], $contenidoPage);
             }
         }else{
-            
+
             header('Location: /administrador');
             exit;
         }
