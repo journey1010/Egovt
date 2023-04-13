@@ -1,4 +1,16 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script>
+$(document).ready(function(){
+  let url = window.location.href;
+
+  $('li[name="panel"]').each(function() {
+    if(url.includes($(this).find('a').attr('href'))) {
+		$('li[name="panel"]').removeClass('active');
+    	$(this).addClass('active');
+    }
+  });
+});
+</script>
 <main>
 	<article class="dsSingleContent pt-4 pb-2 pt-md-4 pb-md-1 pt-lg-4 pb-lg-10 pt-xl-4 pb-xl-16">
 		<div class="container position-relative hasFilterPositioned">
@@ -60,23 +72,20 @@
 						<nav class="widget mb-6 mb-lg-10 widgetFiltersNav widgetBgLight py-3 py-lg-5 px-2">
 							<h3 class="fwSemiBold mb-4 position-relative">Documentos</h3>
 							<ul class="list-unstyled pl-0 mx-n2 mb-0 mb-3 isoFiltersList">
-								<li class="active">
+								<li name="panel">
 									<a class="enlace" href="/transparencia/proyecto-de-inversion-publica">Todos los documentos</a>
 								</li>
-								<li>
+								<li name="panel">
 									<a class="enlace" href="/transparencia/proyecto-de-inversion-publica/adicionales-de-obra">Adicionales de obra</a>
 								</li>
-								<li>
+								<li name="panel" >
 									<a class="enlace" href="/transparencia/proyecto-de-inversion-publica/liquidacion-de-obras">Liquidación de obras</a>
 								</li>
-								<li>
+								<li name="panel">
 									<a  class="enlace" href="/transparencia/proyecto-de-inversion-publica/supervision-de-obras">Supervisión de contrataciones</a>
 								</li>
-								<li>
+								<li name="panel">
 									<a  class="enlace"href="/transparencia/proyecto-de-inversion-publica/historico">Historico</a>
-								</li>
-								<li>
-									<a  class="enlace" href="/transparencia/proyecto-de-inversion-publica/informacion-adicional">Información Adicional</a>
 								</li>
 							</ul>
 						</nav>
