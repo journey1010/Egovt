@@ -30,7 +30,6 @@
 												<option value="Liquidacíon de obras">Liquidacíon de obras</option>
 												<option value="Supervisión de contrataciones">Supervisión de contrataciones</option>
 												<option value="Historico">Historico</option>
-												<option value="Información Adicional">Información Adicional</option>
 											</select>
 										</div>
 									</div>
