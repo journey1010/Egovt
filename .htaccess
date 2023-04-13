@@ -18,6 +18,6 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 Options -Indexes
 
 ##Seguridad contra ataques xss y csrx
-Header always append X-Frame-Options SAMEORIGIN
+Header always set X-Frame-Options "ALLOW-FROM https://www.transparencia.gob.pe/"
 Header set X-XSS-Protection "1; mode=block"
 Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
