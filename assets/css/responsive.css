@@ -1110,7 +1110,7 @@
 
 /* query xxl (1920) styles */
 /* query others (down & between) styles */
-@media (max-width: 900.98px) {
+@media (max-width: 700.98px) {
 	.pageMainNavCollapse {
 		position: fixed;
 		top: 56px;

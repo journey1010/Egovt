@@ -20,7 +20,7 @@
 	<script src="<?php echo _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
 	<script src="<?php echo _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
 	<style>
-		@media(max-width: 900px) {
+		@media(max-width: 700px) {
 			.navbar-collapse {
 				position: fixed;
 				top: 56px;
