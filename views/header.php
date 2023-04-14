@@ -20,8 +20,8 @@
 	<script src="<?php echo _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
 	<script src="<?php echo _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
 	<style>
-		@media(max-width: 1180px){
-			.navbar-collapse{
+		@media(max-width: 900px) {
+			.navbar-collapse {
 				position: fixed;
 				top: 56px;
 				left: 0;
@@ -29,10 +29,11 @@
 				display: block !important;
 				background-color: #f8f9fa;
 				overflow-y: auto;
-			} 
+			}
 		}
 	</style>
 </head>
+
 <body>
 	<div id="pageWrapper">
 		<div class="phStickyWrap">
@@ -45,7 +46,7 @@
 									<li class="mb-2 mb-md-0">
 										<a href="tel:065-266969">
 											<i class="icomoon-telRcv align-middle icn" style="color: white !important"><span class="sr-only">icon</span></i>
-											Llamar a : 065-266969  o 065-267010
+											Llamar a : 065-266969 o 065-267010
 										</a>
 									</li>
 									<li>

@@ -1,6 +1,6 @@
 /* site responsive styles */
 /* query sm (576) styles */
-@media (min-width: 576px) {
+@media (min-width: 767px) {
 	.desktopDropOnHover {
 		display: block !important;
 		opacity: 0;
@@ -1110,18 +1110,19 @@
 
 /* query xxl (1920) styles */
 /* query others (down & between) styles */
-@media (max-width: 767.98px) {
+@media (max-width: 900.98px) {
 	.pageMainNavCollapse {
-		height: auto !important;
-		overflow-y: auto !important;
-		overflow-x: hidden !important;
+		position: fixed;
+		top: 56px;
+		left: 0;
+		z-index: 9999;
 		display: block !important;
-		-webkit-transition: height .3s ease, -webkit-transform .3s ease !important;
-		transition: height .3s ease, -webkit-transform .3s ease !important;
-		transition: height .3s ease, transform .3s ease !important;
-		transition: height .3s ease, transform .3s ease, -webkit-transform .3s ease !important;
+		background-color: #f8f9fa;
+		overflow-y: auto;
 	}
 }
+
+
 
 @media (min-width: 1450px) {
 	.gsabHolder {
