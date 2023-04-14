@@ -1,6 +1,6 @@
 /* site responsive styles */
 /* query sm (576) styles */
-@media (min-width: 767px) {
+@media (min-width: 900x) {
 	.desktopDropOnHover {
 		display: block !important;
 		opacity: 0;
