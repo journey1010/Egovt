@@ -86,12 +86,12 @@ class visitas extends handleSanitize {
 
     private function getSelect(MySQLConnection $conexion): string
     {
-        $sql = "SELECT id ,CONCAT(nombre, ' ', sigla) as nombreCompleto FROM oficinas";
+        $sql = "SELECT CONCAT(id,'-', grupo ) AS id_ofi ,CONCAT(nombre, ' ', sigla) AS nombreCompleto FROM oficinas";
         $smt = $conexion->query($sql, '', '', false);
         $resultado = $smt->fetchAll();
         $options = '';
         foreach ($resultado as $row) {
-            $id = $row['id'];
+            $id = $row['id_ofi'];
             $nombreCompleto = $row['nombreCompleto'];
             $options .= "<option value=\"$id\">$nombreCompleto</option>";
         }
@@ -168,13 +168,12 @@ class visitas extends handleSanitize {
     {
 
         $oficina = (empty($_POST['oficina'])) ? '1' : $_POST['oficina'];
-
-        $sql = "SELECT f.nombre_completo AS nombre FROM funcionarios AS f INNER JOIN oficinas as o ON f.id_oficina = o.id WHERE f.id_oficina =  ? AND f.estado = 1 ";
-        $param = [$oficina];
-        $stmt = $conexion->query($sql, $param, '', false);
+        
+        $sql = "SELECT f.nombre_completo AS nombre FROM funcionarios AS f INNER JOIN oficinas as o ON f.id_oficina = o.id WHERE f.id_oficina =  1 AND f.estado = 1  AND f.nivel = 1 AND f.grupo_oficina = 1";
+        $stmt = $conexion->query($sql, '', '', false);
         $resultado = $stmt->fetchAll();
 
-        $options =  '';
+        $options =  '<option value="">Seleccionar</option>';
         foreach($resultado as $row) {
             $funcionario = $row['nombre'];
             $options .= "<option value=\"$funcionario\">$funcionario</option>";
