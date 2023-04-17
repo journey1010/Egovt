@@ -93,4 +93,22 @@ class visitas extends handleSanitize{
             print_r(json_encode($respuesta));
         }
     }
+
+    public function Obtenerfuncionarios ()
+    {
+        $conexion = new MySQLConnection();
+        $oficina = $_POST['oficina'];
+
+        $sql = "SELECT f.nombre_completo AS nombre FROM funcionarios AS f INNER JOIN oficinas as o ON f.id_oficina = o.id WHERE f.id_oficina =  ? AND f.estado = 1 ";
+        $param = [$oficina];
+        $stmt = $conexion->query($sql, $param, '', false);
+        $resultado = $stmt->fetchAll();
+
+        $options =  '';
+        foreach($resultado as $row) {
+            $funcionario = $row['nombre'];
+            $options .= "<option value=\"$funcionario\">$funcionario</option>";
+        }
+        echo $options;
+    }
 }

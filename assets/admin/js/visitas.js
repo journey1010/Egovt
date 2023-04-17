@@ -53,12 +53,38 @@ function buscarDNIVisita(e) {
   }
 }
 
+$(document).on('change', '#oficina', listarFuncionarios);
+function listarFuncionarios() {
+  let oficina  = $("#oficina option:selected").val();
+
+  $.ajax({    
+    url: '/administrador/visitas/listarfuncionarios',
+    method: 'POST',
+    data: {
+      oficina : oficina
+    },
+    success: function(data){
+      $('#quien_autoriza').empty();
+      $('#quien_autoriza').append(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      $("#oficina").val(null).trigger("change"); // restablecer el select
+      Toast.fire({
+        icon: "error",
+        title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+        background: "#ff0000",
+      });
+    }
+  });
+}
+
 $(document).on("submit", "#registrarVisitas", function (event) {
   event.preventDefault();
   if (
     $("#dniVisita").val() === "" ||
     $("#apellidos_nombres").val() === "" ||
-    $(".select2 option:selected").text() === "" ||
+    $("#oficina option:selected").text() === "" ||
+    $("#quien_autoriza option:selected").text() === "" ||
     $("#hora_de_ingreso").val() === ""
   ) {
     Toast.fire({
@@ -71,10 +97,10 @@ $(document).on("submit", "#registrarVisitas", function (event) {
     let formData = {
       dniVisita: $("#dniVisita").val(),
       apellidosNombres: $("#apellidos_nombres").val(),
-      oficina: $(".select2 option:selected").val(),
+      oficina: $("#oficina option:selected").val(),
       personaAVisitar: $("#persona_a_visitar").val(),
       horaDeIngreso: $("#hora_de_ingreso").val(),
-      quienAutoriza: $("#quien_autoriza").val(),
+      quienAutoriza: $("#quien_autoriza option:selected").val(),
       motivo: $("#motivo").val(),
     };
 
@@ -101,8 +127,6 @@ $(document).on("submit", "#registrarVisitas", function (event) {
           case "success":
             $("#dniVisita").val("");
             $("#apellidos_nombres").val("");
-            $(".select2").val(null).trigger("change"); // restablecer el select
-            $("#persona_a_visitar").val("");
             $("#quien_autoriza").val("");
             $("#motivo").val("");
             Toast.fire({
@@ -115,7 +139,7 @@ $(document).on("submit", "#registrarVisitas", function (event) {
       error: function (jqXHR, textStatus, errorThrown) {
         $("#dniVisita").val("");
         $("#apellidos_nombres").val("");
-        $(".select2").val(null).trigger("change"); // restablecer el select
+        $("#oficina").val(null).trigger("change"); // restablecer el select
         $("#persona_a_visitar").val("");
         $("#quien_autoriza").val("");
         $("#motivo").val("");
@@ -129,8 +153,7 @@ $(document).on("submit", "#registrarVisitas", function (event) {
   }
 });
 
-//Actualizar visitas
-//funcionalidad de iconos de la tabla
+//Actualizar visitas, funcionalidad de iconos de la tabla
 $(document).on("click", ".edit-icon", edit);
 function edit() {
   let row = $(this).closest("tr");
