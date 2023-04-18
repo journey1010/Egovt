@@ -5,7 +5,7 @@ require_once(_ROOT_VIEWS . 'admin/usuarios.php');
 require_once(_ROOT_VIEWS . 'admin/oficinas.php');
 require_once(_ROOT_VIEWS . 'admin/visitas.php');
 require_once(_ROOT_VIEWS . 'admin/obras.php');
-//require_once(_ROOT_VIEWS . 'admin/funcionarios.php');
+require(_ROOT_VIEWS . 'admin/funcionarios.php');
 
 class contentPageOptions {
 
@@ -65,6 +65,20 @@ class contentPageOptions {
         $resultado = $obras->ActualizarObras();
         return $resultado; 
     }
+
+    public function RegistrarFuncionarios() 
+    {
+        $funcionarios = new funcionarios ();
+        $resultado = $funcionarios->RegistrarFuncionarios();
+        return $resultado;
+    }
+
+    public function ActualizarFuncionarios()
+    {
+        $funcionarios = new funcionarios ();
+        $resultado = $funcionarios->ActualizarFuncionarios();
+        return $resultado;
+    }   
 
     public function Contacto()
     {

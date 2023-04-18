@@ -16,8 +16,9 @@ class usuarios extends handleSanitize {
     {
         try {
             $ruta = $this->rutaAssets . 'js/usuarios.js';
+            $selectOficinas = $this->getOficinas();
             $html = <<<Html
-            <div class="card card-primary mt-3 mx-auto">
+            <div class="card card-danger mt-3 mx-auto w-100">
                 <div class="card-header">
                 <h3 class="card-title">Registrar usuario</h3>
                 </div>
@@ -63,9 +64,18 @@ class usuarios extends handleSanitize {
                                             <option value="visitor">Visitas</option>
                                             <option value="noticias">Noticias</option>
                                             <option value="obras">Obras</option>
+                                            <option value="funcionarios">Funcionarios</option>
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                <label>Oficina</label>
+                                <div class="form-group">
+                                    <select id="oficinaUsuario"aria-label="oficinaUsuario"class="form-control select2 select2-danger"  style="width: 100%;">
+                                        $selectOficinas
+                                    </select>
+                                </div>
+                            </div>
                             </div>                    
                         </div>
     
@@ -95,4 +105,20 @@ class usuarios extends handleSanitize {
             $this->handlerError($e);
         }
     }   
+
+    private function getOficinas()
+    {
+        $conexion = new MySQLConnection();
+        $sql = "SELECT id, CONCAT(nombre, ' ', sigla) AS nombre FROM oficinas";
+        $stmt = $conexion->query($sql, '', '', false);
+        $resultado = $stmt->fetchAll();
+        
+        $options= "<option selected='selected' value='admin'>Super Administrador</option>";
+        foreach($resultado as $row) {
+            $id = $row['id'];
+            $nombre = $row['nombre'];
+            $options .="<option value='$id'>$nombre</option>";
+        }
+        return $options;
+    }
 }

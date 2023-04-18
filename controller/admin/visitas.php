@@ -109,7 +109,7 @@ class visitas extends handleSanitize{
         $stmt = $conexion->query($sql, $param, '', false);
         $resultado = $stmt->fetchAll();
 
-        $options =  '';
+        $options =  '<option value="">Seleccionar</option>';
         foreach($resultado as $row) {
             $funcionario = $row['nombre'];
             $options .= "<option value=\"$funcionario\">$funcionario</option>";

@@ -87,8 +87,8 @@ class Oficinas extends handleSanitize {
                         <thead class="bg-warning">
                             <th class="text-center">id</th>
                             <th class="text-center" contenteditable="false">Nombre</th>
-                            <th class="text-center">jerarquia</th>
-                            <th style="text-center" contenteditable="false">sigla</th>
+                            <th class="text-center">Sigla</th>
+                            <th style="text-center" contenteditable="false">jerarquia</th>
                             <th style="width: 80px" class="text-center">Editar</th>
                         </thead>
                         <tbody>

@@ -8,7 +8,7 @@
         {"method" : "GET", "pattern" : "/administrador/usuarios/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/visitas/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/obras/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
-        {"method" : "GET", "pattern" : "/administrador/obras/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
+        {"method" : "GET", "pattern" : "/administrador/funcionarios/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "POST", "pattern" : "/administrador/resgistrarusuarios", "handler": "admin/Usuarios@RegistrarUsuario"},
         {"method" : "POST", "pattern" : "/administrador/visitas/listarfuncionarios", "handler" : "admin/visitas@Obtenerfuncionarios"},
         {"method" : "POST", "pattern" : "/administrador/resgistravisitas", "handler": "admin/visitas@RegistrarVisita"},
