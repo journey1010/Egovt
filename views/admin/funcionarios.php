@@ -68,7 +68,55 @@ class funcionarios extends handleSanitize {
 
     public function ActualizarFuncionarios()
     {
+        // $ruta =  $this->rutaAssets . 'js/funcionarios.js';
+        // $conexion = new MySQLConnection();
 
+        // $html = <<<Html
+        // // <div class="card card-success mt-3 mx-auto w-100">
+        // //     <div class="card-header">
+        // //         <h3 class="card-title">Registrar de funcionarios</h3>
+        // //     </div>
+        // //     <form id="registrarFuncionario">
+        // //             <div class="card-body">
+        // //                 <div class="form-group">
+        // //                 <label for="buscarDNI">DNI *</label>
+        // //                 <input type="number" class="form-control" id="dniVisita" placeholder="Ingresar DNI...">
+        // //             </div>
+        // //             <button type="submit" class="btn btn-secondary" id="BuscarDNIVisita">Buscar</button>
+        // //             <div class="row">
+        // //                 <div class="col-md-3">
+        // //                     <label for="labelNombreCompleto">Nombre completo *</label>
+        // //                     <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
+        // //                 </div>
+        // //                 <div class="col-md-3">
+        // //                     <div class="form-group">
+        // //                         <label>Oficina *</label>
+        // //                         <select id="oficinaFuncionario" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
+        // //                             height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+        // //                             $selectOficinas
+        // //                         </select>
+        // //                     </div>
+        // //                 </div>
+        // //                 <div class="col-md-3">
+        // //                     <div class="form-group">
+        // //                         <label>Nivel *</label>
+        // //                         <select id="nivelFuncionario" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
+        // //                             height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+        // //                         <option value ="1" >Jefe de oficina</option>
+        // //                         <option value ="0" >Personal</option>
+        // //                         </select>
+        // //                     </div>
+        // //                 </div>
+        // //             </div>
+        // //         </div>
+        // //         <div class="card-footer mt-3">
+        // //             <button type="submit" class="btn btn-primary">Guardar</button>
+        // //         </div>
+        // //     </form>
+        // // </div>
+        // // <script type ="module" src="$ruta"></script>
+        // Html;
+        // return $html;
     }
 
     private function getOficinas(MySQLConnection $conexion) 

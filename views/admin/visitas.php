@@ -15,7 +15,7 @@ class visitas extends handleSanitize {
     public function RegistrarVisitas()
     {
         $ruta = $this->rutaAssets  . 'js/visitas.js';
-
+        
         $hora = new DateTime('', new DateTimeZone('UTC'));
         $hora->setTimezone(new DateTimeZone('America/Bogota'));
         $dateTimeNow = $hora->format('Y-m-d H:i:s');

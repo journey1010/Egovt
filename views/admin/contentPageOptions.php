@@ -1,11 +1,18 @@
 <?php
 
-require_once(_ROOT_MODEL . 'conexion.php');
-require_once(_ROOT_VIEWS . 'admin/usuarios.php');
-require_once(_ROOT_VIEWS . 'admin/oficinas.php');
-require_once(_ROOT_VIEWS . 'admin/visitas.php');
-require_once(_ROOT_VIEWS . 'admin/obras.php');
-require(_ROOT_VIEWS . 'admin/funcionarios.php');
+
+spl_autoload_register( function ($nombreClase) {
+    try {
+        $rutaArchivo = _ROOT_VIEWS . 'admin/' . $nombreClase . '.php';
+        if (file_exists($rutaArchivo)) {
+            require_once $rutaArchivo;
+            return true;
+        }
+        throw new Exception('Archivo :' . $rutaArchivo . 'En contentPageOptions Linea 11');
+    }catch (Exception $e) {
+        return;       
+    } 
+});
 
 class contentPageOptions {
 
