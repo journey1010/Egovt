@@ -15,6 +15,7 @@ class Usuarios extends handleSanitize {
             $contrasena = $_POST['contrasena'];
             $numero_telefono = $_POST['numero_telefono'];
             $tipo_usuario = $_POST['tipo_usuario'];
+            $oficinaUsuario = $_POST['oficina'];
 
             if (
                 !empty($dni) &&
@@ -33,7 +34,7 @@ class Usuarios extends handleSanitize {
                 $contrasena = $this->SanitizeVarInput($contrasena);
                 $numero_telefono = $this->SanitizeVarInput($numero_telefono);
                 $tipo_usuario = $this->SanitizeVarInput($tipo_usuario);
-                $oficinaUsuario = $this->SanitizeVarInput($_POST['oficina']);
+                $oficinaUsuario = $this->SanitizeVarInput($oficinaUsuario);
 
                 $conexion = new MySQLConnection();
                 //comprobamos que no exista el nombre de usuarios y el dni 
