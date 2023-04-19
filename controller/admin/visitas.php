@@ -102,8 +102,6 @@ class visitas extends handleSanitize{
         $oficinaGrupo = $_POST['oficina'];
         $oficinaGrupo = explode('-', $oficinaGrupo);
         $grupo = $oficinaGrupo[1];
-        var_dump($grupo);
-
         $sql = "SELECT f.nombre_completo AS nombre FROM funcionarios AS f INNER JOIN oficinas as o ON f.id_oficina = o.id WHERE f.grupo_oficina =  ? AND f.estado = 1 AND f.nivel = 1";
         $param = [$grupo];
         $stmt = $conexion->query($sql, $param, '', false);

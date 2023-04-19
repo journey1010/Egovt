@@ -113,7 +113,7 @@ class usuarios extends handleSanitize {
         $stmt = $conexion->query($sql, '', '', false);
         $resultado = $stmt->fetchAll();
         
-        $options= "<option selected='selected' value='admin'>Super Administrador</option>";
+        $options= "";
         foreach($resultado as $row) {
             $id = $row['id'];
             $nombre = $row['nombre'];
