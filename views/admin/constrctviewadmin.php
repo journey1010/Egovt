@@ -77,7 +77,7 @@ class viewConstruct{
         try {
             switch($tipoUser){
                 case 'admin':
-                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras');
+                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'funcionarios');
                 break;
                 case 'visitor':
                     $opciones = array ('visitas');
@@ -85,6 +85,9 @@ class viewConstruct{
                 case 'obras':
                     $opciones = array ( 'obras' );
                 break; 
+                case 'funcionarios':
+                    $opciones = array ('funcionarios');
+                break;
                 default:
                     throw new Exception('Clase de usuario no valido');
                 break;
@@ -116,7 +119,9 @@ class viewConstruct{
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
                     'actualizar-visitas' => $contentPage->ActualizarVisitas(),
                     'registrar-obras' => $contentPage->RegistrarObras(),
-                    'actualizar-obras' => $contentPage->ActualizarObras()
+                    'actualizar-obras' => $contentPage->ActualizarObras(),
+                    'registrar-funcionarios' => $contentPage->RegistrarFuncionarios(),
+                    'actualizar-funcionarios' => $contentPage->ActualizarFuncionarios()
                 ],
 
                 'visitor' =>[
@@ -131,6 +136,10 @@ class viewConstruct{
                     'registrar-obras' => $contentPage->RegistrarObras(),
                     'actualizar-obras' => $contentPage->ActualizarObras(),
                     'contacto' => $contentPage->Contacto()
+                ],
+
+                'funcionarios' => [
+                    '' => $contentPage->RegistrarFuncionarios()
                 ]
             ];
 

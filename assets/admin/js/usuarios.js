@@ -77,6 +77,7 @@ function registrarUsuario(e) {
       contrasena: $("#contrasena").val(),
       numero_telefono: $("#numero_telefono").val(),
       tipo_usuario: $("#tipoUsuario").val(),
+      oficina: $('#oficinaUsuario').val()
     };
     $.ajax({
       method: "POST",

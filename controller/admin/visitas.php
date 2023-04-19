@@ -25,6 +25,8 @@ class visitas extends handleSanitize{
                 $dniVisita = $this->SanitizeVarInput($dniVisita);
                 $apellidosNombres = $this->SanitizeVarInput( $apellidosNombres);
                 $oficina = $this->SanitizeVarInput($oficina);
+                $oficina = explode('-', $oficina);
+                $oficina = $oficina[0];
                 $personaAVisitar = $this->SanitizeVarInput($personaAVisitar);
                 $quienAutoriza = $this->SanitizeVarInput($quienAutoriza);
                 $motivo = $this->SanitizeVarInput($motivo);
@@ -92,5 +94,26 @@ class visitas extends handleSanitize{
             $respuesta = array('error' => 'Error al actualizar datos.');
             print_r(json_encode($respuesta));
         }
+    }
+
+    public function Obtenerfuncionarios ()
+    {
+        $conexion = new MySQLConnection();
+        $oficinaGrupo = $_POST['oficina'];
+        $oficinaGrupo = explode('-', $oficinaGrupo);
+        $grupo = $oficinaGrupo[1];
+        var_dump($grupo);
+
+        $sql = "SELECT f.nombre_completo AS nombre FROM funcionarios AS f INNER JOIN oficinas as o ON f.id_oficina = o.id WHERE f.grupo_oficina =  ? AND f.estado = 1 AND f.nivel = 1";
+        $param = [$grupo];
+        $stmt = $conexion->query($sql, $param, '', false);
+        $resultado = $stmt->fetchAll();
+
+        $options =  '<option value="">Seleccionar</option>';
+        foreach($resultado as $row) {
+            $funcionario = $row['nombre'];
+            $options .= "<option value=\"$funcionario\">$funcionario</option>";
+        }
+        echo $options;
     }
 }

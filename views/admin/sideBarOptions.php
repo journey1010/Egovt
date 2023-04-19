@@ -143,5 +143,35 @@ class sideBarOptions {
         Html;
         return $html;
     }
+
+    public function funcionarios()
+    {
+        $html = <<<Html
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fas fa-user-plus" style="color: #35b332;"></i>
+            <p>
+                Funcionarios
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrador/funcionarios/registrar-funcionarios" name="sidebarEnlace" class="nav-link" data-page="funcionarios/registrar-funcionarios">
+                <i class="fas fa-book"></i>
+                <p>Registrar</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/administrador/funcionarios/actualizar-funcionarios" name="sidebarEnlace" class="nav-link" data-page="funcionarios/actualizar-funcionarios">
+                <i class="fas fa-edit"></i>
+                <p>Administrar funcionarios</p>
+                </a>
+            </li>
+            </ul>
+        </li>
+        Html;
+        return $html;
+    }
 }
 ?>

@@ -33,6 +33,7 @@ class Usuarios extends handleSanitize {
                 $contrasena = $this->SanitizeVarInput($contrasena);
                 $numero_telefono = $this->SanitizeVarInput($numero_telefono);
                 $tipo_usuario = $this->SanitizeVarInput($tipo_usuario);
+                $oficinaUsuario = $this->SanitizeVarInput($_POST['oficina']);
 
                 $conexion = new MySQLConnection();
                 //comprobamos que no exista el nombre de usuarios y el dni 
@@ -49,7 +50,7 @@ class Usuarios extends handleSanitize {
                     print_r(json_encode($respuesta));
                     return;
                 }
-                //creamos contraseña de cifrado unidireccional y obtenmos las fecha actual para el registro
+                //creamos contraseña de cifrado unidireccional y obtenemos las fecha actual para el registro
                 $password = password_hash(
                     $contrasena,
                     PASSWORD_ARGON2I,
@@ -73,9 +74,10 @@ class Usuarios extends handleSanitize {
                     numero_telefono,
                     tipo_usuario,
                     fecha_registro,
-                    user_img
+                    user_img, 
+                    id_oficina
                 ) VALUES (
-                    ?,?,?,?,?,?,?,?,?,?,?
+                    ?,?,?,?,?,?,?,?,?,?,?,?
                 )';
                 $params = [
                     $nombre, 
@@ -88,7 +90,8 @@ class Usuarios extends handleSanitize {
                     $numero_telefono,
                     $tipo_usuario,
                     $fecha,
-                    ''
+                    '',
+                    $oficinaUsuario
                 ];
                 $conexion->query($sqlSentence, $params, '', false);
                 $conexion->close();

@@ -213,8 +213,7 @@ class obra extends handleSanitize {
                 $tablaRow
             </tbody>
         </table>  
-        Html;
-        
+        Html;  
         return $tabla;
     }
 
