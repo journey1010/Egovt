@@ -63,9 +63,13 @@ function listarFuncionarios() {
     data: {
       oficina : oficina
     },
+    beforeSend: function() {
+      $('#quien_autoriza').prop('disabled', true);
+    },
     success: function(data){
       $('#quien_autoriza').empty();
       $('#quien_autoriza').append(data);
+      $('#quien_autoriza').prop('disabled', false);
     },
     error: function (jqXHR, textStatus, errorThrown) {
       $("#oficina").val(null).trigger("change"); // restablecer el select
@@ -162,7 +166,7 @@ function edit() {
   row.find(".cancel-icon").show();
   row.find(".save-icon").show();
 
-  let hora = moment().zone('America/Phoenix').format('YYYY-MM-DD HH:mm:ss');
+  let hora = moment().utcOffset('America/Phoenix').format('YYYY-MM-DD HH:mm:ss');
   let horaSalida = row.find("td:eq(3)");
   horaSalida.text(hora);
 
@@ -182,6 +186,11 @@ function cancel() {
 $(document).on("click", ".save-icon", save);
 function save() {
   let row = $(this).closest("tr");
+  row.find("td[contenteditable=true]").prop("contenteditable", false);
+  row.find(".edit-icon").show();
+  row.find(".cancel-icon").hide();
+  row.find(".save-icon").hide();
+  row.hide();
   let formData = {
     id: row.find("td:eq(0)").text(),
     horaSalida: row.find("td:eq(3)").text(),
