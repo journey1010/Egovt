@@ -49,7 +49,7 @@ class obras extends handleSanitize {
                                     }
                                 ">
                                 <label class="custom-file-label" for="archivoObra" data-browse="Elegir archivo">Elegir archivo</label>
-                          </div>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <label for="HoraIngreso">Fecha *</label>

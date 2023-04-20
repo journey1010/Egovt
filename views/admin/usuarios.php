@@ -68,7 +68,7 @@ class usuarios extends handleSanitize {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                 <label>Oficina</label>
                                 <div class="form-group">
                                     <select id="oficinaUsuario"aria-label="oficinaUsuario"class="form-control select2 select2-danger"  style="width: 100%;">
@@ -88,7 +88,7 @@ class usuarios extends handleSanitize {
             <script  type ="module" src="$ruta"></script>
             Html;
             return $html;
-        } catch ( Throwable $e ) {
+        } catch (Throwable $e ) {
             $this->handlerError($e);
         }
     }
@@ -113,7 +113,7 @@ class usuarios extends handleSanitize {
         $stmt = $conexion->query($sql, '', '', false);
         $resultado = $stmt->fetchAll();
         
-        $options= "";
+        $options= '';
         foreach($resultado as $row) {
             $id = $row['id'];
             $nombre = $row['nombre'];
