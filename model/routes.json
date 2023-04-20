@@ -1,6 +1,7 @@
 {
     "routes" : [
         {"method" : "GET", "pattern" : "/", "handler" : "MainpageController@show"},
+        {"method" : "GET", "pattern" : "/enconstruccion", "handler" : "enConstruccion@main"},
         {"method" : "GET", "pattern" : "/administrador", "handler" : "LoginController@showLoginForm"},
         {"method" : "POST", "pattern" : "/administrador/processlogin" , "handler": "LoginController@processLoginForm"},
         {"method" : "GET", "pattern" : "/administrador/app", "handler": "AdminMainpage@show"},

@@ -60,7 +60,7 @@
 							<div class="col-md-4 text-center text-md-right">
 								<ul class="list-unstyled hdAlterLinksList mb-0 d-flex justify-content-center justify-content-md-end">
 									<li class="mb-2 mb-md-0" style="margin-top: 3%">
-										<a href="/directorio" target="_blank">
+										<a href="https://www.gob.pe/institucion/regionloreto/funcionarios" target="_blank">
 											Directorio
 										</a>
 									</li>
@@ -83,7 +83,7 @@
 					<div class="container">
 						<nav class="navbar navbar-expand-md navbar-light p-0">
 							<div class="logo flex-shrink-0 mr-3 mr-xl-8 mr-xlwd-16">
-								<a href="home.php">
+								<a href="/">
 									<img src="<?php echo _ROOT_ASSETS . 'images/circle_logo_gorel.png' ?>" class="img-fluid" alt="Gobierno regional de loreto Logo">
 								</a>
 							</div>
@@ -94,10 +94,10 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gobierno</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/">Acerca de nosotros</a></li>
-													<li><a class="dropdown-item" href="/">Normatividad</a></li>
-													<li><a class="dropdown-item" href="/">Organigrama</a></li>
-													<li><a class="dropdown-item" href="/">Directorio</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Acerca de nosotros</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Normatividad</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Organigrama</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Directorio</a></li>
 												</ul>
 											</div>
 										</li>
@@ -105,10 +105,10 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Noticias y eventos</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/">Noticias</a></li>
-													<li><a class="dropdown-item" href="/">Próximos eventos</a></li>
-													<li><a class="dropdown-item" href="/">Comunicados</a></li>
-													<li><a class="dropdown-item" href="/">Informes y publicaciones</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Noticias</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Próximos eventos</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Comunicados</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Informes y publicaciones</a></li>
 												</ul>
 											</div>
 										</li>
@@ -116,10 +116,10 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servicios</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/">Correo Institucional</a></li>
-													<li><a class="dropdown-item" href="/">Consulta tu tramite</a></li>
-													<li><a class="dropdown-item" href="/">Mesa de partes virtuales</a></li>
-													<li><a class="dropdown-item" href="/">Formularios y procedimientos</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Correo Institucional</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Consulta tu tramite</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Mesa de partes virtuales</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Formularios y procedimientos</a></li>
 												</ul>
 											</div>
 										</li>
@@ -136,16 +136,16 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Entidades relacionadas</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/">Corcytec</a></li>
-													<li><a class="dropdown-item" href="/">Consejo Regional</a></li>
-													<li><a class="dropdown-item" href="/">Ordenamiento territorial</a></li>
-													<li><a class="dropdown-item" href="/">Gerencias y subgerencias</a></li>
-													<li><a class="dropdown-item" href="/">Ordenamiento territorial</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Corcytec</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Consejo Regional</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Ordenamiento territorial</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Gerencias y subgerencias</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion">Ordenamiento territorial</a></li>
 												</ul>
 											</div>
 										</li>
 										<li class="nav-item dropdown ddohOpener">
-											<a class="nav-link dropdown-toggle " href="contact-1.php" aria-haspopup="true" aria-expanded="false">Contacto</a>
+											<a class="nav-link dropdown-toggle " href="/enconstruccion" aria-haspopup="true" aria-expanded="false">Contacto</a>
 										</li>
 									</ul>
 								</div>
