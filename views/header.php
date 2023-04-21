@@ -116,9 +116,9 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servicios</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/enconstruccion">Correo Institucional</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Consulta tu tramite</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Mesa de partes virtuales</a></li>
+													<li><a class="dropdown-item" href="https://correo.regionloreto.gob.pe/">Correo Institucional</a></li>
+													<li><a class="dropdown-item" href="https://consulta.regionloreto.gob.pe/">Consulta tu tramite</a></li>
+													<li><a class="dropdown-item" href="https://facilita.gob.pe/t/641">Mesa de partes virtuales</a></li>
 													<li><a class="dropdown-item" href="/enconstruccion">Formularios y procedimientos</a></li>
 												</ul>
 											</div>

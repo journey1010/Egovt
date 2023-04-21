@@ -120,51 +120,83 @@
 			<div class="flatpWrap position-relative mt-n8 mt-md-n18">
 				<ul class="list-unstyled fabFeaturesList mb-0 d-flex overflow-hidden flex-wrap">
 					<li>
-						<a href="/enconstruccion" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+						<a href="https://portalanterior.regionloreto.gob.pe/noticias" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
 							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
-								<i class="icomoon-ico1"><span class="sr-only">icon</span></i>
+								<i class="fa fa-newspaper-o"><span class="sr-only">icon</span></i>
 							</span>
-							<h2 class="mb-0">Tu <br>Gobierno</h2>
+							<h2 class="mb-0">Noticias</h2>
 						</a>
 					</li>
 					<li>
-						<a href="/enconstruccion" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+						<a href="https://facilita.gob.pe/t/641" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
 							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
-								<i class="icomoon-ico2"><span class="sr-only">icon</span></i>
+								<i class="fa fa-tablet"><span class="sr-only">icon</span></i>
 							</span>
-							<h2 class="mb-0">Para <br>Funcionarios</h2>
+							<h2 class="mb-0">Mesa <br> de Partes Virtual</h2>
 						</a>
 					</li>
 					<li>
-						<a href="/enconstruccion" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+						<a href="https://portalanterior.regionloreto.gob.pe/fideicomiso" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
 							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
-								<i class="icomoon-ico3"><span class="sr-only">icon</span></i>
+								<i class="fa fa-folder-o"></i><span class="sr-only">icon</span></i>
 							</span>
-							<h2 class="mb-0">Negocios e <br>Industria</h2>
+							<h2 class="mb-0">Fideicomiso</h2>
 						</a>
 					</li>
 					<li>
-						<a href="/enconstruccion" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+						<a href="https://correo.regionloreto.gob.pe/" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
 							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
-								<i class="icomoon-ico4"><span class="sr-only">icon</span></i>
+								<i class="fa fa-envelope-open-o"><span class="sr-only">icon</span></i>
 							</span>
-							<h2 class="mb-0">Carreteras y <br>Transporte</h2>
+							<h2 class="mb-0">Correo</h2>
 						</a>
 					</li>
 					<li>
-						<a href="/enconstruccion" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+						<a href="https://aplicaciones02.regionloreto.gob.pe/" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
 							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
-								<i class="icomoon-ico5"><span class="sr-only">icon</span></i>
+								<i class="fa fa-folder-o"><span class="sr-only">icon</span></i>
 							</span>
-							<h2 class="mb-0">Cultura y <br>Recreación</h2>
+							<h2 class="mb-0">Resoluciones</h2>
 						</a>
 					</li>
 					<li>
-						<a href="/enconstruccion" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+						<a href="https://portalanterior.regionloreto.gob.pe/corcytec/" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
 							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
-								<i class="icomoon-ico6"><span class="sr-only">icon</span></i>
+								<i class="fa fa-android"><span class="sr-only">icon</span></i>
 							</span>
-							<h2 class="mb-0">¿Comó vamos <br> en el Gobierno?</h2>
+							<h2 class="mb-0">CORCYTEC</h2>
+						</a>
+					</li>
+					<li>
+						<a href="https://portalanterior.regionloreto.gob.pe/files/plan-operativo-institucional/2020/02/POIM_2020-2022-GORE_LORETO.pdf" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
+								<i class="fa fa-file-text-o"><span class="sr-only">icon</span></i>
+							</span>
+							<h2 class="mb-0">POI</h2>
+						</a>
+					</li>
+					<li>
+						<a href="https://regionloreto.gob.pe/files/plan-estrategico-institucional/2019/PEI_LORETO_2019-2022.pdf" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
+								<i class="fa fa-file-text-o"><span class="sr-only">icon</span></i>
+							</span>
+							<h2 class="mb-0">PEI</h2>
+						</a>
+					</li>
+					<li>
+						<a href="https://consulta.regionloreto.gob.pe/" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
+								<i class="fa fa-envelope-open-o"><span class="sr-only">icon</span></i>
+							</span>
+							<h2 class="mb-0">Consulta tu<br> Trámite</h2>
+						</a>
+					</li>
+					<li>
+						<a href="https://regionloreto.gob.pe/files/reglamento-organizacion-funciones/2018/ROF_GorelMayo2018.pdf" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
+								<i class="fa fa-file-text-o"><span class="sr-only">icon</span></i>
+							</span>
+							<h2 class="mb-0"> ROF</h2>
 						</a>
 					</li>
 				</ul>
@@ -186,28 +218,28 @@
 					<ul class="list-unstyled cfbFeatList d-flex flex-wrap mb-0 justify-content-center">
 						<li>
 							<span class="icnWrap d-flex align-items-center justify-content-center w-100 mb-4">
-								<i class="icomoon-ico7"><span class="sr-only">icon</span></i>
+								<i class="icomoon-ico7" style="color: white;"><span class="sr-only">icon</span></i>
 							</span>
 							<h3 class="fwSemiBold text-white textCount mb-3"><span>1 </span>M Hab.</h3>
 							<h4 class="subtitle mb-0 font-weight-normal">Total de personas <br>en nuestro departamento</h4>
 						</li>
 						<li>
 							<span class="icnWrap d-flex align-items-center justify-content-center w-100 mb-4">
-								<i class="icomoon-ico8"><span class="sr-only">icon</span></i>
+								<i class="icomoon-ico8" style="color: white;"><span class="sr-only">icon</span></i>
 							</span>
 							<h3 class="fwSemiBold text-white textCount mb-3"><span>368 851</span> &#13218;</h3>
 							<h4 class="subtitle mb-0 font-weight-normal">Superficie <br>Total de la región</h4>
 						</li>
 						<li>
 							<span class="icnWrap d-flex align-items-center justify-content-center w-100 mb-4">
-								<i class="icomoon-ico9"><span class="sr-only">icon</span></i>
+								<i class="icomoon-ico9"><span class="sr-only" style="color: white;">icon</span></i>
 							</span>
 							<h3 class="fwSemiBold text-white textCount mb-3"><span>2 375 </span> K</h3>
 							<h4 class="subtitle mb-0 font-weight-normal">Centros <br>Poblados</h4>
 						</li>
 						<li>
 							<span class="icnWrap d-flex align-items-center justify-content-center w-100 mb-4">
-								<i class="icomoon-ico10"><span class="sr-only">icon</span></i>
+								<i class="icomoon-ico10" style="color: white;"><span class="sr-only">icon</span></i>
 							</span>
 							<h3 class="fwSemiBold text-white textCount mb-3"><span>0,633 </span>Medio</h3>
 							<h4 class="subtitle mb-0 font-weight-normal">Índice de desarrollo <br>humano</h4>

@@ -16,112 +16,130 @@ class Mainpage extends  handleSanitize {
         $ruta = $this->rutaAssets . 'js/Inicio.js';
         
         $conexion = new MySQLConnection();
-        list($titulo, $mensaje, $frase) = $this->getInfoGobernador($conexion);
+        list($titulo, $mensaje, $frase, $entrada) = $this->getInfoGobernador($conexion);
         $tablaBanner = $this->getInfoBanners($conexion);
         $tablaDirectorio = $this->getInfoDirector($conexion);
 
         $html = <<<Html
-            <div class="row w-100 mt-2">
-                <div class="col-md-4">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Gobernador</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>                        
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="titulo">Título</label>
-                                <input type="text" id="titulo" class="form-control" value="$titulo">
-                            </div>
-                            <div class="form-group">
-                                <label for="mensajeGobernador">Mensaje</label>
-                                <textarea id="mensajeGobernador" class="form-control" rows="4">$mensaje</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="fraseGobernador">Frase</label>
-                                <input type="text" id="fraseGobernador" class="form-control" value="$frase">
-                            </div>
+        <div class="row w-100 mt-2">
+            <div class="col-md-4">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Gobernador</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                            </button>
                         </div>
-                        <div class="card-footer">
-                            <button id="editGobernador" type="button" class="btn btn-primary">Guardar</button>
+                    </div>                        
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="titulo">Título</label>
+                            <input type="text" id="titulo" class="form-control" value="$titulo">
+                        </div>
+                        <div class="form-group">
+                            <label for="entradaGobernador">Entrada</label>
+                            <textarea id="entradaGobernador" class="form-control" rows="4">$entrada</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensajeGobernador">Mensaje</label>
+                            <textarea id="mensajeGobernador" class="form-control" rows="4">$mensaje</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="fraseGobernador">Frase</label>
+                            <input type="text" id="fraseGobernador" class="form-control" value="$frase">
+                        </div>
+                        <div class="form-group">
+                            <label for="imgGobernador">Imagen Gobernador</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="imgGobernador" onchange= "
+                                    if (this.files.length > 0) {
+                                        document.querySelector('.custom-file-label').innerHTML = this.files[0].name
+                                    } else {
+                                        document.querySelector('.custom-file-label').innerHTML = 'Seleccione un archivo'
+                                    }
+                                ">
+                                <label class="custom-file-label text-left" for="imgGobernador" data-browse="Elegir archivo">Elegir archivo</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card card-info table-responsive">
-                        <div class="card-header">
-                            <h3 class="card-title">Banners</h3>         
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body p-0 table-responsive">
-                            <table class="table table-hover ">
-                                <thead>
-                                    <tr>
-                                        <th style ="width: 8px">Id</th>
-                                        <th style ="width: 300px">Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th style = "width: 10px"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    $tablaBanner
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="card-footer">
+                        <button id="editGobernador" type="button" class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="card card-dark">
-                        <div class="card-header">
-                            <h3 class="card-title">Directorio</h3>         
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body p-0 table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px">Id</th>
-                                        <th>Nombre</th>
-                                        <th>Cargo</th>
-                                        <th>Imagen</th>
-                                        <th>Teléfono</th>
-                                        <th>Correo</th>
-                                        <th>Facebook</th>
-                                        <th>Twitter</th>
-                                        <th>Linkedin</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    $tablaDirectorio
-                                </tbody>
-                            </table>
+            </div>
+            <div class="col-md-8">
+                <div class="card card-info table-responsive">
+                    <div class="card-header">
+                        <h3 class="card-title">Banners</h3>         
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                            </button>
                         </div>
                     </div>
+                    <div class="card-body p-0 table-responsive">
+                        <table class="table table-hover ">
+                            <thead>
+                                <tr>
+                                    <th style ="width: 8px">Id</th>
+                                    <th style ="width: 300px">Nombre</th>
+                                    <th>Descripcion</th>
+                                    <th style = "width: 10px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                $tablaBanner
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>      
+            </div>
+            <div class="col-md-12">
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Directorio</h3>         
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">Id</th>
+                                    <th>Nombre</th>
+                                    <th>Cargo</th>
+                                    <th>Imagen</th>
+                                    <th>Teléfono</th>
+                                    <th>Correo</th>
+                                    <th>Facebook</th>
+                                    <th>Twitter</th>
+                                    <th>Linkedin</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                $tablaDirectorio
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type ="module" src="$ruta"></script>      
         Html;
         return $html;
     }
 
     private function getInfoGobernador(MySQLConnection $conexion): array 
     {
-        $sql = "SELECT titulo, mensaje, frase FROM gobernador LIMIT 1";
+        $sql = "SELECT titulo, mensaje, entrada, frase FROM gobernador LIMIT 1";
         $stmt = $conexion->query($sql, '', '', false);
         $row = $stmt->fetch();
-        return [$row['titulo'], $row['mensaje'], $row['frase']];
+        return [$row['titulo'], $row['mensaje'], $row['frase'], $row['entrada']];
     }
 
     private function getInfoBanners(MySQLConnection $conexion): string 
