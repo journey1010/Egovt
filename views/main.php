@@ -148,7 +148,7 @@
 							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
 								<i class="fa fa-envelope-open-o"><span class="sr-only">icon</span></i>
 							</span>
-							<h2 class="mb-0">Correo</h2>
+							<h2 class="mb-0">Correo Institucional</h2>
 						</a>
 					</li>
 					<li>
