@@ -73,5 +73,4 @@ class MySQLConnection {
     public function __destruct() {
         $this->close();
     }
-
 }

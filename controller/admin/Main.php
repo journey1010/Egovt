@@ -12,27 +12,24 @@ class Main extends handleSanitize {
     }
 
     public function datosGobernador() {
-
-        try {    
-            if (
-                empty($_POST["titulo"]) || 
-                empty($_POST["mensaje"]) || 
-                empty($_POST["frase"]) || 
-                empty($_POST["entrada"])
-            ) {
-                throw new Exception("Debe completar todos los campos del formulario.");
+        $campoRequerido = ['titulo', 'mensaje', 'mensaje', 'frase', 'entrada']; 
+        foreach ($campoRequerido as $campo) {
+            if (empty ($_POST[$campo])) {
+                $respuesta = array  ("status" =>"error", "message" => "Si ha borrado algún campo del formulario de actualización, debe rellenarlo de nuevo antes de enviarlo. Los campos vacíos pueden causar errores o retrasos en el proceso de actualización.");
+                print_r(json_encode($respuesta));
+                return;
             }
+        }
+        try {    
             $conexion = new MySQLConnection();
-
             $titulo = $this->SanitizeVarInput($_POST["titulo"]);
             $mensaje = $this->SanitizeVarInput($_POST["mensaje"]);
             $frase = $this->SanitizeVarInput($_POST["frase"]);
             $entrada = $this->SanitizeVarInput($_POST["entrada"]);
 
             $archivo = $_FILES["imgGobernador"] ?? null;
-
             if ($this->validarArchivo($archivo) == true) {
-                $this->borrarArchivo($conexion);
+                $this->borrarArchivo($conexion, $sql, $params);
                 $newPathFile = $this->guardarFichero($archivo, $titulo);
                 $this->UpdateSetBd($conexion, $titulo, $mensaje, $frase, $entrada, $newPathFile);
                 return;
@@ -59,11 +56,11 @@ class Main extends handleSanitize {
             $sql .= " WHERE id_gobernador = 1";
             $conexion->query($sql, $params, '', false);
             $conexion->close();
-            $respuesta = array ("success" => "Registro actualizado exitosamente.");
+            $respuesta = array ("status" => "success" , "message" => "Registro actualizado exitosamente.");
             print_r(json_encode($respuesta));
 
         } catch (Throwable $e) {
-            $respuesta = array ("error" => "La actualizacion ha fallado.");
+            $respuesta = array ("status"=>"error", "message" => "La actualizacion ha fallado.");
             print_r(json_encode($respuesta));
             $this->handlerError($e);
         }
@@ -74,19 +71,18 @@ class Main extends handleSanitize {
         if (empty ($archivo)) {
             return false; 
         }
-
         $archivoNombre = $archivo['name'];
         $extensionesPermitidas = ['webpg', 'jpg'];
         $extension = strtolower(pathinfo($archivoNombre , PATHINFO_EXTENSION));
 
         if ($archivo['error'] !== UPLOAD_ERR_OK) {
-            $respuesta = array ("error" => "Error al subir el archivo");
+            $respuesta = array ("status"=>"error", "message" => "Error al subir el archivo");
             print_r(json_encode($respuesta));
             return false;
         }
 
         if (!in_array($extension, $extensionesPermitidas)){
-            $respuesta = array ("error" => "Extensión de archivo no permitida.");
+            $respuesta = array ("status"=>"error", "message"=> "Extensión de archivo no permitida. Solo se permite extensión webp y jpg");
             print_r(json_encode($respuesta));
             return false;
         }
@@ -103,7 +99,7 @@ class Main extends handleSanitize {
         $pathFullFile = $rutaArchivo . $nuevoNombre;
 
         if (!move_uploaded_file($archivotemp, $pathFullFile)) {
-            $respuesta = array ("error" => "No se pudo guardar el archivo para actualizar el registro.");
+            $respuesta = array ("status"=>"error", "message" => "No se pudo guardar el archivo para actualizar el registro.");
             print_r(json_encode($respuesta));
             return;
         } 
@@ -121,14 +117,14 @@ class Main extends handleSanitize {
         return $finalPathForFile;
     }
 
-    private function borrarArchivo (MySQLConnection $conexion)
+    private function borrarArchivo (MySQLConnection $conexion, $sql, $params = null)
     {
         $sql = "SELECT img FROM gobernador";
-        $stmt = $conexion->query($sql, '', '', false);
+        $stmt = $conexion->query($sql, $params, '', false);
         $resultado = $stmt->fetchColumn();
         $file_to_delete = $this->ruta .  $resultado;
         if (!unlink($file_to_delete)) {
-            $respuesta = array("error" => "No se puede actualizar el archivo. Inténtelo más tarde o contacte con el soporte de la página.");
+            $respuesta = array("status"=>"error", "message" => "No se puede actualizar el archivo. Inténtelo más tarde o contacte con el soporte de la página.");
             print_r(json_encode($respuesta)); 
             throw new Exception("No se pudo reemplazar el archivo. Controlador de actualizacion, funcion reemplazar archivo");
         }
