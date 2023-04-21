@@ -4,7 +4,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>GOREL - Gobierno regiónal de Loreto</title>
+	<title>GOREL - Gobierno Regional de Loreto</title>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
 	<link rel="preconnect" href="https://fonts.googleapis.com/css2">
 	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> <!-- include the site bootstrap stylesheet -->
@@ -15,6 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.ttf' ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.woff' ?>">
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
 	<link rel='icon' type='image/x-icon' href='<?php echo _ROOT_ASSETS . 'images/gorel_favicon.png' ?>'>
 	<script src="<?php echo _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
 	<script src="<?php echo _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
@@ -116,9 +120,9 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servicios</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/enconstruccion">Correo Institucional</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Consulta tu tramite</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Mesa de partes virtuales</a></li>
+													<li><a class="dropdown-item" href="https://correo.regionloreto.gob.pe/">Correo Institucional</a></li>
+													<li><a class="dropdown-item" href="https://consulta.regionloreto.gob.pe/">Consulta tu tramite</a></li>
+													<li><a class="dropdown-item" href="https://facilita.gob.pe/t/641">Mesa de partes virtuales</a></li>
 													<li><a class="dropdown-item" href="/enconstruccion">Formularios y procedimientos</a></li>
 												</ul>
 											</div>
