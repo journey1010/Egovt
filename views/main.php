@@ -232,7 +232,7 @@
 						</li>
 						<li>
 							<span class="icnWrap d-flex align-items-center justify-content-center w-100 mb-4">
-								<i class="icomoon-ico9"><span class="sr-only" style="color: white;">icon</span></i>
+								<i class="icomoon-ico9" style="color: white;"><span class="sr-only" style="color: white;">icon</span></i>
 							</span>
 							<h3 class="fwSemiBold text-white textCount mb-3"><span>2 375 </span> K</h3>
 							<h4 class="subtitle mb-0 font-weight-normal">Centros <br>Poblados</h4>
