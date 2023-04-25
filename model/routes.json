@@ -12,6 +12,7 @@
         {"method" : "GET", "pattern" : "/administrador/funcionarios/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/pagina-principal/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "POST", "pattern" : "/administrador/pagina-principal/datos-gobernador", "handler" : "admin/Main@datosGobernador"},
+        {"method" : "POST", "pattern" : "/administrador/pagina-principal/datos-banner", "handler" : "admin/Main@datosBanner"},
         {"method" : "POST", "pattern" : "/administrador/resgistrarusuarios", "handler": "admin/Usuarios@RegistrarUsuario"},
         {"method" : "POST", "pattern" : "/administrador/visitas/listarfuncionarios", "handler" : "admin/visitas@Obtenerfuncionarios"},
         {"method" : "POST", "pattern" : "/administrador/resgistravisitas", "handler": "admin/visitas@RegistrarVisita"},

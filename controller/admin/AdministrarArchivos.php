@@ -1,13 +1,10 @@
 <?php 
-
 class AdministrarArchivos {
 
     private $conexion;
-    private $sentencia;
-    private $params;
     private $ruta;
 
-    public function __construct($conexion, $ruta) 
+    public function __construct(MySQLConnection $conexion, $ruta) 
     {
         $this->conexion = $conexion;
         $this->ruta = _ROOT_FILES . $ruta;
@@ -28,7 +25,8 @@ class AdministrarArchivos {
         }
 
         if (!in_array($extension, $extensionesPermitidas)){
-            $respuesta = array ("status"=>"error", "message"=> "Extensión de archivo no permitida. Solo se permite extensión webp y jpg");
+            $extensionMessage = implode(', ', $extensionesPermitidas);
+            $respuesta = array ("status"=>"error", "message"=> "Extensión de archivo no permitida. Solo se permiten archivos de extensión: $extensionMessage");
             print_r(json_encode($respuesta));
             return false;
         }
@@ -52,21 +50,18 @@ class AdministrarArchivos {
         return $nuevoNombre;
     }
     
-    public function crearRuta (): string
+    private function crearRuta (): string
     {       
         $pathForFile = $this->ruta ;
-
         if (!file_exists($pathForFile)) {
             mkdir($pathForFile, 0777, true);
         }
-        $finalPathForFile = $pathForFile . '/';
-        return $finalPathForFile;
+        return $pathForFile;
     }
 
-    public function borrarArchivo (MySQLConnection $conexion, $sql, $params = null)
+    public function borrarArchivo ($sql, $params = null)
     {
-        $sql = "SELECT img FROM gobernador";
-        $stmt = $conexion->query($sql, $params, '', false);
+        $stmt = $this->conexion->query($sql, $params, '', false);
         $resultado = $stmt->fetchColumn();
         $file_to_delete = $this->ruta .  $resultado;
         if (!unlink($file_to_delete)) {
@@ -74,5 +69,10 @@ class AdministrarArchivos {
             print_r(json_encode($respuesta)); 
             throw new Exception("No se pudo reemplazar el archivo. Controlador de actualizacion, funcion reemplazar archivo");
         }
+    }
+
+    public function setRuta ($ruta) 
+    {
+        $this->ruta = $ruta;
     }
 }

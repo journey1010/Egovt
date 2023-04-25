@@ -112,7 +112,7 @@ class Mainpage extends  handleSanitize {
                                     <th style="width: 10px">Id</th>
                                     <th>Nombre</th>
                                     <th>Cargo</th>
-                                    <th>Imagen</th>
+                                    <th style="min-width:300px">Imagen</th>
                                     <th>Teléfono</th>
                                     <th>Correo</th>
                                     <th>Facebook</th>
@@ -152,26 +152,48 @@ class Mainpage extends  handleSanitize {
             $id = $row['id_page_principal'];
             $descripcion = $row['descripcion_banner'];
             $fileName = $row['banner'];
+            $filePath = _BASE_URL . '/assets/images/banners/' .  $row['banner'];
             $tablaRow .= <<<html
             <tr>           
                 <td class="text-center">$id</td>
                 <td class="text-center" style="max-width: 300px;">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imgBanner" onchange= "
-                            if (this.files.length > 0) {
-                                document.querySelector('.custom-file-label').innerHTML = this.files[0].name
+                        <input type="file" class="custom-file-input imgBanner" id="imgBanner$id" onchange= "
+                            let input = $(this).closest('tr').find('.custom-file-label');
+                            if (this.files.length > 0) { 
+                                input.html(this.files[0].name);
                             } else {
-                                document.querySelector('.custom-file-label').innerHTML = 'Seleccione un archivo'
+                                input.html('Seleccione un archivo');
                             }
                         ">
-                        <label class="custom-file-label text-left" for="imgBanner" data-browse="Elegir archivo">$fileName</label>
+                        <label class="custom-file-label text-left" for="imgBanner$id" data-browse="Elegir archivo">$fileName</label>
                     </div>
                 </td>
                 <td class="text-center" style="max-width: 300px;" contenteditable="false">$descripcion</td>
                 <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
-                        <a id="verImage" href="#" class="btn btn-info" alt="verImagen"><i class="fas fa-eye"></i></a>
-                        <a id="editarBanner"href="#" class="btn btn-danger" alt="editar banner"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="btn btn-info imagen-link" alt="verImagen"><i class="fas fa-eye"></i></a>
+                        <div class="modal imagen-modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Banner</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img class="img-fluid" src="$filePath" alt="Imagen del modal">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>                      
+                        <a class="btn btn-danger edit-link" alt="editar banner"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger cancel-link" alt="editar banner" style="display: none!important"> <i class="fas fa-times"></i></a>
+                        <a class="btn btn-danger save-link" alt="editar banner" style="display: none!important"><i class="fas fa-save"></i></a>
                     </div>
                 </td>
             </tr>            
@@ -190,25 +212,26 @@ class Mainpage extends  handleSanitize {
             $tablaRow .= <<<html
             <tr>
                 <td>{$row['id_directorio']}</td>
-                <td class="text-left" contenteditable="false" style="max-width: 200px">{$row['nombre']}</td>
-                <td class="text-left" contenteditable="false" style="max-width: 200px">{$row['cargo']}</td>
+                <td class="text-left" contenteditable="false" style="min-width: 200px">{$row['nombre']}</td>
+                <td class="text-left" contenteditable="false" style="min-width: 200px">{$row['cargo']}</td>
                 <td class="text-left">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imgDirectorio" onchange= "
-                            if (this.files.length > 0) {
-                                document.querySelector('.custom-file-label').innerHTML = this.files[0].name
+                        <input type="file" class="custom-file-input imgDirectorio" id="imgDirectorio{$row['id_directorio']}" onchange= "
+                            let input = $(this).closest('tr').find('.custom-file-label');
+                            if (this.files.length > 0) { 
+                                input.html(this.files[0].name);
                             } else {
-                                document.querySelector('.custom-file-label').innerHTML = 'Seleccione un archivo'
+                                input.html('Seleccione un archivo');
                             }
                         ">
-                        <label class="custom-file-label text-left" for="imgBanner" data-browse="Elegir archivo">{$row['imagen']}</label>
+                        <label class="custom-file-label text-left" for="imgDirectorio{$row['id_directorio']}" data-browse="Archivo">{$row['imagen']}</label>
                     </div>
                 </td>
-                <td class="text-left" contenteditable="false" style="max-width: 200px">{$row['telefono']}</td>
-                <td class="text-left" contenteditable="false" style="max-width: 200px">{$row['correo']}</td>
-                <td class="text-left" contenteditable="false" style="max-width: 200px">{$row['facebook']}</td>
-                <td class="text-left" contenteditable="false" style="max-width: 200px">{$row['twitter']}</td>
-                <td class="text-left" contenteditable="false" style="max-width: 200px">{$row['linkedin']}</td>
+                <td class="text-left" contenteditable="false" style="color: blue">{$row['telefono']}</td>
+                <td class="text-left" contenteditable="false" style="color: blue">{$row['correo']}</td>
+                <td class="text-left" contenteditable="false" style="color: blue">{$row['facebook']}</td>
+                <td class="text-left" contenteditable="false" style="color: blue">{$row['twitter']}</td>
+                <td class="text-left" contenteditable="false" style="color: blue">{$row['linkedin']}</td>
                 <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
                         <a id="editarBanner"href="#" class="btn btn-danger" alt="editar banner"><i class="fas fa-edit"></i></a>
