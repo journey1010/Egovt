@@ -16,6 +16,21 @@ function comprobarCamposGobernador() {
     return camposLlenos;
 }
 
+function comprobarCamposDirectorio($row) {
+    let camposEdit = [''];
+    let camposLlenos = true;
+    $.each(camposEdit, function(indice, valor){
+        if (row.find("td:eq("+valor+")") === '') {
+            Toast.fire ({
+                icon: 'warning',
+                title: 'Advertencia',
+                message: 'El campo '+valor+' no debe estar vacío'
+            });
+            camposLlenos = false;
+            return false;
+        }
+    });
+}
 
 function enviarDatosGobernador() {
     let formData = new FormData();
@@ -148,5 +163,12 @@ $(document).ready(function () {
                 }
             });
         }
+    });
+
+    $(document).on('click', '.edit-directorio', function () {
+        let rowDirectorio = $(this).closest("tr");
+        if() {
+            
+        } 
     });
 });

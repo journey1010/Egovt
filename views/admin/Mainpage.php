@@ -234,7 +234,9 @@ class Mainpage extends  handleSanitize {
                 <td class="text-left" contenteditable="false" style="color: blue">{$row['linkedin']}</td>
                 <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
-                        <a id="editarBanner"href="#" class="btn btn-danger" alt="editar banner"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger edit-directorio" alt="editar directorio"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger cancel-directorio" alt="editar directorio" style="display: none!important"> <i class="fas fa-times"></i></a>
+                        <a class="btn btn-danger save-directorio" alt="editar directorio" style="display: none!important"><i class="fas fa-save"></i></a>
                     </div>
                 </td>
             </tr>
