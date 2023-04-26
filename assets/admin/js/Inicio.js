@@ -16,22 +16,6 @@ function comprobarCamposGobernador() {
     return camposLlenos;
 }
 
-function comprobarCamposDirectorio($row) {
-    let camposEdit = [''];
-    let camposLlenos = true;
-    $.each(camposEdit, function(indice, valor){
-        if (row.find("td:eq("+valor+")") === '') {
-            Toast.fire ({
-                icon: 'warning',
-                title: 'Advertencia',
-                message: 'El campo '+valor+' no debe estar vacío'
-            });
-            camposLlenos = false;
-            return false;
-        }
-    });
-}
-
 function enviarDatosGobernador() {
     let formData = new FormData();
     formData.append('titulo', $('#titulo').val());
@@ -167,8 +151,91 @@ $(document).ready(function () {
 
     $(document).on('click', '.edit-directorio', function () {
         let rowDirectorio = $(this).closest("tr");
-        if() {
-            
-        } 
+        rowDirectorio.find("td[contenteditable=false]").prop("contenteditable", true);
+        rowDirectorio.find(".edit-directorio").hide();
+        rowDirectorio.find(".cancel-directorio").show();
+        rowDirectorio.find(".save-directorio").show();
+    });
+
+    $(document).on('click', '.cancel-directorio', function () {
+        let rowDirectorio = $(this).closest("tr");
+        rowDirectorio.find("td[contenteditable=true]").prop("contenteditable", false);
+        rowDirectorio.find(".edit-directorio").show();
+        rowDirectorio.find(".cancel-directorio").hide();
+        rowDirectorio.find(".save-directorio").hide();
+    });
+
+    $(document).on('click', '.save-directorio', function () {
+        let rowDirectorio = $(this).closest("tr");
+        rowDirectorio.find("td[contenteditable=true]").prop("contenteditable", false);
+        rowDirectorio.find(".edit-directorio").show();
+        rowDirectorio.find(".cancel-directorio").hide();
+        rowDirectorio.find(".save-directorio").hide();
+        
+        let camposEdit = ['0', '1', '2', '4', '5', '6', '7', '8'];
+        let camposLlenos = true;
+        $.each(camposEdit, function(indice, valor){
+            if (rowDirectorio.find("td:eq("+valor+")").text() === '') {
+                Toast.fire ({
+                    icon: 'warning',
+                    title: 'Advertencia! Los campos no deben estar vacíos.'
+                });
+                camposLlenos = false;
+                return false;
+            }
+        });
+
+        if (rowDirectorio.find('.imgDirectorio').prop("files") !== undefined && rowDirectorio.find('.imgDirectorio').prop("files")[0] !== undefined) {
+            if (rowDirectorio.find('.imgDirectorio').prop("files")[0].size > 1024 * 1024) {
+                Toast.fire({
+                    icon: "warning",
+                    title: "El tamaño de archivo no debe exceder 1MB"
+                });
+                camposLlenos = false;
+            }
+        }
+
+        if (camposLlenos) {
+            let formData = new FormData();
+            formData.append('id', rowDirectorio.find("td:eq(0)").text());
+            formData.append('nombre', rowDirectorio.find("td:eq(1)").text());
+            formData.append('cargo', rowDirectorio.find("td:eq(2)").text());
+            formData.append('archivo', rowDirectorio.find("imgDirectorio").prop("files")[0]);
+            formData.append('telefono', rowDirectorio.find("td:eq(4)").text());
+            formData.append('correo', rowDirectorio.find("td:eq(5)").text());
+            formData.append('facebook', rowDirectorio.find("td:eq(6)").text());
+            formData.append('twitter', rowDirectorio.find("td:eq(7)").text());
+            formData.append('linkedin', rowDirectorio.find("td:eq(8)").text());
+
+            $.ajax({
+                url: '',
+                method: 'POST',
+                data: formData,
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    let resp = JSON.parse(response);
+                    if(resp.status === 'success') {
+                        Toast.fire({
+                            icon: 'success',
+                            title: resp.message,
+                        });
+                    } else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: resp.message
+                        });
+                    }
+               },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    Toast.fire({
+                        icon: "error",
+                        title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+                        background: "#ff0000",
+                    });
+                }
+            });
+        }
     });
 });

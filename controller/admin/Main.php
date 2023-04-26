@@ -120,4 +120,78 @@ class Main extends handleSanitize {
             $this->handlerError($e);
         }
     }
+
+    public function datosDirectorio()
+    {
+        $campoRequerido = ['id', 'nombre', 'cargo'];
+        foreach ($campoRequerido as $campo) {
+            if ( empty ($_POST[$campo])) {
+                $respuesta = array ("status" => "error", "message" => "El campo $campo no puede estar vacío." ); 
+                echo (json_encode($respuesta));
+                return;
+            }
+        }
+
+        try {
+            $conexion = new MySQLConnection ();
+            $gestorArchivo = new AdministrarArchivos($conexion, '');
+            $gestorArchivo->setRuta( _ROOT_PATH . '/assets/images/directorio/');
+
+            $camposEnviados = ['id', 'nombre', 'cargo', 'telefono', 'correo', 'facebook', 'twitter', 'linkedin'];
+            foreach ($camposEnviados as $campo) {
+                extract([$campo => $this->SanitizeVarInput($_POST[$campo])]);
+            }
+
+            $archivo = $_FILES['archivo'] ?? null;
+            if ( $gestorArchivo->validarArchivo($archivo, ['jpg', 'gif', 'webp', 'jpeg']) == true) {
+                $sql = "SELECT imagen FROM directorio_paginaprincipal WHERE id_directorio = :id";
+                $params[':id'] = $id;
+                $gestorArchivo->borrarArchivo($sql, $params);
+                $newPathFile = $gestorArchivo->guardarFichero($archivo, $id);
+            }
+        } catch (Throwable $e) {
+            $this->handlerError($e);
+        }
+    }
+
+    private function updateDirectorio(
+        $conexion, 
+        $id, 
+        $nombre,
+        $cargo, 
+        $telefono = null, 
+        $correo = null, 
+        $facebook = null, 
+        $twitter = null, 
+        $linkedin = null, 
+        $newPathFile = null
+    ) {
+        $sql = "UPDATE directorio_paginaprincipal set nombre = :nombre, cargo = :cargo";
+        $params[':nombre'] = $nombre;
+        $params[':cargo'] = $cargo;
+
+        try {
+            $camposOpcionales = ['telefono', 'correo', 'facebook', 'twitter', 'linkedin'];
+            foreach ($camposOpcionales as $campo) {
+                if ( $$campo !== null) {
+                    $sql .= ", $campo = :$campo";
+                    $params[":$campo"] = $$campo;
+                }
+            }
+
+            if ($newPathFile !== null) {
+                $sql .= ", imagen = :imagen";
+                $params[":imagen"] = $newPathFile;
+            }
+            $sql .= " id_directorio = :id";
+            $params[':id'] = $id;
+            $conexion->query($sql, $params, '', false);
+            $respuesta = array ('status'=>'error', 'message'=>'Registro actualizado exitosamente.');
+            echo (json_encode($respuesta));
+        } catch (Throwable $e) {
+            $respuesta = array('status' => 'error', 'message' => 'La actualización ha fallado exitosamente.');
+            echo (json_encode($respuesta));
+            $this->handlerError($e);
+        }  
+    }
 }
