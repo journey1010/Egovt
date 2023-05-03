@@ -1,1 +1,4 @@
-
+2023-05-02 17:40:38 : No se pudo reemplazar el archivo. Controlador de actualizacion, funcion reemplazar archivo
+2023-05-02 17:42:53 : No se pudo reemplazar el archivo. Controlador de actualizacion, funcion reemplazar archivo
+2023-05-02 23:12:41: Error constructViewPanelAdmin : SQLSTATE[HY000] [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2023-05-02 23:12:46: Error constructViewPanelAdmin : SQLSTATE[HY000] [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión

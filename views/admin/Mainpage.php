@@ -19,6 +19,7 @@ class Mainpage extends  handleSanitize {
         list($titulo, $mensaje, $frase, $entrada) = $this->getInfoGobernador($conexion);
         $tablaBanner = $this->getInfoBanners($conexion);
         $tablaDirectorio = $this->getInfoDirector($conexion);
+        $tablaModal = $this->getInfoModal($conexion);
 
         $html = <<<Html
         <div class="row w-100 mt-2">
@@ -128,6 +129,33 @@ class Mainpage extends  handleSanitize {
                     </div>
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Modal de página principal</h3>         
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">Id</th>
+                                    <th style="min-width:300px">Imagen</th>
+                                    <th>Descripcion</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                $tablaModal
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>            
         </div>
         <script type ="module" src="$ruta"></script>      
         Html;
@@ -237,6 +265,43 @@ class Mainpage extends  handleSanitize {
                         <a class="btn btn-danger edit-directorio" alt="editar directorio"><i class="fas fa-edit"></i></a>
                         <a class="btn btn-danger cancel-directorio" alt="editar directorio" style="display: none!important"> <i class="fas fa-times"></i></a>
                         <a class="btn btn-danger save-directorio" alt="editar directorio" style="display: none!important"><i class="fas fa-save"></i></a>
+                    </div>
+                </td>
+            </tr>
+            html;
+        }
+        return $tablaRow;
+    }  
+
+    private function getInfoModal(MySQLConnection $conexion): String
+    {   
+        $sql = "SELECT * FROM modal_inicio";
+        $stmt = $conexion->query($sql, '', '', false);
+        $resultado = $stmt->fetchAll();
+        $tablaRow = '';
+        foreach ($resultado  as $row) {
+            $tablaRow .= <<<html
+            <tr>
+                <td>{$row['id_modal']}</td>
+                <td class="text-left">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input imgModal" id="imgModal{$row['id_modal']}" onchange= "
+                            let input = $(this).closest('tr').find('.custom-file-label');
+                            if (this.files.length > 0) { 
+                                input.html(this.files[0].name);
+                            } else {
+                                input.html('Seleccione un archivo');
+                            }
+                        ">
+                        <label class="custom-file-label text-left" for="imgModal{$row['id_modal']}" data-browse="Archivo">{$row['img']}</label>
+                    </div>
+                </td>
+                <td>{$row['descripcion']}</td>
+                <td class="text-right py-0 align-middle">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-danger edit-modal" alt="editar modal"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger cancel-modal" alt="editar modal" style="display: none!important"> <i class="fas fa-times"></i></a>
+                        <a class="btn btn-danger save-modal" alt="editar modal" style="display: none!important"><i class="fas fa-save"></i></a>
                     </div>
                 </td>
             </tr>

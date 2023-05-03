@@ -172,7 +172,7 @@ $(document).ready(function () {
         rowDirectorio.find(".cancel-directorio").hide();
         rowDirectorio.find(".save-directorio").hide();
         
-        let camposEdit = ['0', '1', '2', '4', '5', '6', '7', '8'];
+        let camposEdit = ['0', '1', '2'];
         let camposLlenos = true;
         $.each(camposEdit, function(indice, valor){
             if (rowDirectorio.find("td:eq("+valor+")").text() === '') {
@@ -200,7 +200,7 @@ $(document).ready(function () {
             formData.append('id', rowDirectorio.find("td:eq(0)").text());
             formData.append('nombre', rowDirectorio.find("td:eq(1)").text());
             formData.append('cargo', rowDirectorio.find("td:eq(2)").text());
-            formData.append('archivo', rowDirectorio.find("imgDirectorio").prop("files")[0]);
+            formData.append('archivo', rowDirectorio.find(".imgDirectorio").prop("files")[0]);
             formData.append('telefono', rowDirectorio.find("td:eq(4)").text());
             formData.append('correo', rowDirectorio.find("td:eq(5)").text());
             formData.append('facebook', rowDirectorio.find("td:eq(6)").text());
@@ -208,7 +208,7 @@ $(document).ready(function () {
             formData.append('linkedin', rowDirectorio.find("td:eq(8)").text());
 
             $.ajax({
-                url: '',
+                url: '/administrador/pagina/principal/datos-directorio',
                 method: 'POST',
                 data: formData,
                 enctype: 'multipart/form-data',

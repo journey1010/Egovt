@@ -148,7 +148,10 @@ class Main extends handleSanitize {
                 $params[':id'] = $id;
                 $gestorArchivo->borrarArchivo($sql, $params);
                 $newPathFile = $gestorArchivo->guardarFichero($archivo, $id);
+                $this->updateDirectorio($conexion, $id, $nombre, $cargo, $telefono, $correo, $facebook, $twitter, $linkedin, $newPathFile);
+                return;
             }
+            $this->updateDirectorio($conexion, $id, $nombre, $cargo, $telefono, $correo, $facebook, $twitter, $linkedin);
         } catch (Throwable $e) {
             $this->handlerError($e);
         }
@@ -159,12 +162,12 @@ class Main extends handleSanitize {
         $id, 
         $nombre,
         $cargo, 
-        $telefono = null, 
-        $correo = null, 
-        $facebook = null, 
-        $twitter = null, 
-        $linkedin = null, 
-        $newPathFile = null
+        $telefono = '', 
+        $correo = '', 
+        $facebook = '', 
+        $twitter = '', 
+        $linkedin = '', 
+        $newPathFile = ''
     ) {
         $sql = "UPDATE directorio_paginaprincipal set nombre = :nombre, cargo = :cargo";
         $params[':nombre'] = $nombre;
@@ -173,7 +176,7 @@ class Main extends handleSanitize {
         try {
             $camposOpcionales = ['telefono', 'correo', 'facebook', 'twitter', 'linkedin'];
             foreach ($camposOpcionales as $campo) {
-                if ( $$campo !== null) {
+                if ( $$campo !== '') {
                     $sql .= ", $campo = :$campo";
                     $params[":$campo"] = $$campo;
                 }
@@ -183,10 +186,10 @@ class Main extends handleSanitize {
                 $sql .= ", imagen = :imagen";
                 $params[":imagen"] = $newPathFile;
             }
-            $sql .= " id_directorio = :id";
+            $sql .= ", id_directorio = :id";
             $params[':id'] = $id;
             $conexion->query($sql, $params, '', false);
-            $respuesta = array ('status'=>'error', 'message'=>'Registro actualizado exitosamente.');
+            $respuesta = array ('status'=>'success', 'message'=>'Registro actualizado exitosamente.');
             echo (json_encode($respuesta));
         } catch (Throwable $e) {
             $respuesta = array('status' => 'error', 'message' => 'La actualización ha fallado exitosamente.');

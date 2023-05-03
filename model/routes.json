@@ -13,6 +13,7 @@
         {"method" : "GET", "pattern" : "/administrador/pagina-principal/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "POST", "pattern" : "/administrador/pagina-principal/datos-gobernador", "handler" : "admin/Main@datosGobernador"},
         {"method" : "POST", "pattern" : "/administrador/pagina-principal/datos-banner", "handler" : "admin/Main@datosBanner"},
+        {"method" : "POST", "pattern" : "/administrador/pagina/principal/datos-directorio", "handler" : "admin/Main@datosDirectorio"},
         {"method" : "POST", "pattern" : "/administrador/resgistrarusuarios", "handler": "admin/Usuarios@RegistrarUsuario"},
         {"method" : "POST", "pattern" : "/administrador/visitas/listarfuncionarios", "handler" : "admin/visitas@Obtenerfuncionarios"},
         {"method" : "POST", "pattern" : "/administrador/resgistravisitas", "handler": "admin/visitas@RegistrarVisita"},
@@ -41,5 +42,6 @@
         {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/historico", "handler" : "transparenciaController@pipHistorico"},
         {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/historico/?page={pagina}", "handler" : "transparenciaController@pipHistorico"},
         {"method" : "POST", "pattern" : "/transparencia/proyecto-de-inversion-publica/filtros", "handler" : "transparenciaController@BuscarObra"}
+    
     ]
 }
