@@ -65,6 +65,7 @@ class usuarios extends handleSanitize {
                                             <option value="noticias">Noticias</option>
                                             <option value="obras">Obras</option>
                                             <option value="funcionarios">Funcionarios</option>
+                                            <option value="rrhhasistencia">RRHH asistencia</option>
                                         </select>
                                     </div>
                                 </div>

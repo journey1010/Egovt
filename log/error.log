@@ -1,4 +1,2 @@
-2023-05-02 17:40:38 : No se pudo reemplazar el archivo. Controlador de actualizacion, funcion reemplazar archivo
-2023-05-02 17:42:53 : No se pudo reemplazar el archivo. Controlador de actualizacion, funcion reemplazar archivo
-2023-05-02 23:12:41: Error constructViewPanelAdmin : SQLSTATE[HY000] [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
-2023-05-02 23:12:46: Error constructViewPanelAdmin : SQLSTATE[HY000] [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2023-05-03 19:20:46 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '), ())), ()))), ())))), ()))))), (), ()), ())), ()))), ())))), ()))))), (), ()),' at line 1
+2023-05-03 19:22:27 : SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1

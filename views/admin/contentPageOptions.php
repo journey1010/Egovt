@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\Internal\ReturnTypeContract;
+
 spl_autoload_register( function ($nombreClase) {
     $rutaArchivo = _ROOT_VIEWS . 'admin/' . $nombreClase . '.php';
     if (file_exists($rutaArchivo)) {
@@ -93,5 +95,19 @@ class contentPageOptions {
         <div>hola</div>
         Html;
         return $html;
+    }
+
+    public function loadFile() 
+    {
+        $rrhhAsistencia = new RRHHasistencia();
+        $resultado = $rrhhAsistencia->loadFile();
+        return $resultado; 
+    }
+
+    public function verRegistros()
+    {
+        $rrhhAsistencia = new RRHHasistencia();
+        $resultado =$rrhhAsistencia->verRegistros();
+        return $resultado;
     }
 }
