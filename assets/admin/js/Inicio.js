@@ -238,4 +238,88 @@ $(document).ready(function () {
             });
         }
     });
+
+    $(document).on('click', '.edit-modal', function(){
+        let rowModal = $(this).closest("tr");
+        rowModal.find("td[contenteditable=false]").prop("contenteditable", true);
+        rowModal.find(".edit-modal").hide();
+        rowModal.find(".cancel-modal").show();
+        rowModal.find(".save-modal").show();
+    });
+
+    $(document).on('click', '.cancel-modal', function(){
+        let rowModal = $(this).closest("tr");
+        rowModal.find("td[contenteditable=false]").prop("contenteditable", true);
+        rowModal.find(".edit-modal").show();
+        rowModal.find(".cancel-modal").hide();
+        rowModal.find(".save-modal").hide();
+    });
+
+    $(document).on('click', '.save-modal', function(){
+        let rowModal = $(this).closest("tr");
+        rowModal.find("td[contenteditable=false]").prop("contenteditable", true);
+        rowModal.find(".edit-modal").show();
+        rowModal.find(".cancel-modal").hide();
+        rowModal.find(".save-modal").hide();
+
+        let camposEdit = ['2'];
+        let camposLlenos = true;
+        $.each(camposEdit, function(indice, valor){
+            if (rowModal.find("td:eq("+valor+")").text() === '') {
+                Toast.fire ({
+                    icon: 'warning',
+                    title: 'Advertencia! Los campos no deben estar vacíos.'
+                });
+                camposLlenos = false;
+                return false;
+            }
+        });
+
+        if (rowModal.find('.imgModal').prop("files") !== undefined && rowModal.find('.imgModal').prop("files")[0] !== undefined) {
+            if (rowModal.find('.imgModal').prop("files")[0].size > 1024 * 1024) {
+                Toast.fire({
+                    icon: "warning",
+                    title: "El tamaño de archivo no debe exceder 1MB"
+                });
+                camposLlenos = false;
+            }
+        }
+
+        if (camposLlenos) {
+            let formData = new FormData();
+            formData.append('id', rowModal.find("td:eq(0)").text());
+            formData.append('archivo', rowDirectorio.find(".imgDirectorio").prop("files")[0]);
+            formData.append('descripcion', rowDirectorio.find("td:eq(2)").text());
+
+            $.ajax({
+                url: '/administrador/pagina/principal/datos-directorio',
+                method: 'POST',
+                data: formData,
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    let resp = JSON.parse(response);
+                    if(resp.status === 'success') {
+                        Toast.fire({
+                            icon: 'success',
+                            title: resp.message,
+                        });
+                    } else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: resp.message
+                        });
+                    }
+               },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    Toast.fire({
+                        icon: "error",
+                        title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+                        background: "#ff0000",
+                    });
+                }
+            });
+        }
+    });
 });

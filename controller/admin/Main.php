@@ -197,4 +197,14 @@ class Main extends handleSanitize {
             $this->handlerError($e);
         }  
     }
+
+    public function datosModal()
+    {
+
+    }
+
+    private function updateModal()
+    {
+        
+    }
 }

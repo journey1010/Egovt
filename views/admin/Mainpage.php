@@ -143,9 +143,9 @@ class Mainpage extends  handleSanitize {
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th style="width: 10px">Id</th>
-                                    <th style="min-width:300px">Imagen</th>
-                                    <th>Descripcion</th>
+                                    <th class= "text-center" style="width: 10px">Id</th>
+                                    <th class= "text-center" style="min-width:300px">Imagen</th>
+                                    <th class= "text-center">Descripcion</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -296,7 +296,7 @@ class Mainpage extends  handleSanitize {
                         <label class="custom-file-label text-left" for="imgModal{$row['id_modal']}" data-browse="Archivo">{$row['img']}</label>
                     </div>
                 </td>
-                <td>{$row['descripcion']}</td>
+                <td class="text-center" contenteditable="false">{$row['descripcion']}</td>
                 <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
                         <a class="btn btn-danger edit-modal" alt="editar modal"><i class="fas fa-edit"></i></a>
