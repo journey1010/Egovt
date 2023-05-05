@@ -60,7 +60,7 @@ function registrarUsuario(e) {
     $("#apellido_materno").val() === "" ||
     $("#contrasena").val() === "" ||
     $("#tipoUsuario").val() === "" ||
-    $('#oficinaUsuario').val()
+    $('#oficinaUsuario').val() === ''
   ) {
     Toast.fire({
       background: "#E8EC14",

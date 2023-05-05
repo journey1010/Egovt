@@ -147,10 +147,11 @@ class viewConstruct{
                 'funcionarios' => [
                     '' => $contentPage->RegistrarFuncionarios()
                 ],
+
                 'rrhhasistencia' => [
                     '' => $contentPage->loadFile(),
                     'registrar-archivo' => $contentPage->loadFile(),
-                    'ver-registro' => $contentPage->verRegistros()
+                    'ver-registros' => $contentPage->verRegistros(),
                 ]
             ];
 
