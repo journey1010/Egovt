@@ -134,6 +134,11 @@ class RRHH extends handleSanitize
                 $sql .= " ORDER BY fecha DESC";
             }
 
+            if(empty($params)) 
+            {
+                $params ='';
+            }
+
             $stmt = $this->conexion->query($sql, $params, '', false);
             $array = $stmt->fetchAll();
             $resultado = $this->makeExcelForBusqueda($array, $tipoMarcacion);
