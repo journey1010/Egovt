@@ -120,6 +120,7 @@ class viewConstruct{
                     'editar' => $contentPage->Mainpage(), 
                     'oficinas' => $contentPage->Oficinas(),
                     'registrar-usuarios' => $contentPage->RegistrarUsuarios(),
+                    'actualizar-usuarios' => $contentPage->ActualizarUsuarios(),
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
                     'actualizar-visitas' => $contentPage->ActualizarVisitas(),
                     'registrar-obras' => $contentPage->RegistrarObras(),

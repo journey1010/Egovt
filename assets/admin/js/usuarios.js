@@ -134,3 +134,32 @@ function registrarUsuario(e) {
     });
   }
 }
+
+$(document).on('click', '#limpiarFiltroUsuarios', limpiarFiltros);
+function limpiarFiltros(){
+  document.getElementById('oficinasUsuarios').selectedIndex = 0;
+  document.getElementById('tipoUsuarios').selectedIndex = 0;
+  $('#oficinasUsuarios').select2('destroy');
+  $(".select2").select2({
+    closeOnSelect: true,
+  });
+  $('#tipoUsuarios').select2('destroy');
+  $(".select2").select2({
+    closeOnSelect: true,
+  });
+}
+
+$(document).on('click', '#', searchUsuarios);
+function searchUsuarios(){
+  $.ajax({
+    url:'',
+    method: '',
+    data: formData,
+    beforeSend: function(){
+
+    },
+    success: function(response){
+      let resp = JSON.parse();
+    }
+  });
+}
