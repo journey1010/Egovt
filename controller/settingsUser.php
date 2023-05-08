@@ -90,6 +90,7 @@ class settingsUser extends AbstractController{
 
     public function signOut()
     {
+        session_start();
         unset($_SESSION['username']);
         unset($_SESSION['tipoUser']);
         setcookie("user", "", time() - 3600);
@@ -108,7 +109,7 @@ class settingsUser extends AbstractController{
         imagedestroy($nueva_imagen);
     }
 
-    //usarestopara las contraseñas
+    //usar esto para las contraseñas
     protected function SanitizeVar( string $var)
     {
         $var = htmlspecialchars( $var,  ENT_QUOTES);

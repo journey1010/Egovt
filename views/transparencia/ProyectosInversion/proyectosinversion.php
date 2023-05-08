@@ -87,6 +87,9 @@ $(document).ready(function(){
 								<li name="panel">
 									<a  class="enlace"href="/transparencia/proyecto-de-inversion-publica/historico">Historico</a>
 								</li>
+								<li name="panel">
+									<a  class="enlace"href="/transparencia/proyecto-de-inversion-publica/informacion-adicional">Información adicional</a>
+								</li>
 							</ul>
 						</nav>
 					</aside>

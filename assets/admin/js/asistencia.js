@@ -132,7 +132,6 @@ function registroMarcacion(file) {
   });
 }
 
-
 function filtradoExcel() {
   let progressBar = $('#reasignacion-registros-marcacion .progress-bar');
   $('#reasignacion-registros-marcacion').show();
@@ -170,7 +169,6 @@ function filtradoExcel() {
     }
   });
 }
-
 
 $(document).on('click', '#limpiarFiltroAsistencia', limpiarFiltro);
 function limpiarFiltro() {
