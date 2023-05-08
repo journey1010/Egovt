@@ -1,6 +1,5 @@
 import { Toast } from './Toast.js';
 
-
 $(document).ready(select2);
 function select2() {
   $(".select2").select2({
@@ -101,6 +100,7 @@ $(document).on('keydown', '#palabraClave', function(e){
     return false;
   }
 });
+
 function searchObra() {
   if (
     $('#tipoObraActualizar option:selected').val() == '' &&

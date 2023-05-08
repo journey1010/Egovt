@@ -60,7 +60,7 @@ function registrarUsuario(e) {
     $("#apellido_materno").val() === "" ||
     $("#contrasena").val() === "" ||
     $("#tipoUsuario").val() === "" ||
-    $('#oficinaUsuario').val()
+    $('#oficinaUsuario').val() === ''
   ) {
     Toast.fire({
       background: "#E8EC14",
@@ -133,4 +133,48 @@ function registrarUsuario(e) {
       },
     });
   }
+}
+
+$(document).on('click', '#limpiarFiltroUsuarios', limpiarFiltros);
+function limpiarFiltros(){
+  document.getElementById('oficinasUsuarios').selectedIndex = 0;
+  document.getElementById('tipoUsuarios').selectedIndex = 0;
+  $('#oficinasUsuarios').select2('destroy');
+  $(".select2").select2({
+    closeOnSelect: true,
+  });
+  $('#tipoUsuarios').select2('destroy');
+  $(".select2").select2({
+    closeOnSelect: true,
+  });
+}
+
+$(document).on('click', '#aplicarFiltroUsuarios', searchUsuarios);
+$(document).on('click', '#buscarPalabraUsuarios', searchObra);
+$(document).on('keydown', '#palabraClaveUsuarios', function(e){
+  if (e.keyCode === 13) {
+    searchObra();
+    return false;
+  }
+});
+function searchUsuarios(){
+  $.ajax({
+    url:'',
+    method: '',
+    data: formData,
+    beforeSend: function(){
+
+    },
+    success: function(response){
+      let resp = JSON.parse();
+    },
+    error: function (jqXHR, textStatus, errorThrown){
+      $('#spinner').hide();
+      Toast.fire({
+        icon: "error",
+        title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+        background: "#ff0000",
+      });
+    }
+  });
 }
