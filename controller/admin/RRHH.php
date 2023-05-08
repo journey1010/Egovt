@@ -82,6 +82,7 @@ class RRHH extends handleSanitize
             echo (json_encode($respuesta));
         } catch (Throwable $e) {
             $this->handlerError($e);
+            
         }
     }
 
