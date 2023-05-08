@@ -101,15 +101,26 @@ function registroMarcacion(file) {
     data: { file: file },
 
     success: function (response) {
-      clearInterval(progressInterval);
-      progressBar.css('width', '100%');
-      progressBar.text('100%');
       let resp = JSON.parse(response);
-      Toast.fire({
-        icon: "success",
-        title: resp.message,
-      });
-      filtradoExcel();
+      if (resp.status == 'success'){
+        clearInterval(progressInterval);
+        progressBar.css('width', '100%');
+        progressBar.text('100%');
+        Toast.fire({
+          icon: "success",
+          title: resp.message,
+        });
+        filtradoExcel();
+      } else  {
+        clearInterval(progressInterval);
+        progressBar.css('width', '0%');
+        progressBar.text('0%');
+        Toast.fire({
+          icon: "warning",
+          title: resp.message,
+        });
+      }
+
     },
     error: function (jqXHR, textStatus, errorThrown) {
       Toast.fire({
@@ -164,7 +175,8 @@ function filtradoExcel() {
 $(document).on('click', '#limpiarFiltroAsistencia', limpiarFiltro);
 function limpiarFiltro() {
   document.getElementById("orderByAsistencia").selectedIndex = 0;
-  document.getElementById("fechaAsistencia").value = "";
+  document.getElementById("fechaAsistenciaDesde").value = new Date().toISOString().slice(0, 10);
+  document.getElementById("fechaAsistenciaHasta").value = new Date().toISOString().slice(0, 10);
   document.getElementById("oficinaAsistencia").selectedIndex = 0;
   document.getElementById("palabraClaveAsistencia").value = "";
   $('#orderByAsistencia').select2('destroy');
@@ -186,7 +198,8 @@ $(document).on('keydown', '#palabraClaveAsistencia', function (e) {
 function searchMarcacion() {
   if (
     $('#oficinaAsistencia option:selected').val() == '' &&
-    $('#fechaAsistencia').val() == '' &&
+    $('#fechaAsistenciaDesde').val() == '' &&
+    $('#fechaAsistenciaHasta').val() == '' &&
     $('#palabraClave').val() == '' 
   ) {
     Toast.fire({
@@ -196,10 +209,10 @@ function searchMarcacion() {
   } else {
     let formData = {
       oficina: $('#oficinaAsistencia option:selected').val(),
-      fecha: $('#fechaAsistencia').val(),
+      fechaDesde: $('#fechaAsistenciaDesde').val(),
+      fechaHasta: $('#fechaAsistenciaHasta').val(),
       ordenar: $('#orderByAsistencia').val(),
-      palabra: $('#palabraClaveAsistencia').val(),
-      tipoMarcacion: $('#tipoMarcacionAsistencia').val()
+      palabra: $('#palabraClaveAsistencia').val()
     }
 
     let progressBar = $('#reporte-marcacion .progress-bar');

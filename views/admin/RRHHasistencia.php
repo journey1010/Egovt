@@ -74,6 +74,7 @@ class RRHHasistencia extends  handleSanitize
     {
         $ruta = $this->rutaAssets . 'js/asistencia.js';
         $oficinas = $this->getOficinas();
+        $inputHasta = date('Y-m-d');
         $html = <<<Html
         <div class="card card-warning mt-3 mx-auto w-100">
             <div class="card-header">
@@ -95,8 +96,14 @@ class RRHHasistencia extends  handleSanitize
                                 </div>
                                 <div class="col-md-3 col-sm-6">
                                     <div class="form-group">
-                                        <label>Fecha :</label>
-                                        <input type="date" class="form-control" id="fechaAsistencia" value="">
+                                        <label>Fecha Desde:</label>
+                                        <input type="date" class="form-control" id="fechaAsistenciaDesde" value="$inputHasta">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Fecha Hasta:</label>
+                                        <input type="date" class="form-control" id="fechaAsistenciaHasta" value="$inputHasta">
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
@@ -106,15 +113,6 @@ class RRHHasistencia extends  handleSanitize
                                             <option value="" selected>Seleccionar</option>
                                             <option value="DESC">DESC</option>
                                             <option value="ASC">ASC</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6">
-                                <div class="form-group">
-                                        <label>Tipo de marcación :</label>
-                                        <select class="select2" style="width: 100%;" id="tipoMarcacionAsistencia">
-                                           <option value="entrada">Entrada</option>
-                                           <option value="salida">Salida</option>
                                         </select>
                                     </div>
                                 </div>

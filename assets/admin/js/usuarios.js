@@ -149,7 +149,14 @@ function limpiarFiltros(){
   });
 }
 
-$(document).on('click', '#', searchUsuarios);
+$(document).on('click', '#aplicarFiltroUsuarios', searchUsuarios);
+$(document).on('click', '#buscarPalabraUsuarios', searchObra);
+$(document).on('keydown', '#palabraClaveUsuarios', function(e){
+  if (e.keyCode === 13) {
+    searchObra();
+    return false;
+  }
+});
 function searchUsuarios(){
   $.ajax({
     url:'',
@@ -160,6 +167,14 @@ function searchUsuarios(){
     },
     success: function(response){
       let resp = JSON.parse();
+    },
+    error: function (jqXHR, textStatus, errorThrown){
+      $('#spinner').hide();
+      Toast.fire({
+        icon: "error",
+        title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+        background: "#ff0000",
+      });
     }
   });
 }

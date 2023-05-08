@@ -1,0 +1,1 @@
+2023-05-08 02:30:33 : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fecha BETWEEN ? AND ?  ORDER BY fecha DESC' at line 1

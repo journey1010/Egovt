@@ -135,9 +135,9 @@ class usuarios extends handleSanitize {
                             <div class="form-group mt-2">
                                 <label></Label>
                                 <div class="input-group input-group-lg">
-                                    <input type="search" class="form-control form-control-lg" placeholder="Filtrar por palabra clave" id="palabraClave" value="">
+                                    <input type="search" class="form-control form-control-lg" placeholder="Filtrar por palabra clave" id="palabraClaveUsuarios" value="">
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-lg btn-default" id="buscarPalabra">
+                                        <button type="button" class="btn btn-lg btn-default" id="buscarPalabraUsuarios">
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </div>
@@ -149,7 +149,7 @@ class usuarios extends handleSanitize {
                                         <button type="button" class="form-control btn btn-secondary" id="limpiarFiltroUsuarios">Limpiar filtros</button>
                                     </div>
                                 </div>
-                                <div id="spinner" class="mt-1" style="display:none;">
+                                <div id="spinnerUsuarios" class="mt-1" style="display:none;">
                                     <i class="fa fa-spinner fa-spin"></i> Cargando...
                                 </div>
                             </div>

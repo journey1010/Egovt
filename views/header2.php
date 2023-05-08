@@ -11,18 +11,18 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com/css2">
 	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> <!-- include the site bootstrap stylesheet -->
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/bootstrap.css' ?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/style.css' ?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/colors.css' ?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/responsive.css' ?>">
-	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.ttf' ?>">
-	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.woff' ?>">
-	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" href="<?= _ROOT_ASSETS . 'css/bootstrap.css' ?>">
+	<link rel="stylesheet" href="<?= _ROOT_ASSETS . 'css/style.css' ?>">
+	<link rel="stylesheet" href="<?= _ROOT_ASSETS . 'css/colors.css' ?>">
+	<link rel="stylesheet" href="<?= _ROOT_ASSETS . 'css/responsive.css' ?>">
+	<link rel="stylesheet" type="text/css" href="<?= _ROOT_ASSETS . 'fonts/icomoon.ttf' ?>">
+	<link rel="stylesheet" type="text/css" href="<?= _ROOT_ASSETS . 'fonts/icomoon.woff' ?>">
+	<link rel='stylesheet' type="text/css" href='<?= _ROOT_ASSETS . 'fontawesome-5/css/all.min.css'?>'>
 
-	<link rel='icon' type='image/x-icon' href='<?php echo _ROOT_ASSETS . 'images/gorel_favicon.png' ?>'>
-	<script src="<?php echo _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
+	<link rel='icon' type='image/x-icon' href='<?= _ROOT_ASSETS . 'images/gorel_favicon.png' ?>'>
+	<script src="<?= _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
+	<script src="<?= _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
+	<script src="<?= _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
 	<style>
 		@media(max-width: 700px) {
 			.navbar-collapse {
@@ -69,13 +69,13 @@
 										</a>
 									</li>
 									<li class="mb-2 mb-md-0">
-										<a href="https://www.transparencia.gob.pe/enlaces/pte_transparencia_enlaces.aspx?id_entidad=10152" alt="enlace portal de transparencia" target="_blank">
-											<img src="<?php echo _ROOT_ASSETS . 'images/logo_portal_transparencia.png' ?>">
+										<a href="https://www.transparencia.gob.pe/reportes_directos/pte_transparencia_reg_visitas.aspx?id_entidad=10152&ver=&id_tema=500" alt="enlace portal de transparencia" target="_blank">
+											<img src="<?= _ROOT_ASSETS . 'images/logo_portal_transparencia.png' ?>">
 										</a>
 									</li>
 									<li>
 										<a href="https://www.gob.pe/institucion/minjus/campa%C3%B1as/4200-libro-de-reclamaciones" alt="enlace libro de reclamaciones" target="_blank">
-											<img src="<?php echo _ROOT_ASSETS . 'images/logo_libro_reclamaciones.png'  ?>">
+											<img src="<?= _ROOT_ASSETS . 'images/logo_libro_reclamaciones.png'  ?>">
 										</a>
 									</li>
 								</ul>
@@ -88,7 +88,7 @@
 						<nav class="navbar navbar-expand-md navbar-light p-0">
 							<div class="logo flex-shrink-0 mr-3 mr-xl-8 mr-xlwd-16">
 								<a href="/">
-									<img src="<?php echo _ROOT_ASSETS . 'images/circle_logo_gorel.png' ?>" class="img-fluid" alt="Gobierno regional de loreto Logo">
+									<img src="<?= _ROOT_ASSETS . 'images/circle_logo_gorel.png' ?>" class="img-fluid" alt="Gobierno regional de loreto Logo">
 								</a>
 							</div>
 							<div class="hdNavWrap flex-grow-1 d-flex align-items-center justify-content-end justify-content-lg-start">
@@ -160,7 +160,6 @@
 									<div class="dropdown-menu dropdown-menu-right rounded-lg overflow-hidden desktopDropOnHover p-0 w-100" aria-labelledby="hdLanguagedropdown">
 										<a class="dropdown-item text-center active" href="javascript:void(0);">Esp</a>
 										<a class="dropdown-item text-center" href="javascript:void(0);">Eng</a>
-										<a class="dropdown-item text-center" href="javascript:void(0);">Quech</a>
 									</div>
 								</div>
 								<button class="navbar-toggler pgNavOpener ml-2 bdrWidthAlter position-relative" type="button" data-toggle="collapse" data-target="#pageMainNavCollapse" aria-controls="pageMainNavCollapse" aria-expanded="false" aria-label="Toggle navigation">
