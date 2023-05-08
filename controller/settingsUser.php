@@ -7,7 +7,6 @@ class settingsUser extends AbstractController{
     public function changeLogo()
     {
         try{
-        
             if (!isset($_FILES['file']) || $_FILES['file']['error'] != UPLOAD_ERR_OK) {
                 $respuesta = ["error" => $_FILES['file']['error']];
                 echo json_encode($respuesta);

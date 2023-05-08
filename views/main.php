@@ -35,7 +35,7 @@
       }
 </style>
 <div id="my-modal">
-	<img id="myImage" src="<?= _ROOT_ASSETS . 'images/modalinicio.png' ?>">
+	<img id="myImage" src="<?= _ROOT_ASSETS . 'images/modalinicio2.jpg' ?>">
     <button id="close-modal" onclick="hideModal()" aria-label="Cerrar">&times;</button>
 </div>
 <main>
@@ -47,7 +47,7 @@
 						<div class="container position-relative">
 							<div class="row">
 								<div class="col-12 col-md-9 col-xl-7 fzMedium">
-									<h1 class="text-white mb-4 h1Large">Bienvenidos al portal local del Gobierno regiónal de Loreto</h1>
+									<h1 class="text-white mb-4 h1Large">Bienvenidos al portal del Gobierno Regional de Loreto</h1>
 									<p>La más extensa guía para conocer lo que se está trabajando en nuestro departamento.</p>
 									<a href="/enconstruccion" class="btn btnTheme font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0 mt-6" data-hover="Descubre más">
 										<span class="d-block btnText">Descubre más</span>
@@ -176,7 +176,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="https://regionloreto.gob.pe/files/plan-estrategico-institucional/2019/PEI_LORETO_2019-2022.pdf" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+						<a href="https://portalanterior.regionloreto.gob.pe/files/plan-estrategico-institucional/2019/PEI_LORETO_2019-2022.pdf" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
 							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
 								<i class="fa fa-file-text-o"><span class="sr-only">icon</span></i>
 							</span>
@@ -192,7 +192,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="https://regionloreto.gob.pe/files/reglamento-organizacion-funciones/2018/ROF_GorelMayo2018.pdf" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+						<a href="https://portalanterior.regionloreto.gob.pe/files/reglamento-organizacion-funciones/2018/ROF_GorelMayo2018.pdf" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
 							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
 								<i class="fa fa-file-text-o"><span class="sr-only">icon</span></i>
 							</span>

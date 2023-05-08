@@ -69,7 +69,7 @@
 										</a>
 									</li>
 									<li class="mb-2 mb-md-0">
-										<a href="https://www.transparencia.gob.pe/" alt="enlace portal de transparencia" target="_blank">
+										<a href="https://www.transparencia.gob.pe/enlaces/pte_transparencia_enlaces.aspx?id_entidad=10152" alt="enlace portal de transparencia" target="_blank">
 											<img src="<?php echo _ROOT_ASSETS . 'images/logo_portal_transparencia.png' ?>">
 										</a>
 									</li>
