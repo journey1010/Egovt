@@ -28,8 +28,7 @@ class ProyectoInversionPublica
         foreach ($resultados as $row) {
             $titulo = $row['titulo'];
             $descripcion = $row['descripcion'];
-            $archivo = strstr($row['archivo'], '/files/');
-            $enlace = _BASE_URL .'/'. substr($archivo, 1);
+            $enlace = _BASE_URL .  '/files/transparencia/obras/' . $row['archivo'];
             $fecha = $row['fecha'];
 
             $tablaFila .= <<<Html
@@ -77,8 +76,7 @@ class ProyectoInversionPublica
         foreach ($resultados as $row) {
             $titulo = $row['titulo'];
             $descripcion = $row['descripcion'];
-            $archivo = strstr($row['archivo'], '/files/');
-            $enlace = _BASE_URL .'/'. substr($archivo, 1);
+            $enlace = _BASE_URL .  '/files/transparencia/obras/' . $row['archivo'];
             $fecha = $row['fecha'];
 
             $tablaFila .= <<<Html
@@ -126,8 +124,7 @@ class ProyectoInversionPublica
         foreach ($resultados as $row) {
             $titulo = $row['titulo'];
             $descripcion = $row['descripcion'];
-            $archivo = strstr($row['archivo'], '/files/');
-            $enlace = _BASE_URL .'/'. substr($archivo, 1);
+            $enlace = _BASE_URL .  '/files/transparencia/obras/' . $row['archivo'];
             $fecha = $row['fecha'];
 
             $tablaFila .= <<<Html
@@ -175,8 +172,7 @@ class ProyectoInversionPublica
         foreach ($resultados as $row) {
             $titulo = $row['titulo'];
             $descripcion = $row['descripcion'];
-            $archivo = strstr($row['archivo'], '/files/');
-            $enlace = _BASE_URL .'/'. substr($archivo, 1);
+            $enlace = _BASE_URL .  '/files/transparencia/obras/' . $row['archivo'];
             $fecha = $row['fecha'];
 
             $tablaFila .= <<<Html
@@ -224,8 +220,7 @@ class ProyectoInversionPublica
         foreach ($resultados as $row) {
             $titulo = $row['titulo'];
             $descripcion = $row['descripcion'];
-            $archivo = strstr($row['archivo'], '/files/');
-            $enlace = _BASE_URL .'/'. substr($archivo, 1);
+            $enlace = _BASE_URL .  '/files/transparencia/obras/' . $row['archivo'];
             $fecha = $row['fecha'];
 
             $tablaFila .= <<<Html
@@ -273,8 +268,7 @@ class ProyectoInversionPublica
         foreach ($resultados as $row) {
             $titulo = $row['titulo'];
             $descripcion = $row['descripcion'];
-            $archivo = strstr($row['archivo'], '/files/');
-            $enlace = _BASE_URL .'/'. substr($archivo, 1);
+            $enlace = _BASE_URL .  '/files/transparencia/obras/' . $row['archivo'];
             $fecha = $row['fecha'];
 
             $tablaFila .= <<<Html
@@ -328,7 +322,7 @@ class ProyectoInversionPublica
             echo $table_respuesta;    
         } catch (Throwable $e) {
             $respuesta = array("error" => "Error al consultar registros");
-            print_r(json_encode($respuesta));
+            echo(json_encode($respuesta));
             $this->handlerError($e);
         }
         return;
@@ -340,8 +334,7 @@ class ProyectoInversionPublica
         foreach ($resultado as $row) {
             $titulo = $row['titulo'];
             $descripcion = $row['descripcion'];
-            $archivo = strstr($row['archivo'], '/files/');
-            $enlace = _BASE_URL .'/'. substr($archivo, 1);
+            $enlace = _BASE_URL .  '/files/transparencia/obras/' . $row['archivo'];
             $fecha = $row['fecha'];
 
             $tablaFila .= <<<Html

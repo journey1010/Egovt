@@ -21,3 +21,8 @@ Options -Indexes
 Header always set X-Frame-Options "ALLOW-FROM https://www.transparencia.gob.pe/"
 Header set X-XSS-Protection "1; mode=block"
 Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+
+RewriteRule ^controller/ - [F,L]
+RewriteRule ^model/ - [F,L]
+RewriteRule ^log/ - [F,L]

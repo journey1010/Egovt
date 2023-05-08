@@ -49,22 +49,16 @@ $(document).on('submit', '#registrarObras', function (event) {
       },
       success: function (response) {
         let resp = JSON.parse(response);
-        let indice = Object.keys(resp)[0];
-        switch (indice) {
-          case "error":
-            Toast.fire({
-              background: "#E75E15",
-              iconColor: "#000000",
-              icon: "error",
-              title: resp[indice],
-            });
-            break;
-          case "success":
+        if (resp.status === "success") {
             Toast.fire({
               icon: "success",
-              title: resp[indice],
+              title: resp.message,
             });
-            break;
+        } else  {
+            Toast.fire({
+                icon: "warning",
+                title: resp.message,
+            });
         }
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -301,20 +295,16 @@ function actualizarObra () {
     },
     success: function (response) {
       let resp = JSON.parse(response);
-      let indice = Object.keys(resp)[0];
-      switch (indice) {
-        case "error":
-          Toast.fire({
-            icon: "error",
-            title: resp[indice],
-          });
-          break;
-        case "success":
+      if (resp.status === "success") {
           Toast.fire({
             icon: "success",
-            title: resp[indice],
+            title: resp.message,
           });
-          break;
+      } else  {
+          Toast.fire({
+              icon: "warning",
+              title: resp.message,
+          });
       }
     },
     error: function (jqXHR, textStatus, errorThrown) {
