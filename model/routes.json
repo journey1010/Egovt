@@ -1,6 +1,7 @@
 {
     "routes" : [
-        {"method" : "GET", "pattern" : "/", "handler" : "enConstruccion@main"},
+        {"method" : "GET", "pattern" : "/", "handler" : "MainpageController@show"},
+        {"method" : "GET", "pattern" : "/enconstruccion", "handler" : "enConstruccion@main"},
         {"method" : "GET", "pattern" : "/administrador", "handler" : "LoginController@showLoginForm"},
         {"method" : "POST", "pattern" : "/administrador/processlogin" , "handler": "LoginController@processLoginForm"},
         {"method" : "GET", "pattern" : "/administrador/app", "handler": "AdminMainpage@show"},
@@ -9,12 +10,13 @@
         {"method" : "GET", "pattern" : "/administrador/visitas/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/obras/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/funcionarios/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
+        {"method" : "GET", "pattern" : "/administrador/pagina-principal/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
+        {"method" : "POST", "pattern" : "/administrador/pagina-principal/datos-gobernador", "handler" : "admin/Main@datosGobernador"},
         {"method" : "POST", "pattern" : "/administrador/resgistrarusuarios", "handler": "admin/Usuarios@RegistrarUsuario"},
         {"method" : "POST", "pattern" : "/administrador/visitas/listarfuncionarios", "handler" : "admin/visitas@Obtenerfuncionarios"},
         {"method" : "POST", "pattern" : "/administrador/resgistravisitas", "handler": "admin/visitas@RegistrarVisita"},
         {"method" : "POST", "pattern" : "/administrador/actualizarvisitas", "handler": "admin/visitas@ActualizarVisita"},
         {"method" : "POST", "pattern" : "/administrador/registraroficina", "handler": "admin/oficinas@RegistrarOficina"},
-        {"method" : "POST", "pattern" : "/administrador/actualizaroficina", "handler": "admin/oficinas@ActualizarOficina"},
         {"method" : "POST", "pattern" : "/administrador/actualizaroficina", "handler": "admin/oficinas@ActualizarOficina"},
         {"method" : "POST", "pattern" : "/administrador/registrarobra", "handler": "admin/obra@RegistrarObra"},
         {"method" : "POST", "pattern" : "/administrador/actualizarobra", "handler": "admin/obra@ActualizarObra"},

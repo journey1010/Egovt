@@ -114,6 +114,7 @@ class viewConstruct{
             $opcionesMenu = [
                 'admin' => [
                     '' => $contentPage->Dashboard(),
+                    'editar' => $contentPage->Mainpage(), 
                     'oficinas' => $contentPage->Oficinas(),
                     'registrar-usuarios' => $contentPage->RegistrarUsuarios(),
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),

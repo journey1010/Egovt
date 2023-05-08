@@ -1,21 +1,21 @@
 <?php
 class sideBarOptions {
-    public function principalPage ()
+    public function principalPage()
     {
         $html = <<<Html
         <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fas fa-id-card-alt"></i>
             <p>
-                Pagina principal
+                Inicio
                 <i class="right fas fa-angle-left"></i>
             </p>
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="#" class="nav-link" name="sidebarEnlace" data-page="">
+                <a href="/administrdor/pagina-principal/editar" class="nav-link" name="sidebarEnlace" data-page="pagina-principal/editar">
                 <i class="fas fa-book"></i>
-                <p></p>
+                <p>Página principal</p>
                 </a>
             </li>
             <li class="nav-item">

@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/gorel/public_html/
+    - /bin/cp -avu  /home/gorel/repositories/egovt/* $DEPLOYPATH
