@@ -2,3 +2,4 @@ log/error.log
 .vscode/
 .README.md
 .gitignore
+.env
