@@ -115,6 +115,7 @@ function registroMarcacion(file) {
         });
         filtradoExcel();
       } else  {
+        $('#btn-enviar-archivo').prop("disabled", false);
         clearInterval(progressInterval);
         progressBar.css('width', '0%');
         progressBar.text('0%');
@@ -122,7 +123,7 @@ function registroMarcacion(file) {
           icon: "warning",
           title: resp.message,
         });
-      }
+      } 
 
     },
     error: function (jqXHR, textStatus, errorThrown) {
