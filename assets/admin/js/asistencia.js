@@ -10,6 +10,7 @@ function select2() {
 $(document).on('submit', '#registrarArchivoAsistencias', function (event) {
   event.preventDefault();
   if ($("#archivoAsistencias").prop("files").length !== 0) {
+    $('#btn-enviar-archivo').prop("disabled", true);
     let formData = new FormData();
     formData.append('archivo', $("#archivoAsistencias").prop("files")[0]);
 
@@ -33,6 +34,7 @@ $(document).on('submit', '#registrarArchivoAsistencias', function (event) {
         return xhr;
       },
       beforeSend: function () {
+        
         if ($('#reasignacion-registros-marcacion').is(':visible')) {
           $('#reasignacion-registros-marcacion').hide();
         }
@@ -59,6 +61,7 @@ $(document).on('submit', '#registrarArchivoAsistencias', function (event) {
         }
       },
       error: function (jqXHR, textStatus, errorThrown) {
+        $('#btn-enviar-archivo').prop("disabled", false);
         Toast.fire({
           icon: "error",
           title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
@@ -83,7 +86,7 @@ $(document).on('submit', '#registrarArchivoAsistencias', function (event) {
 function registroMarcacion(file) {
   let progressBar = $('#registro-marcacion .progress-bar');
   $('#registro-marcacion').show();
-  let maxProgress = Math.floor(Math.random() * 59) + 2; // Generar número aleatorio entre 2 y 60
+  let maxProgress = Math.floor(Math.random() * 59) + 2; 
   let currentProgress = 0;
   let progressInterval = setInterval(function () {
     if (currentProgress < maxProgress) {
@@ -112,6 +115,7 @@ function registroMarcacion(file) {
         });
         filtradoExcel();
       } else  {
+        $('#btn-enviar-archivo').prop("disabled", false);
         clearInterval(progressInterval);
         progressBar.css('width', '0%');
         progressBar.text('0%');
@@ -119,10 +123,11 @@ function registroMarcacion(file) {
           icon: "warning",
           title: resp.message,
         });
-      }
+      } 
 
     },
     error: function (jqXHR, textStatus, errorThrown) {
+      $('#btn-enviar-archivo').prop("disabled", false);
       Toast.fire({
         icon: "error",
         title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
@@ -132,11 +137,10 @@ function registroMarcacion(file) {
   });
 }
 
-
 function filtradoExcel() {
   let progressBar = $('#reasignacion-registros-marcacion .progress-bar');
   $('#reasignacion-registros-marcacion').show();
-  let maxProgress = Math.floor(Math.random() * 59) + 2; // Generar número aleatorio entre 2 y 60
+  let maxProgress = Math.floor(Math.random() * 59) + 2; 
   let currentProgress = 0;
   let progressInterval = setInterval(function () {
     if (currentProgress < maxProgress) {
@@ -152,6 +156,7 @@ function filtradoExcel() {
     url: '/administrador/rr-hh/filtrar-excel',
     method: 'POST',
     success: function (response) {
+      $('#btn-enviar-archivo').prop("disabled", false);
       clearInterval(progressInterval);
       progressBar.css('width', '100%');
       progressBar.text('100%');
@@ -162,6 +167,7 @@ function filtradoExcel() {
       });
     },
     error: function (jqXHR, textStatus, errorThrown) {
+      $('#btn-enviar-archivo').prop("disabled", false);
       Toast.fire({
         icon: "error",
         title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
@@ -170,7 +176,6 @@ function filtradoExcel() {
     }
   });
 }
-
 
 $(document).on('click', '#limpiarFiltroAsistencia', limpiarFiltro);
 function limpiarFiltro() {

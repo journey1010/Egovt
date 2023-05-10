@@ -52,7 +52,7 @@ class obras extends handleSanitize {
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="HoraIngreso">Fecha *</label>
+                            <label for="HoraIngreso">Fecha de documento *</label>
                             <input type="date" class="form-control" id="fechaObra" value="">
                         </div>
                         <div class="col-md-12">

@@ -44,10 +44,11 @@ class Router extends AbstractController{
     public function handleRequest() 
     {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
-        //obtener el metodo de
         $url = $this->SanitizeVar($_SERVER['REQUEST_URI']);
         $requestUrl = parse_url($url, PHP_URL_PATH);
-
+        if ($requestUrl === '') {
+            $requestUrl = '/';
+        }
         foreach ($this->routes as [$method, $pattern, $handler]) {
             if ($method !== $requestMethod) {
                 continue;
