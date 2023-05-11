@@ -18,12 +18,6 @@ class sideBarOptions {
                 <p>Página principal</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link" name="sidebarEnlace" data-page="">
-                <i class="fas fa-edit"></i>
-                <p>---</p>
-                </a>
-            </li>
             </ul>
         </li>
         Html;
