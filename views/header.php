@@ -15,10 +15,9 @@
 	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/style.css' ?>">
 	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/colors.css' ?>">
 	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/responsive.css' ?>">
+	<link rel='stylesheet' type="text/css" href='<?= _ROOT_ASSETS . 'fontawesome-5/css/all.min.css'?>'><!-- quitar al cargar al github -->
 	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.ttf' ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.woff' ?>">
-	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-
 	<link rel='icon' type='image/x-icon' href='<?php echo _ROOT_ASSETS . 'images/gorel_favicon.png' ?>'>
 	<script src="<?php echo _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
 	<script src="<?php echo _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>

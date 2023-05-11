@@ -263,6 +263,13 @@ class transparenciaController extends ViewRenderer
         }
     }
 
+    public function agendaGorel()
+    {
+        $this->render('header', '', false);
+        $this->render('transparencia/agendaGorel/agendaGorel', '', false);
+        $this->render('footer', '', false);
+    }
+
     private function handleError(Throwable $e)
     {
         $errorMessage = date('Y-m-d H:i:s') . ' : ' . $e->getMessage() . "\n";
