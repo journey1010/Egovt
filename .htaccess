@@ -1,15 +1,12 @@
 RewriteEngine On
 RewriteBase /
 
-
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-
 
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 
-# Redirigir todas las solicitudes a index.php
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
@@ -17,7 +14,6 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 
 Options -Indexes
 
-##Seguridad contra ataques xss y csrx
 Header always set X-Frame-Options "ALLOW-FROM https://www.transparencia.gob.pe/"
 Header set X-XSS-Protection "1; mode=block"
 Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
@@ -28,7 +24,6 @@ RewriteRule ^model/ - [F,L]
 RewriteRule ^log/ - [F,L]
 
 <IfModule mod_deflate.c>
-    # Habilitar compresión Gzip solo si el cliente lo admite
     <IfModule mod_filter.c>
     	AddOutputFilterByType DEFLATE text/plain
     	AddOutputFilterByType DEFLATE text/html
@@ -62,6 +57,5 @@ RewriteRule ^log/ - [F,L]
 </IfModule>
 
 <IfModule mod_headers.c>
-    # Añadir cabecera Vary para indicar la compresión
     Header append Vary: Accept-Encoding
 </IfModule>
