@@ -1,6 +1,6 @@
 {
     "routes" : [
-        {"method" : "GET", "pattern" : "/", "handler" : "enConstruccion@main"},
+        {"method" : "GET", "pattern" : "/", "handler" : "MainpageController@show"},
         {"method" : "GET", "pattern" : "/administrador", "handler" : "LoginController@showLoginForm"},
         {"method" : "POST", "pattern" : "/administrador/processlogin" , "handler": "LoginController@processLoginForm"},
         {"method" : "GET", "pattern" : "/administrador/app", "handler": "AdminMainpage@show"},
@@ -37,6 +37,7 @@
         {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/supervision-de-obras/?page={pagina}", "handler" : "transparenciaController@pipSupervisionObra"},
         {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/historico", "handler" : "transparenciaController@pipHistorico"},
         {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/historico/?page={pagina}", "handler" : "transparenciaController@pipHistorico"},
-        {"method" : "POST", "pattern" : "/transparencia/proyecto-de-inversion-publica/filtros", "handler" : "transparenciaController@BuscarObra"}
+        {"method" : "POST", "pattern" : "/transparencia/proyecto-de-inversion-publica/filtros", "handler" : "transparenciaController@BuscarObra"},
+        {"method" : "GET", "pattern" : "/transparencia/agendagorel", "handler" : "transparenciaController@agendaGorel"}
     ]
 }
