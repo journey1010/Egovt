@@ -65,10 +65,11 @@ class usuarios extends handleSanitize {
                                             <option value="noticias">Noticias</option>
                                             <option value="obras">Obras</option>
                                             <option value="funcionarios">Funcionarios</option>
+                                            <option value="rrhhasistencia">RRHH asistencia</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                 <label>Oficina</label>
                                 <div class="form-group">
                                     <select id="oficinaUsuario"aria-label="oficinaUsuario"class="form-control select2 select2-danger"  style="width: 100%;">
@@ -78,7 +79,6 @@ class usuarios extends handleSanitize {
                             </div>
                             </div>                    
                         </div>
-    
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -88,23 +88,82 @@ class usuarios extends handleSanitize {
             <script  type ="module" src="$ruta"></script>
             Html;
             return $html;
-        } catch ( Throwable $e ) {
+        } catch (Throwable $e ) {
             $this->handlerError($e);
         }
     }
 
     public function ActualizarUsuarios()
     {
-        try { 
-            $ruta = $this->rutaAssets . 'js/usuarios.js';
-            $html = <<<Html
-            <script  type ="module" src="$ruta"></script>
-            Html;
-            return $html;
-        } catch (Throwable $e) {
-            $this->handlerError($e);
-        }
-    }   
+        $ruta = $this->rutaAssets . 'js/usuarios.js';
+        $oficinas = $this->getOficinas();
+        $html = <<<Html
+        <div class="card card-danger mt-3 mx-auto w-100">
+            <div class="card-header">
+                <h3 class="card-title">Configuración de usuario</h3>
+            </div>
+            <div class="container-fluid">
+                <form action="actualizarUsuarios">
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="row bg-light">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Oficina:</label>
+                                        <select class="select2" style="width: 100%;" id="oficinasUsuarios">
+                                            <option value="" selected>Seleccionar oficina</option>
+                                            $oficinas
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Tipos de usuario</label>
+                                        <select class="select2" style="width: 100%;" id="tipoUsuarios">
+                                            <option value="" selected>Seleccionar tipo de usuario</option>
+                                            <option value="admin">Super Administrador</option>
+                                            <option value="subadmin">Administrador</option>
+                                            <option value="visitor">Visitas</option>
+                                            <option value="noticias">Noticias</option>
+                                            <option value="obras">Obras</option>
+                                            <option value="funcionarios">Funcionarios</option>
+                                            <option value="rrhhasistencia">RRHH asistencia</option>
+                                        </select>
+                                    </div>
+                                </div>      
+                            </div>
+                            <div class="form-group mt-2">
+                                <label></Label>
+                                <div class="input-group input-group-lg">
+                                    <input type="search" class="form-control form-control-lg" placeholder="Filtrar por palabra clave" id="palabraClaveUsuarios" value="">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-lg btn-default" id="buscarPalabraUsuarios">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label class="text-light">a</label>
+                                    <div class="form-group align-self-end d-flex">
+                                        <button type="button" class="form-control btn btn-primary mr-2" id="aplicarFiltroUsuarios">Aplicar filtros</button>
+                                        <button type="button" class="form-control btn btn-secondary" id="limpiarFiltroUsuarios">Limpiar filtros</button>
+                                    </div>
+                                </div>
+                                <div id="spinnerUsuarios" class="mt-1" style="display:none;">
+                                    <i class="fa fa-spinner fa-spin"></i> Cargando...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body table-responsive p-2 mt-3 mx-auto" id="respuestaBusquedaUsuarios">     
+            </div>
+        </div>
+        <script  type ="module" src="$ruta"></script>
+        Html;
+        return $html;
+    } 
 
     private function getOficinas()
     {
@@ -113,7 +172,7 @@ class usuarios extends handleSanitize {
         $stmt = $conexion->query($sql, '', '', false);
         $resultado = $stmt->fetchAll();
         
-        $options= "";
+        $options= '';
         foreach($resultado as $row) {
             $id = $row['id'];
             $nombre = $row['nombre'];

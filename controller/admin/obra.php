@@ -1,28 +1,27 @@
 <?php
 require_once (_ROOT_CONTROLLER . 'admin/handleSanitize.php');
+require_once (_ROOT_CONTROLLER . 'admin/AdministrarArchivos.php');
 require_once (_ROOT_MODEL . 'conexion.php');
 
 class obra extends handleSanitize {
 
-    private $ruta;
-    
-    public function __construct()
-    {
-        $this->ruta = _ROOT_FILES . 'transparencia/obras/';  
-    }
-
     public function RegistrarObra () 
     {
         try {    
-            if (
-                empty($_POST["titulo"]) || 
-                empty($_POST["tipo"]) || 
-                empty($_POST["fecha"]) || 
-                empty($_POST["descripcion"]) || 
-                empty($_FILES["archivo"])
-            ) {
-                throw new Exception("Debe completar todos los campos del formulario.");
+            $campoRequerido = ['titulo', 'tipo', 'fecha', 'descripcion'];
+            foreach( $campoRequerido as $campo) {
+                if(empty($_POST[$campo]) && empty($_FILES['archivo'])) {
+                    $respuesta = array ("status" => "error", "message" => "Debe completar todos los campos del formulario");
+                    echo (json_encode($respuesta));
+                    return;
+                }
             }
+
+            $conexion = new MySQLConnection();
+            
+            $año = date ('Y');
+            $mes = date ('m');
+            $gestorArchivo = new AdministrarArchivos($conexion, "transparencia/obras/$año/$mes/");
 
             $titulo = $this->SanitizeVarInput($_POST["titulo"]);
             $tipo = $this->SanitizeVarInput($_POST["tipo"]);
@@ -30,74 +29,17 @@ class obra extends handleSanitize {
             $descripcion = $this->SanitizeVarInput($_POST["descripcion"]);
         
             $archivo = $_FILES["archivo"];
-            if ($this->validarArchivo($archivo) == false) {
-                throw new Exception("Validacion de archivo en  registro de proyecto de inversion publica ha fallado.");
+            if ($gestorArchivo->validarArchivo($archivo, ['xls', 'pdf', 'xlsx', 'doc', 'docx']) == false) {
                 return;
             }
         
-            $pathFullFile = $this->guardarFichero($archivo, $titulo);
+            $pathFullFile = $año .'/'. $mes .'/' . $gestorArchivo->guardarFichero($archivo, $titulo);
             $this->registrarIntoBd ($titulo, $tipo, $fecha, $descripcion, $pathFullFile );
-            $respuesta = array("success" => "Datos guardados con éxito.");
-            print_r(json_encode($respuesta));
+            $respuesta = array("status" => "success", "message" => "Datos guardados con éxito.");
+            echo (json_encode($respuesta));
         } catch (Throwable $e) {
             $this->handlerError($e);
-            return;
         }
-    }
-
-    private function validarArchivo ($archivo)
-    {
-        if (empty ($archivo)) {
-            return false; 
-        }
-
-        $archivoNombre = $archivo['name'];
-        $extensionesPermitidas = ['xlsx', 'pdf', 'doc', 'docx', 'xls'];
-        $extension = strtolower(pathinfo($archivoNombre , PATHINFO_EXTENSION));
-
-        if ($archivo['error'] !== UPLOAD_ERR_OK) {
-            $respuesta = array ("error" => "Error al subir el archivo");
-            print_r(json_encode($respuesta));
-            return false;
-        }
-
-        if (!in_array($extension, $extensionesPermitidas)){
-            $respuesta = array ("error" => "Extensión de archivo no permitida.");
-            print_r(json_encode($respuesta));
-            return false;
-        }
-        return true; 
-    }
-
-    private function guardarFichero ($archivo, $titulo)
-    {
-        $rutaArchivo = $this->crearRuta();
-
-        $archivotemp = $archivo['tmp_name'];
-        $extension = strtolower(pathinfo($archivo["name"] , PATHINFO_EXTENSION));
-        $nuevoNombre = $titulo . '-'. date("H-i-s-m-d-Y.") . $extension;
-        $pathFullFile = $rutaArchivo . $nuevoNombre;
-
-        if (!move_uploaded_file($archivotemp, $pathFullFile)) {
-            $respuesta = array ("error" => "No se pudo guardar el archivo para actualizar el registro.");
-            print_r(json_encode($respuesta));
-            return;
-        } 
-        return $pathFullFile;
-    }
-
-    private function crearRuta (): string
-    {
-        $año = date ('Y');
-        $mes = date ('m');
-        
-        $pathForFile = $this->ruta . $año . '/' . $mes;
-
-        if (!file_exists($pathForFile)) {
-            mkdir($pathForFile, 0777, true);
-        }
-        $finalPathForFile = $pathForFile . '/';
-        return $finalPathForFile;
     }
 
     private function registrarIntoBd ($titulo, $tipo, $fecha, $descripcion, $pathFullFile ) 
@@ -162,11 +104,10 @@ class obra extends handleSanitize {
             $table_respuesta = $this->makeTblForBuscarObra($resultado);
             echo $table_respuesta;    
         } catch (Throwable $e) {
-            $respuesta = array("error" => "Error al consultar registros");
-            print_r(json_encode($respuesta));
+            $respuesta = array("status"=>"error", "message" => "Error al consultar registros");
+            echo(json_encode($respuesta));
             $this->handlerError($e);
         }
-        return;
     }
 
     private function makeTblForBuscarObra ($resultado): string 
@@ -222,13 +163,17 @@ class obra extends handleSanitize {
         $campoRequerido = ['id', 'titulo', 'tipo', 'fecha', 'descripcion']; 
         foreach ($campoRequerido as $campo) {
             if (empty ($_POST[$campo])) {
-                $respuesta = array  ("error" => "Si ha borrado algún campo del formulario de actualización, debe rellenarlo de nuevo antes de enviarlo. Los campos vacíos pueden causar errores o retrasos en el proceso de actualización.");
-                print_r(json_encode($respuesta));
+                $respuesta = array  ( "status" => "error", "message" => "Si ha borrado algún campo del formulario de actualización, debe rellenarlo de nuevo antes de enviarlo. Los campos vacíos pueden causar errores o retrasos en el proceso de actualización.");
+                echo(json_encode($respuesta));
                 return;
             }
         }
         try {
             $conexion = new MySQLConnection();
+            $año = date ('Y');
+            $mes = date ('m');
+            $gestorArchivo = new AdministrarArchivos($conexion, "transparencia/obras/$año/$mes/");
+
             $id = $this->SanitizeVarInput($_POST['id']);
             $id = $this->SanitizeVarInput($_POST['id']);
             $titulo =  $this->SanitizeVarInput($_POST["titulo"]);
@@ -237,9 +182,11 @@ class obra extends handleSanitize {
             $descripcion = $this->SanitizeVarInput($_POST["descripcion"]);
 
             $archivo = $_FILES["archivo"] ?? null;
-            if ($this->validarArchivo($archivo) == true) {
-                $this->borrarArchivo($conexion, $id);
-                $newPathFile = $this->guardarFichero($archivo, $titulo);
+            if ($gestorArchivo->validarArchivo($archivo, ['xls', 'pdf', 'xlsx', 'doc', 'docx']) == true) {
+                $sql = "SELECT archivo FROM obras WHERE id = :id";
+                $params["id"] = $id;
+                $gestorArchivo->borrarArchivo($sql, $params);
+                $newPathFile = $año .'/'. $mes .'/' . $gestorArchivo->guardarFichero($archivo, $titulo);
                 $this->UpdateSetBd($conexion, $id, $titulo, $tipo, $fecha, $descripcion, $newPathFile);
                 return;
             }
@@ -267,26 +214,12 @@ class obra extends handleSanitize {
             $params[":id"] = $id;
             $conexion->query($sql, $params, '', false);
             $conexion->close();
-            $respuesta = array ("success" => "Registro actualizado exitosamente.");
-            print_r(json_encode($respuesta));
-
+            $respuesta = array ("status" => "success", "message" => "Registro actualizado exitosamente.");
+            echo (json_encode($respuesta));
         } catch (Throwable $e) {
-            $respuesta = array ("error" => "La actualizacion ha fallado.");
-            print_r(json_encode($respuesta));
+            $respuesta = array ("status" => "error", "message" => "La actualizacion ha fallado.");
+            echo(json_encode($respuesta));
             $this->handlerError($e);
-        }
-    }
-
-    private function borrarArchivo (MySQLConnection $conexion, $id)
-    {
-        $sql = "SELECT archivo FROM obras WHERE id = :id";
-        $params["id"] = $id;
-        $stmt = $conexion->query($sql, $params, '', false);
-        $file_to_delete = $stmt->fetchColumn();
-        if (!unlink($file_to_delete)) {
-            $respuesta = array("error" => "No se puede actualizar el archivo. Inténtelo más tarde o contacte con el soporte de la página.");
-            print_r(json_encode($respuesta)); 
-            throw new Exception("No se pudo reemplazar el archivo. Controlador de actualizacion, funcion reemplazar archivo");
         }
     }
 }

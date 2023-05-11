@@ -31,7 +31,7 @@
             stateSave: true,
             paging: true,
             searching: false,
-            ordering: true,
+            ordering: false,
             info: false,
             pagingType: "simple_numbers",
             language: {

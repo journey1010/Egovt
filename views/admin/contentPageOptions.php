@@ -1,17 +1,12 @@
 <?php
 
+use JetBrains\PhpStorm\Internal\ReturnTypeContract;
 
 spl_autoload_register( function ($nombreClase) {
-    try {
-        $rutaArchivo = _ROOT_VIEWS . 'admin/' . $nombreClase . '.php';
-        if (file_exists($rutaArchivo)) {
-            require_once $rutaArchivo;
-            return true;
-        }
-        throw new Exception('Archivo :' . $rutaArchivo . 'En contentPageOptions Linea 11');
-    }catch (Exception $e) {
-        return;       
-    } 
+    $rutaArchivo = _ROOT_VIEWS . 'admin/' . $nombreClase . '.php';
+    if (file_exists($rutaArchivo)) {
+        require_once $rutaArchivo;
+    }
 });
 
 class contentPageOptions {
@@ -22,6 +17,13 @@ class contentPageOptions {
         <div>Hola soy un dashboard</div>
         Html;
         return $html;
+    }
+
+    public function Mainpage()
+    {
+        $Mainpage = new Mainpage();
+        $resultado = $Mainpage->AdministrarPaginaPrincipal();
+        return $resultado;
     }
 
     public function RegistrarUsuarios()
@@ -75,14 +77,14 @@ class contentPageOptions {
 
     public function RegistrarFuncionarios() 
     {
-        $funcionarios = new funcionarios ();
+        $funcionarios = new funcionarios();
         $resultado = $funcionarios->RegistrarFuncionarios();
         return $resultado;
     }
 
     public function ActualizarFuncionarios()
     {
-        $funcionarios = new funcionarios ();
+        $funcionarios = new funcionarios();
         $resultado = $funcionarios->ActualizarFuncionarios();
         return $resultado;
     }   
@@ -93,5 +95,19 @@ class contentPageOptions {
         <div>hola</div>
         Html;
         return $html;
+    }
+
+    public function loadFile() 
+    {
+        $rrhhAsistencia = new RRHHasistencia();
+        $resultado = $rrhhAsistencia->loadFile();
+        return $resultado; 
+    }
+
+    public function verRegistros()
+    {
+        $rrhhAsistencia = new RRHHasistencia();
+        $resultado =$rrhhAsistencia->verRegistros();
+        return $resultado;
     }
 }

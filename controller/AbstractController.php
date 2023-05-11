@@ -4,7 +4,7 @@ abstract class AbstractController {
     
     abstract protected function SanitizeVar( string $var);
 
-    protected function errorLog(Exception $e){
+    protected function errorLog(Throwable $e){
         $errorMessage = date("Y-m-d H:i:s") . " : " . $e->getMessage() .  "\n";
         error_log($errorMessage, 3, _ROOT_PATH . '/log/error.log'  );
     }

@@ -1,27 +1,21 @@
 <?php
 class sideBarOptions {
-    public function principalPage ()
+    public function principalPage()
     {
         $html = <<<Html
         <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fas fa-id-card-alt"></i>
             <p>
-                Pagina principal
+                Inicio
                 <i class="right fas fa-angle-left"></i>
             </p>
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="#" class="nav-link" name="sidebarEnlace" data-page="">
+                <a href="/administrdor/pagina-principal/editar" class="nav-link" name="sidebarEnlace" data-page="pagina-principal/editar">
                 <i class="fas fa-book"></i>
-                <p></p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link" name="sidebarEnlace" data-page="">
-                <i class="fas fa-edit"></i>
-                <p>---</p>
+                <p>Página principal</p>
                 </a>
             </li>
             </ul>
@@ -166,6 +160,36 @@ class sideBarOptions {
                 <a href="/administrador/funcionarios/actualizar-funcionarios" name="sidebarEnlace" class="nav-link" data-page="funcionarios/actualizar-funcionarios">
                 <i class="fas fa-edit"></i>
                 <p>Administrar funcionarios</p>
+                </a>
+            </li>
+            </ul>
+        </li>
+        Html;
+        return $html;
+    }
+
+    public function rrhhasistencia() 
+    {
+        $html = <<<Html
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fa fa-user-check"></i>
+            <p>
+                Control asistencia
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrador/rr-hh/registrar-archivo" name="sidebarEnlace" class="nav-link" data-page="rr-hh/registrar-archivo">
+                <i class="fa fa-file-upload"></i>
+                <p> Cargar archivo</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/administrador/rr-hh/ver-registros" name="sidebarEnlace" class="nav-link" data-page="rr-hh/ver-registros">
+                <i class="fa fa-eye"></i>
+                <p> Ver registros de asistencias</p>
                 </a>
             </li>
             </ul>

@@ -77,7 +77,7 @@ class viewConstruct{
         try {
             switch($tipoUser){
                 case 'admin':
-                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'funcionarios');
+                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'funcionarios', 'rrhhasistencia');
                 break;
                 case 'visitor':
                     $opciones = array ('visitas');
@@ -87,6 +87,9 @@ class viewConstruct{
                 break; 
                 case 'funcionarios':
                     $opciones = array ('funcionarios');
+                break;
+                case 'rrhhasistencia': 
+                    $opciones = array ('rrhhasistencia');
                 break;
                 default:
                     throw new Exception('Clase de usuario no valido');
@@ -114,14 +117,18 @@ class viewConstruct{
             $opcionesMenu = [
                 'admin' => [
                     '' => $contentPage->Dashboard(),
+                    'editar' => $contentPage->Mainpage(), 
                     'oficinas' => $contentPage->Oficinas(),
                     'registrar-usuarios' => $contentPage->RegistrarUsuarios(),
+                    'actualizar-usuarios' => $contentPage->ActualizarUsuarios(),
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
                     'actualizar-visitas' => $contentPage->ActualizarVisitas(),
                     'registrar-obras' => $contentPage->RegistrarObras(),
                     'actualizar-obras' => $contentPage->ActualizarObras(),
                     'registrar-funcionarios' => $contentPage->RegistrarFuncionarios(),
-                    'actualizar-funcionarios' => $contentPage->ActualizarFuncionarios()
+                    'actualizar-funcionarios' => $contentPage->ActualizarFuncionarios(),
+                    'registrar-archivo' => $contentPage->loadFile(),
+                    'ver-registros'=> $contentPage->verRegistros()
                 ],
 
                 'visitor' =>[
@@ -140,6 +147,12 @@ class viewConstruct{
 
                 'funcionarios' => [
                     '' => $contentPage->RegistrarFuncionarios()
+                ],
+
+                'rrhhasistencia' => [
+                    '' => $contentPage->loadFile(),
+                    'registrar-archivo' => $contentPage->loadFile(),
+                    'ver-registros' => $contentPage->verRegistros(),
                 ]
             ];
 
