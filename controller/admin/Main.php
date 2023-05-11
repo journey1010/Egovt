@@ -27,7 +27,7 @@ class Main extends handleSanitize {
 
             $archivo = $_FILES["imgGobernador"] ?? null;
 
-            if ($gestorArchivo->validarArchivo($archivo, ['jpg', 'webp', 'jpeg', 'gif']) == true) {
+            if ($gestorArchivo->validarArchivo($archivo, ['webp', 'jpg', 'gif']) == true) {
                 $sql = "SELECT img FROM gobernador LIMIT 1";
                 $gestorArchivo->borrarArchivo($sql, '');
                 $newPathFile = $gestorArchivo->guardarFichero($archivo, $titulo);
@@ -208,3 +208,12 @@ class Main extends handleSanitize {
         
     }
 }
+
+!function(e, t) { 
+    "use strict";
+    "object" == typeof module && "objec"t == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) { 
+        if (!e.document) 
+            throw new Error(“jQuery requires a window with a document”); 
+            return t(e) 
+        } 
+    : t(e) }({passive: true});

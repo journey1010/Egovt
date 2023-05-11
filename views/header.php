@@ -4,10 +4,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>GOREL - Gobierno Regional de Loreto</title>
-	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="Expires" content="0">
+	<meta name="google-site-verification" content="CRBa-m87jge17xNggnxw6Pi5UOWrmuUHaax2D2hrp6o"/>
+	<link rel="canonical" href="https://regionloreto.gob.pe">
+    <meta name="description" content="El portal web del gobierno regional de loreto es una herramienta de comunicación que permite informar a la ciudadanía sobre las actividades, proyectos y servicios que realiza el gobierno regional. En este portal se puede encontrar información sobre las autoridades, las direcciones regionales, los planes y programas, las noticias y eventos, los trámites y consultas, y los canales de participación ciudadana. El portal web del gobierno regional de loreto busca ser un espacio de transparencia, rendición de cuentas y diálogo con la población.">
+    <meta name="keywords" content="Portal web, Pagina web, gorel, Gobierno reginal de loreto, Loreto, estado peruano, ">
+    <meta name="autor" content="Journii">
+	<title>GOREL - Portal Web del Gobierno Regional de Loreto</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com/css2">
 	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> <!-- include the site bootstrap stylesheet -->
