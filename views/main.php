@@ -329,7 +329,7 @@
 		</div>
 	</section>
 </main>
-<script>
+<script async>
       window.onload = function() {
         var modal = document.getElementById("my-modal");
         modal.classList.add("show");

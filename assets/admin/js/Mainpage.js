@@ -245,6 +245,7 @@ $(document).ready(function () {
         rowModal.find(".edit-modal").hide();
         rowModal.find(".cancel-modal").show();
         rowModal.find(".save-modal").show();
+        rowModal.find(".delete-modal").show();
     });
 
     $(document).on('click', '.cancel-modal', function(){
@@ -253,6 +254,7 @@ $(document).ready(function () {
         rowModal.find(".edit-modal").show();
         rowModal.find(".cancel-modal").hide();
         rowModal.find(".save-modal").hide();
+        rowModal.find(".delete-modal").hide();
     });
 
     $(document).on('click', '.save-modal', function(){
@@ -261,19 +263,17 @@ $(document).ready(function () {
         rowModal.find(".edit-modal").show();
         rowModal.find(".cancel-modal").hide();
         rowModal.find(".save-modal").hide();
+        rowModal.find(".delete-modal").hide();
 
-        let camposEdit = ['2'];
         let camposLlenos = true;
-        $.each(camposEdit, function(indice, valor){
-            if (rowModal.find("td:eq("+valor+")").text() === '') {
-                Toast.fire ({
-                    icon: 'warning',
-                    title: 'Advertencia! Los campos no deben estar vacíos.'
-                });
-                camposLlenos = false;
-                return false;
-            }
-        });
+        if (rowModal.find("td:eq(0)").text() === '' || rowModal.find('.imgModal').prop("files")[0] == undefined) {
+            Toast.fire ({
+                icon: 'warning',
+                title: 'Advertencia! Los campos no deben estar vacíos.'
+            });
+            camposLlenos = false;
+            return false;
+        }
 
         if (rowModal.find('.imgModal').prop("files") !== undefined && rowModal.find('.imgModal').prop("files")[0] !== undefined) {
             if (rowModal.find('.imgModal').prop("files")[0].size > 1024 * 1024) {
@@ -288,11 +288,11 @@ $(document).ready(function () {
         if (camposLlenos) {
             let formData = new FormData();
             formData.append('id', rowModal.find("td:eq(0)").text());
-            formData.append('archivo', rowDirectorio.find(".imgDirectorio").prop("files")[0]);
-            formData.append('descripcion', rowDirectorio.find("td:eq(2)").text());
+            formData.append('archivo', rowModal.find(".imgModal").prop("files")[0]);
+            formData.append('descripcion', rowModal.find("td:eq(2)").text());
 
             $.ajax({
-                url: '/administrador/pagina/principal/datos-directorio',
+                url: '/administrador/pagina/principal/actualizar-modal',
                 method: 'POST',
                 data: formData,
                 enctype: 'multipart/form-data',
@@ -321,5 +321,104 @@ $(document).ready(function () {
                 }
             });
         }
+    });
+
+    $(document).on('click', '.delete-modal', function(){
+        let rowModal = $(this).closest("tr");
+        let id = rowModal.find("td:eq(0)").text();
+        $.ajax({
+            url: '/administrador/pagina/principal/eliminar-modal',
+            method: 'POST',
+            data: {id:id},
+            success: function (response) {
+                let resp = JSON.parse(response);
+                if(resp.status === 'success') {
+                    rowModal.hide();
+                    Toast.fire({
+                        icon: 'success',
+                        title: resp.message,
+                    });
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: resp.message
+                    });
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                Toast.fire({
+                    icon: "error",
+                    title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+                    background: "#ff0000",
+                });
+            }
+        });
+    });
+
+    $(document).on('click', '.insert-modal', function(){
+        let uniqueId = 'file-input-' + Date.now();
+
+        let newRowHtml = '<tr>' +
+        '<td class="text-left"></td>'+
+        '<td class="text-left">' +
+        '<div class="custom-file">' +
+        '<input type="file" class="custom-file-input imgModal" id="' + uniqueId + '" onchange="let input = $(this).closest(\'tr\').find(\'.custom-file-label\'); if (this.files.length > 0) { input.html(this.files[0].name); } else { input.html(\'Seleccione un archivo\'); }">' +
+        '<label class="custom-file-label text-left" for="' + uniqueId + '" data-browse="Archivo">Seleccione un archivo</label>' +
+        '</div>' +
+        '</td>' +
+        '<td class="text-center border border-info" contenteditable="true"></td>' +
+        '<td class="text-right py-0 align-middle">' +
+        '<div class="btn-group btn-group-sm">' +
+        '<a class="btn btn-danger cancel-modal-new" alt="editar modal" title="Cancelar inserción"> <i class="fas fa-times"></i></a>' +
+        '<a class="btn btn-danger save-modal-new" alt="editar modal" title="Guardar cambios"><i class="fas fa-save"></i></a>' +
+        '</div>' +
+        '</td>' +
+        '</tr>';
+
+        $('.table-modal').append(newRowHtml);
+    });
+
+    $(document).on('click', '.cancel-modal-new', function(){
+        let rowCancelNewModal = $(this).closest("tr");
+        rowCancelNewModal.remove();
+    });
+
+    $(document).on('click', '.save-modal-new', function(){
+        let rowSaveNewModal = $(this).closest('tr');
+        let formData = new FormData();
+        formData.append('descripcion', rowSaveNewModal.find("td:eq(2)").text());
+        formData.append('archivo', rowSaveNewModal.find(".imgModal").prop("files")[0])
+        $.ajax({
+            url: '/administrador/pagina/principal/insertar-modal',
+            method: 'POST',
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function(response){
+                let resp = JSON.parse(response);
+                if(resp.status === 'success'){
+                    Toast.fire({
+                        icon: 'success',
+                        title: resp.message
+                    });
+                    setInterval( function(){
+                        location.reload();
+                    }, 2000);
+                } else {
+                    Toast.fire({
+                        icon: 'warning',
+                        title: resp.message
+                    });
+                } 
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                Toast.fire({
+                    icon: "error",
+                    title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+                    background: "#ff0000",
+                });
+            }
+        });
     });
 });

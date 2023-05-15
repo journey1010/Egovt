@@ -42,7 +42,7 @@ class Main extends handleSanitize {
 
     private function UpdateSetBd(MySQLConnection $conexion, $titulo, $mensaje, $frase, $entrada, $newPathFile = null)
     {
-        $sql = "UPDATE gobernador SET titulo = :titulo, mensaje = :mensaje , entrada = :entrada, frase = :frase";
+        $sql = "UPDATE gobernador_paginaprincipal SET titulo = :titulo, mensaje = :mensaje , entrada = :entrada, frase = :frase";
         $params[":titulo"] = $titulo;
         $params[":mensaje"] = $mensaje;
         $params[":entrada"] = $entrada;
@@ -101,7 +101,7 @@ class Main extends handleSanitize {
 
     private function updateBanner ($conexion, $id, $descripcion, $newPathFile = null) 
     {   
-        $sql = "UPDATE banners SET descripcion_banner = :descripcion";
+        $sql = "UPDATE banners_paginaprincipal SET descripcion_banner = :descripcion";
         $params[":descripcion"] = $descripcion;
         try {
             if ($newPathFile !==null) {
@@ -143,7 +143,7 @@ class Main extends handleSanitize {
             }
 
             $archivo = $_FILES['archivo'] ?? null;
-            if ( $gestorArchivo->validarArchivo($archivo, ['jpg', 'gif', 'webp', 'jpeg']) == true) {
+            if ($gestorArchivo->validarArchivo($archivo, ['jpg', 'gif', 'webp', 'jpeg']) == true) {
                 $sql = "SELECT imagen FROM directorio_paginaprincipal WHERE id_directorio = :id";
                 $params[':id'] = $id;
                 $gestorArchivo->borrarArchivo($sql, $params);
@@ -176,13 +176,11 @@ class Main extends handleSanitize {
         try {
             $camposOpcionales = ['telefono', 'correo', 'facebook', 'twitter', 'linkedin'];
             foreach ($camposOpcionales as $campo) {
-                if ( $$campo !== '') {
-                    $sql .= ", $campo = :$campo";
-                    $params[":$campo"] = $$campo;
-                }
+                $sql .= ", $campo = :$campo";
+                $params[":$campo"] = $$campo;
             }
 
-            if ($newPathFile !== null) {
+            if ($newPathFile !== '') {
                 $sql .= ", imagen = :imagen";
                 $params[":imagen"] = $newPathFile;
             }
@@ -198,13 +196,97 @@ class Main extends handleSanitize {
         }  
     }
 
-    public function datosModal()
+    public function insertModal()
     {
+        try {
+            $conexion = new MySQLConnection();
+            $gestorArchivo = new AdministrarArchivos($conexion, '');
+            $gestorArchivo->setRuta( _ROOT_PATH . '/assets/images/modal/');
 
+            $descripcion = $this->SanitizeVarInput($_POST['descripcion']);
+            $archivo = $_FILES['archivo'] ?? null; 
+            if($gestorArchivo->validarArchivo($archivo, ['webp', 'jpg', 'gif', 'jpeg']) == true){
+                $sql = "INSERT INTO modal_paginaprincipal (img, descripcion) VALUES (?,?)";
+                $newPathFile = $gestorArchivo->guardarFichero($archivo, 'Modal');
+                $params = [$newPathFile, $descripcion];
+                $conexion->query($sql, $params);
+                $respuesta = array ('status'=>'success', 'message'=>'Registro guardado con éxito.');
+                echo (json_encode($respuesta));
+            }
+        } catch(Throwable $e) {
+            $this->handlerError($e);
+        }
     }
 
-    private function updateModal()
+    public function datosModal()
     {
-        
+        try {
+            $conexion = new MySQLConnection ();
+            $gestorArchivo = new AdministrarArchivos($conexion, '');
+            $gestorArchivo->setRuta( _ROOT_PATH . '/assets/images/modal/');
+            
+            $id = $this->SanitizeVarInput($_POST['id']); 
+            $descripcion = $this->SanitizeVarInput($_POST['descripcion']);
+            $archivo = $_FILES['archivo'] ?? null;
+            if ($gestorArchivo->validarArchivo($archivo, ['jpg', 'gif', 'webp', 'jpeg']) !== true) {
+             return;
+            }
+            $sql = "SELECT img FROM modal_paginaprincipal WHERE id_modal = ?";
+            $params = [$id];
+            $gestorArchivo->borrarArchivo($sql, $params, '', false);
+            $newPathFile = $gestorArchivo->guardarFichero($archivo, 'Modal');
+            $this->updateModal($conexion, $id, $descripcion, $newPathFile);
+        } catch (Throwable $e) {
+            $this->handlerError($e);
+        }
+    }
+
+    private function updateModal(MySQLConnection $conexion, $id, $descripcion, $img)
+    {
+        $sqlUpdate = "UPDATE modal_paginaprincipal SET descripcion = :descripcion";
+        $params[':descripcion'] = $descripcion;
+        if ($img !== ''){
+            $sqlUpdate .= ", img= :img";
+            $params[':img'] = $img;
+        }
+        $sqlUpdate .= " WHERE id_modal = :id_modal";
+        $params[':id_modal'] = $id;
+        try {
+            $conexion->query($sqlUpdate, $params, '', false);
+            $respuesta = array ('status'=>'success', 'message'=>'Registro actualizado con éxito.');
+            echo (json_encode($respuesta));
+        } catch (Throwable $e) {
+            $this->SanitizeVarInput($e);
+            echo (json_encode(['status'=>'error', 'message'=>'No se pudo actualizar el modal']));
+        }
+    }
+
+    public function elimarModal()
+    {
+        try{
+            $id = (empty($_POST['id'])) ? '' : $_POST['id'];
+            $conexion = new MySQLConnection();
+            $gestorArchivo = new AdministrarArchivos($conexion, '');
+            $gestorArchivo->setRuta( _ROOT_PATH . '/assets/images/modal/');
+            $sql = "SELECT img FROM modal_paginaprincipal WHERE id_modal = ?";
+            $params = [$id];
+            $stmt = $conexion->query($sql, $params, '', false); 
+            $resultado = $stmt->fetchColumn();
+            if ($resultado === false){
+                $respuesta = array("status"=>"error", "message"=>"El modal que pretende eliminar no existe.");
+                echo (json_encode($respuesta));
+                return;
+            }
+            $gestorArchivo->borrarArchivo($sql, $params, '', false);
+            $deleteSql = "DELETE FROM modal_paginaprincipal WHERE id_modal = ?";
+            $deleteParams = [$id];
+            $conexion->query($deleteSql, $deleteParams,  '', false);
+            $respuesta = array("status" => "success", "message" => "Modal borrado de manera exitosa");
+            echo(json_encode($respuesta));
+        } catch (Throwable $e) {
+            $this->handlerError($e);
+            $respuesta = array ("status" =>"error", ""=>"En este momento el servicio no esta disponible. Consulte con el administrador del sitio web.");
+            echo (json_encode($respuesta));
+        }
     }
 }
