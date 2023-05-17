@@ -260,14 +260,14 @@
 								<i class="icomoon-ico7" style="color: #ffffff"><span class="sr-only">icon</span></i>
 							</span>
 							<h3 class="fwSemiBold text-white textCount mb-3"><span>1 </span>M Hab.</h3>
-							<h4 class="subtitle mb-0 font-weight-normal">Total de personas <br>en nuestro departamento</h4>
+							<h4 class="subtitle mb-0 font-weight-normal">Total de Personas <br>en Nuestra Regíon</h4>
 						</li>
 						<li>
 							<span class="icnWrap d-flex align-items-center justify-content-center w-100 mb-4">
 								<i class="icomoon-ico8" style="color: #ffffff"><span class="sr-only">icon</span></i>
 							</span>
 							<h3 class="fwSemiBold text-white textCount mb-3"><span>368 851</span> &#13218;</h3>
-							<h4 class="subtitle mb-0 font-weight-normal">Superficie <br>Total de la región</h4>
+							<h4 class="subtitle mb-0 font-weight-normal">Superficie <br>Total de la Región</h4>
 						</li>
 						<li>
 							<span class="icnWrap d-flex align-items-center justify-content-center w-100 mb-4">
@@ -281,7 +281,7 @@
 								<i class="icomoon-ico10" style="color: #ffffff"><span class="sr-only">icon</span></i>
 							</span>
 							<h3 class="fwSemiBold text-white textCount mb-3"><span>0,633 </span>Medio</h3>
-							<h4 class="subtitle mb-0 font-weight-normal">Índice de desarrollo <br>humano</h4>
+							<h4 class="subtitle mb-0 font-weight-normal">Índice de Desarrollo <br>Humano</h4>
 						</li>
 					</ul>
 				</div>
@@ -367,10 +367,10 @@
 			</div>
 		</div>
 	</section>
-	<section class="meetCouncilBlock position-relative pt-7 pt-md-9 pt-lg-14 pt-xl-20 pb-6">
+	<section class="meetCouncilBlock position-relative pt-4 pt-md-9 pt-lg-7 pt-xl-7 pb-6">
 		<div class="container">
 			<header class="headingHead text-center cdTitle mb-7 mb-md-13">
-				<h2 class="fwSemiBold mb-4">Conoce a nuestro directorio</h2>
+				<h2 class="fwSemiBold mb-4">Conoce  Nuestro Directorio</h2>
 				<p>Él Gobierno Regional de Loreto cuenta con un directorio sumamente capaz de liderar la región.</p>
 			</header>
 			<div class="row justify-content-center">

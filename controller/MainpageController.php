@@ -19,12 +19,13 @@ class MainpageController extends ViewRenderer {
         $this->setCacheDir(_ROOT_CACHE . 'pagina_principal');
         $this->setCacheTime(1); 
         list($titulo, $entrada, $mensaje, $frase, $img, $enlaceVideo) = $this->sectionGobernador();
+        list($banner0, $banner1, $banner2, $banner3, $banner4) = $this->sectionBanner();
         $data = [
-            'banner0' => $this->ruta . 'banners/portada0.webp',
-            'banner1' => $this->ruta . 'banners/portada1.webp',
-            'banner2' => $this->ruta . 'banners/portada2.webp',
-            'banner3' => $this->ruta . 'banners/portada3.webp',
-            'banner4' => $this->ruta . 'banners/portada4.webp',
+            'banner0' => $this->ruta . 'banners/' . $banner0,
+            'banner1' => $this->ruta . 'banners/' . $banner1,
+            'banner2' => $this->ruta . 'banners/' . $banner2,
+            'banner3' => $this->ruta . 'banners/' . $banner3,
+            'banner4' => $this->ruta . 'banners/' . $banner4,
             'titulo' => $titulo,
             'entrada' => $entrada,
             'mensaje' => $mensaje,
@@ -105,5 +106,17 @@ class MainpageController extends ViewRenderer {
             Html;
         }
         return $directorio;
+    }
+
+    private function sectionBanner()
+    {
+        $sql = "SELECT banner FROM banners_paginaprincipal LIMIT 5";
+        $stmt = $this->conexion->query($sql, '', '', false);
+        $respuesta = $stmt->fetchAll();
+        $banner = [];
+        foreach($respuesta as $row){
+            $banner[] = $row['banner'];
+        }
+        return $banner;
     }
 }

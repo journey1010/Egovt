@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel='icon' type='image/x-icon' href='<?php echo _ROOT_ASSETS . 'images/gorel_favicon.png' ?>'>
+	<link rel='icon' type='image/x-icon' href='<?php echo _ROOT_ASSETS . 'images/gorel_favicon.ico' ?>'>
 	<link href="<?php echo _ROOT_ASSETS_ADMIN . 'css/bootstrap.min.css' ?>" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 	<link href="<?php echo _ROOT_ASSETS_ADMIN . 'css/app.css' ?>" rel="stylesheet">
@@ -16,7 +16,7 @@
 <body>
 	<div class="wrapper">
 		<div class="authentication-header">
-			<img src="<?php echo _ROOT_ASSETS . 'images/banners/portada1.jpg' ?>" class="img-fluid oscurecer-imagen">
+			<img src="<?php echo _ROOT_ASSETS . 'images/banners/portada1.webp' ?>" alt="portada de login" class="img-fluid oscurecer-imagen">
 		</div>
 		<div class="d-flex align-items-center justify-content-center my-5 my-lg-0">
 			<div class="container">

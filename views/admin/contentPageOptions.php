@@ -110,4 +110,18 @@ class contentPageOptions {
         $resultado =$rrhhAsistencia->verRegistros();
         return $resultado;
     }
+
+    public function RegistrarAgendaGobernador()
+    {
+        $agendaGobernador = new AgendaGobernador();
+        $resultado = $agendaGobernador->RegistrarAgenda();
+        return $resultado;
+    }
+
+    public function ActualizarAgendaGobernador()
+    {
+        $agendaGobernador = new AgendaGobernador();
+        $resultado = $agendaGobernador->ActualizarAgenda();
+        return $resultado;
+    }
 }
