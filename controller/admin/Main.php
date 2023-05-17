@@ -18,12 +18,14 @@ class Main extends handleSanitize {
 
         try {    
             $conexion = new MySQLConnection();
-            $gestorArchivo = new AdministrarArchivos($conexion, 'pagina-principal/');
+            $gestorArchivo = new AdministrarArchivos($conexion, '');
+            $gestorArchivo->setRuta(_ROOT_PATH . '/assets/images/');
 
             $titulo = $this->SanitizeVarInput($_POST["titulo"]);
             $mensaje = $this->SanitizeVarInput($_POST["mensaje"]);
             $frase = $this->SanitizeVarInput($_POST["frase"]);
             $entrada = $this->SanitizeVarInput($_POST["entrada"]);
+            $enlaceVideo = $this->SanitizeVarInput($_POST["enlaceVideo"]);
 
             $archivo = $_FILES["imgGobernador"] ?? null;
 
@@ -31,22 +33,23 @@ class Main extends handleSanitize {
                 $sql = "SELECT img FROM gobernador LIMIT 1";
                 $gestorArchivo->borrarArchivo($sql, '');
                 $newPathFile = $gestorArchivo->guardarFichero($archivo, $titulo);
-                $this->UpdateSetBd($conexion, $titulo, $mensaje, $frase, $entrada, $newPathFile);
+                $this->UpdateSetBd($conexion, $titulo, $mensaje, $frase, $entrada, $enlaceVideo, $newPathFile);
                 return;
             }
-            $this->UpdateSetBd($conexion, $titulo, $mensaje, $frase, $entrada);
+            $this->UpdateSetBd($conexion, $titulo, $mensaje, $frase, $entrada, $enlaceVideo);
         } catch (Throwable $e) {
             $this->handlerError($e);
         }
     }  
 
-    private function UpdateSetBd(MySQLConnection $conexion, $titulo, $mensaje, $frase, $entrada, $newPathFile = null)
+    private function UpdateSetBd(MySQLConnection $conexion, $titulo, $mensaje, $frase, $entrada, $enlaceVideo, $newPathFile = null)
     {
-        $sql = "UPDATE gobernador_paginaprincipal SET titulo = :titulo, mensaje = :mensaje , entrada = :entrada, frase = :frase";
+        $sql = "UPDATE gobernador_paginaprincipal SET titulo = :titulo, mensaje = :mensaje , entrada = :entrada, frase = :frase, $enlaceVideo = :enlace_video";
         $params[":titulo"] = $titulo;
         $params[":mensaje"] = $mensaje;
         $params[":entrada"] = $entrada;
         $params[":frase"] = $frase;
+        $params[":enlace_video"] = $enlaceVideo;
         try {
             if ($newPathFile !==null) {
                 $sql .= ", img = :img";

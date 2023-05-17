@@ -16,7 +16,7 @@ class Mainpage extends  handleSanitize {
         $ruta = $this->rutaAssets . 'js/Mainpage.js';
         
         $conexion = new MySQLConnection();
-        list($titulo, $mensaje, $frase, $entrada) = $this->getInfoGobernador($conexion);
+        list($titulo, $mensaje, $frase, $entrada, $enlaceVideo) = $this->getInfoGobernador($conexion);
         $tablaBanner = $this->getInfoBanners($conexion);
         $tablaDirectorio = $this->getInfoDirector($conexion);
         $tablaModal = $this->getInfoModal($conexion);
@@ -62,6 +62,10 @@ class Mainpage extends  handleSanitize {
                                 ">
                                 <label class="custom-file-label text-left" for="imgGobernador" data-browse="Elegir archivo">Elegir archivo</label>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="enlaceVideo">Enlace video</label>
+                            <input type="text" id="enlaceVideo" class="form-control" value="$enlaceVideo">
                         </div>
                     </div>
                     <div class="card-footer">
@@ -164,10 +168,10 @@ class Mainpage extends  handleSanitize {
 
     private function getInfoGobernador(MySQLConnection $conexion): array 
     {
-        $sql = "SELECT titulo, mensaje, entrada, frase FROM gobernador_paginaprincipal LIMIT 1";
+        $sql = "SELECT titulo, mensaje, entrada, frase, enlace_video FROM gobernador_paginaprincipal LIMIT 1";
         $stmt = $conexion->query($sql, '', '', false);
         $row = $stmt->fetch();
-        return [$row['titulo'], $row['mensaje'], $row['frase'], $row['entrada']];
+        return [$row['titulo'], $row['mensaje'], $row['frase'], $row['entrada'], $row['enlace_video']];
     }
 
     private function getInfoBanners(MySQLConnection $conexion): string 

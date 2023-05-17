@@ -1,7 +1,7 @@
 import { Toast } from "./Toast.js";
 
 function comprobarCamposGobernador() {
-    let camposEdit = ['titulo', 'mensajeGobernador', 'fraseGobernador', 'entradaGobernador'];
+    let camposEdit = ['titulo', 'mensajeGobernador', 'fraseGobernador', 'entradaGobernador', 'enlaceVideo'];
     let camposLlenos = true;
     $.each(camposEdit, function (indice, valor) {
         if ($('#' + valor).val() == '') {
@@ -23,6 +23,7 @@ function enviarDatosGobernador() {
     formData.append('frase', $('#fraseGobernador').val());
     formData.append('entrada', $('#entradaGobernador').val());
     formData.append('imgGobernador', $("#imgGobernador").prop("files")[0]); 
+    formData.append('enlaceVideo',$('#enlaceVideo').val());
 
     $.ajax({
         method : 'POST',
