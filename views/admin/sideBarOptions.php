@@ -227,7 +227,7 @@ class sideBarOptions {
         $html = <<<Html
         <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="fa fa-calendar-alt"></i>
+            <i class="fa fa-calendar-alt" style="color:#1291ab;"></i>
             <p>
                  Agenda de gobernación
                 <i class="right fas fa-angle-left"></i>
