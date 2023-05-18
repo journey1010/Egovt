@@ -87,8 +87,8 @@ class AgendaGobernador extends handleSanitize
                                 <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         <label>Ordenar por fecha:</label>
-                                        <select class="select2" style="width: 100%;" id="orderBy">
-                                            <option value="" selected>Seleccionar</option>
+                                        <select id="orderByAgenda" class="select2" style="width: 100%;">
+                                            <option value="DESC" selected>Seleccionar</option>
                                             <option value="DESC">DESC</option>
                                             <option value="ASC">ASC</option>
                                         </select>
