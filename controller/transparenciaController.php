@@ -2,6 +2,7 @@
 require_once(_ROOT_CONTROLLER . 'viewsRender.php');
 require_once(_ROOT_MODEL . 'visitas.php');
 require_once(_ROOT_MODEL . 'proyectosInversionPublica.php');
+require_once(_ROOT_MODEL . 'agendaGorel.php');
 
 class transparenciaController extends ViewRenderer
 {
@@ -263,11 +264,32 @@ class transparenciaController extends ViewRenderer
         }
     }
 
-    public function agendaGorel()
+    //modulo de agenda
+    public function agendaGorel($pagina = 1)
     {
-        $this->render('header', '', false);
-        $this->render('transparencia/agendaGorel/agendaGorel', '', false);
-        $this->render('footer', '', false);
+        if (!is_numeric($pagina)) {
+            $this->setCacheDir(_ROOT_CACHE);
+            $this->setCacheTime(86000);
+            $this->render('ErrorView', '', true);
+            return;
+        }
+        try {
+            $this->setCacheDir(_ROOT_CACHE . 'transparencia/agendaGorel/');
+            $this->setCacheTime(1);
+
+            $aG = new agendaGorel();
+            list($tablaFila, $paginadorHtml) = $aG->verAgenda($pagina);
+
+            $data = [
+                "tablaFila" => $tablaFila,
+                "paginadorHtml" => $paginadorHtml
+            ];
+            $this->render('header', '', false);
+            $this->render('transparencia/agendaGorel/agendaGorel', $data, false);
+            $this->render('footer', '', false);            
+        }catch (Throwable $e) {
+            $this->handleError($e);
+        }
     }
 
     private function handleError(Throwable $e)

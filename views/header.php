@@ -132,6 +132,7 @@
 												<ul class="list-unstyled mb-0 hdDropdownList">
 													<li><a class="dropdown-item" href="/transparencia/visitas">Visitas</a></li>
 													<li><a class="dropdown-item" href="/transparencia/proyecto-de-inversion-publica">Proyectos de inversión pública</a></li>
+													<li><a class="dropdown-item" href="/transparencia/agendagorel">Actividades oficiales</a></li>
 												</ul>
 											</div>
 										</li>
