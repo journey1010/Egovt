@@ -12,6 +12,10 @@
         {"method" : "GET", "pattern" : "/administrador/funcionarios/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/pagina-principal/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/rr-hh/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
+        {"method" : "GET", "pattern" : "/administrador/agenda/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
+        {"method" : "POST", "pattern": "/administrador/agenda/registrar-agenda", "handler" : "admin/AgendaGobernador@registrar"},
+        {"method" : "POST", "pattern": "/administrador/agenda/buscar-agenda", "handler": "admin/AgendaGobernador@buscar"},
+        {"method" : "POST", "pattern": "/administrador/agenda/actualizar-agenda", "handler": "admin/AgendaGobernador@actualizar"},
         {"method" : "POST", "pattern" : "/administrador/rr-hh/load-file", "handler" : "admin/RRHH@loadFile"},
         {"method" : "POST", "pattern" : "/administrador/rr-hh/read-excel", "handler" : "admin/RRHH@readExcel"},
         {"method" : "POST", "pattern" : "/administrador/rr-hh/filtrar-excel", "handler" : "admin/RRHH@filtrarExcel"},
@@ -19,7 +23,9 @@
         {"method" : "POST", "pattern" : "/administrador/pagina-principal/datos-gobernador", "handler" : "admin/Main@datosGobernador"},
         {"method" : "POST", "pattern" : "/administrador/pagina-principal/datos-banner", "handler" : "admin/Main@datosBanner"},
         {"method" : "POST", "pattern" : "/administrador/pagina/principal/datos-directorio", "handler" : "admin/Main@datosDirectorio"},
-        {"method" : "POST", "pattern" : "/administrador/pagina/principal/datos-modal", "handler" : "admin/Main@datosModal"},
+        {"method" : "POST", "pattern" : "/administrador/pagina/principal/insertar-modal", "handler" : "admin/Main@insertModal"},
+        {"method" : "POST", "pattern" : "/administrador/pagina/principal/eliminar-modal", "handler": "admin/Main@elimarModal"},
+        {"method" : "POST", "pattern" : "/administrador/pagina/principal/actualizar-modal", "handler": "admin/Main@datosModal"},
         {"method" : "POST", "pattern" : "/administrador/resgistrarusuarios", "handler": "admin/Usuarios@RegistrarUsuario"},
         {"method" : "POST", "pattern" : "/administrador/visitas/listarfuncionarios", "handler" : "admin/visitas@Obtenerfuncionarios"},
         {"method" : "POST", "pattern" : "/administrador/resgistravisitas", "handler": "admin/visitas@RegistrarVisita"},
@@ -47,7 +53,10 @@
         {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/supervision-de-obras/?page={pagina}", "handler" : "transparenciaController@pipSupervisionObra"},
         {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/historico", "handler" : "transparenciaController@pipHistorico"},
         {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/historico/?page={pagina}", "handler" : "transparenciaController@pipHistorico"},
-        {"method" : "POST", "pattern" : "/transparencia/proyecto-de-inversion-publica/filtros", "handler" : "transparenciaController@BuscarObra"}
-    
+        {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/informacion-adicional", "handler" : "transparenciaController@pipInformacionAdicional"},
+        {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/informacion-adicional/?page={pagina}", "handler" : "transparenciaController@pipInformacionAdicional"},
+        {"method" : "POST", "pattern" : "/transparencia/proyecto-de-inversion-publica/filtros", "handler" : "transparenciaController@BuscarObra"},
+        {"method" : "GET", "pattern" : "/transparencia/agendagorel", "handler" : "transparenciaController@agendaGorel"},
+        {"method" : "GET", "pattern" : "/transparencia/agendagorel/?page={pagina}", "handler" : "transparenciaController@agendaGorel"}
     ]
 }

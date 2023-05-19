@@ -61,7 +61,7 @@ class RRHHasistencia extends  handleSanitize
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+                    <button id="btn-enviar-archivo" type="submit" class="btn btn-primary mt-2">Guardar</button>
                 </div>
         </form>
         </div>

@@ -104,9 +104,9 @@ class obra extends handleSanitize {
             $table_respuesta = $this->makeTblForBuscarObra($resultado);
             echo $table_respuesta;    
         } catch (Throwable $e) {
+            $this->handlerError($e);
             $respuesta = array("status"=>"error", "message" => "Error al consultar registros");
             echo(json_encode($respuesta));
-            $this->handlerError($e);
         }
     }
 

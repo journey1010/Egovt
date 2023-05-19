@@ -64,7 +64,7 @@ $(document).on('submit', '#registrarObras', function (event) {
         Toast.fire({
           icon: "error",
           title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
-          background: "#ff0000",
+          background: "#ff0000"
         });
       },
       complete: function () {

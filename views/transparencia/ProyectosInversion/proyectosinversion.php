@@ -1,15 +1,15 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 <script>
-$(document).ready(function(){
-  let url = window.location.href;
+	$(document).ready(function() {
+		let url = window.location.href;
 
-  $('li[name="panel"]').each(function() {
-    if(url.includes($(this).find('a').attr('href'))) {
-		$('li[name="panel"]').removeClass('active');
-    	$(this).addClass('active');
-    }
-  });
-});
+		$('li[name="panel"]').each(function() {
+			if (url.includes($(this).find('a').attr('href'))) {
+				$('li[name="panel"]').removeClass('active');
+				$(this).addClass('active');
+			}
+		});
+	});
 </script>
 <main>
 	<article class="dsSingleContent pt-4 pb-2 pt-md-4 pb-md-1 pt-lg-4 pb-lg-10 pt-xl-4 pb-xl-16">
@@ -42,9 +42,11 @@ $(document).ready(function(){
 												<option value="Liquidacíon de obras">Liquidacíon de obras</option>
 												<option value="Supervisión de contrataciones">Supervisión de contrataciones</option>
 												<option value="Historico">Historico</option>
+												<option value="Información Adicional">Información adicional</option>
 											</select>
 										</div>
 									</div>
+
 									<div class="formCol px-3">
 										<div class="form-group">
 											<label class="d-block fwMedium fontAlter text-lDark mb-2">Palabra clave</label>
@@ -63,7 +65,7 @@ $(document).ready(function(){
 							<div id="spinner" class="mt-1" style="display:none;">
 								<i class="fa fa-spinner fa-spin"></i> Cargando...
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
@@ -78,14 +80,17 @@ $(document).ready(function(){
 								<li name="panel">
 									<a class="enlace" href="/transparencia/proyecto-de-inversion-publica/adicionales-de-obra">Adicionales de obra</a>
 								</li>
-								<li name="panel" >
+								<li name="panel">
 									<a class="enlace" href="/transparencia/proyecto-de-inversion-publica/liquidacion-de-obras">Liquidación de obras</a>
 								</li>
 								<li name="panel">
-									<a  class="enlace" href="/transparencia/proyecto-de-inversion-publica/supervision-de-obras">Supervisión de contrataciones</a>
+									<a class="enlace" href="/transparencia/proyecto-de-inversion-publica/supervision-de-obras">Supervisión de contrataciones</a>
 								</li>
 								<li name="panel">
-									<a  class="enlace"href="/transparencia/proyecto-de-inversion-publica/historico">Historico</a>
+									<a class="enlace" href="/transparencia/proyecto-de-inversion-publica/historico">Historico</a>
+								</li>
+								<li name="panel">
+									<a class="enlace" href="/transparencia/proyecto-de-inversion-publica/informacion-adicional">Información adicional</a>
 								</li>
 							</ul>
 						</nav>
@@ -105,6 +110,7 @@ $(document).ready(function(){
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
 	$(document).on('click', '#buscar', searchObra);
+
 	function searchObra() {
 		let formData = {
 			año: $('#año option:selected').val(),
@@ -123,7 +129,7 @@ $(document).ready(function(){
 				try {
 					let jsonData = JSON.parse(data);
 					$('#resultados').html(jsonData.error);
-				} catch (e) {				
+				} catch (e) {
 					$('#resultados').html(data);
 					datable();
 				}
@@ -134,26 +140,26 @@ $(document).ready(function(){
 		});
 	}
 
-	function datable(){
-        const table = $('#resultadosBusquedaObras').DataTable({
-            stateSave: true,
-            paging: true,
-            searching: false,
-            ordering: true,
-            info: false,
-            pagingType: "simple_numbers",
-            language: {
-                lengthMenu: "Mostrar _MENU_ registros por página",
-                zeroRecords: "No se encontraron resultados",
-                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                paginate: {
-                    first: 'Primera',
-                    last: 'Última',
-                    next: 'Siguiente',
-                    previous: 'Anterior'
-                }
-            }
-        });
+	function datable() {
+		const table = $('#resultadosBusquedaObras').DataTable({
+			stateSave: true,
+			paging: true,
+			searching: false,
+			ordering: true,
+			info: false,
+			pagingType: "simple_numbers",
+			language: {
+				lengthMenu: "Mostrar _MENU_ registros por página",
+				zeroRecords: "No se encontraron resultados",
+				info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+				infoEmpty: "Mostrando 0 a 0 de 0 registros",
+				paginate: {
+					first: 'Primera',
+					last: 'Última',
+					next: 'Siguiente',
+					previous: 'Anterior'
+				}
+			}
+		});
 	}
 </script>
