@@ -190,7 +190,6 @@ function save() {
   row.find(".edit-icon").show();
   row.find(".cancel-icon").hide();
   row.find(".save-icon").hide();
-  row.hide();
   let formData = {
     id: row.find("td:eq(0)").text(),
     horaSalida: row.find("td:eq(3)").text(),
@@ -214,6 +213,7 @@ function save() {
           });
           break;
         case "success":
+          row.hide();
           Toast.fire({
             icon: "success",
             title: resp[indice],

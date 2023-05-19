@@ -197,5 +197,59 @@ class sideBarOptions {
         Html;
         return $html;
     }
+
+    public function adminmainpage()
+    {
+        $html = <<<Html
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fas fa-id-card-alt"></i>
+            <p>
+                Inicio
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrdor/pagina-principal/editar" class="nav-link" name="sidebarEnlace" data-page="pagina-principal/editar">
+                <i class="fas fa-book"></i>
+                <p>Página principal</p>
+                </a>
+            </li>
+            </ul>
+        </li>
+        Html;
+        return $html;
+    }  
+    
+    public function agendagobernador()
+    {
+        $html = <<<Html
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fa fa-calendar-alt" style="color:#1291ab;"></i>
+            <p>
+                 Agenda de gobernación
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrador/agenda/registrar-agenda" name="sidebarEnlace" class="nav-link" data-page="agenda/registrar-agenda">
+                <i class="fa fa-calendar-plus"></i>
+                <p> Registrar Agenda</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/administrador/agenda/actualizar-agenda" name="sidebarEnlace" class="nav-link" data-page="agenda/actualizar-agenda">
+                <i class="fa fa-calendar-week"></i>
+                <p> Actualizar Agenda</p>
+                </a>
+            </li>
+            </ul>
+        </li>
+        Html;
+        return $html;
+    }
 }
 ?>

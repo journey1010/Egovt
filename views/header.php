@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>GOREL - Gobierno Regional de Loreto</title>
-	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="Expires" content="0">
+	<meta name="google-site-verification" content="CRBa-m87jge17xNggnxw6Pi5UOWrmuUHaax2D2hrp6o"/>
+	<link rel="canonical" href="https://regionloreto.gob.pe">
+    <meta name="description" content="El portal web del gobierno regional de loreto es una herramienta de comunicación que permite informar a la ciudadanía sobre las actividades, proyectos y servicios que realiza el gobierno regional. En este portal se puede encontrar información sobre las autoridades, las direcciones regionales, los planes y programas, las noticias y eventos, los trámites y consultas, y los canales de participación ciudadana. El portal web del gobierno regional de loreto busca ser un espacio de transparencia, rendición de cuentas y diálogo con la población.">
+    <meta name="keywords" content="Portal web, Pagina web, gorel, Gobierno reginal de loreto, Loreto, estado peruano, ">
+    <meta name="autor" content="Journii">
+	<title>GOREL - Portal Web del Gobierno Regional de Loreto</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com/css2">
 	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> <!-- include the site bootstrap stylesheet -->
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/bootstrap.css' ?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/style.css' ?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/colors.css' ?>">
-	<link rel="stylesheet" href="<?php echo _ROOT_ASSETS . 'css/responsive.css' ?>">
-	<link rel='stylesheet' type="text/css" href='<?= _ROOT_ASSETS . 'fontawesome-5/css/all.min.css'?>'><!-- quitar al cargar al github -->
-	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.ttf' ?>">
-	<link rel="stylesheet" type="text/css" href="<?php echo _ROOT_ASSETS . 'fonts/icomoon.woff' ?>">
-	<link rel='icon' type='image/x-icon' href='<?php echo _ROOT_ASSETS . 'images/gorel_favicon.png' ?>'>
-	<script src="<?php echo _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
-	<script src="<?php echo _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
+	<link rel="stylesheet" href="<?= _ROOT_ASSETS . 'css/bootstrap.css' ?>">
+	<link rel="stylesheet" href="<?= _ROOT_ASSETS . 'css/style.css' ?>">
+	<link rel="stylesheet" href="<?= _ROOT_ASSETS . 'css/colors.css' ?>">
+	<link rel="stylesheet" href="<?= _ROOT_ASSETS . 'css/responsive.css' ?>">
+	<link rel="stylesheet" type="text/css" href="<?= _ROOT_ASSETS . 'fonts/icomoon.ttf' ?>">
+	<link rel="stylesheet" type="text/css" href="<?= _ROOT_ASSETS . 'fonts/icomoon.woff' ?>">
+	<link rel='stylesheet' type="text/css" href='<?= _ROOT_ASSETS . 'fontawesome-5/css/all.min.css'?>'>
+
+	<link rel='icon' type='image/x-icon' href='<?= _ROOT_ASSETS . 'images/gorel_favicon.ico' ?>'>
+	<script src="<?= _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
+	<script src="<?= _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
+	<script src="<?= _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
+
 	<style>
 		@media(max-width: 700px) {
 			.navbar-collapse {
@@ -68,13 +70,13 @@
 										</a>
 									</li>
 									<li class="mb-2 mb-md-0">
-										<a href="https://www.transparencia.gob.pe/enlaces/pte_transparencia_enlaces.aspx?id_entidad=10152" alt="enlace portal de transparencia" target="_blank">
-											<img src="<?php echo _ROOT_ASSETS . 'images/logo_portal_transparencia.png' ?>">
+										<a href="https://www.transparencia.gob.pe/reportes_directos/pte_transparencia_reg_visitas.aspx?id_entidad=10152&ver=&id_tema=500" alt="enlace portal de transparencia" target="_blank">
+											<img src="<?= _ROOT_ASSETS . 'images/logo_portal_transparencia.png' ?>">
 										</a>
 									</li>
 									<li>
 										<a href="https://www.gob.pe/institucion/minjus/campa%C3%B1as/4200-libro-de-reclamaciones" alt="enlace libro de reclamaciones" target="_blank">
-											<img src="<?php echo _ROOT_ASSETS . 'images/logo_libro_reclamaciones.png'  ?>">
+											<img src="<?= _ROOT_ASSETS . 'images/logo_libro_reclamaciones.png'  ?>">
 										</a>
 									</li>
 								</ul>
@@ -87,7 +89,7 @@
 						<nav class="navbar navbar-expand-md navbar-light p-0">
 							<div class="logo flex-shrink-0 mr-3 mr-xl-8 mr-xlwd-16">
 								<a href="/">
-									<img src="<?php echo _ROOT_ASSETS . 'images/circle_logo_gorel.png' ?>" class="img-fluid" alt="Gobierno regional de loreto Logo">
+									<img src="<?= _ROOT_ASSETS . 'images/circle_logo_gorel.png' ?>" class="img-fluid" alt="Gobierno regional de loreto Logo">
 								</a>
 							</div>
 							<div class="hdNavWrap flex-grow-1 d-flex align-items-center justify-content-end justify-content-lg-start">
@@ -108,10 +110,10 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Noticias y eventos</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/enconstruccion">Noticias</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Próximos eventos</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Comunicados</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Informes y publicaciones</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/noticias">Noticias</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/campa%C3%B1as">Próximos eventos</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/normas-legales/tipos">Normas Legales</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/informes-publicaciones">Informes y publicaciones</a></li>
 												</ul>
 											</div>
 										</li>
@@ -140,7 +142,7 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Entidades relacionadas</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/enconstruccion">Corcytec</a></li>
+													<li><a class="dropdown-item" href="https://antiguo.regionloreto.gob.pe/corcytec/">Corcytec</a></li>
 													<li><a class="dropdown-item" href="/enconstruccion">Consejo Regional</a></li>
 													<li><a class="dropdown-item" href="/enconstruccion">Ordenamiento territorial</a></li>
 													<li><a class="dropdown-item" href="/enconstruccion">Gerencias y subgerencias</a></li>
@@ -160,7 +162,6 @@
 									<div class="dropdown-menu dropdown-menu-right rounded-lg overflow-hidden desktopDropOnHover p-0 w-100" aria-labelledby="hdLanguagedropdown">
 										<a class="dropdown-item text-center active" href="javascript:void(0);">Esp</a>
 										<a class="dropdown-item text-center" href="javascript:void(0);">Eng</a>
-										<a class="dropdown-item text-center" href="javascript:void(0);">Quech</a>
 									</div>
 								</div>
 								<button class="navbar-toggler pgNavOpener ml-2 bdrWidthAlter position-relative" type="button" data-toggle="collapse" data-target="#pageMainNavCollapse" aria-controls="pageMainNavCollapse" aria-expanded="false" aria-label="Toggle navigation">

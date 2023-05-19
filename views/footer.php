@@ -6,16 +6,13 @@
 							<nav class="ftcaNav mb-4 mb-lg-0">
 								<ul class="list-unstyled d-flex flex-wrap mb-0 justify-content-center justify-content-lg-start">
 									<li>
-										<a href="about.php" title="Acerca del Gobierno Regional de Loreto">Acerca de nosotros</a>
+										<a href="/enconstruccion" alt="Acerca del gobierno regional de loreto" title="Acerca del Gobierno Regional de Loreto">Acerca de nosotros</a>
 									</li>
 									<li>
-										<a href="" target="_blank" title="Pagina del GORE-LORETO en el Portal GOB.PE">GOB.PE/Loreto</a>
+										<a href="https://www.gob.pe/regionloreto" alt="Acceso al gob.pe region loreto" target="_blank" title="Pagina del GORE-LORETO en el Portal GOB.PE">GOB.PE/Loreto</a>
 									</li>
 									<li>
-										<a href="https://www.gob.pe/"target="_blank" title="Portal del estado peruano">GOB.PE</a>
-									</li>
-									<li>
-										<a href="<?php echo _BASE_URL ?>" target="_self" title="Portafolio de proyecto GORE-LORETO">Portafolio</a>
+										<a href="https://www.gob.pe/" alt="acceso al gob.pe" target="_blank" title="Portal del estado peruano">GOB.PE</a>
 									</li>
 								</ul>
 							</nav>
@@ -25,23 +22,23 @@
 								<strong class="title flex-shrink-0 mb-1 font-weight-normal mr-sm-3 d-block">Contactate con nosotros:</strong>
 								<ul class="list-unstyled socialNetworks ftSocialNetworks d-flex flex-wrap justify-content-center justify-content-sm-end mb-0">
 									<li>
-										<a href="https://www.facebook.com/goreloretoperu/">
-										<i class="fa fa-facebook-square"><span class="sr-only">facebook</span></i>
+										<a href="https://www.facebook.com/goreloretoperu/" alt="Página de facebook del gobierno regional de loreto">
+											<i class="fab fa-facebook"><span class="sr-only">Facebook</span></i>
 										</a>
 									</li>
 									<li>
-										<a href="https://twitter.com/GoreLoretoOf">
-										<i class="fa fa-twitter-square"><span class="sr-only">twitter</span></i>
+										<a href="https://twitter.com/GoreLoretoOf" alt="Página de twitter del gobierno regional de loreto">
+											<i class="fab fa-twitter"><span class="sr-only">Twitter</span></i>
 										</a>
 									</li>
 									<li>
-										<a href="https://www.instagram.com/goreloreto/">
-											<i class="fa fa-instagram"><span class="sr-only">instagram</span></i>
+										<a href="https://www.instagram.com/goreloreto/" alt="Página de instagram del gobierno regional de loreto">
+											<i class="fab fa-instagram"><span class="sr-only">Instagram</span></i>
 										</a>
 									</li>
 									<li>
-										<a href="https://tiktok.com/@goreloreto">
-											<i class="fa fa-youtube-square"><span class="sr-only">Tik Tok</span></i>
+										<a href="https://www.youtube.com/@gobiernoregionaldeloreto4787" alt="Página de youtube del gobierno regional de loreto">
+										<i class="fab fa-youtube"><span class="sr-only">Youtube</span></i>
 										</a>
 									</li>
 								</ul>
@@ -55,8 +52,8 @@
 					<div class="row">
 						<div class="col-12 col-sm-6 col-md-5 col-xl-3 mb-6">
 							<div class="ftLogo mt-md-1 mb-6">
-								<a href="<?php echo _BASE_URL ?>" target="_self" title="página principal ">
-									<img src="<?php echo _ROOT_ASSETS . 'images/logoWhite.png' ?>" class="img-fluid" alt="Logo blanco gorel">
+								<a href="/" target="_self" title="página principal ">
+									<img src="<?= $logoWhite ?>" class="img-fluid" alt="Logo blanco gorel">
 								</a>
 							</div>
 							<address class="mb-0 ftPlace">
@@ -67,19 +64,16 @@
 							<h3 class="ftHeading text-white mb-4">Enlaces útiles</h3>
 							<ul class="list-unstyled ftsrLinksList mb-0">
 								<li>
-									<a href="<?php echo _BASE_URL . '/Mapadesitio'?>" targert="_blank">Mapa del sitio</a>
-								</li>
-								<li>
-									<a href="#" target="_self" title="Enlace galeria de imagenes">Galeria de imagenes</a>
+									<a href="/enconstruccion" alt="Mapa del sitio" targert="_blank">Mapa del sitio</a>
 								</li>
 								<li>
 									<a href="https://correo.regionloreto.gob.pe/" target="_self" alt="Enlace al correo institicional">Correo institucional</a>
 								</li>
 								<li>
-									<a href="https://serviciosportal.reniec.gob.pe/cetdnipi/inicio.htm" target="_blank">Consulta el estado de tu tramite para la obtención de tu DNI</a>
+									<a href="https://serviciosportal.reniec.gob.pe/cetdnipi/inicio.htm" alt="Consulta DNI" target="_blank">Consulta el estado de tu tramite para la obtención de tu DNI</a>
 								</li>
 								<li>
-									<a href="https://app.sis.gob.pe/SisConsultaEnLinea/Consulta/frmConsultaEnLinea.aspx" target="_blank">Verifica si estás afiliado al SIS</a>
+									<a href="https://app.sis.gob.pe/SisConsultaEnLinea/Consulta/frmConsultaEnLinea.aspx" alt="Consulta SIS" target="_blank">Verifica si estás afiliado al SIS</a>
 								</li>
 							</ul>
 						</div>
@@ -91,13 +85,13 @@
 										<a href="https://www.empleosperu.gob.pe/CertificadoUnicoLaboral/irIndex.html;jsessionid=-jYMcfXqgh6WAbI0F5NUJUyCJ6fr7ThxjV8U-nu5.srv-cjl" target="_blank" alt="Enlace a Certiadulto">Obtén tu Certiadulto</a>
 									</li>
 									<li>
-										<a href="<?php echo _BASE_URL ?>" target="_blank">Galería de la región</a>
+										<a href="/enconstruccion" alt="Galeria de la region" target="_blank">Galería de la región</a>
 									</li>
 									<li>
-										<a href="<?php echo _BASE_URL?>" target="_blank">Nuestra Historia</a>
+										<a href="/enconstruccion" alt="Historia de loreto" target="_blank">Nuestra Historia</a>
 									</li>
 									<li>
-										<a href="https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias" target="_blank" alt="Eblace a consulta tu RUC">Consulta tu RUC</a>
+										<a href="https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias" target="_blank" alt="Enlace a consulta tu RUC">Consulta tu RUC</a>
 									</li>
 									<li>
 										<a href="https://carnetvacunacion.minsa.gob.pe/#/auth" target="_blank" alt="Enlace a carnet de vacunación">Carnet de Vacunación</a>
@@ -110,7 +104,7 @@
 							<ul class="list-unstyled ftpScheduleList mb-0">
 									<li>
 										<i class="icomoon-clock fwSemiBold icn mr-1 mr-sm-0"><span class="sr-only">icon</span></i>
-										<strong class="title font-weight-normal text-white">Horario de atención:</strong>
+										<strong class="title font-weight-normal text-white">Horario de Atención:</strong>
 										<br>
 										<time datetime="2011-01-12">Lunes a Viernes: 7:00  – 15:00 </time>
 									</li>
@@ -121,7 +115,7 @@
 									</li>
 									<li>
 										<i class="fa fa-envelope icn mr-1 mr-sm-0"><span class="sr-only">icon</span></i>
-										<strong class="title font-weight-normal text-white">Correo electronico:</strong>
+										<strong class="title font-weight-normal text-white">Correo Electronico:</strong>
 										<a href="mailto:demo@example.com">infogorel@regiónloreto.gob.pe</a>
 									</li>
 								</ul>
@@ -132,7 +126,7 @@
 			</aside>
 			<footer id="pageFooter" class="text-center bg-dark pt-6 pb-3 pt-md-8 pb-md-5">
 				<div class="container">
-					<p><a href="<?php echo _BASE_URL ?>">Gobierno Regiónal de Loreto</a> - </a> &copy; 2022. <br class="d-md-none">Todos los derechos reservados</p>
+					<p><a href="/">Gobierno Regiónal de Loreto</a> - </a> &copy; <?= $año ?>. <br class="d-md-none">Todos los derechos reservados</p>
 				</div>
 			</footer>
 		</div>

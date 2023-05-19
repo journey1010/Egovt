@@ -77,7 +77,7 @@ class viewConstruct{
         try {
             switch($tipoUser){
                 case 'admin':
-                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'funcionarios', 'rrhhasistencia');
+                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'funcionarios', 'rrhhasistencia', 'agendagobernador');
                 break;
                 case 'visitor':
                     $opciones = array ('visitas');
@@ -90,6 +90,12 @@ class viewConstruct{
                 break;
                 case 'rrhhasistencia': 
                     $opciones = array ('rrhhasistencia');
+                break;
+                case 'adminmainpage':
+                    $opciones = array ('adminmainpage');
+                break;
+                case 'agendagobernador':
+                    $opciones = array ('agendagobernador');
                 break;
                 default:
                     throw new Exception('Clase de usuario no valido');
@@ -128,7 +134,10 @@ class viewConstruct{
                     'registrar-funcionarios' => $contentPage->RegistrarFuncionarios(),
                     'actualizar-funcionarios' => $contentPage->ActualizarFuncionarios(),
                     'registrar-archivo' => $contentPage->loadFile(),
-                    'ver-registros'=> $contentPage->verRegistros()
+                    'ver-registros'=> $contentPage->verRegistros(),
+                    'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),
+                    'actualizar-agenda' => $contentPage->ActualizarAgendaGobernador()
+
                 ],
 
                 'visitor' =>[
@@ -153,6 +162,14 @@ class viewConstruct{
                     '' => $contentPage->loadFile(),
                     'registrar-archivo' => $contentPage->loadFile(),
                     'ver-registros' => $contentPage->verRegistros(),
+                ], 
+                'agendagobernador' => [
+                    '' => $contentPage->RegistrarAgendaGobernador(),
+                    'registrar-agenda' => $contentPage->RegistrarAgendaGobernador()
+                ],
+                'adminmainpage' => [
+                    '' => $contentPage->Mainpage(), 
+                    'editar' => $contentPage->Mainpage()
                 ]
             ];
 
