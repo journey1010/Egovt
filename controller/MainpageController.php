@@ -33,6 +33,14 @@ class MainpageController extends ViewRenderer {
             'ImgInfoLoreto' => $this->ruta . 'bg01.png', 
             'directorio' => $this->sectionDirectorio(),
         ];
+        list($modal, $script) = $this->sectionModal();
+        if (empty($modal)){
+            $data['modal'] = '';
+            $data['script'] = '';
+        } else {
+            $data['modal'] = $modal;
+            $data['script'] = $script;
+        }
 
         $dataFooter = [
             'logoWhite' => $this->ruta . 'logoWhite.png',
@@ -138,4 +146,80 @@ class MainpageController extends ViewRenderer {
         return $banner;
     }
 
+    private function sectionModal()
+    {
+        $sql = "SELECT img, descripcion FROM modal_paginaprincipal";
+        $stmt = $this->conexion->query($sql, '', '', false);
+        $respuesta = $stmt->fetchAll();
+        if(count($respuesta)>= 1){
+            $ol = '';
+            $carruselItem =  '';
+            $contador  = 0;
+            foreach($respuesta as $row){
+                $img = $this->ruta . 'modal/' . $row['img'];
+                if($contador == 0){
+                    $ol .=<<<Html
+                    <li data-target='#carouselExampleIndicators' data-slide-to='$contador' class='active'></li>
+                    Html;
+                } else {
+                    $ol .=<<<Html
+                    <li data-target='#carouselExampleIndicators' data-slide-to='$contador'></li>
+                    Html;
+                }
+
+                if($contador == 0){
+                    $carruselItem .=<<<Html
+                    <div class='carousel-item active'>
+                        <img class='img-size' src='$img' alt='banner' />
+                        <div class="carousel-caption">
+                            <p>{$row['descripcion']}</p>
+                        </div>
+                    </div>
+                    Html;
+                } else {
+                    $carruselItem .=<<<Html
+                    <div class='carousel-item'>
+                        <img class='img-size' src='$img' alt='banner' />
+                        <div class="carousel-caption">
+                            <p>{$row['descripcion']}</p>
+                        </div>
+                    </div>
+                    Html;
+                }
+                $contador++;
+            }
+            $modal = <<<html
+            <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body d-flex justify-content-center p-0">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    $ol
+                                </ol>
+                                <div class="carousel-inner">
+                                     $carruselItem
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-info">
+                            <button type="button" class="btn btn-default text-white" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            html;
+            $script = <<<html
+            <script>
+                $(document).ready(function() {
+                    $('#largeModal').modal('show');
+                });
+            </script>
+            html;
+        } else {
+            $modal = '';
+            $script = '';
+        }
+        return [$modal,$script];
+    }
 }

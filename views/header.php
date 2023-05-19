@@ -23,7 +23,6 @@
 	<script src="<?= _ROOT_ASSETS . 'js/jquery-3.4.1.min.js' ?>"></script>
 	<script src="<?= _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
 	<script src="<?= _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
-
 	<style>
 		@media(max-width: 700px) {
 			.navbar-collapse {
@@ -37,8 +36,35 @@
 			}
 		}
 	</style>
-</head>
+	<style>
+		.img-size {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+		}
 
+		.modal-dialog {
+			max-width: 700px;
+		}
+
+		.carousel-control-prev-icon,
+		.carousel-control-next-icon {
+			width: 30px;
+			height: 30px;
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+		}
+
+		.carousel-control-prev-icon {
+			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e");
+		}
+
+		.carousel-control-next-icon {
+			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e");
+		}
+	</style>
+
+</head>
 <body>
 	<div id="pageWrapper">
 		<div class="phStickyWrap">

@@ -1,4 +1,5 @@
 <main>
+	<?= $modal ?>
 	<div class="introBlock ibSlider">
 		<?= $banners ?>
 	</div>
@@ -280,3 +281,4 @@
 		</div>
 	</section>
 </main>
+<?= $script ?>
