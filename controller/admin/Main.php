@@ -70,7 +70,7 @@ class Main extends handleSanitize {
 
     public function datosBanner()
     {
-        $campoRequerido = ['id', 'descripcion']; 
+        $campoRequerido = ['id', 'titulo', 'descripcion']; 
         foreach ($campoRequerido as $campo) {
             if (empty ($_POST[$campo])) {
                 $respuesta = array  ("status" =>"error", "message" => "Si ha borrado algún campo del formulario de actualización, debe rellenarlo de nuevo antes de enviarlo. Los campos vacíos pueden causar errores o retrasos en el proceso de actualización.");
@@ -85,26 +85,28 @@ class Main extends handleSanitize {
             $gestorArchivo->setRuta(_ROOT_PATH . '/assets/images/banners/');
 
             $id = $this->SanitizeVarInput($_POST['id']);
+            $titulo = $this->SanitizeVarInput($_POST['titulo']);
             $descripcion = $this->SanitizeVarInput($_POST['descripcion']);
 
             $archivo = $_FILES["archivo"] ?? null;
-            if ($gestorArchivo->validarArchivo($archivo, ['jpg', 'gif', 'webp', 'jpeg']) == true) {
+            if ($gestorArchivo->validarArchivo($archivo, ['jpg', 'webp', 'jpeg']) == true) {
                 $sql = "SELECT banner FROM banners WHERE id_page_principal = :id";
                 $params["id"] = $id;
                 $gestorArchivo->borrarArchivo($sql, $params);
                 $newPathFile = $gestorArchivo->guardarFichero($archivo, $id);
-                $this->updateBanner($conexion, $id, $descripcion, $newPathFile);
+                $this->updateBanner($conexion, $id,$titulo, $descripcion, $newPathFile);
                 return;
             }
-            $this->updateBanner($conexion, $id, $descripcion);
+            $this->updateBanner($conexion, $id, $titulo, $descripcion);
         } catch (Throwable $e) {
             $this->handlerError($e);
         }
     }    
 
-    private function updateBanner ($conexion, $id, $descripcion, $newPathFile = null) 
+    private function updateBanner ($conexion, $id, $titulo, $descripcion, $newPathFile = null) 
     {   
-        $sql = "UPDATE banners_paginaprincipal SET descripcion_banner = :descripcion";
+        $sql = "UPDATE banners_paginaprincipal SET titulo_banner = :titulo, descripcion_banner = :descripcion";
+        $params[":titulo"] = $titulo;
         $params[":descripcion"] = $descripcion;
         try {
             if ($newPathFile !==null) {

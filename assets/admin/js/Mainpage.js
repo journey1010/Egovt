@@ -116,7 +116,8 @@ $(document).ready(function () {
             let formData = new FormData();
             formData.append('id', row.find("td:eq(0)").text());
             formData.append('archivo', row.find('.imgBanner').prop("files")[0]);
-            formData.append('descripcion', row.find("td:eq(2)").text());
+            formData.append('titulo', row.find("td:eq(2)"));
+            formData.append('descripcion', row.find("td:eq(3)").text());
 
             $.ajax({
                 method: 'POST',

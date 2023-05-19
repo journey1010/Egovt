@@ -89,8 +89,9 @@ class Mainpage extends  handleSanitize {
                                 <tr>
                                     <th style ="width: 8px">Id</th>
                                     <th style ="width: 300px">Nombre</th>
+                                    <th style ="width: 300px">Título</th>
                                     <th>Descripcion</th>
-                                    <th style = "width: 10px"></th>
+                                    <th style ="width: 10px"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -182,6 +183,7 @@ class Mainpage extends  handleSanitize {
         $tablaRow = '';
         foreach ($resultado as $row) {
             $id = $row['id_page_principal'];
+            $titulo = $row['titulo_banner'];
             $descripcion = $row['descripcion_banner'];
             $fileName = $row['banner'];
             $filePath = _BASE_URL . '/assets/images/banners/' .  $row['banner'];
@@ -201,6 +203,7 @@ class Mainpage extends  handleSanitize {
                         <label class="custom-file-label text-left" for="imgBanner$id" data-browse="Elegir archivo">$fileName</label>
                     </div>
                 </td>
+                <td class="text-center" style="max-width: 300px;" contenteditable="false">$titulo</td>
                 <td class="text-center" style="max-width: 300px;" contenteditable="false">$descripcion</td>
                 <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">

@@ -104,7 +104,7 @@
 							<ul class="list-unstyled ftpScheduleList mb-0">
 									<li>
 										<i class="icomoon-clock fwSemiBold icn mr-1 mr-sm-0"><span class="sr-only">icon</span></i>
-										<strong class="title font-weight-normal text-white">Horario de atención:</strong>
+										<strong class="title font-weight-normal text-white">Horario de Atención:</strong>
 										<br>
 										<time datetime="2011-01-12">Lunes a Viernes: 7:00  – 15:00 </time>
 									</li>
@@ -115,7 +115,7 @@
 									</li>
 									<li>
 										<i class="fa fa-envelope icn mr-1 mr-sm-0"><span class="sr-only">icon</span></i>
-										<strong class="title font-weight-normal text-white">Correo electronico:</strong>
+										<strong class="title font-weight-normal text-white">Correo Electronico:</strong>
 										<a href="mailto:demo@example.com">infogorel@regiónloreto.gob.pe</a>
 									</li>
 								</ul>
@@ -126,7 +126,7 @@
 			</aside>
 			<footer id="pageFooter" class="text-center bg-dark pt-6 pb-3 pt-md-8 pb-md-5">
 				<div class="container">
-					<p><a href="/">Gobierno Regiónal de Loreto</a> - </a> &copy; 2022. <br class="d-md-none">Todos los derechos reservados</p>
+					<p><a href="/">Gobierno Regiónal de Loreto</a> - </a> &copy; <?= $año ?>. <br class="d-md-none">Todos los derechos reservados</p>
 				</div>
 			</footer>
 		</div>

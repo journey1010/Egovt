@@ -19,13 +19,8 @@ class MainpageController extends ViewRenderer {
         $this->setCacheDir(_ROOT_CACHE . 'pagina_principal');
         $this->setCacheTime(1); 
         list($titulo, $entrada, $mensaje, $frase, $img, $enlaceVideo) = $this->sectionGobernador();
-        list($banner0, $banner1, $banner2, $banner3, $banner4) = $this->sectionBanner();
         $data = [
-            'banner0' => $this->ruta . 'banners/' . $banner0,
-            'banner1' => $this->ruta . 'banners/' . $banner1,
-            'banner2' => $this->ruta . 'banners/' . $banner2,
-            'banner3' => $this->ruta . 'banners/' . $banner3,
-            'banner4' => $this->ruta . 'banners/' . $banner4,
+            'banners' => $this->sectionBanner(),
             'titulo' => $titulo,
             'entrada' => $entrada,
             'mensaje' => $mensaje,
@@ -41,6 +36,7 @@ class MainpageController extends ViewRenderer {
 
         $dataFooter = [
             'logoWhite' => $this->ruta . 'logoWhite.png',
+            'año' => date('Y')
         ];
         $this->render('header', '', false);
         $this->render( 'main', $data, false);
@@ -110,13 +106,36 @@ class MainpageController extends ViewRenderer {
 
     private function sectionBanner()
     {
-        $sql = "SELECT banner FROM banners_paginaprincipal LIMIT 5";
+        $sql = "SELECT banner, titulo_banner, descripcion_banner FROM banners_paginaprincipal LIMIT 5";
         $stmt = $this->conexion->query($sql, '', '', false);
         $respuesta = $stmt->fetchAll();
-        $banner = [];
+        $banner = '';
         foreach($respuesta as $row){
-            $banner[] = $row['banner'];
+            $img = $this->ruta . 'banners/' . $row['banner'];
+            $banner .=<<<Html
+            <div>
+                <article class="d-flex w-100 position-relative ibColumn text-white overflow-hidden">
+                    <div class="alignHolder d-flex align-items-center w-100">
+                        <div class="align w-100 pt-20 pb-20 pt-md-40 pb-md-30 px-md-17">
+                            <div class="container position-relative">
+                                <div class="row">
+                                    <div class="col-12 col-md-9 col-xl-7 fzMedium">
+                                        <h1 class="text-white mb-4 h1large">{$row['titulo_banner']}</h1>
+                                        <p>{$row['descripcion_banner']}</p>
+                                        <a href="https://www.gob.pe/regionloreto" class="btn btnTheme font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0 mt-6" data-hover="Descubre más">
+                                            <span class="d-block btnText">Descubre más</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="ibBgImage bgCover position-absolute" style="background-image: url($img);"></span>
+                </article>
+            </div>
+            Html;
         }
         return $banner;
     }
+
 }
