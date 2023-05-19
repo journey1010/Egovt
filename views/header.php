@@ -57,7 +57,7 @@
 									<li>
 										<time datetime="2011-01-12">
 											<i class="icomoon-clock align-middle icn" style="color: white !important"><span class="sr-only">icon</span></i>
-											Horario de atención: Lun - Vier 7:00 - 15:00
+											Horario de Atención: Lun - Vier 7:00 - 15:00
 										</time>
 									</li>
 								</ul>
@@ -65,7 +65,7 @@
 							<div class="col-md-4 text-center text-md-right">
 								<ul class="list-unstyled hdAlterLinksList mb-0 d-flex justify-content-center justify-content-md-end">
 									<li class="mb-2 mb-md-0" style="margin-top: 3%">
-										<a href="https://www.gob.pe/institucion/regionloreto/funcionarios" target="_blank">
+										<a href="https://www.gob.pe/institucion/regionloreto/funcionarios" alt="Directorio de funcionarios" target="_blank">
 											Directorio
 										</a>
 									</li>
@@ -99,21 +99,21 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gobierno</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/enconstruccion">Acerca de nosotros</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Normatividad</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Organigrama</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Directorio</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/institucional" alt="Acerca de nosotros">Acerca de Nosotros</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/normas-legales/tipos" alt="Normatividad">Normatividad</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNnNyQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f2d4872d6933ba651163a9e889f9934ed198ae21/ordenanza_regional_010.pdf" alt="Organigrama">Organigrama</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/funcionarios" alt="Directorio de funcionarios">Directorio</a></li>
 												</ul>
 											</div>
 										</li>
 										<li class="nav-item dropdown ddohOpener">
-											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Noticias y eventos</a>
+											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Noticias y Eventos</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/noticias">Noticias</a></li>
-													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/campa%C3%B1as">Próximos eventos</a></li>
-													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/normas-legales/tipos">Normas Legales</a></li>
-													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/informes-publicaciones">Informes y publicaciones</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/noticias" alt="Noticias">Noticias</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/campa%C3%B1as" alt="Proximos eventos">Próximos eventos</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/normas-legales/tipos" alt="Normas legales">Normas Legales</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/informes-publicaciones" alt="Informes y publicaciones">Informes y publicaciones</a></li>
 												</ul>
 											</div>
 										</li>
@@ -121,10 +121,10 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servicios</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="https://correo.regionloreto.gob.pe/">Correo Institucional</a></li>
-													<li><a class="dropdown-item" href="https://consulta.regionloreto.gob.pe/">Consulta tu tramite</a></li>
-													<li><a class="dropdown-item" href="https://facilita.gob.pe/t/641">Mesa de partes virtuales</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Formularios y procedimientos</a></li>
+													<li><a class="dropdown-item" href="https://correo.regionloreto.gob.pe/" alt="correo institucional">Correo Institucional</a></li>
+													<li><a class="dropdown-item" href="https://consulta.regionloreto.gob.pe/" alt="consulta tu tramite">Consulta tu tramite</a></li>
+													<li><a class="dropdown-item" href="https://facilita.gob.pe/t/641" alt="Mesa de partes virtuales ">Mesa de partes virtuales</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion" alt="Formularios y procedimientos">Formularios y procedimientos</a></li>
 												</ul>
 											</div>
 										</li>
@@ -132,26 +132,26 @@
 											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transparencia</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="/transparencia/visitas">Visitas</a></li>
-													<li><a class="dropdown-item" href="/transparencia/proyecto-de-inversion-publica">Proyectos de inversión pública</a></li>
-													<li><a class="dropdown-item" href="/transparencia/agendagorel">Actividades oficiales</a></li>
+													<li><a class="dropdown-item" href="/transparencia/visitas" alt="Visitas">Visitas</a></li>
+													<li><a class="dropdown-item" href="/transparencia/proyecto-de-inversion-publica" alt="Proyectos de inversión publica ">Proyectos de Inversión Pública</a></li>
+													<li><a class="dropdown-item" href="/transparencia/agendagorel" alt="Actividades oficiales">Actividades Oficiales</a></li>
 												</ul>
 											</div>
 										</li>
 										<li class="nav-item dropdown ddohOpener">
-											<a class="nav-link dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Entidades relacionadas</a>
+											<a class="nav-link dropdown-toggle dropIcn" alt="Entidades relacionadas" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Entidades Relacionadas</a>
 											<div class="dropdown-menu hdMainDropdown desktopDropOnHover">
 												<ul class="list-unstyled mb-0 hdDropdownList">
-													<li><a class="dropdown-item" href="https://antiguo.regionloreto.gob.pe/corcytec/">Corcytec</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Consejo Regional</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Ordenamiento territorial</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Gerencias y subgerencias</a></li>
-													<li><a class="dropdown-item" href="/enconstruccion">Ordenamiento territorial</a></li>
+													<li><a class="dropdown-item" href="https://antiguo.regionloreto.gob.pe/corcytec/" alt="Corcytec loreto">Corcytec</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion" alt="consejo regional">Consejo Regional</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion" alt="Ordenamiento territorial">Ordenamiento territorial</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion" alt="Gerencias y subgerencias">Gerencias y subgerencias</a></li>
+													<li><a class="dropdown-item" href="/enconstruccion" alt="Ordenamiento territorial">Ordenamiento territorial</a></li>
 												</ul>
 											</div>
 										</li>
 										<li class="nav-item dropdown ddohOpener">
-											<a class="nav-link dropdown-toggle " href="/enconstruccion" aria-haspopup="true" aria-expanded="false">Contacto</a>
+											<a class="nav-link dropdown-toggle " href="https://www.gob.pe/institucion/regionloreto/contacto-y-numeros-de-emergencias" alt="contacto" aria-haspopup="true" aria-expanded="false">Contacto</a>
 										</li>
 									</ul>
 								</div>
@@ -160,8 +160,8 @@
 								<div class="dropdown hdLangDropdown ddohOpener d-none d-lg-block">
 									<a class="d-inline-block align-top dropdown-toggle dropIcn" href="javascript:void(0);" role="button" id="hdLanguagedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Esp</a>
 									<div class="dropdown-menu dropdown-menu-right rounded-lg overflow-hidden desktopDropOnHover p-0 w-100" aria-labelledby="hdLanguagedropdown">
-										<a class="dropdown-item text-center active" href="javascript:void(0);">Esp</a>
-										<a class="dropdown-item text-center" href="javascript:void(0);">Eng</a>
+										<a class="dropdown-item text-center active" href="javascript:void(0);" alt="idioma">Esp</a>
+										<a class="dropdown-item text-center" href="javascript:void(0);" alt="idioma">Eng</a>
 									</div>
 								</div>
 								<button class="navbar-toggler pgNavOpener ml-2 bdrWidthAlter position-relative" type="button" data-toggle="collapse" data-target="#pageMainNavCollapse" aria-controls="pageMainNavCollapse" aria-expanded="false" aria-label="Toggle navigation">

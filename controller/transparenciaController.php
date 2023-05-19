@@ -6,6 +6,12 @@ require_once(_ROOT_MODEL . 'agendaGorel.php');
 
 class transparenciaController extends ViewRenderer
 {
+    private $ruta;
+
+    public function __construct()
+    {
+        $this->ruta = _ROOT_ASSETS . 'images/';
+    }
 
     public function visitasMain()
     {
@@ -15,9 +21,13 @@ class transparenciaController extends ViewRenderer
             'imageNew' => _ROOT_ASSETS . 'images/nuevasVisitas.jpg',
             'imageOld' => _ROOT_ASSETS . 'images/oldVisitas.jpg'
         ];
+        $dataFooter = [
+            'logoWhite' => $this->ruta . 'logoWhite.png',
+            'año' => date('Y')
+        ];
         $this->render('header', '', false);
         $this->render('transparencia/visitasgorel/main', $data, true);
-        $this->render('footer', '', false);
+        $this->render('footer', $dataFooter, false);
     }
 
     public function visitasNew($pagina = 1)
@@ -43,9 +53,13 @@ class transparenciaController extends ViewRenderer
                 "jsMaterialkit" => _ROOT_ASSETS . 'js/material-kit.js',
                 "jsVisitas" => _ROOT_ASSETS . 'jsVisitas.js'
             ];
+            $dataFooter = [
+                'logoWhite' => $this->ruta . 'logoWhite.png',
+                'año' => date('Y')
+            ];
             $this->render('header', '', false);
             $this->render('transparencia/visitasgorel/newVisitas', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -80,9 +94,13 @@ class transparenciaController extends ViewRenderer
         $data = [
             "tablaFila" => $resultado
         ];
+        $dataFooter = [
+            'logoWhite' => $this->ruta . 'logoWhite.png',
+            'año' => date('Y')
+        ];
         $this->render('header', '', false);
         $this->render('transparencia/visitasgorel/oldVisitas', $data, false);
-        $this->render('footer', '', false);
+        $this->render('footer', $dataFooter, false);
     }
     //pip = proyectos de inversion publica
     public function pipTodos($pagina = 1)
@@ -104,9 +122,13 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml
             ];
+            $dataFooter = [
+                'logoWhite' => $this->ruta . 'logoWhite.png',
+                'año' => date('Y')
+            ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -131,9 +153,13 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml
             ];
+            $dataFooter = [
+                'logoWhite' => $this->ruta . 'logoWhite.png',
+                'año' => date('Y')
+            ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -158,9 +184,13 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml
             ];
+            $dataFooter = [
+                'logoWhite' => $this->ruta . 'logoWhite.png',
+                'año' => date('Y')
+            ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -185,9 +215,13 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml
             ];
+            $dataFooter = [
+                'logoWhite' => $this->ruta . 'logoWhite.png',
+                'año' => date('Y')
+            ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -212,9 +246,13 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml
             ];
+            $dataFooter = [
+                'logoWhite' => $this->ruta . 'logoWhite.png',
+                'año' => date('Y')
+            ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -239,9 +277,13 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml
             ];
+            $dataFooter = [
+                'logoWhite' => $this->ruta . 'logoWhite.png',
+                'año' => date('Y')
+            ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -264,7 +306,6 @@ class transparenciaController extends ViewRenderer
         }
     }
 
-    //modulo de agenda
     public function agendaGorel($pagina = 1)
     {
         if (!is_numeric($pagina)) {
@@ -277,16 +318,20 @@ class transparenciaController extends ViewRenderer
             $this->setCacheDir(_ROOT_CACHE . 'transparencia/agendaGorel/');
             $this->setCacheTime(1);
 
-            $aG = new agendaGorel();
-            list($tablaFila, $paginadorHtml) = $aG->verAgenda($pagina);
+            $agendaGorel = new agendaGorel();
+            list($tablaFila, $paginadorHtml) = $agendaGorel->verAgenda($pagina);
 
             $data = [
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml
             ];
+            $dataFooter = [
+                'logoWhite' => $this->ruta . 'logoWhite.png',
+                'año' => date('Y')
+            ];
             $this->render('header', '', false);
             $this->render('transparencia/agendaGorel/agendaGorel', $data, false);
-            $this->render('footer', '', false);            
+            $this->render('footer', $dataFooter, false);            
         }catch (Throwable $e) {
             $this->handleError($e);
         }
