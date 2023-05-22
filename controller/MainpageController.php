@@ -202,8 +202,8 @@ class MainpageController extends ViewRenderer {
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer bg-info">
-                            <button type="button" class="btn btn-default text-white" data-dismiss="modal">Cerrar</button>
+                        <div class="modal-footer" style="background-color:#06163A">
+                            <a class="stretched-link text-white" href="javascript:void(0)" data-dismiss="modal"><i class="fas fa-window-close fa-lg" style="color: #d41142;"></i></a>
                         </div>
                     </div>
                 </div>
