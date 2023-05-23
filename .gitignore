@@ -3,3 +3,4 @@ log/error.log
 .README.md
 .gitignore
 .env
+.cpanel.yml
