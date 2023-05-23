@@ -133,6 +133,9 @@ class AgendaGobernador extends handleSanitize
     private function insertInto($fecha, $tema, $hora = NULL, $organizador = NULL, $lugar = NULL, $participantes = NULL, $actividad = NULL)
     {
         $sql = "INSERT INTO agenda (fecha, hora, actividad, tema, organiza, lugar, participante) VALUES (?,?,?,?,?,?,?)";
+        if($hora == ''){
+            $hora = NULL;
+        }
         $params = [$fecha, $hora, $actividad, $tema, $organizador, $lugar, $participantes];
         try {
             $this->conexion->query($sql, $params, '', false);
@@ -151,7 +154,7 @@ class AgendaGobernador extends handleSanitize
             ':hora' => $hora,
             ':actividad'=> $actividad,
             ':tema'=> $tema,
-            ':organiza'=> $hora,
+            ':organiza'=> $organizador,
             ':lugar'=>$lugar,
             ':participante'=>$participantes,
             'id'=>$id
