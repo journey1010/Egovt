@@ -157,6 +157,79 @@ $(document).on("submit", "#registrarVisitas", function (event) {
   }
 });
 
+$(document).on("submit", "#regularizarVisitas", function (event){
+  event.preventDefault();
+  if(
+    $("#dniVisita").val() === "" ||
+    $("#apellidos_nombres").val() === "" ||
+    $("#oficina option:selected").text() === "" ||
+    $("#quien_autoriza option:selected").text() === "" ||
+    $("#hora_de_ingreso").val() === "" ||
+    $("#hora_de_salida").val() === ""
+  ) {
+    Toast.fire({
+      background: "#E8EC14",
+      icon: "warning",
+      iconColor: "#000000",
+      title: "Debe llenar todos los campos obligatorios",
+    });
+  } else {
+    let formData = {
+      dniVisita: $("#dniVisita").val(),
+      apellidosNombres: $("#apellidos_nombres").val(),
+      oficina: $("#oficina option:selected").val(),
+      personaAVisitar: $("#persona_a_visitar").val(),
+      horaDeIngreso: $("#hora_de_ingreso").val(),
+      quienAutoriza: $("#quien_autoriza option:selected").val(),
+      motivo: $("#motivo").val(),
+      horaDeSalida: $("#hora_de_salida").val()
+    };
+
+    $.ajax({
+      url: '/administrador/regularizar-visitas',
+      method: 'POST',
+      data: formData,
+      beforeSend: function () {
+        $("#btn btn-primary").html("Guardando...");
+      },
+      success: function (response) {
+        $("#btn btn-primary").html("Guardar");
+        let resp = JSON.parse(response);
+        if(resp.status === 'success'){
+          Toast.fire({
+            icon: "success",
+            title: resp.message,
+          });
+        } else{
+          Toast.fire({
+            icon: "error",
+            title: resp.message,
+          });
+        }
+        $("#dniVisita").val("");
+        $("#apellidos_nombres").val("");
+        $("#quien_autoriza").val("");
+        $("#motivo").val("");
+        $("#hora_de_ingreso").val("");
+        $("#hora_de_salida").val("");
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        $("#dniVisita").val("");
+        $("#apellidos_nombres").val("");
+        $("#oficina").val(null).trigger("change"); // restablecer el select
+        $("#persona_a_visitar").val("");
+        $("#quien_autoriza").val("");
+        $("#motivo").val("");
+        Toast.fire({
+          icon: "error",
+          title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+          background: "#ff0000",
+        });
+      }
+    });
+  }
+});
+
 //Actualizar visitas, funcionalidad de iconos de la tabla
 $(document).on("click", ".edit-icon", edit);
 function edit() {

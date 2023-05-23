@@ -61,6 +61,13 @@ class contentPageOptions {
         return $resultado;
     }
 
+    public function RegularizarVisitas()
+    {
+        $visitas =  new visitas ();
+        $resultado = $visitas->RegularizarVisitas();
+        return $resultado;
+    }
+
     public function RegistrarObras()
     {
         $obras = new obras();
