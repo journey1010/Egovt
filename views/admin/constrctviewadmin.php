@@ -167,7 +167,8 @@ class viewConstruct{
                 ], 
                 'agendagobernador' => [
                     '' => $contentPage->RegistrarAgendaGobernador(),
-                    'registrar-agenda' => $contentPage->RegistrarAgendaGobernador()
+                    'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),
+                    'actualizar-agenda' => $contentPage->ActualizarAgendaGobernador()
                 ],
                 'adminmainpage' => [
                     '' => $contentPage->Mainpage(), 
