@@ -96,6 +96,48 @@ class visitas extends handleSanitize{
         }
     }
 
+    public function RegularizarVisita()
+    {
+        try {
+            $camposRequeridos = ['dniVisita', 'apellidosNombres', 'oficina', 'personaAVisitar', 'horaDeIngreso', 'quienAutoriza', 'motivo', 'horaDeSalida'];
+            foreach($camposRequeridos as $campo){
+                extract( [$campo => $this->SanitizeVarInput( $_POST[$campo])]);
+            }
+            $oficina = explode('-', $oficina);
+            $oficina = $oficina[0];
+            $conexion = new MySQLConnection();
+            $sqlSentence = 'INSERT INTO visitas (
+                apellidos_nombres, 
+                dni,
+                area_que_visita, 
+                persona_a_visitar, 
+                hora_de_ingreso,
+                quien_autoriza, 
+                motivo,
+                hora_de_salida
+            ) VALUES (
+                ?,?,?,?,?,?,?,?
+            )';
+            $params = [
+                $apellidosNombres, 
+                $dniVisita, 
+                $oficina, 
+                $personaAVisitar, 
+                $horaDeIngreso, 
+                $quienAutoriza, 
+                $motivo,
+                $horaDeSalida
+            ];
+            $conexion->query($sqlSentence, $params, '', false);
+            $respuesta = array('status'=>'success', 'message'=>'Registro guardado');
+            echo (json_encode($respuesta));
+        } catch(Throwable $e) {
+            $this->handlerError($e);
+            $respuesta = array('status' => 'error', 'message'=>'Algo salió mal!');
+            echo(json_encode($respuesta));
+        }
+    }
+
     public function Obtenerfuncionarios ()
     {
         $conexion = new MySQLConnection();
