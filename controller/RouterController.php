@@ -78,7 +78,7 @@ class Router extends AbstractController{
                 return;
             }
         }
-
+        
         $this->renderView('ErrorView');
     }
 

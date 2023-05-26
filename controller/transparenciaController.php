@@ -1,4 +1,7 @@
 <?php
+
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat\DateFormatter;
+
 require_once(_ROOT_CONTROLLER . 'viewsRender.php');
 require_once(_ROOT_MODEL . 'visitas.php');
 require_once(_ROOT_MODEL . 'proyectosInversionPublica.php');
@@ -51,10 +54,11 @@ class transparenciaController extends ViewRenderer
                 "link" => _ROOT_ASSETS . 'css/datepicker.css',
                 "jsDatapicker" => _ROOT_ASSETS . 'js/bootstrap-datepicker.js',
                 "jsMaterialkit" => _ROOT_ASSETS . 'js/material-kit.js',
-                "jsVisitas" => _ROOT_ASSETS . 'jsVisitas.js'
+                "jsVisitas" => _ROOT_ASSETS . 'jsVisitas.js',
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
             $dataFooter = [
-                'logoWhite' => $this->ruta . 'logoWhite.png',
                 'año' => date('Y')
             ];
             $this->render('header', '', false);
@@ -92,10 +96,11 @@ class transparenciaController extends ViewRenderer
         $visitas = new visitas();
         $resultado = $visitas->visitasOld();
         $data = [
-            "tablaFila" => $resultado
+            "tablaFila" => $resultado,
+            "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+            "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
         ];
         $dataFooter = [
-            'logoWhite' => $this->ruta . 'logoWhite.png',
             'año' => date('Y')
         ];
         $this->render('header', '', false);
@@ -120,10 +125,11 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
             $dataFooter = [
-                'logoWhite' => $this->ruta . 'logoWhite.png',
                 'año' => date('Y')
             ];
             $this->render('header', '', false);
@@ -151,10 +157,11 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
             $dataFooter = [
-                'logoWhite' => $this->ruta . 'logoWhite.png',
                 'año' => date('Y')
             ];
             $this->render('header', '', false);
@@ -182,10 +189,11 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
             $dataFooter = [
-                'logoWhite' => $this->ruta . 'logoWhite.png',
                 'año' => date('Y')
             ];
             $this->render('header', '', false);
@@ -213,10 +221,11 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
             $dataFooter = [
-                'logoWhite' => $this->ruta . 'logoWhite.png',
                 'año' => date('Y')
             ];
             $this->render('header', '', false);
@@ -244,10 +253,11 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
             $dataFooter = [
-                'logoWhite' => $this->ruta . 'logoWhite.png',
                 'año' => date('Y')
             ];
             $this->render('header', '', false);
@@ -275,10 +285,11 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
             $dataFooter = [
-                'logoWhite' => $this->ruta . 'logoWhite.png',
                 'año' => date('Y')
             ];
             $this->render('header', '', false);
@@ -323,16 +334,50 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "link" => _ROOT_ASSETS . 'css/datepicker.css',
+                "jsDatapicker" => _ROOT_ASSETS . 'js/bootstrap-datepicker.js',
+                "jsMaterialkit" => _ROOT_ASSETS . 'js/material-kit.js',
+                "paginator" => _ROOT_ASSETS . 'js/pagination.min.js'
+                
             ];
             $dataFooter = [
-                'logoWhite' => $this->ruta . 'logoWhite.png',
                 'año' => date('Y')
             ];
             $this->render('header', '', false);
             $this->render('transparencia/agendaGorel/agendaGorel', $data, false);
             $this->render('footer', $dataFooter, false);            
         }catch (Throwable $e) {
+            $this->handleError($e);
+        }
+    }
+    
+    public function agendaGorelPost()
+    {   
+        $camposRequeridos = ['fechaDesde', 'fechaHasta', 'palabra'];
+        foreach($camposRequeridos as $campo){
+            extract([$campo =>htmlspecialchars($_POST[$campo])]);
+        }
+        try {
+            $fechaDesde = date_format(date_create_from_format('d/m/Y', $fechaDesde), 'Y-m-d');
+            $fechaHasta = date_format(date_create_from_format('d/m/Y', $fechaHasta), 'Y-m-d');
+        } catch (Throwable $e) {
+            $respuesta = array('status' => 'error');
+            echo (json_encode($respuesta));
+            return;
+        }
+
+        if($fechaDesde === FALSE or $fechaHasta === FALSE){
+            $respuesta = array('status'=>'error', 'data'=>'');
+            echo(json_encode($respuesta));
+            return;
+        }
+        try{
+            $agendaGorel = new agendaGorel();
+            $resultado = $agendaGorel->buscarAgenda($fechaDesde, $fechaHasta, $palabra);
+            $respuesta = array('status'=>'success', 'data'=>$resultado);
+            echo (json_encode($respuesta));
+        } catch(Throwable $e){
             $this->handleError($e);
         }
     }

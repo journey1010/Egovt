@@ -52,7 +52,7 @@ class visitas extends handleSanitize {
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="quien_autoriza">¿Quién autoriza? *</label>
-                                <select id="quien_autoriza" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
+                                <select id="quien_autoriza" class="form-control select2 select2-hidden-accessible" data-placeholder="" style="width: 100%; 
                                     height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
                                     $selectFuncionario
                                 </select>
