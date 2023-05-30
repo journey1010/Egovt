@@ -1,12 +1,5 @@
 import { Toast } from './Toast.js';
-
-$(document).ready(select2);
-function select2() {
-  $(".select2").select2({
-    closeOnSelect: true,
-  });
-}
-
+let formularioIndex = 1;
 
 $(document).on('submit', '#registrarAgenda', function(event){
     event.preventDefault();
@@ -64,6 +57,19 @@ $(document).on('submit', '#registrarAgenda', function(event){
             }
         });
     }
+});
+
+$('.insert-agenda').click(function(){
+    let nuevoFormulario = $('#registrarAgenda').clone();
+    nuevoFormulario.find('[id]').each(function() {
+        let idActual = $(this).attr('id');
+        let nuevoId = idActual + '-' + formularioIndex;
+        $(this).attr('id', nuevoId);
+    });
+    console.log('clonando');
+    nuevoFormulario.find('input, textarea').val('');
+    nuevoFormulario.append('.contenedorFormularios');
+    formularioIndex++; 
 });
 
 $(document).on('click', '#limpiarAgendaFiltro', limpiarFiltroAgenda);
