@@ -36,10 +36,11 @@
             </div>
             <?= $paginadorHtml ?>
         </div>
-        <div id="spinner" class="d-flex mt-1" style="display:none;">
-            <i class="fa fa-spinner"></i> Cargando...
+        <div  class="d-flex justify-content-center" >
+            <div id="spinner" class="spinner-border text-success" role="status" style="display:none">
+                <span class="sr-only">Loading...</span>
+            </div>
         </div>
-
     </section>
 </main>
 <script src="<?= $jsDatapicker ?>"></script>
@@ -58,10 +59,9 @@
             method: 'POST',
             data: formData,
             beforeSend: function(){
-                $('#spinner').show();
+                $('#spinner').hide();
             },
             success: function(response){
-                $('#spinner').hide();
                 let resp = JSON.parse(response);
                 if(resp.status === 'success'){
                     $('.agendas').html('<div class="row datos"></div>');
@@ -77,11 +77,14 @@
     function generarElementosPaginados(data) {
         $('.agendas').pagination({
             dataSource: data,
-            pageSize: 6,
+            pageSize: 10,
+            ulClassName: 'pagination justify-content-center pt-2',
             callback: function(data, pagination) {
-                $('.agendas').after(data.join(''));
+                $('.datos').append(data.join(''));
+                $('.paginationjs li').addClass('page-item');
+                $('.paginationjs a').addClass('page-link');
             },
-            ulClassName: 'pagination justify-content-center pt-2'
+
         });
     }
 </script>

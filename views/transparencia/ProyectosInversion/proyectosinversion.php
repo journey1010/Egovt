@@ -53,7 +53,7 @@
 											<input id="palabra" type="text" class="form-control inputHeightMedium inputBdrTransparent d-block w- shadow">
 										</div>
 									</div>
-									<button id="buscar" type="button" class="btn btnTheme ml-lg-3 mt-4 mt-lg-0 ml-auto mr-auto mr-lg-0 font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0" data-hover="Iniciar busqueda">
+									<button id="buscar" type="button" class="btn btnTheme ml-lg-3 mt-4 mt-lg-0 ml-auto mr-auto mr-lg-0 font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0" data-hover="Buscar">
 										<span class="d-block btnText">Buscar</span>
 									</button>
 								</div>

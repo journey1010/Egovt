@@ -87,7 +87,7 @@ class agendaGorel
     {
         $conexion = new MySQLConnection();
         $sql = "SELECT * FROM agenda WHERE 1=1";
-        $params = [];
+        $params = array();
         if(!empty($fechaDesde)){
             $sql .= " AND fecha  >= :fecha_desde";
             $params[':fecha_desde'] = $fechaDesde;
@@ -97,8 +97,12 @@ class agendaGorel
             $params[':fecha_hasta']=$fechaHasta;
         }
         if(!empty($palabra)){
-            $sql .= " AND (actividad LIKE :palabra OR tema LIKE :palabra OR organiza LIKE :palabra OR lugar LIKE :palabra OR participante LIKE :palabra)";
-            $params[':palabra'] = $palabra;
+            $sql .= " AND (actividad LIKE :palabra1 OR tema LIKE :palabra2 OR organiza LIKE :palabra3 OR lugar LIKE :palabra4 OR participante LIKE :palabra5)";
+            $params[':palabra1'] = '%' . $palabra . '%';
+            $params[':palabra2'] = '%' . $palabra . '%';
+            $params[':palabra3'] = '%' . $palabra . '%';
+            $params[':palabra4'] = '%' . $palabra . '%';
+            $params[':palabra5'] = '%' . $palabra . '%';
         }
         $sql .= " LIMIT 500 ";
         try {
