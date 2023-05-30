@@ -1,28 +1,45 @@
 import { Toast } from './Toast.js';
 let formularioIndex = 1;
 
-$(document).on('submit', '#registrarAgenda', function(event){
+$(document).on('click', '#enviarForm', function(event){
     event.preventDefault();
-    if ($('#fechaAgenda').val() == '' || $('#temaAgenda').val() == ''){
-        Toast.fire({
-            icon: 'warning',
-            title: 'Por favor, tiene que completar los campos obligatorios.'
+    let formularios = $('.form-agenda');
+    let temaRequerido = true;
+    let fechaRequerido = true;
+    formularios.each(function(){
+        let formulario = $(this);
+        let camposRequeridos1 = formulario.find('[id^="temaAgenda"]');
+        camposRequeridos1.each(function(){
+            let campo = $(this);
+            if(campo.val() === ''){
+                temaRequerido = false;
+                campo.css('border-color', 'red');
+            }
         });
-    } else {
-        let formData = {
-            fecha: $('#fechaAgenda').val(),
-            hora: $('#horaAgenda').val(),
-            organizador: $('#organizaAgenda').val(),
-            lugar: $('#lugarAgenda').val(),
-            participantes: $('#participantesAgenda').val(),
-            tema: $('#temaAgenda').val(),
-            actividad: $('#descripcionAgenda').val()
-        }
 
+        let camposRequeridos2 = formulario.find('[id^="fechaAgenda"]');
+        camposRequeridos2.each(function(){
+            let campo2 = $(this);
+            if(campo2.val() === ''){
+                fechaRequerido = false;
+                campo2.css('border-color', 'red');
+            }
+        });
+
+    });
+
+    if( temaRequerido === true && fechaRequerido === true){
+        let Forms = $('.contenedorFormularios form');
+        let dataForms = [];
+        Forms.each(function(){
+            let formulario = $(this);
+            let datos = formulario.serialize();
+            dataForms.push(datos);
+        });
         $.ajax({
             url: '/administrador/agenda/registrar-agenda',
             method: 'POST',
-            data: formData,
+            data: {formulario : dataForms},
             beforeSend: function(){
                 $('.btn.btn-primary.mt-2').text('Enviado');
             },
@@ -33,13 +50,6 @@ $(document).on('submit', '#registrarAgenda', function(event){
                         icon: 'success',
                         title: resp.message
                     });
-                    $('#fechaAgenda').val('');
-                    $('#horaAgenda').val('');
-                    $('#organizaAgenda').val('');
-                    $('#lugarAgenda').val('');
-                    $('#participantesAgenda').val('');
-                    $('#temaAgenda').val('');
-                    $('#descripcionAgenda').val('');
                 } else {
                     Toast.fire({
                         icon: 'error',
@@ -56,20 +66,35 @@ $(document).on('submit', '#registrarAgenda', function(event){
                 });
             }
         });
+    } else {
+        Toast.fire({
+            icon: 'warning',
+            title: 'Verifique los campos obligatorios. Los campos obligatorios deben estar completos.'
+        })
     }
 });
 
-$('.insert-agenda').click(function(){
-    let nuevoFormulario = $('#registrarAgenda').clone();
+
+$('.insert-agenda').click(insertForm);
+function insertForm(){
+    let formularioOriginal = $('.registrarAgenda');
+    let nuevoFormulario = formularioOriginal.clone();
+    
     nuevoFormulario.find('[id]').each(function() {
         let idActual = $(this).attr('id');
         let nuevoId = idActual + '-' + formularioIndex;
         $(this).attr('id', nuevoId);
     });
-    console.log('clonando');
-    nuevoFormulario.find('input, textarea').val('');
-    nuevoFormulario.append('.contenedorFormularios');
+    nuevoFormulario.removeClass('registrarAgenda');
+    nuevoFormulario.find('textarea').val('');
+    nuevoFormulario.appendTo('.contenedorFormularios');
+    nuevoFormulario.append(`<div class="m-2 d-flex justify-content-end"><a class="btn btn-danger btn-sm eliminar-form" alt="Eliminar" title="Eliminar formulario"><i class="fas fa-trash-alt"></i></a></div>`);
+    
     formularioIndex++; 
+}
+
+$(document).on('click', '.eliminar-form', function(){
+    $(this).closest('form').remove();
 });
 
 $(document).on('click', '#limpiarAgendaFiltro', limpiarFiltroAgenda);

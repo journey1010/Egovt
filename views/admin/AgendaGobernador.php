@@ -20,11 +20,11 @@ class AgendaGobernador extends handleSanitize
             <div class="card-header text-white" style="background-color:#1291ab;">
                 <h3 class="card-title">Registrar Agenda de Gobernación</h3>
             </div>
-            <div class="m-2 d-flex justify-content-end">
+            <div class="mt-2 mr-2 d-flex justify-content-end">
                 <a class="btn btn-primary btn-sm insert-agenda" alt="Insertar" title="Agregar nuevo formulario"><i class="fa fa-plus-circle"></i></a>
             </div>
             <div class="contenedorFormularios">
-                <form id="registrarAgenda bg-light mt-1">
+                <form class="registrarAgenda form-agenda bg-light mt-3">
                     <div class="card-body">
                         <div class="row ">
                             <div class="col-md-4 campoOpcional">
@@ -51,20 +51,16 @@ class AgendaGobernador extends handleSanitize
                                 <label for="participantesAgenda">Participantes</label>
                                 <input type="text" class="form-control" id="participantesAgenda"  placeholder="¿Quién o Quiénes participan?" value=""> 
                             </div>
-
                             <div class="col-md-12 campoOpcional">
                                 <label for="descripcion">Actividad de Agenda</label>
                                 <textarea type="text" class="form-control text-content" id="descripcionAgenda" placeholder="Por favor, ingrese una descripción más detallada con respecto al tema de la agenda." style="min-height: 100px; max-width: 100%"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="m-2 d-flex justify-content-end">
-                        <a class="btn btn-danger btn-sm eliminar-agenda" alt="Eliminar" title="Eliminar formulario"><i class="fas fa-trash-alt"></i></a>
-                    </div>
                 </form>
             </div>
             <div class="card-footer mt-3">
-                <button type="submit" class="btn btn-primary mt-2">Guardar Agenda</button>
+                <button type="button" id="enviarForm" class="btn btn-primary mt-2">Guardar Agenda</button>
             </div>
         </div>
         <script type ="module" src="$ruta" defer></script>
