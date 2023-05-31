@@ -20,44 +20,48 @@ class AgendaGobernador extends handleSanitize
             <div class="card-header text-white" style="background-color:#1291ab;">
                 <h3 class="card-title">Registrar Agenda de Gobernación</h3>
             </div>
-            <form id="registrarAgenda">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4 campoOpcional">
-                            <label for="temaAgenda">Tema de Agenda (Obligatorio)</label>
-                            <input type="text" class="form-control" id="temaAgenda" value="">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="fechaAgenga">Fecha de Agenda (Obligatorio)</label>
-                            <input type="date" class="form-control" id="fechaAgenda" value="">
-                        </div>
-                        <div class="col-md-4 campoOpcional">
-                            <label for="horaAgenda">Hora de Agenda</label>
-                            <input type="time" class="form-control" id="horaAgenda" value="">
-                        </div>
-                        <div class="col-md-4 campoOpcional">
-                            <label for="organizaAgenda">Organizador</label>
-                            <input type="text" class="form-control" id="organizaAgenda" placeholder="¿Quién organiza?" value="">
-                        </div>
-                        <div class="col-md-4 campoOpcional">
-                            <label for="lugarAgenda">Lugar</label>
-                            <input type="text" class="form-control" id="lugarAgenda" placeholder="¿Dónde se realizará?" value="">
-                        </div>
-                        <div class="col-md-4 campoOpcional">
-                            <label for="participantesAgenda">Participantes</label>
-                            <input type="text" class="form-control" id="participantesAgenda"  placeholder="¿Quién o Quiénes participan?" value=""> 
-                        </div>
-
-                        <div class="col-md-12 campoOpcional">
-                            <label for="descripcion">Actividad de Agenda</label>
-                            <textarea type="text" class="form-control text-content" id="descripcionAgenda" placeholder="Por favor, ingrese una descripción más detallada con respecto al tema de la agenda." style="min-height: 100px; max-width: 100%"></textarea>
+            <div class="mt-2 mr-2 d-flex justify-content-end">
+                <a class="btn btn-primary btn-sm insert-agenda" alt="Insertar" title="Agregar nuevo formulario"><i class="fa fa-plus-circle"></i></a>
+            </div>
+            <div class="contenedorFormularios">
+                <form class="registrarAgenda form-agenda bg-light mt-3">
+                    <div class="card-body">
+                        <div class="row ">
+                            <div class="col-md-4 campoOpcional">
+                                <label for="temaAgenda">Tema de Agenda (Obligatorio)</label>
+                                <input type="text" class="form-control" name="temaAgenda" value="">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fechaAgenga">Fecha de Agenda (Obligatorio)</label>
+                                <input type="date" class="form-control" name="fechaAgenda" value="">
+                            </div>
+                            <div class="col-md-4 campoOpcional">
+                                <label for="horaAgenda">Hora de Agenda</label>
+                                <input type="time" class="form-control" name="horaAgenda" value="">
+                            </div>
+                            <div class="col-md-4 campoOpcional">
+                                <label for="organizaAgenda">Organizador</label>
+                                <input type="text" class="form-control" name="organizaAgenda" placeholder="¿Quién organiza?" value="">
+                            </div>
+                            <div class="col-md-4 campoOpcional">
+                                <label for="lugarAgenda">Lugar</label>
+                                <input type="text" class="form-control" name="lugarAgenda" placeholder="¿Dónde se realizará?" value="">
+                            </div>
+                            <div class="col-md-4 campoOpcional">
+                                <label for="participantesAgenda">Participantes</label>
+                                <input type="text" class="form-control" name="participantesAgenda"  placeholder="¿Quién o Quiénes participan?" value=""> 
+                            </div>
+                            <div class="col-md-12 campoOpcional">
+                                <label for="descripcion">Actividad de Agenda</label>
+                                <textarea type="text" class="form-control text-content" name="descripcionAgenda" placeholder="Por favor, ingrese una descripción más detallada con respecto al tema de la agenda." style="min-height: 100px; max-width: 100%"></textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer mt-3">
-                    <button type="submit" class="btn btn-primary mt-2">Guardar Agenda</button>
-                </div>
-        </form>
+                </form>
+            </div>
+            <div class="card-footer mt-3">
+                <button type="button" id="enviarForm" class="btn btn-primary mt-2">Guardar Agenda</button>
+            </div>
         </div>
         <script type ="module" src="$ruta" defer></script>
         Html;
