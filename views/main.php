@@ -234,7 +234,7 @@
 										<strong class="d-block font-weight-normal fontBase echCatTitle mb-1">Ayuda social</strong>
 										<span class="d-block">Observatorio de violencia regional</span>
 									</h3>
-									<a href="https://www.observatorioviolencia.regionloreto.com/" alt="Observatorio de violencia regional" class="d-inline-block" title="Observatorio regional contra la violencia"><i class="rounded-circle icomoon-arrowRight d-flex align-items-center justify-content-center bg-white text-dark spanLinkGo"><span class="sr-only">icon</span></i></a>
+									<a href="https://observatoriodeviolencia.regionloreto.gob.pe/" alt="Observatorio de violencia regional" class="d-inline-block" title="Observatorio regional contra la violencia"><i class="rounded-circle icomoon-arrowRight d-flex align-items-center justify-content-center bg-white text-dark spanLinkGo"><span class="sr-only">icon</span></i></a>
 								</div>
 							</div>
 						</div>

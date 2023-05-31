@@ -53,7 +53,7 @@
 						<div class="col-12 col-sm-6 col-md-5 col-xl-3 mb-6">
 							<div class="ftLogo mt-md-1 mb-6">
 								<a href="/" target="_self" title="página principal ">
-									<img src="<?= $logoWhite ?>" class="img-fluid" alt="Logo blanco gorel">
+									<img src="<?= _ROOT_ASSETS . 'images/logoWhite.webp' ?>" class="img-fluid" alt="Logo blanco gorel">
 								</a>
 							</div>
 							<address class="mb-0 ftPlace">
