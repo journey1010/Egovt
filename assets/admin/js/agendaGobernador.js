@@ -29,17 +29,21 @@ $(document).on('click', '#enviarForm', function(event){
     });
 
     if( temaRequerido === true && fechaRequerido === true){
-        let Forms = $('.contenedorFormularios form');
+        let Forms = $('.contenedorFormularios .form-agenda');
         let dataForms = [];
         Forms.each(function(){
             let formulario = $(this);
-            let datos = formulario.serialize();
+            let datos = {};
+            formulario.serializeArray().forEach(function(item) {
+                datos[item.name] = item.value;
+              });
             dataForms.push(datos);
         });
+       
         $.ajax({
             url: '/administrador/agenda/registrar-agenda',
             method: 'POST',
-            data: {formulario : dataForms},
+            data: {dataForms : dataForms},
             beforeSend: function(){
                 $('.btn.btn-primary.mt-2').text('Enviado');
             },
@@ -80,11 +84,6 @@ function insertForm(){
     let formularioOriginal = $('.registrarAgenda');
     let nuevoFormulario = formularioOriginal.clone();
     
-    nuevoFormulario.find('[id]').each(function() {
-        let idActual = $(this).attr('id');
-        let nuevoId = idActual + '-' + formularioIndex;
-        $(this).attr('id', nuevoId);
-    });
     nuevoFormulario.removeClass('registrarAgenda');
     nuevoFormulario.find('textarea').val('');
     nuevoFormulario.appendTo('.contenedorFormularios');

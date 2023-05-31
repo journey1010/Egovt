@@ -29,31 +29,31 @@ class AgendaGobernador extends handleSanitize
                         <div class="row ">
                             <div class="col-md-4 campoOpcional">
                                 <label for="temaAgenda">Tema de Agenda (Obligatorio)</label>
-                                <input type="text" class="form-control" id="temaAgenda" value="">
+                                <input type="text" class="form-control" name="temaAgenda" value="">
                             </div>
                             <div class="col-md-4">
                                 <label for="fechaAgenga">Fecha de Agenda (Obligatorio)</label>
-                                <input type="date" class="form-control" id="fechaAgenda" value="">
+                                <input type="date" class="form-control" name="fechaAgenda" value="">
                             </div>
                             <div class="col-md-4 campoOpcional">
                                 <label for="horaAgenda">Hora de Agenda</label>
-                                <input type="time" class="form-control" id="horaAgenda" value="">
+                                <input type="time" class="form-control" name="horaAgenda" value="">
                             </div>
                             <div class="col-md-4 campoOpcional">
                                 <label for="organizaAgenda">Organizador</label>
-                                <input type="text" class="form-control" id="organizaAgenda" placeholder="¿Quién organiza?" value="">
+                                <input type="text" class="form-control" name="organizaAgenda" placeholder="¿Quién organiza?" value="">
                             </div>
                             <div class="col-md-4 campoOpcional">
                                 <label for="lugarAgenda">Lugar</label>
-                                <input type="text" class="form-control" id="lugarAgenda" placeholder="¿Dónde se realizará?" value="">
+                                <input type="text" class="form-control" name="lugarAgenda" placeholder="¿Dónde se realizará?" value="">
                             </div>
                             <div class="col-md-4 campoOpcional">
                                 <label for="participantesAgenda">Participantes</label>
-                                <input type="text" class="form-control" id="participantesAgenda"  placeholder="¿Quién o Quiénes participan?" value=""> 
+                                <input type="text" class="form-control" name="participantesAgenda"  placeholder="¿Quién o Quiénes participan?" value=""> 
                             </div>
                             <div class="col-md-12 campoOpcional">
                                 <label for="descripcion">Actividad de Agenda</label>
-                                <textarea type="text" class="form-control text-content" id="descripcionAgenda" placeholder="Por favor, ingrese una descripción más detallada con respecto al tema de la agenda." style="min-height: 100px; max-width: 100%"></textarea>
+                                <textarea type="text" class="form-control text-content" name="descripcionAgenda" placeholder="Por favor, ingrese una descripción más detallada con respecto al tema de la agenda." style="min-height: 100px; max-width: 100%"></textarea>
                             </div>
                         </div>
                     </div>
