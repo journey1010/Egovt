@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?= $link ?>">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="<?= $dataTableCss?>">
 <style>
     .details-control {
         display: inline-block;
@@ -59,7 +59,7 @@
 </main>
 <script src="<?= $jsDatapicker ?>"></script>
 <script src="<?= $jsMaterialkit ?>"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="<?= $dataTableJs ?>"></script>
 <script id="rowChildDatatable">
     $(document).ready(function() {
         var table = $('#tabla').DataTable({

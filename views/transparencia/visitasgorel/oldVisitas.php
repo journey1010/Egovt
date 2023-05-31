@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="<?= $dataTableCss?>">
 <main class="breadcrumb">
     <div class="container-fluid">
         <div class="container bg-white p-3">
@@ -24,7 +24,7 @@
         </div>
     </div>
 </main>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="<?= $dataTableJs ?>"></script>
 <script id="rowChildDatatable">
     $(document).ready(function() {
         var table = $('#tabla').DataTable({

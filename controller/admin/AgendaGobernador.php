@@ -13,18 +13,25 @@ class AgendaGobernador extends handleSanitize
     public function registrar()
     {
         try{
-            $camposRequeridos = ['fecha', 'hora', 'organizador', 'lugar', 'participantes', 'tema', 'actividad'];
-            foreach($camposRequeridos as $campo){
-                if(array_key_exists($campo, $_POST)){
-                    extract([$campo => $this->SanitizeVarInput($_POST[$campo])]);
-                } else {
-                    extract([$campo => NULL]);
+            $nForm = 1;
+            $camposRequeridos = ['fechaAgenda', 'horaAgenda', 'organizaAgenda', 'lugarAgenda', 'participantesAgenda', 'temaAgenda', 'descripcionAgenda'];
+            $formularios = $_POST['dataForms'];
+            foreach($formularios as $formulario ){
+                foreach($formulario as $campo => $valor){
+                    if(in_array($campo, $camposRequeridos)){
+                        extract([$campo => $this->SanitizeVarInput($valor)]);
+                    } else {
+                        extract([$campo => NULL]);
+                    }
                 }
+                if (!$this->insertInto($fechaAgenda, $temaAgenda, $horaAgenda, $organizaAgenda, $lugarAgenda, $participantesAgenda, $descripcionAgenda)){
+                    $respuesta = array ('status' => 'error', 'message'=>'Fallo al registrar el '. $nForm);
+                    echo (json_encode($respuesta));
+                }
+                $nForm++;
             }
-            if ($this->insertInto($fecha, $tema, $hora, $organizador, $lugar, $participantes, $actividad)){
-                $respuesta = array ('status' => 'success', 'message'=>'Agenda Registrada con éxito');
-                echo (json_encode($respuesta));
-            }
+            $respuesta = array ('status' => 'success', 'message'=>'Datos registrados');
+            echo (json_encode($respuesta));
         } catch (Throwable $e){
             $this->handlerError($e);
             $respuesta = array ('status' => 'error', 'message'=>'No se pudo procesar la solicitud. Vuelva a intentar o contacte con el administrador del sitio.');

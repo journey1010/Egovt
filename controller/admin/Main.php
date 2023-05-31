@@ -90,7 +90,7 @@ class Main extends handleSanitize {
 
             $archivo = $_FILES["archivo"] ?? null;
             if ($gestorArchivo->validarArchivo($archivo, ['jpg', 'webp', 'jpeg']) == true) {
-                $sql = "SELECT banner FROM banners WHERE id_page_principal = :id";
+                $sql = "SELECT banner FROM banners_paginaprincipal WHERE id_page_principal = :id";
                 $params["id"] = $id;
                 $gestorArchivo->borrarArchivo($sql, $params);
                 $newPathFile = $gestorArchivo->guardarFichero($archivo, $id);
