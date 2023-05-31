@@ -17,3 +17,4 @@
 2023-05-18 14:14:57 : Unable to read any of the environment file(s) at [C:/laragon/www/Egovt\.env].
 2023-05-18 14:16:14 : Unable to read any of the environment file(s) at [C:/laragon/www/Egovt\.env].
 2023-05-18 14:16:17 : Unable to read any of the environment file(s) at [C:/laragon/www/Egovt\.env].
+2023-05-30 13:37:56: Error constructViewPanelAdmin : SQLSTATE[42S02]: Base table or view not found: 1146 Table 'egovt.gobernador' doesn't exist

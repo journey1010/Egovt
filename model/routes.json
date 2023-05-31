@@ -51,6 +51,7 @@
         {"method" : "GET", "pattern" : "/transparencia/proyecto-de-inversion-publica/informacion-adicional/?page={pagina}", "handler" : "transparenciaController@pipInformacionAdicional"},
         {"method" : "POST", "pattern" : "/transparencia/proyecto-de-inversion-publica/filtros", "handler" : "transparenciaController@BuscarObra"},
         {"method" : "GET", "pattern" : "/transparencia/agendagorel", "handler" : "transparenciaController@agendaGorel"},
-        {"method" : "GET", "pattern" : "/transparencia/agendagorel/?page={pagina}", "handler" : "transparenciaController@agendaGorel"}
+        {"method" : "GET", "pattern" : "/transparencia/agendagorel/?page={pagina}", "handler" : "transparenciaController@agendaGorel"},
+        {"method" : "GET", "pattern" : "/transparencia/cas-gorel", "handler" : "transparenciaController@casGorel"}
     ]
 }
