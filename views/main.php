@@ -103,6 +103,14 @@
 							<h2 class="mb-0">Atención A las Personas<br>Con discapacidad</h2>
 						</a>
 					</li>
+					<li>
+						<a href="https://www.transparencia.gob.pe/reportes_directos/pep_transparencia_infoObras.aspx?id_entidad=10152&ver=1&id_tema=200" alt="InfoObras" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
+								<i class="fal fa-construction"><span class="sr-only">icon</span></i>
+							</span>
+							<h2 class="mb-0">INFO<br>OBRAS</h2>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>

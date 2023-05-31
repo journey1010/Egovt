@@ -61,6 +61,9 @@ $(document).on('click', '#enviarForm', function(event){
                     });
                 }
                 $('.btn.btn-primary.mt-2').text('Guardar Agenda');
+                setInterval( function(){
+                    location.reload();
+                }, 2000);
             },
             error: function(jqXHR, textStatus, errorThrown){
                 Toast.fire({
