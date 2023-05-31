@@ -72,6 +72,12 @@ class sideBarOptions {
                 <p>Actualizar</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="/administrador/visitas/regularizar-visitas" name="sidebarEnlace" class="nav-link"data-page="visitas/regularizar-visitas">
+                <i class="fas fa-edit"></i>
+                <p>Regularizar visitas</p>
+                </a>
+            </li>
             </ul>
         </li>
         Html;

@@ -129,6 +129,7 @@ class viewConstruct{
                     'actualizar-usuarios' => $contentPage->ActualizarUsuarios(),
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
                     'actualizar-visitas' => $contentPage->ActualizarVisitas(),
+                    'regularizar-visitas' => $contentPage->RegularizarVisitas(),
                     'registrar-obras' => $contentPage->RegistrarObras(),
                     'actualizar-obras' => $contentPage->ActualizarObras(),
                     'registrar-funcionarios' => $contentPage->RegistrarFuncionarios(),
@@ -144,6 +145,7 @@ class viewConstruct{
                     '' => $contentPage->RegistrarVisitas(),
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
                     'actualizar-visitas' => $contentPage->ActualizarVisitas(),
+                    'regularizar-visitas' => $contentPage->RegularizarVisitas(),
                     'contacto' => $contentPage->Contacto()
                 ],
                 
@@ -165,7 +167,8 @@ class viewConstruct{
                 ], 
                 'agendagobernador' => [
                     '' => $contentPage->RegistrarAgendaGobernador(),
-                    'registrar-agenda' => $contentPage->RegistrarAgendaGobernador()
+                    'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),
+                    'actualizar-agenda' => $contentPage->ActualizarAgendaGobernador()
                 ],
                 'adminmainpage' => [
                     '' => $contentPage->Mainpage(), 
