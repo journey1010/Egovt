@@ -1,6 +1,7 @@
 <?php
+require_once (_ROOT_CONTROLLER . 'admin/handleSanitize.php');
 
-class Paginator {
+class Paginator extends handleSanitize {
     private $conexion;
     private $sentencia;
     private $params;
@@ -22,7 +23,7 @@ class Paginator {
     }
 
     public function setPaginaActual($paginaActual) {   
-        $this->paginaActual = $paginaActual;
+        $this->paginaActual = $this->SanitizeVarInput($paginaActual);
     }
 
     public function getResultadosPorPagina() {
@@ -57,7 +58,7 @@ class Paginator {
             $paginador .= '<ul class="pagination justify-content-center pt-2">';
 
             if ($this->paginaActual > 1) {
-              $paginador .= '<li class="page-item disabled"><a class="page-link" href="?page=' . ($this->paginaActual - 1) . '">Anterior</a></li>';
+              $paginador .= '<li class="page-item"><a class="page-link" href="?page=' . ($this->paginaActual - 1) . '">Anterior</a></li>';
             }
 
             for ($i = 1; $i <= $this->totalDePaginas; $i++) {

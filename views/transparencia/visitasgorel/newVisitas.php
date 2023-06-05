@@ -35,13 +35,14 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table id="tabla" class="border border-danger  responsive table-hover" style="width:100%">
+                <table id="tabla" class="border border-danger  responsive table-hover" style="width:100%; font-size: 16px">
                     <thead class="bg-danger text-white">
                         <tr>
-                            <th class="text-nowrap ">Nombres del Visitante</th>
+                            <th>Nombre del Visitante</th>
                             <th>Documento</th>
+                            <th>Institución</th>
                             <th>Área</th>
-                            <th class="text-nowrap">¿A quién visita?</th>
+                            <th>¿A quién visita?</th>
                             <th>Ingreso</th>
                             <th>Salida</th>
                             <th>Autorización</th>
@@ -69,7 +70,7 @@
             ordering: false,
             info: false
         });
-        table.columns([6, 7]).visible(false);
+        table.columns([7, 8]).visible(false);
 
         $('#tabla tbody').on('click', '.details-control', function() {
             var tr = $(this).closest('tr');
@@ -86,9 +87,9 @@
 
         function format(rowData) {
             data = `
-                <div style>
-                    <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Autorización:</strong> <br> ${rowData[6]}</p> 
-                    <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Motivo:</strong> <br> ${rowData[7]}</p>
+                <div >
+                    <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Autorización:</strong> <br> ${rowData[7]}</p> 
+                    <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Motivo:</strong> <br> ${rowData[8]}</p>
                 </div>
                 `;
             return data;
@@ -139,7 +140,7 @@
                     }
                 }
             });
-            table.columns([6, 7]).visible(false);
+            table.columns([7, 8]).visible(false);
 
             $('#tabla tbody').on('click', '.details-control', function() {
                 var tr = $(this).closest('tr');
@@ -157,8 +158,8 @@
             function format(rowData) {
                 data = `
                 <div>
-                    <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Autorización:</strong> <br> ${rowData[6]}</p> 
-                    <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Motivo:</strong> <br> ${rowData[7]}</p>
+                    <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Autorización:</strong> <br> ${rowData[7]}</p> 
+                    <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Motivo:</strong> <br> ${rowData[8]}</p>
                 </div>
                 `;
                 return data;

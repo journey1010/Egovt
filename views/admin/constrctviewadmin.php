@@ -141,6 +141,7 @@ class viewConstruct{
                     'ver-registros'=> $contentPage->verRegistros(),
                     'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),
                     'actualizar-agenda' => $contentPage->ActualizarAgendaGobernador(),
+                    'exportar-visitas' => $contentPage->ExportarVisitas(),
                     'registrar-convocatoria' => $contentPage->RegistrarConvocatoria(),
                     'actualizar-convocatoria' => $contentPage->ActualizarConvocatoria()
 
@@ -151,6 +152,7 @@ class viewConstruct{
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
                     'actualizar-visitas' => $contentPage->ActualizarVisitas(),
                     'regularizar-visitas' => $contentPage->RegularizarVisitas(),
+                    'exportar-visitas' => $contentPage->ExportarVisitas(),
                     'contacto' => $contentPage->Contacto()
                 ],
                 

@@ -15,7 +15,7 @@ class visitas extends handleSanitize {
     public function RegistrarVisitas()
     {
         $ruta = $this->rutaAssets  . 'js/visitas.js';
-        
+        $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $hora = new DateTime('', new DateTimeZone('UTC'));
         $hora->setTimezone(new DateTimeZone('America/Bogota'));
         $dateTimeNow = $hora->format('Y-m-d H:i:s');
@@ -31,55 +31,78 @@ class visitas extends handleSanitize {
             <form id="registrarVisitas">
                     <div class="card-body">
                         <div class="form-group">
-                        <label for="buscarDNI">DNI (obligatorio)</label>
-                        <input type="number" class="form-control" id="dniVisita" placeholder="Ingresar DNI..." required>
-                    </div>
-                    <button type="submit" class="btn btn-secondary" id="BuscarDNIVisita">Buscar</button>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="labelNombreCompleto">Nombre completo (obligatorio)</label>
-                            <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
+                            <label for="tipoDoc">Tipo de documento (obligatorio)</label>
+                            <select id="tipoDoc" class="form-control select2 select2-hidden-accessible" data-placeholder="" style="width: 100%; 
+                                height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+                                <option value="DNI">DNI</option>
+                                <option value="CARNET DE EXTRANJERIA">CARNET DE EXTRANJERIA</option>
+                                <option value="PASAPORTE">PASAPORTE</option>
+                                <option value="PART-NACIMIENTO-IDENTIDAD">PART. DE NACIMIENTO-IDENTIDAD</option>
+                            </select>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Oficina (obligatorio)</label>
-                                <select id="oficina" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
-                                    height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
-                                    $select
-                                </select>
+                        <div class="form-group">
+                            <label for="buscarDNI">Número de documento(obligatorio)</label>
+                            <input type="text" class="form-control" id="dniVisita" placeholder="Ingresar Número de documento..." required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary" id="BuscarDNIVisita">Buscar DNI</button>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="labelNombreCompleto">Nombre completo (obligatorio)</label>
+                                <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="InstitucionVisitante">Institución del visitante (obligatorio)</label>
+                                <input type="text" class="form-control" id="InstitucionVisitante" placeholder="">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Oficina (obligatorio)</label>
+                                    <select id="oficina" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
+                                        height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+                                        $select
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="quien_autoriza">¿Quién autoriza? *</label>
+                                    <select id="quien_autoriza" class="form-control select2 select2-hidden-accessible" data-placeholder="" style="width: 100%; 
+                                        height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+                                        $selectFuncionario
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <label for="HoraIngreso">Hora de ingreso</label>
+                                <input type="text" class="form-control" id="hora_de_ingreso" value="$dateTimeNow" disabled>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="persona_a_visitar">¿A quién visita?</label>
+                                <input type="text" class="form-control" id="persona_a_visitar" placeholder="">
+                            </div>
+                            <div class="col-md-7">
+                                <label for="motivo">Motivo de la visita</label>
+                                <textarea type="text" class="form-control text-content" id="motivo" placeholder="Descripción del motivo de visita"  style="min-height: 100px;
+                                max-width: 100%"></textarea>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="quien_autoriza">¿Quién autoriza? *</label>
-                                <select id="quien_autoriza" class="form-control select2 select2-hidden-accessible" data-placeholder="" style="width: 100%; 
-                                    height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
-                                    $selectFuncionario
-                                </select>
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-3">
-                            <label for="HoraIngreso">Hora de ingreso</label>
-                            <input type="text" class="form-control" id="hora_de_ingreso" value="$dateTimeNow" disabled>
-                        </div>
-                        <div class="col-md-5">
-                            <label for="persona_a_visitar">¿A quién visita?</label>
-                            <input type="text" class="form-control" id="persona_a_visitar" placeholder="">
-                        </div>
-                        <div class="col-md-7">
-                            <label for="motivo">Motivo de la visita</label>
-                            <textarea type="text" class="form-control text-content" id="motivo" placeholder="Descripción del motivo de visita"  style="min-height: 100px;
-                            max-width: 100%"></textarea>
-                        </div>
                     </div>
-                </div>
                 <div class="card-footer mt-3">
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
         </div>
         <script type ="module" src="$ruta"></script>
+        <script src="$ruta2"></script>
+        <script>
+            function updateDateTime() {
+                let fechTime = moment().utcOffset('America/Phoenix').format('YYYY-MM-DD HH:mm:ss');
+                $('#hora_de_ingreso').val(fechTime);
+            }
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        </script>
         Html;
         return $html;
     }
@@ -102,6 +125,7 @@ class visitas extends handleSanitize {
     public function ActualizarVisitas()
     {
         $ruta = $this->rutaAssets  . 'js/visitas.js';
+        $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $conexion = new MySQLConnection();
         $tablaRow = $this->getTablaRow($conexion);
         $html = <<<Html
@@ -114,7 +138,7 @@ class visitas extends handleSanitize {
                     <thead class="table-bordered" >
                         <tr>
                             <th class="text-center">id</th>
-                            <th class="text-center">DNI</th>
+                            <th class="text-center">Documento</th>
                             <th class="text-center">Nombre completo</th>
                             <th style="text-center">Hora de salida</th>
                             <th class="text-center">Motivo u Observación</th>
@@ -127,7 +151,7 @@ class visitas extends handleSanitize {
                 </table>  
             </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+        <script src="$ruta2"></script>
         <script type ="module" src="$ruta"></script>
         Html;
         return $html;
@@ -200,6 +224,58 @@ class visitas extends handleSanitize {
             </form>
         </div>
         <script type ="module" src="$ruta"></script>
+        Html;
+        return $html;
+    }
+
+    public function ExportarVisitas()
+    {
+        $ruta = $this->rutaAssets  . 'js/visitas.js';
+        $html = <<<Html
+        <div class="card card-primary mt-3 mx-auto w-100">
+            <div class="card-header">
+                <h3 class="card-title">Exportar visitas</h3>
+            </div>
+            <div class="container-fluid">
+                <form action="exportarVisitas">
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="row bg-light mt-2">
+                                <div class="col-md-3 col-sm-6 ml-4">
+                                    <div class="form-group">
+                                        <label>Fecha Desde:</label>
+                                        <input type="datetime-local" class="form-control" id="fechaVistDesde" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 ml-4">
+                                    <div class="form-group">
+                                        <label>Fecha Hasta:</label>
+                                        <input type="datetime-local" class="form-control" id="fechaVisitHasta" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 ml-4">
+                                    <label class="text-light">a</label>
+                                    <div class="form-group align-self-end d-flex">
+                                        <button type="button" class="form-control btn btn-primary mr-2" id="generarReportVisit">Aplicar filtros</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2" id="reporteVisitas">
+                                <label>Generando Reporte de visitas</label>
+                                <div class="progress">
+                                    <div class="progress-bar active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; border-radius: 10px;">
+                                        0%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body table-responsive p-2 mt-3 mx-auto" id="respuestaReportVisitas">     
+            </div>
+        </div>
+        <script  type ="module" src="$ruta"></script>
         Html;
         return $html;
     }

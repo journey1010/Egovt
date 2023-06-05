@@ -78,6 +78,12 @@ class sideBarOptions {
                 <p>Regularizar visitas</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="/administrador/visitas/exportar-visitas" name="sidebarEnlace" class="nav-link"data-page="visitas/exportar-visitas">
+                <i class="fas fa-database"></i>
+                <p>Exportar datos</p>
+                </a>
+            </li>
             </ul>
         </li>
         Html;
