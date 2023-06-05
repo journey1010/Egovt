@@ -57,7 +57,7 @@ class Paginator {
             $paginador .= '<ul class="pagination justify-content-center pt-2">';
 
             if ($this->paginaActual > 1) {
-              $paginador .= '<li class="page-item disabled"><a class="page-link" href="?page=' . ($this->paginaActual - 1) . '">Anterior</a></li>';
+              $paginador .= '<li class="page-item"><a class="page-link" href="?page=' . ($this->paginaActual - 1) . '">Anterior</a></li>';
             }
 
             for ($i = 1; $i <= $this->totalDePaginas; $i++) {
