@@ -61,6 +61,13 @@ class contentPageOptions {
         return $resultado;
     }
 
+    public function ExportarVisitas()
+    {
+        $visitas = new visitas();
+        $resultado = $visitas->ExportarVisitas();
+        return $resultado;
+    }
+
     public function RegularizarVisitas()
     {
         $visitas =  new visitas ();
