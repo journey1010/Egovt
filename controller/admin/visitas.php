@@ -1,27 +1,28 @@
 <?php
-require_once (_ROOT_CONTROLLER . 'admin/handleSanitize.php');
-require_once  (_ROOT_MODEL . 'conexion.php');
-require_once (_ROOT_PATH . '/vendor/autoload.php');
+require_once(_ROOT_CONTROLLER . 'admin/handleSanitize.php');
+require_once(_ROOT_MODEL . 'conexion.php');
+require_once(_ROOT_PATH . '/vendor/autoload.php');
 
 
 use Dompdf\Dompdf;
 use Dompdf\Css\Stylesheet;
 
 
-class visitas extends handleSanitize{
-    
+class visitas extends handleSanitize
+{
+
     public function RegistrarVisita()
-    {   
-        try{         
-            $dniVisita = $_POST['dniVisita']; 
-            $tipoDoc = $_POST['tipoDoc']; 
-            $apellidosNombres = $_POST['apellidosNombres']; 
+    {
+        try {
+            $dniVisita = $_POST['dniVisita'];
+            $tipoDoc = $_POST['tipoDoc'];
+            $apellidosNombres = $_POST['apellidosNombres'];
             $institucionVisitante = $_POST['institucionVisitante'];
-            $oficina = $_POST['oficina']; 
-            $personaAVisitar = $_POST['personaAVisitar']; 
-            $horaDeIngreso = $_POST['horaDeIngreso']; 
-            $quienAutoriza = $_POST['quienAutoriza']; 
-            $motivo = $_POST['motivo']; 
+            $oficina = $_POST['oficina'];
+            $personaAVisitar = $_POST['personaAVisitar'];
+            $horaDeIngreso = $_POST['horaDeIngreso'];
+            $quienAutoriza = $_POST['quienAutoriza'];
+            $motivo = $_POST['motivo'];
 
             if (
                 !empty($dniVisita) &&
@@ -32,17 +33,17 @@ class visitas extends handleSanitize{
                 !empty($horaDeIngreso)
 
             ) {
-                $dniVisita = $this->SanitizeVarInput($dniVisita);
-                $tipoDoc = strtoupper($this->SanitizeVarInput($tipoDoc));
+                $dniVisita = $this->strtoupperString($dniVisita);
+                $tipoDoc = $this->strtoupperString($tipoDoc);
                 $documento = $tipoDoc . ' : ' . $dniVisita;
-                $apellidosNombres = strtoupper($this->SanitizeVarInput($apellidosNombres));
-                $institucionVisitante = strtoupper($this->SanitizeVarInput( $institucionVisitante));
-                $oficina = $this->SanitizeVarInput($oficina);
+                $apellidosNombres = $this->strtoupperString($apellidosNombres);
+                $institucionVisitante = $this->strtoupperString($institucionVisitante);
+                $oficina = $this->strtoupperString($oficina);
                 $oficina = explode('-', $oficina);
                 $oficina = $oficina[0];
-                $personaAVisitar = strtoupper($this->SanitizeVarInput($personaAVisitar));
-                $quienAutoriza = strtoupper($this->SanitizeVarInput($quienAutoriza));
-                $motivo = strtoupper($this->SanitizeVarInput($motivo));
+                $personaAVisitar = $this->strtoupperString($personaAVisitar);
+                $quienAutoriza = $this->strtoupperString($quienAutoriza);
+                $motivo = $this->strtoupperString($motivo);
 
                 $conexion = new MySQLConnection();
                 $sqlSentence = 'INSERT INTO visitas (
@@ -58,12 +59,12 @@ class visitas extends handleSanitize{
                     ?,?,?,?,?,?,?,?
                 )';
                 $params = [
-                    $apellidosNombres, 
-                    $documento, 
-                    $oficina, 
-                    $personaAVisitar, 
-                    $horaDeIngreso, 
-                    $quienAutoriza, 
+                    $apellidosNombres,
+                    $documento,
+                    $oficina,
+                    $personaAVisitar,
+                    $horaDeIngreso,
+                    $quienAutoriza,
                     $motivo,
                     $institucionVisitante
                 ];
@@ -75,7 +76,7 @@ class visitas extends handleSanitize{
                 $respuesta = array('error' => 'Los datos obligatorios no deben estar vacíos.');
                 print_r(json_encode($respuesta));
             }
-        }catch (Throwable $e) {
+        } catch (Throwable $e) {
             $this->handlerError($e);
             $respuesta = array('error' => 'Error al guardar datos.');
             print_r(json_encode($respuesta));
@@ -85,11 +86,11 @@ class visitas extends handleSanitize{
 
     public function ActualizarVisita()
     {
-        try{
-            $id = $_POST['id'];            
+        try {
+            $id = $_POST['id'];
             $horaSalida = $_POST['horaSalida'];
             $motivo = $_POST['motivo'];
-            if ( !empty ($horaSalida)) {
+            if (!empty($horaSalida)) {
                 $motivo = $this->SanitizeVarInput($motivo);
 
                 $conexion = new MySQLConnection();
@@ -103,7 +104,6 @@ class visitas extends handleSanitize{
                 $respuesta = array('error' => 'Los datos obligatorios no deben estar vacíos.');
                 print_r(json_encode($respuesta));
             }
-
         } catch (Throwable $e) {
             $this->handlerError($e);
             $respuesta = array('error' => 'Error al actualizar datos.');
@@ -115,8 +115,8 @@ class visitas extends handleSanitize{
     {
         try {
             $camposRequeridos = ['dniVisita', 'apellidosNombres', 'oficina', 'personaAVisitar', 'horaDeIngreso', 'quienAutoriza', 'motivo', 'horaDeSalida'];
-            foreach($camposRequeridos as $campo){
-                extract( [$campo => $this->SanitizeVarInput( $_POST[$campo])]);
+            foreach ($camposRequeridos as $campo) {
+                extract([$campo => $this->SanitizeVarInput($_POST[$campo])]);
             }
             $oficina = explode('-', $oficina);
             $oficina = $oficina[0];
@@ -134,22 +134,22 @@ class visitas extends handleSanitize{
                 ?,?,?,?,?,?,?,?
             )';
             $params = [
-                $apellidosNombres, 
-                $dniVisita, 
-                $oficina, 
-                $personaAVisitar, 
-                $horaDeIngreso, 
-                $quienAutoriza, 
+                $apellidosNombres,
+                $dniVisita,
+                $oficina,
+                $personaAVisitar,
+                $horaDeIngreso,
+                $quienAutoriza,
                 $motivo,
                 $horaDeSalida
             ];
             $conexion->query($sqlSentence, $params, '', false);
-            $respuesta = array('status'=>'success', 'message'=>'Registro guardado');
+            $respuesta = array('status' => 'success', 'message' => 'Registro guardado');
             echo (json_encode($respuesta));
-        } catch(Throwable $e) {
+        } catch (Throwable $e) {
             $this->handlerError($e);
-            $respuesta = array('status' => 'error', 'message'=>'Algo salió mal!');
-            echo(json_encode($respuesta));
+            $respuesta = array('status' => 'error', 'message' => 'Algo salió mal!');
+            echo (json_encode($respuesta));
         }
     }
 
@@ -165,7 +165,7 @@ class visitas extends handleSanitize{
         $resultado = $stmt->fetchAll();
 
         $options =  '<option value="">Seleccionar</option>';
-        foreach($resultado as $row) {
+        foreach ($resultado as $row) {
             $funcionario = $row['nombre'];
             $options .= "<option value=\"$funcionario\">$funcionario</option>";
         }
@@ -174,21 +174,21 @@ class visitas extends handleSanitize{
 
     public function ExportarVisitas()
     {
-        $fechaDesde= $this->SanitizeVarInput($_POST['fechaDesde']);
-        $fechaHasta= $this->SanitizeVarInput($_POST['fechaHasta']);
+        $fechaDesde = $this->SanitizeVarInput($_POST['fechaDesde']);
+        $fechaHasta = $this->SanitizeVarInput($_POST['fechaHasta']);
 
         $conexion = new MySQLConnection();
         $sql = "SELECT v.apellidos_nombres as apn, v.dni as doc, v.institución_visitante as iv, o.nombre as ofi, v.persona_a_visitar as pv, v.hora_de_ingreso as hi, v.hora_de_salida as hs, v.quien_autoriza as qa, v.motivo as m FROM visitas AS v INNER JOIN oficinas AS o ON o.id = v.area_que_visita WHERE v.hora_de_ingreso >= :fechDesde AND v.hora_de_salida <= :fechHasta";
-        $params = [':fechDesde'=>$fechaDesde, ':fechHasta'=>$fechaHasta];
-        try{
+        $params = [':fechDesde' => $fechaDesde, ':fechHasta' => $fechaHasta];
+        try {
             $stmt = $conexion->query($sql, $params, '', false);
             $resultado = $stmt->fetchAll();
             $archivo = $this->makeReportVisitas($resultado);
-            $respuesta = array('status'=>'success','message'=>'Datos Listos.', 'archivo'=>$archivo);
+            $respuesta = array('status' => 'success', 'message' => 'Datos Listos.', 'archivo' => $archivo);
             echo (json_encode($respuesta));
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
             $this->handlerError($e);
-            $respuesta = array ('status'=>'error', 'message'=>'Error critico al generar el reporte.');
+            $respuesta = array('status' => 'error', 'message' => 'Error critico al generar el reporte.');
             echo (json_encode($respuesta));
         }
     }
@@ -196,10 +196,10 @@ class visitas extends handleSanitize{
     private function makeReportVisitas($resultado)
     {
         $dompdf = new Dompdf(array('enable_remote' => true));
-        
-        $tablaRow= '';
-        foreach($resultado as $row){
-            $tablaRow .=<<<Html
+
+        $tablaRow = '';
+        foreach ($resultado as $row) {
+            $tablaRow .= <<<Html
             <tr>
                 <td>{$row['apn']}</td>
                 <td>{$row['doc']}</td>
@@ -215,8 +215,8 @@ class visitas extends handleSanitize{
         }
 
         $imagePath = _ROOT_PATH . '/assets/images/logoReporte.png';
-        $imageData = file_get_contents($imagePath); 
-        $base64Image = base64_encode($imageData); 
+        $imageData = file_get_contents($imagePath);
+        $base64Image = base64_encode($imageData);
         $imageSrc = 'data:image/png;base64,' . $base64Image;
         $fecha = date('d/m/Y');
 
@@ -401,37 +401,52 @@ class visitas extends handleSanitize{
                 }
                 .table {
                     border-collapse: collapse;
-                  }
+                }
                   
-                  .table th,
-                  .table td {
+                .table th,
+                .table td {
                     border: 1px solid black;
                     padding: 8px;
-                  }
+                }
                   
-                  .table thead th {
-                    background-color: lightgray;
-                  }
-                  .table-bordered {
-                    border: 1px solid black;
-                  }
+                .table thead th {
+                background-color: lightgray;
+                }
 
+                .table-bordered {
+                border: 1px solid black;
+                }
                   
-                  .justify-content-between {
+                .justify-content-between {
                     justify-content: space-between;
-                  }
-                  .d-flex {
+                }
+                .d-flex {
                     display: -ms-flexbox!important;
                     display: flex!important;
-                    }
+                }
 
-                    .mt-4, .my-4 {
-                        margin-top: 1.5rem!important;
-                    }
+                .mt-4, .my-4 {
+                    margin-top: 1.5rem!important;
+                }
 
-                    .w-25 {
-                        width: 25%!important;
+                .w-25 {
+                    width: 25%!important;
+                }
+                @page :first {
+                    footer: {
+                        position: running(header_first_footer);
                     }
+                }
+        
+                @page {
+                    footer: {
+                        position: running(header_footer);
+                    }
+                }
+        
+                #footer_content {
+                    text-align: center;
+                }
             </style>
         </head>
         <body>
@@ -469,18 +484,18 @@ class visitas extends handleSanitize{
                                 $tablaRow
                             </tbody>
                         </table>
-                        <table style="width: 100%; margin-top: 60px">
-                        <tr>
-                            <td style="text-align: left; width: 25%;">
-                                <hr style="border: none; border-top: 1px solid black;">
-                                <h5 style="text-align: center;">Supervisor de Turno</h5>
-                            </td>
-                            <td style="text-align: right; width: 25%;">
-                                <hr style="border: none; border-top: 1px solid black;">
-                                <h5 style="text-align: center;">Encargado de garita N° 1</h5>
-                            </td>
-                        </tr>
-                    </table>
+                        <table style="width: 100%; position: fixed; bottom: 40;">
+                            <tr>
+                                <td style="text-align: left; width: 50%;">
+                                    <hr style="width: 50%;border: none; border-top: 1px solid black;">
+                                    <h5 style="text-align: center;">Supervisor de Turno</h5>
+                                </td>
+                                <td style="text-align: right; width: 50%;">
+                                    <hr style="width: 50%; border: none; border-top: 1px solid black;">
+                                    <h5 style="text-align: center;">Encargado de Garita N° 1</h5>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -496,5 +511,12 @@ class visitas extends handleSanitize{
         file_put_contents($rutaArchivo, $dompdf->output());
         $enlace = _BASE_URL . '/files/transparencia/visitas/' . $nombreArchivo;
         return $enlace;
-    }   
+    }
+
+    private function strtoupperString(string $string)
+    {   
+        $text = $this->SanitizeVarInput($string);
+        $text = mb_strtoupper(mb_convert_case($text, MB_CASE_UPPER, 'UTF-8'), 'UTF-8');
+        return $text;
+    }
 }
