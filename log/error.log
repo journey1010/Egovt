@@ -1,2 +1,0 @@
-2023-06-05 10:18:34 : SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'dni' cannot be null
-2023-06-05 10:18:52 : SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'dni' cannot be null

@@ -44,7 +44,7 @@ class RRHH extends handleSanitize
     public function readExcel()
     {
         try {
-            $file = $_POST['file'];
+            $file = $_POST['file']; 
             $sql = "INSERT INTO asistencia (id_empleado, nombres, apellidos, departamento, fecha, hora) VALUES ";
             $spreedsheet = IOFactory::load($file);
             $worksheet = $spreedsheet->getActiveSheet();
