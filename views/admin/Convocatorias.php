@@ -16,12 +16,12 @@ class convocatorias extends handleSanitize
 
     public function RegistrarConvocatoria()
     {
-        $ruta = $this->rutaAssets . 'js/convocatorias.js';
+        $ruta = $this->rutaAssets . 'js/convocatoria.js';
         $optionsDependencias = $this->getDependencias();
         $html = <<<Html
         <div class="card card-success mt-3 mx-auto w-100">
             <div class="card-header">
-                <h3 class="card-title">Registrar convocatoria/h3>
+                <h3 class="card-title">Registrar convocatoria</h3>
             </div>
             <form id="registrarConvocatoria" enctype="multipart/form-data">
                 <div class="card-body">
@@ -32,7 +32,7 @@ class convocatorias extends handleSanitize
                         </div>
                         <div class="col-md-6">
                             <label for="descripcion">Descripción (obligatorio)</label>
-                            <input type="date" class="form-control" id="fechaObra" value="">
+                            <input type="datelocal-time" class="form-control" id="descripcionConvocatoria" value="">
                         </div>
                         <div class="col-md-6">
                             <label for="tipo de obra">Dependencia (obligatorio)</label>
@@ -73,7 +73,7 @@ class convocatorias extends handleSanitize
                     </div>
                     <button type="submit" class="btn btn-primary mt-2">Guardar</button>
                 </div>
-        </form>
+            </form>
         </div>
         <script type ="module" src="$ruta" defer></script>
         Html;
