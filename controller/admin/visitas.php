@@ -178,7 +178,7 @@ class visitas extends handleSanitize
         $fechaHasta = $this->SanitizeVarInput($_POST['fechaHasta']);
 
         $conexion = new MySQLConnection();
-        $sql = "SELECT v.apellidos_nombres as apn, v.dni as doc, v.institución_visitante as iv, o.nombre as ofi, v.persona_a_visitar as pv, v.hora_de_ingreso as hi, v.hora_de_salida as hs, v.quien_autoriza as qa, v.motivo as m FROM visitas AS v INNER JOIN oficinas AS o ON o.id = v.area_que_visita WHERE v.hora_de_ingreso >= :fechDesde AND v.hora_de_salida <= :fechHasta";
+        $sql = "SELECT v.apellidos_nombres as apn, v.dni as doc, v.institución_visitante as iv, o.nombre as ofi, v.persona_a_visitar as pv, v.hora_de_ingreso as hi, v.hora_de_salida as hs, v.quien_autoriza as qa, v.motivo as m FROM visitas AS v INNER JOIN oficinas AS o ON o.id = v.area_que_visita WHERE v.hora_de_ingreso >= :fechDesde AND (v.hora_de_salida <= :fechHasta OR v.hora_de_salida IS NULL)";
         $params = [':fechDesde' => $fechaDesde, ':fechHasta' => $fechaHasta];
         try {
             $stmt = $conexion->query($sql, $params, '', false);
@@ -466,7 +466,7 @@ class visitas extends handleSanitize
                     </div>
                     <div class="col-lg-12 line"></div>
                     <div class="col-lg-12 mt-1">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" style="font-size: 12px">
                             <thead>
                                 <tr>
                                     <th scope="col" style="width: 15%">Apellidos y Nombres</th>
