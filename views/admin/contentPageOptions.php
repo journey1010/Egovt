@@ -138,4 +138,18 @@ class contentPageOptions {
         $resultado = $agendaGobernador->ActualizarAgenda();
         return $resultado;
     }
+
+    public function RegistrarConvocatoria()
+    {
+        $convocatorias = new Convocatorias();
+        $resultado = $convocatorias->RegistrarConvocatoria();
+        return $resultado; 
+    }
+
+    public function ActualizarConvocatoria()
+    {
+        $convocatorias = new Convocatorias();
+        $resultado = $convocatorias->ActualizarConvocatorias();
+        return $resultado; 
+    }
 }
