@@ -89,7 +89,7 @@ class visitas extends handleSanitize {
                         </div>
                     </div>
                 <div class="card-footer mt-3">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button id="btnGuardar" type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
         </div>
@@ -219,7 +219,7 @@ class visitas extends handleSanitize {
                     </div>
                 </div>
                 <div class="card-footer mt-3">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button id="btnRegularizar" type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
         </div>
