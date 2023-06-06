@@ -60,13 +60,17 @@ class Paginator extends handleSanitize {
             if ($this->paginaActual > 1) {
               $paginador .= '<li class="page-item"><a class="page-link" href="?page=' . ($this->paginaActual - 1) . '">Anterior</a></li>';
             }
-
-            for ($i = 1; $i <= $this->totalDePaginas; $i++) {
-              if ($i == $this->paginaActual) {
-                $paginador .= '<li class="page-item active"><a class="page-link" href="#">' . $i . '<span class="sr-only">(current)</span></a></li>';
-              } else {
-                $paginador .= '<li class="page-item"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
-              }
+            $rangoPaginas = 9; 
+        
+            $paginaInicio = max(1, $this->paginaActual - floor($rangoPaginas / 2));
+            $paginaFin = min($this->totalDePaginas, $paginaInicio + $rangoPaginas - 1);
+            
+            for ($i = $paginaInicio; $i <= $paginaFin; $i++) {
+                if ($i == $this->paginaActual) {
+                    $paginador .= '<li class="page-item active"><a class="page-link" href="#">' . $i . '<span class="sr-only">(current)</span></a></li>';
+                } else {
+                    $paginador .= '<li class="page-item"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+                }
             }
 
             if ($this->paginaActual < $this->totalDePaginas) {

@@ -134,12 +134,13 @@ class visitas extends handleSanitize {
                 <h3 class="card-title">Actualizar visitas</h3>
             </div>
             <div class="card-body table-responsive p-2" style="width:100% !important">
-                <table class="table table-hover table-md">
+                <table class="table table-hover table-md" style="font-size: 14px">
                     <thead class="table-bordered" >
                         <tr>
                             <th class="text-center">id</th>
                             <th class="text-center">Documento</th>
                             <th class="text-center">Nombre completo</th>
+                            <th class="text-center">Hora de ingreso</th>
                             <th style="text-center">Hora de salida</th>
                             <th class="text-center">Motivo u Observación</th>
                             <th style="width: 80px" class="text-center">Editar</th>
@@ -282,7 +283,7 @@ class visitas extends handleSanitize {
 
     private function getTablaRow(MySQLConnection $conexion): string
     {
-        $sql = "SELECT id, dni, apellidos_nombres, hora_de_salida, motivo  FROM visitas WHERE hora_de_salida IS NULL ";
+        $sql = "SELECT id, dni, apellidos_nombres, hora_de_ingreso, hora_de_salida, motivo  FROM visitas WHERE hora_de_salida IS NULL ";
         $smt = $conexion->query($sql, '', '', false);
         $resultado = $smt->fetchAll();
         $tablaRow = '';
@@ -290,12 +291,14 @@ class visitas extends handleSanitize {
             $id = $row['id'];
             $dni = $row['dni'];
             $apellidoNombre = $row['apellidos_nombres'];
+            $horaIngreso = $row['hora_de_ingreso'];
             $horaSalida = $row['hora_de_salida'];
             $motivo = $row['motivo'];
             $tablaRow .= "<tr>";
             $tablaRow .= "<td class=\"text-center\">$id</td>";
             $tablaRow .= "<td class=\"text-center\">$dni</td>";
             $tablaRow .= "<td class=\"text-center\">$apellidoNombre</td>";
+            $tablaRow .= "<td class=\"text-center\">$horaIngreso</td>";
             $tablaRow .= "<td class=\"text-center\">$horaSalida</td>";
             $tablaRow .= "<td class=\"text-center\" style=\"max-width: 300px;\" contenteditable=\"false\">$motivo</td>";
             $tablaRow .= '

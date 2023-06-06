@@ -350,6 +350,7 @@ $(document).on("click", "#generarReportVisit", function(){
       method: 'POST',
       data: formData,
       beforeSend: function(){
+        $('#generarReportVisit').prop('disabled', true);
         if ($('#respuestaReportVisitas').is(':visible')) {
           $('#respuestaReportVisitas').hide();
         }
@@ -373,8 +374,10 @@ $(document).on("click", "#generarReportVisit", function(){
             title: resp.message,
           });
         }
+        $('#generarReportVisit').prop('disabled', false);
     },
       error: function (jqXHR, textStatus, errorThrown) {
+        $('#generarReportVisit').prop('disabled', false);
         $('#fechaVistDesde').val('');
         $('#fechaVisitHasta').val('');
         Toast.fire({
