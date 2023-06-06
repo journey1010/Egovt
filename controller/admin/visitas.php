@@ -466,7 +466,7 @@ class visitas extends handleSanitize
                     </div>
                     <div class="col-lg-12 line"></div>
                     <div class="col-lg-12 mt-1">
-                        <table class="table table-bordered" style="font-size: 12px">
+                        <table class="table table-bordered" style="font-size: 14px">
                             <thead>
                                 <tr>
                                     <th scope="col" style="width: 15%">Apellidos y Nombres</th>

@@ -37,13 +37,13 @@ class transparenciaController extends ViewRenderer
     {
         if (!is_numeric($pagina)) {
             $this->setCacheDir(_ROOT_CACHE);
-            $this->setCacheTime(86000);
+            $this->setCacheTime(1);
             $this->render('ErrorView', '', true);
             return;
         }
         try {
             $this->setCacheDir(_ROOT_CACHE . 'transparencia/visitas/');
-            $this->setCacheTime(1);
+            $this->setCacheTime(86000);
 
             $visitas = new visitas();
             list($tablaFila, $paginadorHtml) = $visitas->visitasNuevas($pagina);

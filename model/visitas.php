@@ -11,7 +11,7 @@ class visitas
         if (!isset($conexion)) {
             $conexion = new MySQLConnection();
             $sql = "SELECT v.apellidos_nombres as apnombre, v.institución_visitante as iv, v.dni as dni, CONCAT(o.nombre, ' ', o.sigla ) AS oficina, v.persona_a_visitar as visita, v.hora_de_ingreso as hringreso, v.hora_de_salida as hrsalida, v.quien_autoriza as quienautoriza,
-                v.motivo as motivo FROM visitas AS v INNER JOIN oficinas AS o ON v.area_que_visita =  o.id ";
+                v.motivo as motivo FROM visitas AS v INNER JOIN oficinas AS o ON v.area_que_visita =  o.id  ORDER BY hringreso DESC";
             $params = '';
         }
         

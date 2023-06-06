@@ -119,11 +119,12 @@ $(document).on("submit", "#registrarVisitas", function (event) {
       method: "POST",
       data: formData,
       beforeSend: function () {
-        $("#btn btn-primary").html("Guardando...");
-        $("#btn btn-primary").prop('disabled', true);
+        $("#btnGuardar").html("Guardando...");
+        $("#btnGuardar").prop('disabled', true);
       },
       success: function (response) {
-        $("#btn btn-primary").html("Guardar");
+        $("#btnGuardar").html("Guardar");
+        $("#btnGuardar").prop('disabled', false);
         let resp = JSON.parse(response);
         let indice = Object.keys(resp)[0];
         switch (indice) {
@@ -146,10 +147,11 @@ $(document).on("submit", "#registrarVisitas", function (event) {
             });
             break;
         }
-        $("#btn btn-primary").prop('disabled', false);
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        $("#btn btn-primary").prop('disabled', false);
+        $("#btnGuardar").html("Guardar");
+        $("#btnGuardar").prop('disabled', false);
+
         $("#dniVisita").val("");
         $("#apellidos_nombres").val("");
         $("#oficina").val(null).trigger("change"); // restablecer el select
@@ -199,10 +201,12 @@ $(document).on("submit", "#regularizarVisitas", function (event){
       method: 'POST',
       data: formData,
       beforeSend: function () {
-        $("#btn btn-primary").html("Guardando...");
+        $("#btnRegularizar").html("Guardar");
+        $("#btnRegularizar").prop('disabled', false);
       },
       success: function (response) {
-        $("#btn btn-primary").html("Guardar");
+        $("#btnRegularizar").html("Guardar");
+        $("#btnRegularizar").prop('disabled', false);
         let resp = JSON.parse(response);
         if(resp.status === 'success'){
           Toast.fire({
@@ -223,6 +227,9 @@ $(document).on("submit", "#regularizarVisitas", function (event){
         $("#hora_de_salida").val("");
       },
       error: function (jqXHR, textStatus, errorThrown) {
+        $("#btnRegularizar").html("Guardar");
+        $("#btnRegularizar").prop('disabled', false);
+
         $("#dniVisita").val("");
         $("#apellidos_nombres").val("");
         $("#oficina").val(null).trigger("change"); // restablecer el select
@@ -343,6 +350,7 @@ $(document).on("click", "#generarReportVisit", function(){
       method: 'POST',
       data: formData,
       beforeSend: function(){
+        $('#generarReportVisit').prop('disabled', true);
         if ($('#respuestaReportVisitas').is(':visible')) {
           $('#respuestaReportVisitas').hide();
         }
@@ -366,8 +374,10 @@ $(document).on("click", "#generarReportVisit", function(){
             title: resp.message,
           });
         }
+        $('#generarReportVisit').prop('disabled', false);
     },
       error: function (jqXHR, textStatus, errorThrown) {
+        $('#generarReportVisit').prop('disabled', false);
         $('#fechaVistDesde').val('');
         $('#fechaVisitHasta').val('');
         Toast.fire({
