@@ -37,7 +37,7 @@ class transparenciaController extends ViewRenderer
     {
         if (!is_numeric($pagina)) {
             $this->setCacheDir(_ROOT_CACHE);
-            $this->setCacheTime(86000);
+            $this->setCacheTime(1);
             $this->render('ErrorView', '', true);
             return;
         }

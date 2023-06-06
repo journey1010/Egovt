@@ -39,7 +39,7 @@
                             <div class="descrWrap flex-grow-1">
                                 <strong class="tagTitle d-block text-secondary fwSemiBold mb-2">Registros antiguos</strong>
                                 <h3 class="fwMedium">
-                                    <a href="/transparencia/visitas-antiguas">Consulta los registros antiguos anteriores al 05- 05- 2023 en el nuevo portal.</a>
+                                    <a href="/transparencia/visitas-antiguas">Consulta los registros antiguos anteriores al 05-05-2023 en el nuevo portal.</a>
                                 </h3>
                                 <ul class="list-unstyled ueScheduleList mb-0">
                                     <li>
