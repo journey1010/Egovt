@@ -91,7 +91,7 @@ class visitas extends handleSanitize
             $horaSalida = $_POST['horaSalida'];
             $motivo = $_POST['motivo'];
             if (!empty($horaSalida)) {
-                $motivo = $this->SanitizeVarInput($motivo);
+                $motivo = $this->strtoupperString($motivo);
 
                 $conexion = new MySQLConnection();
                 $sqlSentence = "UPDATE visitas SET hora_de_salida = ?, motivo = ? WHERE id= ?";
@@ -114,9 +114,15 @@ class visitas extends handleSanitize
     public function RegularizarVisita()
     {
         try {
-            $camposRequeridos = ['dniVisita', 'apellidosNombres', 'oficina', 'personaAVisitar', 'horaDeIngreso', 'quienAutoriza', 'motivo', 'horaDeSalida'];
+            $camposRequeridos = ['dniVisita', 'apellidosNombres', 'oficina', 'personaAVisitar', 'institucionVisitante', 'horaDeIngreso', 'quienAutoriza', 'motivo', 'horaDeSalida'];
             foreach ($camposRequeridos as $campo) {
                 extract([$campo => $this->SanitizeVarInput($_POST[$campo])]);
+            }
+            foreach($camposRequeridos as $campo){
+                ${$campo} = $this->strtoupperString(${$campo});
+            }
+            if(empty($horaDeSalida)){
+                $horaDeSalida = NULL;
             }
             $oficina = explode('-', $oficina);
             $oficina = $oficina[0];
@@ -129,9 +135,10 @@ class visitas extends handleSanitize
                 hora_de_ingreso,
                 quien_autoriza, 
                 motivo,
-                hora_de_salida
+                hora_de_salida,
+                institución_visitante
             ) VALUES (
-                ?,?,?,?,?,?,?,?
+                ?,?,?,?,?,?,?,?,?
             )';
             $params = [
                 $apellidosNombres,
@@ -141,7 +148,8 @@ class visitas extends handleSanitize
                 $horaDeIngreso,
                 $quienAutoriza,
                 $motivo,
-                $horaDeSalida
+                $horaDeSalida,
+                $institucionVisitante
             ];
             $conexion->query($sqlSentence, $params, '', false);
             $respuesta = array('status' => 'success', 'message' => 'Registro guardado');
