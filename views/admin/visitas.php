@@ -14,7 +14,7 @@ class visitas extends handleSanitize {
 
     public function RegistrarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=2';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $hora = new DateTime('', new DateTimeZone('UTC'));
         $hora->setTimezone(new DateTimeZone('America/Bogota'));
@@ -124,7 +124,7 @@ class visitas extends handleSanitize {
 
     public function ActualizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=2';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $conexion = new MySQLConnection();
         $tablaRow = $this->getTablaRow($conexion);
@@ -160,7 +160,7 @@ class visitas extends handleSanitize {
 
     public function RegularizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=2';
         $conexion = new MySQLConnection();
         $select = $this->getSelect($conexion);
         $selectFuncionario = $this->getSelectFuncionario($conexion);
@@ -201,11 +201,15 @@ class visitas extends handleSanitize {
                             
                         </div>
                         <div class="col-md-3">
+                            <label for="institucionVisitanteR">Institución visitante(obligatorio)</label>
+                            <input type="text" class="form-control" id="institucionVisitanteR" value="">
+                        </div>
+                        <div class="col-md-3">
                             <label for="HoraIngreso">Hora de ingreso(obligatorio)</label>
                             <input type="datetime-local" class="form-control" id="hora_de_ingreso" value="">
                         </div>
                         <div class="col-md-5">
-                            <label for="HoraIngreso">Hora de salida (obligatorio)</label>
+                            <label for="HoraIngreso">Hora de salida</label>
                             <input type="datetime-local" class="form-control" id="hora_de_salida" value="">
                         </div>
                         <div class="col-md-5">
@@ -231,7 +235,7 @@ class visitas extends handleSanitize {
 
     public function ExportarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=2';
         $html = <<<Html
         <div class="card card-primary mt-3 mx-auto w-100">
             <div class="card-header">
@@ -316,8 +320,6 @@ class visitas extends handleSanitize {
 
     private function getSelectFuncionario (MySQLConnection $conexion)
     {
-
-        $oficina = (empty($_POST['oficina'])) ? '1' : $_POST['oficina'];
         
         $sql = "SELECT f.nombre_completo AS nombre FROM funcionarios AS f INNER JOIN oficinas as o ON f.id_oficina = o.id WHERE f.id_oficina =  1 AND f.estado = 1  AND f.nivel = 1 AND f.grupo_oficina = 1";
         $stmt = $conexion->query($sql, '', '', false);
