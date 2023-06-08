@@ -93,7 +93,8 @@ $(document).on("submit", "#registrarVisitas", function (event) {
     $("#quien_autoriza option:selected").text() === "" ||
     $("#hora_de_ingreso").val() === "" ||
     $("#tipoDoc").val() === "" ||
-    $("#InstitucionVisitante").val() === ""
+    $("#InstitucionVisitante").val() === "" ||
+    $("#motivo").val() === ""
   ) {
     Toast.fire({
       background: "#E8EC14",
