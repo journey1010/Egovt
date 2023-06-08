@@ -189,7 +189,7 @@ class Main extends handleSanitize {
                 $sql .= ", imagen = :imagen";
                 $params[":imagen"] = $newPathFile;
             }
-            $sql .= ", id_directorio = :id";
+            $sql .= " WHERE id_directorio = :id";
             $params[':id'] = $id;
             $conexion->query($sql, $params, '', false);
             $respuesta = array ('status'=>'success', 'message'=>'Registro actualizado exitosamente.');
