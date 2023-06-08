@@ -14,7 +14,7 @@ class convocatorias extends handleSanitize
         $this->conexion = new MySQLConnection();
     }
 
-    public function RegistrarConvocatoria()
+    public function RegistrarConvocatoria(): string
     {
         $ruta = $this->rutaAssets . 'js/convocatoria.js';
         $optionsDependencias = $this->getDependencias();
@@ -31,8 +31,16 @@ class convocatorias extends handleSanitize
                             <input type="text" class="form-control" id="tituloConvocatoria" placeholder="Ingrese el título ..." maxlength="300">
                         </div>
                         <div class="col-md-6">
-                            <label for="descripcion">Descripción (obligatorio)</label>
-                            <input type="datelocal-time" class="form-control" id="descripcionConvocatoria" value="">
+                            <label for="fechaInicioConvocatoria">Fecha Inicio (obligatorio)</label>
+                            <input type="date" class="form-control" id="fechaInicioConvocatoria" value="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fechaLimiteConvocatoria">Fecha Limite de convocatoria (obligatorio)</label>
+                            <input type="date" class="form-control" id="fechaLimiteConvocatoria" value="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fechaFinalConvocatoria">Fecha de finalización de convocatoria (obligatorio)</label>
+                            <input type="date" class="form-control" id="fechaFinalConvocatoria" value="">
                         </div>
                         <div class="col-md-6">
                             <label for="tipo de obra">Dependencia (obligatorio)</label>
@@ -42,26 +50,20 @@ class convocatorias extends handleSanitize
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="archivoObra">Seleccione un archivo *</label>
+                            <label>Seleccione uno o más archivos (Obligatorio)</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="archivoObra" onchange="
-                                    if (this.files.length > 0) {
-                                        document.querySelector('.custom-file-label').innerHTML = this.files[0].name
-                                    } else {
-                                            document.querySelector('.custom-file-label').innerHTML = 'Seleccione un archivo'
-                                    }
-                                ">
-                                <label class="custom-file-label" for="archivoObra" data-browse="Elegir archivo">Elegir archivo</label>
+                                <input type="file" class="custom-file-input" id="archivosConvocatorias" multiple onchange="
+                                if (this.files.length > 0) {
+                                    document.querySelector('.custom-file-label').innerHTML = this.files.length + ' archivos seleccionados';    
+                                } else {
+                                    document.querySelector('.custom-file-label').innerHTML = 'Seleccione un archivo'
+                                }">
+                                <label class="custom-file-label" for="archivosConvocatorias" data-browse="Elegir archivo">Elegir archivo</label>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="HoraIngreso">Fecha de documento *</label>
-                            <input type="date" class="form-control" id="fechaObra" value="">
                         </div>
                         <div class="col-md-12">
                             <label for="descripcion">Descripción *</label>
-                            <textarea type="text" class="form-control text-content" id="descripcionObra" placeholder="Por favor ingrese una descripción..." style="min-height: 100px; max-width: 100%"></textarea>
-                            <div id="contadorPalabras" style="color: red;"></div>
+                            <textarea type="text" class="form-control text-content" id="descripcionConvocatoria" placeholder="Por favor ingrese una descripción..." style="min-height: 100px; max-width: 100%"></textarea>
                         </div>
                     </div>
                 </div>
@@ -71,7 +73,7 @@ class convocatorias extends handleSanitize
                             0%
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+                    <button type="submit" class="btn btn-primary mt-2" id="guadarConvocatoria">Guardar</button>
                 </div>
             </form>
         </div>
@@ -80,9 +82,16 @@ class convocatorias extends handleSanitize
         return $html; 
     }
 
-    public function ActualizarConvocatorias()
+    public function ActualizarConvocatorias(): string 
     {
+        $ruta = $this->rutaAssets . 'js/convocatoria.js';
+        $html = <<<Html
+        <div class="container">
 
+        </div>
+
+        Html;
+        return $html;
     }
 
     private function getDependencias(): string 
