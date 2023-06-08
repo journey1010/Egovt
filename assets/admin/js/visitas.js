@@ -174,7 +174,7 @@ $(document).on("submit", "#regularizarVisitas", function (event){
     $("#dniVisita").val() === "" ||
     $("#apellidos_nombres").val() === "" ||
     $("#oficina option:selected").text() === "" ||
-    $("#hora_de_ingreso").val() === "" ||
+    $("#hora_de_ingresoR").val() === "" ||
     $("#institucionVisitanteR").val() === ''
   ) {
     Toast.fire({
@@ -189,10 +189,10 @@ $(document).on("submit", "#regularizarVisitas", function (event){
       apellidosNombres: $("#apellidos_nombres").val(),
       oficina: $("#oficina option:selected").val(),
       personaAVisitar: $("#persona_a_visitar").val(),
-      horaDeIngreso: $("#hora_de_ingreso").val(),
+      horaDeIngreso: $("#hora_de_ingresoR").val(),
       quienAutoriza: $("#quien_autoriza option:selected").val(),
       motivo: $("#motivo").val(),
-      horaDeSalida: $("#hora_de_salida").val(),
+      horaDeSalida: $("#hora_de_salidaR").val(),
       institucionVisitante: $("#institucionVisitanteR").val()
     };
 
@@ -223,8 +223,8 @@ $(document).on("submit", "#regularizarVisitas", function (event){
         $("#apellidos_nombres").val("");
         $("#quien_autoriza").val("");
         $("#motivo").val("");
-        $("#hora_de_ingreso").val("");
-        $("#hora_de_salida").val("");
+        $("#hora_de_ingresoR").val("");
+        $("#hora_de_salidaR").val("");
         $("#institucionVisitanteR").val("");
       },
       error: function (jqXHR, textStatus, errorThrown) {

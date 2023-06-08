@@ -206,11 +206,11 @@ class visitas extends handleSanitize {
                         </div>
                         <div class="col-md-3">
                             <label for="HoraIngreso">Hora de ingreso(obligatorio)</label>
-                            <input type="datetime-local" class="form-control" id="hora_de_ingreso" value="">
+                            <input type="datetime-local" class="form-control" id="hora_de_ingresoR" value="">
                         </div>
                         <div class="col-md-5">
                             <label for="HoraIngreso">Hora de salida</label>
-                            <input type="datetime-local" class="form-control" id="hora_de_salida" value="">
+                            <input type="datetime-local" class="form-control" id="hora_de_salidaR" value="">
                         </div>
                         <div class="col-md-5">
                             <label for="persona_a_visitar">¿A quién visita? </label>
