@@ -7,48 +7,64 @@ function select2() {
   });
 }
 
-$(document).on("click", "#BuscarDNIVisita", buscarDNIVisita);
-function buscarDNIVisita(e) {
-  e.preventDefault();
-  let dni = $("#dniVisita").val();
-  if (dni == "") {
-    Toast.fire({
-      background: "#86FFD3",
-      icon: "info",
-      title: "El campo DNI no puede estar vacío",
-    });
-  } else {
+$(document).on('submit', '#registrarConvocatoria', function(){
+  let camposRequeridos = [
+    'tituloConvocatoria', 
+    'fechaInicioConvocatoria', 
+    'fechaLimiteConvocatoria', 
+    'fechaFinalConvocatoria', 
+    'dependenciaConvocatoria',
+    'archivosConvocatorias'
+  ];
+  let enviarDatos= true;
+  
+  $.each(camposRequeridos, function(index, value ){
+    if($('#'+value).val() ===''){
+      Toast.fire({
+        icon: 'warning',
+        message: 'Debe completar todos los campos obligatorios'
+      });
+      enviarDatos= false; 
+    }
+  });
+
+  if(enviarDatos){
+    let formData={
+      tituloConvocatoria : $('#tituloConvocatoria').val(),
+      fechaInicioConvocatoria : $('#fechaInicioConvocatoria').val(), 
+      fechaLimiteConvocatoria : $('#fechaLimiteConvocatoria').val(), 
+      fechaFinalConvocatoria : $('#fechaFinalConvocatoria').val(), 
+      dependenciaConvocatoria : $('#dependenciaConvocatoria').val(),
+      archivosConvocatorias : $('#archivosConvocatorias').val()
+    };
+
     $.ajax({
-      url: "https://dniruc.apisperu.com/api/v1/dni/" + dni + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imdpbm9fcGFyZWRlc0BvdXRsb29rLmNvbS5wZSJ9.1rXghi0JQb2I-COt_4J7juPDkIgCBZZbHcixnwGF0mI",
-      method: "GET",
-      beforeSend: function () {
-        $("#BuscarDNIVisita").html("Buscando ...");
+      url: '/administrador/convocatoria/registro-convocatoria',
+      method: '',
+      data: formData,
+      beforeSend: function(){
+
       },
-      success: function (data) {
-        $("#BuscarDNIVisita").html("Buscar");
-        if (data.success == false) {
+      success: function(response){
+        let resp = JSON.parse(response);
+        if(resp.status === 'success'){
           Toast.fire({
-            icon: "error",
-            title:
-              "Ha ocurrido un error en la solicitud! En este momento no se puede Consultar a la API.",
+            icon: 'success',
+            title: resp.message
           });
-        } else {
-          $("#apellidos_nombres").val(
-            data.nombres +
-            " " +
-            data.apellidoPaterno +
-            " " +
-            data.apellidoMaterno
-          );
+        } else  {
+          Toast.fire({
+            icon: 'warning',
+            title: resp.message
+          });
         }
       },
-      error: function (jqXHR, textStatus, errorThrown) {
-        $("#BuscarDNIVisita").html("Buscar");
+      error: function(jqXHR, textStatus, errorThrown){
         Toast.fire({
-          icon: "error",
-          title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+          icon: 'error',
+          title: `Ha ocurrido un error en la solicitud! codigo: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown} `
         });
-      },
+      }
     });
   }
-}
+});

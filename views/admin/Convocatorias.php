@@ -44,7 +44,7 @@ class convocatorias extends handleSanitize
                         </div>
                         <div class="col-md-6">
                             <label for="tipo de obra">Dependencia (obligatorio)</label>
-                            <select class="form-control select2 select2-hidden-accessible" data-placeholder="Seleccione una dependencia" style="width: 100%; 
+                            <select id="dependenciaConvocatoria"class="form-control select2 select2-hidden-accessible" data-placeholder="Seleccione una dependencia" style="width: 100%; 
                                 height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
                                 $optionsDependencias
                             </select>
