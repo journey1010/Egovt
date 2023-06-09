@@ -3,7 +3,7 @@ import { Toast } from "./Toast.js";
 $(document).ready(select2);
 function select2() {
   $(".select2").select2({
-    closeOnSelect: true,
+    "closeOnSelect": true,
   });
 }
 
@@ -58,21 +58,22 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
   });
 
   if(enviarDatos){
-    let formData={
-      tituloConvocatoria : $('#tituloConvocatoria').val(),
-      fechaInicioConvocatoria : $('#fechaInicioConvocatoria').val(), 
-      fechaLimiteConvocatoria : $('#fechaLimiteConvocatoria').val(), 
-      fechaFinalConvocatoria : $('#fechaFinalConvocatoria').val(), 
-      dependenciaConvocatoria : $('#dependenciaConvocatoria').val(),
-      archivosConvocatorias : archivosConvocatorias
-    };
+    let formData = new FormData();
+    formData.append('tituloConvocatoria', $('#tituloConvocatoria').val());
+    formData.append('fechaInicioConvocatoria', $('#fechaInicioConvocatoria').val());
+    formData.append('fechaLimiteConvocatoria', $('#fechaLimiteConvocatoria').val());
+    formData.append('fechaFinalConvocatoria', $('#fechaFinalConvocatoria').val());
+    formData.append('dependenciaConvocatoria', $('#dependenciaConvocatoria').val());
+    for(let i =0;  i <= archivosConvocatorias.length; i++){
+      formData.append('archivosConvocatorias[]',  archivosConvocatorias[i]);
+    }
 
     const progressBar = $('.progress-bar');
     let totalFiles = 0;
     let progresoActual= 0;
 
     progressBar.css('witdh', '0%').attr('aria-valuenow', 0).text('0%');
-    for( let i = 0; i < archivosConvocatorias.length; i++){
+    for(let i = 0; i < archivosConvocatorias.length; i++){
       totalFiles += archivosConvocatorias[i].size;
     }
 
@@ -86,7 +87,7 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
         $('.progress').show();
       },
       xhr: function(){
-        let xhr = new window.XMLHTtpRequest();
+        let xhr = new window.XMLHttpRequest();
         xhr.upload.addEventListener('progress', function(e){
           if(e.lengthComputable){
             let porcentaje = Math.round((e.loaded/totalFiles)*100);
