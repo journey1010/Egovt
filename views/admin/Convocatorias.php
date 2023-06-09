@@ -62,7 +62,7 @@ class convocatorias extends handleSanitize
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="descripcion">Descripción *</label>
+                            <label for="descripcion">Descripción (Obligatorio)</label>
                             <textarea type="text" class="form-control text-content" id="descripcionConvocatoria" placeholder="Por favor ingrese una descripción..." style="min-height: 100px; max-width: 100%"></textarea>
                         </div>
                     </div>
@@ -86,9 +86,6 @@ class convocatorias extends handleSanitize
     {
         $ruta = $this->rutaAssets . 'js/convocatoria.js';
         $html = <<<Html
-        <div class="container">
-
-        </div>
 
         Html;
         return $html;
