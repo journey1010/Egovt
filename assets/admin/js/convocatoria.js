@@ -29,10 +29,11 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
       enviarDatos = false;
     }
   });
-  
+
   const extensionesPermitidas = ['docx', 'xlsx', 'xls', 'pdf', 'txt', 'doc'];
   const pesoMaximoArchivos = 10 * 1024 * 1024;
   let archivosConvocatorias = $('#archivosConvocatorias')[0].files;
+
   
   archivosConvocatorias.forEach(file => {
     const archivoNombre = file.name;
@@ -55,8 +56,8 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
       enviarDatos = false;
       return;
     }
-  });
-
+  }); 
+   
   if(enviarDatos){
     let formData = new FormData();
     formData.append('tituloConvocatoria', $('#tituloConvocatoria').val());
@@ -129,3 +130,22 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
     });
   }
 });
+
+
+function actualizarConvocatoria(datos)
+{
+  $.ajax({ 
+    url: '/administrador/convocatorias/actualizar-convocatoria',
+    method: 'POST',
+    data: datos,
+    beforeSend: function(){
+
+    }, 
+    success: function(response){
+
+    },
+    error: function(){
+
+    }
+  });
+}
