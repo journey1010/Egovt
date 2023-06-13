@@ -53,7 +53,7 @@
                         </div>
                         <div class="egdcCaption py-4 px-3 py-md-8 px-md-6">
                             <h3 class="fwMedium">Estadística IDER</h3>
-                            <p class="text-justify">Datos estadísticos de los establecimientos de salud o IPRESS entre públicos o privados, de los cuales 431 son administrados por la  Gerencia Regional de Salud </p>
+                            <p class="text-justify">Datos estadísticos de los establecimientos de salud o IPRESS entre públicos o privados, de los cuales 431 son administrados por la  Gerencia Regional de Salud(GERESA).</p>
                             <a href="https://insights.arcgis.com/#/view/b3163b7ce70f45b888266ee638e90a00" alt="Estadistica idr Region Loreto" class="btn btn-outline-light btnNoOver d-block w-100 mt-7">Ver más<i class="fas btnBnoIcn fa-arrow-right mx-1"><span class="sr-only">icon</span></i></a>
                         </div>
                     </article>
@@ -62,7 +62,7 @@
                     <article class="egdColumn shadow bg-white position-relative w-100 mb-6 mb-lg-12 text-center mx-auto">
                         <div class="imgHolder position-relative mb-5">
                             <img src="<?= $seguridad ?>" class="img-fluid w-100" alt="seguridad ciudadana region loreto">
-                            <i class="fal fa-map position-absolute icnWrap rounded-circle d-flex align-items-center justify-content-center shadow"><span class="sr-only">icon</span></i>
+                            <i class="fal fa-cctv position-absolute icnWrap rounded-circle d-flex align-items-center justify-content-center shadow"><span class="sr-only">icon</span></i>
                         </div>
                         <div class="egdcCaption py-4 px-3 py-md-8 px-md-6">
                             <h3 class="fwMedium">Seguridad Ciudadana</h3>
