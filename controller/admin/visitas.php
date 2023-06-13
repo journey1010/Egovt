@@ -512,11 +512,4 @@ class visitas extends handleSanitize
         $enlace = _BASE_URL . '/files/transparencia/visitas/' . $nombreArchivo;
         return $enlace;
     }
-
-    private function strtoupperString(string $string)
-    {   
-        $text = $this->SanitizeVarInput($string);
-        $text = mb_strtoupper(mb_convert_case($text, MB_CASE_UPPER, 'UTF-8'), 'UTF-8');
-        return $text;
-    }
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 class AdministrarArchivos {
 
     private $conexion;
@@ -54,7 +54,7 @@ class AdministrarArchivos {
     {       
         $pathForFile = $this->ruta ;
         if (!file_exists($pathForFile)) {
-            mkdir($pathForFile, 0777, true);
+            mkdir($pathForFile, 0754, true);
         }
         return $pathForFile;
     }

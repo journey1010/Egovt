@@ -73,7 +73,7 @@ class convocatorias extends handleSanitize
                             0%
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-2" id="guadarConvocatoria">Guardar</button>
+                    <button type="submit" class="btn btn-primary mt-2" id="guardarConvocatoria">Guardar</button>
                 </div>
             </form>
         </div>

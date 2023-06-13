@@ -15,4 +15,11 @@ class handleSanitize {
         $varSanitize = htmlspecialchars($var, ENT_QUOTES, "UTF-8");
         return $varSanitize;
     }
+
+    protected function strtoupperString(string $string): string
+    {   
+        $text = $this->SanitizeVarInput($string);
+        $text = mb_strtoupper(mb_convert_case($text, MB_CASE_UPPER, 'UTF-8'), 'UTF-8');
+        return $text;
+    }
 }
