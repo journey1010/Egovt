@@ -63,6 +63,7 @@
         {"method" : "POST", "pattern" : "/transparencia/proyecto-de-inversion-publica/filtros", "handler" : "transparenciaController@BuscarObra"},
         {"method" : "GET", "pattern" : "/transparencia/actividades-oficiales", "handler" : "transparenciaController@agendaGorel"},
         {"method" : "GET", "pattern" : "/transparencia/actividades-oficiales/?page={pagina}", "handler" : "transparenciaController@agendaGorel"},
-        {"method": "POST", "pattern" : "/transparencia/actividades-oficiales/buscar", "handler": "transparenciaController@agendaGorelPost"}
+        {"method": "POST", "pattern" : "/transparencia/actividades-oficiales/buscar", "handler": "transparenciaController@agendaGorelPost"},
+        {"method" : "GET", "pattern" : "/servicios/menu-aplicaciones", "handler" : "ServiciosController@ServiciosMain"}
     ]
 }
