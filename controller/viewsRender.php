@@ -34,7 +34,7 @@ class ViewRenderer {
 
             if($cache){
                 if (!is_dir($this->cache_dir)){
-                    mkdir($this->cache_dir, 077, true);
+                    mkdir($this->cache_dir, 0755, true);
                 }
                 file_put_contents ($cache_file, $content);
             }

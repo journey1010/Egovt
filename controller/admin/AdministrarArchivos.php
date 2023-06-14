@@ -54,7 +54,7 @@ class AdministrarArchivos {
     {       
         $pathForFile = $this->ruta ;
         if (!file_exists($pathForFile)) {
-            mkdir($pathForFile, 0754, true);
+            mkdir($pathForFile, 0755, true);
         }
         return $pathForFile;
     }
