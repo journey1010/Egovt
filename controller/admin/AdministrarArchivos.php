@@ -30,7 +30,7 @@ class AdministrarArchivos {
             print_r(json_encode($respuesta));
             return false;
         }
-        return true; 
+        return true;  
     }
 
     public function guardarFichero ($archivo, $titulo)

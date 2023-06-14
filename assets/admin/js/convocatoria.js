@@ -70,7 +70,7 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
     formData.append('descripcionConvocatoria', $('#descripcionConvocatoria').val());
 
     for(let i =0;  i <= archivosConvocatorias.length - 1; i++){
-      formData.append('archivosConvocatorias[]',  archivosConvocatorias[i]);
+      formData.append('archivosConvocatorias['+i+']',  archivosConvocatorias[i]);
     }
 
     const progressBar = $('.progress-bar');

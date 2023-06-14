@@ -2,9 +2,9 @@
 
 class handleSanitize {
 
-    protected function handlerError (Throwable $e): void
+    protected function handlerError (Throwable $e, $infoAdd = null): void
     {
-        $errorMessage = date("Y-m-d H:i:s") . " : " . $e->getMessage() . "\n";
+        $errorMessage = date("Y-m-d H:i:s") . " : " . $e->getMessage() .  ', info:' . $infoAdd . "\n";
         error_log($errorMessage, 3, _ROOT_PATH . '/log/error.log' );
         return;
     }
