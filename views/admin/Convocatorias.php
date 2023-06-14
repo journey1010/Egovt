@@ -36,11 +36,11 @@ class convocatorias extends handleSanitize
                         </div>
                         <div class="col-md-6">
                             <label for="fechaLimiteConvocatoria">Fecha Limite de convocatoria (obligatorio)</label>
-                            <input type="date" class="form-control" id="fechaLimiteConvocatoria" value="">
+                            <input type="date" class="form-control" id="fechaLimiteConvocatoria" value="" disabled>
                         </div>
                         <div class="col-md-6">
                             <label for="fechaFinalConvocatoria">Fecha de finalización de convocatoria (obligatorio)</label>
-                            <input type="date" class="form-control" id="fechaFinalConvocatoria" value="">
+                            <input type="date" class="form-control" id="fechaFinalConvocatoria" value="" disabled>
                         </div>
                         <div class="col-md-6">
                             <label for="tipo de obra">Dependencia (obligatorio)</label>

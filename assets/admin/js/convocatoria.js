@@ -7,6 +7,35 @@ function select2() {
   });
 }
 
+$(document).on("change", "#fechaInicioConvocatoria", function() {
+  var fechaInicio = $(this).val();
+  var fechaLimite = $("#fechaLimiteConvocatoria");
+  var fechaFinal = $("#fechaFinalConvocatoria");
+
+  fechaLimite.prop("disabled", false);
+  fechaLimite.prop("min", fechaInicio);
+
+  if (fechaLimite.val() < fechaInicio) {
+    fechaLimite.val(fechaInicio);
+  }
+
+  fechaFinal.val("");
+  fechaFinal.prop("disabled", true);
+});
+
+
+$(document).on("change", "#fechaLimiteConvocatoria", function() {
+  var fechaLimite = $(this).val();
+  var fechaFinal = $("#fechaFinalConvocatoria");
+
+  fechaFinal.prop("disabled", false);
+  fechaFinal.prop("min", fechaLimite);
+
+  if (fechaFinal.val() < fechaLimite) {
+    fechaFinal.val(fechaLimite);
+  }
+});
+
 $(document).on('submit', '#registrarConvocatoria', function(event){
   event.preventDefault();
   const camposRequeridos = [
