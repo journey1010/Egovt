@@ -60,7 +60,7 @@ class Paginator {
               $paginador .= '<li class="page-item disabled"><a class="page-link" href="?page=' . ($this->paginaActual - 1) . '">Anterior</a></li>';
             }
 
-            for ($i = 1; $i <= $this->totalDePaginas; $i++) {
+            for ($i = 1; $i <= ($this->totalDePaginas)/5; $i++) {
               if ($i == $this->paginaActual) {
                 $paginador .= '<li class="page-item active"><a class="page-link" href="#">' . $i . '<span class="sr-only">(current)</span></a></li>';
               } else {
