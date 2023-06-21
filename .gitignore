@@ -4,3 +4,4 @@ log/error.log
 .gitignore
 .env
 .cpanel.yml
+.files/convocatorias
