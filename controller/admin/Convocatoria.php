@@ -3,15 +3,18 @@
 require_once _ROOT_CONTROLLER . 'admin/handleSanitize.php';
 require_once _ROOT_CONTROLLER . 'admin/AdministrarArchivos.php';
 require_once _ROOT_MODEL . 'conexion.php';
+
 class Convocatoria extends handleSanitize
 {
     private $conexion;
     private $gestorArchivos;
+
     public function __construct()
     {
         $this->conexion = new MySQLConnection();
         $this->gestorArchivos = new AdministrarArchivos($this->conexion, 'convocatorias/');
     }
+
     public function registrar()
     {
         $camposRequeridos =  [
@@ -73,7 +76,7 @@ class Convocatoria extends handleSanitize
     }
 
     /**
-     * Valida multipes archivos 
+     * Valida multiples archivos 
      * @param array $archivos
      * @param array $extensionPermitidas
      * @return boolean
@@ -114,7 +117,6 @@ class Convocatoria extends handleSanitize
      * Obtiene el ultimo id de registrado de la tabla convocatoria
      * @return string
     */
-
     public function obtenerUltimoIdConvocatoria()
     {
         try {
@@ -133,7 +135,6 @@ class Convocatoria extends handleSanitize
      * @param string $id
      * @return bool
     */ 
-
     private function insertAdjuntosConvocatoria($archivo, $id): bool
     {
         $sqlAdjuntos = "INSERT INTO convocatorias_adjuntos (nombre, archivo, id_convocatoria) VALUES (?,?,?)";
@@ -150,6 +151,13 @@ class Convocatoria extends handleSanitize
             $this->handlerError($e, 'Clase convocatoria InsertAjuntosConvocatoria ID de registro fallido '.$id);
             return false;
         }
+    }   
+
+    private function editConvocatoria($id): string
+    {
+        $sql = "SELECT titulo, descripcion, dependencia, fecha_registro, fecha_limite, fecha_finalizacion FROM convocatorias INNER JOIN   WHERE id = ?";
+        $param = [$id];
+        $stmt = $this->conexion->query($sql, $param, '', false);
+        return $respuesta;
     }
-    
 }

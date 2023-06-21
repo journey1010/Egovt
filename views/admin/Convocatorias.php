@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use PhpOffice\PhpSpreadsheet\Helper\Html;
 
 require_once ( _ROOT_CONTROLLER . 'admin/handleSanitize.php');
 require_once ( _ROOT_MODEL . 'conexion.php');
@@ -85,11 +87,26 @@ class convocatorias extends handleSanitize
     public function ActualizarConvocatorias(): string 
     {
         $ruta = $this->rutaAssets . 'js/convocatoria.js';
+        $tabla = $this->listadoConvocatorias();
         $html = <<<Html
-
+        <div class="card card-success mt-3 mx-auto w-100">
+            <div class="card-header">
+                <h3 class="card-title">Actualizar Registros</h3>
+            </div>
+            <div class="card-body table-responsive p-2 mt-3 mx-auto">
+                $tabla
+            </div>
+        </div>
+        <script  type ="module" src="$ruta"></script>
         Html;
         return $html;
     }
+
+    /**
+     * Obtiene la lista de oficinas disponibles, para
+     * usarse en el registro de convocatorias
+     * @return string
+    */
 
     private function getDependencias(): string 
     {
@@ -101,5 +118,60 @@ class convocatorias extends handleSanitize
             $optionSelect .= "<option value='{$row['id']}'>{$row['nombre']} - {$row['sigla']}</option>";
         }
         return $optionSelect;
+    }
+
+    
+    private function listadoConvocatorias(): string
+    {
+        $sql = "SELECT id, titulo, descripcion, fecha_registro, fecha_finalizacion FROM convocatorias WHERE estado IN (1,2)";
+        $stmt = $this->conexion->query($sql, '', '', false);
+        $resultado = $this->makeTblForConvocatoria($stmt->fetchAll());
+        return $resultado;
+    }
+
+    /**
+     * Crea una tabla con las convocatorias disponibles 
+     * y que estan habilitadas para editarse
+     * @param array $resultado 
+     * @return string 
+    */  
+
+    private function makeTblForConvocatoria($resultado): string 
+    {
+        $tablaRow = '';
+        foreach ($resultado as $row ) {         
+            $tablaRow .= <<<Html
+            <tr>
+                <td class='text-center'>{$row['id']}</td>
+                <td class='text-center'>{$row['titulo']}</td>
+                <td class='text-center' style='max-width: 300px;'>{$row['descripcion']}</td>
+                <td class='text-center'>{$row['fecha_registro']}</td>
+                <td class='text-center'>{$row['fecha_finalizacion']}</td>
+                <td class="text-center align-middle">
+                    <i class="fa fa-edit mr-2 edit-ico-upconv" style="color:#9c74dd !important"></i>
+                    <i class="fa fa-window-close fa-lg cancel-ico-upconv" style="color: #b40404; --fa-secondary-color: #c7fbff; display:none;"></i>
+                </td>
+            </tr>
+            Html;
+        }
+
+        $tabla = <<<Html
+        <table class="table table-hover table-md w-100" id="resultadosBusquedaObras">
+            <thead class="table-bordered" >
+                <tr>
+                    <th class="text-center">N#</th>
+                    <th class="text-center">Titulo</th>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Inicio</th>
+                    <th class="text-center">Finalización</th>
+                    <th style="width: 80px" class="text-center ">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                $tablaRow
+            </tbody>
+        </table>  
+        Html;  
+        return $tabla;
     }
 }

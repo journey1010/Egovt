@@ -23,7 +23,6 @@ $(document).on("change", "#fechaInicioConvocatoria", function() {
   fechaFinal.prop("disabled", true);
 });
 
-
 $(document).on("change", "#fechaLimiteConvocatoria", function() {
   var fechaLimite = $(this).val();
   var fechaFinal = $("#fechaFinalConvocatoria");
@@ -161,4 +160,29 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
       }
     });
   }
+});
+
+$(document).on('click', '.edit-ico-upconv', function(){
+  let row = $(this).closest("tr");
+  let id = row.find("td:eq(0)").text();
+  $.ajax({
+    url: '/administrador/convocatoria/edit-convocatoria',
+    method: 'POST',
+    data: {
+      id: id,
+    },
+    beforeSend: function (){
+
+    },
+    success: function(response){
+      let resp = JSON.parse(response);
+      
+    }, 
+    error: function (jqXHR, textStatus, errorThrown) {
+      Toast.fire({
+        icon: "error",
+        title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+      });
+    },
+  });
 });
