@@ -83,10 +83,10 @@ class Convocatoria extends handleSanitize
 
     /**
      * Valida multiples archivos 
-     * @param array $archivos
-     * @param array $extensionPermitidas
+     * @param array $archivos contiene archivos recividos por $_POST[]
+     * @param array $extensionPermitidas lista de extensiones admitidas por el sistema
      * @return boolean
-     * @see $this->gestorArchivos->validarArchivo
+     * @see $this->gestorArchivos->validarArchivo, función heredada que validad archivos individuales
     */
     private function validarArchivos($archivos, $extensionPermitidas)
     {
@@ -163,7 +163,7 @@ class Convocatoria extends handleSanitize
      * Función que devuelve una vista de una convocatoria especifica
      * con todos sus datos y adjuntos. Utiliza promesas para ejecutar
      * sus consultas al mismo tiempo.
-     * @return json
+     * @return json que contiene el estado de las respuesta y su valor. 
     */
     public  function editConvocatoria()
     {
@@ -185,7 +185,7 @@ class Convocatoria extends handleSanitize
     /**
      * Función que retorna un objeto de la clase promise, este objeto contiene el resultado de la ejecucion de una consulta
      * Si la consulta falla devuleve un error Throwable. 
-     * @param string $sql, guarda una consulta sql
+     * @param string $sql, guarda una consulta sql parametrizada
      * @param string $param, guarda un parametro para la consulta sql
      * @return object|Throwable 
     */
