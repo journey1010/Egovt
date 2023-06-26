@@ -6,7 +6,6 @@ require_once _ROOT_MODEL . 'conexion.php';
 require_once _ROOT_PATH . '/vendor/autoload.php';
 
 use React\EventLoop\Loop;
-use React\Promise\Deferred;
 use React\Promise\Promise;
 
 class Convocatoria extends handleSanitize
@@ -177,9 +176,26 @@ class Convocatoria extends handleSanitize
         /** Inicia el loop para las promesas */
         $loop = Loop::get();
 
-        $promesa1 = $this->ejecucionConsulta($sql, $param);
-        $promesa2 = $this->ejecucionConsulta($sqlAdjuntos, $param);
+        $promesa = $this->ejecucionConsulta($sql, $param);
+        $promesaAdjuntos = $this->ejecucionConsulta($sqlAdjuntos, $param);
 
+        React\Promise\all([$promesa, $promesaAdjuntos])->then(function($results){
+            $stmt = $results[0];
+            $stmtAdjuntos = $results[1];
+
+            $html = $this->generarHtml($stmt);
+            $htmlAdjuntos = $this->generarHtmlAdjuntos($stmtAdjuntos);
+
+            React\Promise\all([$html, $htmlAdjuntos])->then(function($htmlresults){
+                $view = $htmlresults[0];
+                $viewAdjuntos = $htmlresults[1];
+
+                $this->generarFinalHtml($view, $viewAdjuntos);
+            })
+            ->otherwise(function(Throwable $error){
+                $this->handlerError($error, 'Promesa generadora de vistas, convocatoria, editConvocatoria');
+            });
+        });
     }
 
     /**
