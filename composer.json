@@ -2,6 +2,10 @@
     "require": {
         "phpoffice/phpspreadsheet": "^1.28",
         "vlucas/phpdotenv": "^5.5",
-        "dompdf/dompdf": "^2.0"
+        "dompdf/dompdf": "^2.0",
+        "react/event-loop": "^1.4",
+        "guzzlehttp/psr7": "^2.5",
+        "react/promise": "^2.10",
+        "react/react": "^1.3"
     }
 }

@@ -3,6 +3,11 @@
 require_once _ROOT_CONTROLLER . 'admin/handleSanitize.php';
 require_once _ROOT_CONTROLLER . 'admin/AdministrarArchivos.php';
 require_once _ROOT_MODEL . 'conexion.php';
+require_once _ROOT_PATH . '/vendor/autoload.php';
+
+use React\EventLoop\Loop;
+use React\Promise\Deferred;
+use React\Promise\Promise;
 
 class Convocatoria extends handleSanitize
 {
@@ -59,6 +64,7 @@ class Convocatoria extends handleSanitize
             echo json_encode($respuesta);
         }
     }
+   
 
     /**
      * Reorganiza el @param array $archivos en un array cuyas posiciones guardan otro array (Una matriz de matrices)
@@ -153,11 +159,46 @@ class Convocatoria extends handleSanitize
         }
     }   
 
-    private function editConvocatoria($id): string
+    /**
+     * Función que devuelve una vista de una convocatoria especifica
+     * con todos sus datos y adjuntos. Utiliza promesas para ejecutar
+     * sus consultas al mismo tiempo.
+     * @return json
+    */
+    public  function editConvocatoria()
     {
-        $sql = "SELECT titulo, descripcion, dependencia, fecha_registro, fecha_limite, fecha_finalizacion FROM convocatorias INNER JOIN   WHERE id = ?";
+        $id = $this->SanitizeVarInput($_POST['id']);
+        $sql = "SELECT titulo, descripcion, o.nombre, fecha_registro, fecha_limite, fecha_finalizacion FROM convocatorias AS c 
+                INNER JOIN oficinas AS o ON o.id = c.dependencia  
+                WHERE c.id = ?";
+        $sqlAdjuntos = "SELECT id, nombre, archivo, id_convocatoria FROM convocatorias_adjuntos WHERE id_convocatoria = ?";
         $param = [$id];
-        $stmt = $this->conexion->query($sql, $param, '', false);
-        return $respuesta;
+
+        /** Inicia el loop para las promesas */
+        $loop = Loop::get();
+
+        $promesa1 = $this->ejecucionConsulta($sql, $param);
+        $promesa2 = $this->ejecucionConsulta($sqlAdjuntos, $param);
+
+    }
+
+    /**
+     * Función que retorna un objeto de la clase promise, este objeto contiene el resultado de la ejecucion de una consulta
+     * Si la consulta falla devuleve un error Throwable. 
+     * @param string $sql, guarda una consulta sql
+     * @param string $param, guarda un parametro para la consulta sql
+     * @return object|Throwable 
+    */
+    private function ejecucionConsulta(string $sql, array $param)
+    {
+        return new Promise( function($resolve, $reject) use ($sql, $param) {
+            $stmt = $this->conexion->query($sql, $param, '', false);
+            if($stmt){
+                $resolve($stmt);
+            } else {
+                $error = new Error ('Error al ejecutar consulta: ' . $sql);
+                $reject($error);
+            }
+        });
     }
 }
