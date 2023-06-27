@@ -177,14 +177,13 @@ $(document).on('click', '.edit-ico-upconv', function(){
     success: function(response){
       let resp = JSON.parse(response);
       if(resp.status === 'success'){
-
+        $('#contentPage').html(resp.data);
       } else {
         Toast.fire({
           icon: 'error',
           title: 'Error inesperado en la ejecución de consulta. Contacte con soporte o vuelva a intentarlo. '
         });
-      }
-      
+      }   
     }, 
     error: function (jqXHR, textStatus, errorThrown) {
       Toast.fire({

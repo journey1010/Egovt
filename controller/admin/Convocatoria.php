@@ -2,6 +2,7 @@
 
 require_once _ROOT_CONTROLLER . 'admin/handleSanitize.php';
 require_once _ROOT_CONTROLLER . 'admin/AdministrarArchivos.php';
+require_once _ROOT_VIEWS . 'admin/Convocatorias.php';
 require_once _ROOT_MODEL . 'conexion.php';
 require_once _ROOT_PATH . '/vendor/autoload.php';
 
@@ -36,16 +37,16 @@ class Convocatoria extends handleSanitize
         $archivos =  $_FILES['archivosConvocatorias'];
         $nuevosArchivos = $this->reorganizarArchivos($archivos);
 
-        if(!$this->validarArchivos($nuevosArchivos, $extensionPermitidas)) {
+        if (!$this->validarArchivos($nuevosArchivos, $extensionPermitidas)) {
             return;
         }
 
         $id = $this->InsertConvocatoria(
-            $tituloConvocatoria, 
-            $fechaInicioConvocatoria, 
-            $fechaLimiteConvocatoria, 
-            $fechaFinalConvocatoria, 
-            $dependenciaConvocatoria, 
+            $tituloConvocatoria,
+            $fechaInicioConvocatoria,
+            $fechaLimiteConvocatoria,
+            $fechaFinalConvocatoria,
+            $dependenciaConvocatoria,
             $descripcionConvocatoria
         );
 
@@ -55,7 +56,7 @@ class Convocatoria extends handleSanitize
             return;
         }
 
-        if($this->insertAdjuntosConvocatoria($nuevosArchivos, $id)){
+        if ($this->insertAdjuntosConvocatoria($nuevosArchivos, $id)) {
             $respuesta = ['status' => 'success', 'message' => 'Datos registrados con éxito.'];
             echo json_encode($respuesta);
         } else {
@@ -63,12 +64,11 @@ class Convocatoria extends handleSanitize
             echo json_encode($respuesta);
         }
     }
-   
 
     /**
      * Reorganiza el @param array $archivos en un array cuyas posiciones guardan otro array (Una matriz de matrices)
      * @return array
-    */
+     */
     private function reorganizarArchivos(array $archivos): array
     {
         $nuevosArchivos = [];
@@ -86,7 +86,7 @@ class Convocatoria extends handleSanitize
      * @param array $extensionPermitidas lista de extensiones admitidas por el sistema
      * @return boolean
      * @see $this->gestorArchivos->validarArchivo, función heredada que validad archivos individuales
-    */
+     */
     private function validarArchivos($archivos, $extensionPermitidas)
     {
         foreach ($archivos as $archivo) {
@@ -121,7 +121,7 @@ class Convocatoria extends handleSanitize
     /**
      * Obtiene el ultimo id de registrado de la tabla convocatoria
      * @return string
-    */
+     */
     public function obtenerUltimoIdConvocatoria()
     {
         try {
@@ -129,7 +129,7 @@ class Convocatoria extends handleSanitize
             $stmt = $this->conexion->query($sql, '', '', false);
             $id = $stmt->fetchColumn();
             return $id;
-        } catch (Throwable $e){
+        } catch (Throwable $e) {
             $this->handlerError($e, 'Clase convocatoria funcion obtenerUltimioIdConvocatoria');
         }
     }
@@ -139,7 +139,7 @@ class Convocatoria extends handleSanitize
      * @param array $archivo
      * @param string $id
      * @return bool
-    */ 
+     */
     private function insertAdjuntosConvocatoria($archivo, $id): bool
     {
         $sqlAdjuntos = "INSERT INTO convocatorias_adjuntos (nombre, archivo, id_convocatoria) VALUES (?,?,?)";
@@ -153,21 +153,21 @@ class Convocatoria extends handleSanitize
             }
             return true;
         } catch (Throwable $e) {
-            $this->handlerError($e, 'Clase convocatoria InsertAjuntosConvocatoria ID de registro fallido '.$id);
+            $this->handlerError($e, 'Clase convocatoria InsertAjuntosConvocatoria ID de registro fallido ' . $id);
             return false;
         }
-    }   
+    }
 
     /**
      * Función que devuelve una vista de una convocatoria especifica
      * con todos sus datos y adjuntos. Utiliza promesas para ejecutar
      * sus consultas al mismo tiempo.
      * @return json que contiene el estado de las respuesta y su valor. 
-    */
+     */
     public  function editConvocatoria()
     {
         $id = $this->SanitizeVarInput($_POST['id']);
-        $sql = "SELECT titulo, descripcion, o.nombre, fecha_registro, fecha_limite, fecha_finalizacion FROM convocatorias AS c 
+        $sql = "SELECT titulo, descripcion, o.nombre AS oficina, fecha_registro, fecha_limite, fecha_finalizacion FROM convocatorias AS c 
                 INNER JOIN oficinas AS o ON o.id = c.dependencia  
                 WHERE c.id = ?";
         $sqlAdjuntos = "SELECT id, nombre, archivo, id_convocatoria FROM convocatorias_adjuntos WHERE id_convocatoria = ?";
@@ -179,20 +179,19 @@ class Convocatoria extends handleSanitize
         $promesa = $this->ejecucionConsulta($sql, $param);
         $promesaAdjuntos = $this->ejecucionConsulta($sqlAdjuntos, $param);
 
-        React\Promise\all([$promesa, $promesaAdjuntos])->then(function($results){
+        React\Promise\all([$promesa, $promesaAdjuntos])->then(function ($results) {
             $stmt = $results[0];
             $stmtAdjuntos = $results[1];
 
             $html = $this->generarHtml($stmt);
             $htmlAdjuntos = $this->generarHtmlAdjuntos($stmtAdjuntos);
 
-            React\Promise\all([$html, $htmlAdjuntos])->then(function($htmlresults){
+            React\Promise\all([$html, $htmlAdjuntos])->then(function ($htmlresults) {
                 $view = $htmlresults[0];
                 $viewAdjuntos = $htmlresults[1];
 
                 $this->generarFinalHtml($view, $viewAdjuntos);
-            })
-            ->otherwise(function(Throwable $error){
+            })->otherwise(function ($error) {
                 $this->handlerError($error, 'Promesa generadora de vistas, convocatoria, editConvocatoria');
             });
         });
@@ -204,17 +203,81 @@ class Convocatoria extends handleSanitize
      * @param string $sql, guarda una consulta sql parametrizada
      * @param string $param, guarda un parametro para la consulta sql
      * @return object|Throwable 
-    */
+     */
     private function ejecucionConsulta(string $sql, array $param)
     {
-        return new Promise( function($resolve, $reject) use ($sql, $param) {
+        return new Promise(function ($resolve, $reject) use ($sql, $param) {
             $stmt = $this->conexion->query($sql, $param, '', false);
-            if($stmt){
-                $resolve($stmt);
+            if ($stmt) {
+                $respuesta = $stmt->fetchAll();
+                $resolve($respuesta);
             } else {
-                $error = new Error ('Error al ejecutar consulta: ' . $sql);
+                $error = new Error('Error al ejecutar consulta: ' . $sql);
                 $reject($error);
             }
         });
+    }
+
+    /**
+     * Crea una vista apartir de la consulta, se ejecuta de forma asincrona. 
+     * Crea una variable $selectOptions que contiene una lista de oficinas (Dependencias) con la oficina de 
+     * la convocatoria selecionada. 
+     * @param array $stmt, contiene la devolución de una consulta sql
+     * @return promise $respuesta, contiene una vista html con datos de la consulta   
+     */
+    private function generarHtml($stmt)
+    {
+        return new Promise(function ($resolve, $reject) use ($stmt) {
+            $contador = 1;
+            $idDependencia = $stmt[0]['oficina'];
+
+            $sql = "SELECT id, CONCAT(nombre, ' ', sigla) AS nombre FROM oficinas";
+            $statement = $this->conexion->query($sql, '', '', false)->fetchAll();
+
+            $selectOptions = '';
+            foreach ($statement as $row) {
+                if ($selectOptions === $idDependencia) {
+                    $selectOptions .= <<<Html
+                    <option value="{$row['id']} selected">{$row['nombre']}</option>
+                    Html;
+                }
+                $selectOptions = <<<Html
+                <option value="{$row['id']}">{$row['nombre']}</option>
+                Html;
+            }
+
+            $view = new convocatorias();
+            $viewResult = $view->viewEditGeneralConvocatoria(
+                $idDependencia,
+                $stmt[0]['titulo'],
+                $stmt[0]['descripcion'],
+                $stmt[0]['oficina'],
+                $stmt[0]['fecha_registro'],
+                $stmt[0]['fecha_limite'],
+                $stmt[0]['fecha_finalizacion']
+            );
+            $resolve($viewResult);
+        });
+    }
+
+    /**
+     * Crea una vista con el resultado de una consulta a base de datos. 
+     * @param  array $stmtAdjuntos, contiene los adjuntos de una convocatoria en especifico.
+     * @return promise $respuesta, contiene los datos de documentos adjuntos de una convocatoria.
+     */
+    private function generarHtmlAdjuntos($stmtAdjuntos)
+    {
+        return new Promise(function ($resolve, $reject) use ($stmtAdjuntos) {
+            $view = new convocatorias();
+            $viewResult = $view->viewEditAdjuntosConvocatoria($stmtAdjuntos);
+            $resolve($viewResult);
+        });
+    }
+
+    private function generarFinalHtml($view, $viewAdjuntos)
+    {
+        $views = new convocatorias();
+        $results = $views->viewEditFinalConvocatoria($view, $viewAdjuntos);
+        echo (json_encode(['status' => 'success', 'data' => $results]));
     }
 }

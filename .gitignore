@@ -5,3 +5,4 @@ log/error.log
 .env
 .cpanel.yml
 .files/convocatorias
+.files/
