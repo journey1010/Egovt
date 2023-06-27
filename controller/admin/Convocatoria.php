@@ -17,7 +17,7 @@ class Convocatoria extends handleSanitize
     public function __construct()
     {
         $this->conexion = new MySQLConnection();
-        $this->gestorArchivos = new AdministrarArchivos($this->conexion, 'convocatorias/');
+        $this->gestorArchivos = new AdministrarArchivos($this->conexion, 'transparencia/convocatorias/' . date('Y/m/'));
     }
 
     public function registrar()
