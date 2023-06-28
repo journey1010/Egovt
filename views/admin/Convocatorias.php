@@ -244,10 +244,11 @@ class convocatorias extends handleSanitize
             $TableRows .= <<<Html
             <tr>
                 <td>{$row['id']}</td>
-                <td class="text-center" style="max-width:150px">{$row['nombre']}</td>
-                <td style="max-width:150px">
-                    <a class="btn btn-outline-dark" alt="documento de convocatoria" href="$url" download>
-                        {$row['nombre']} <i class="fas fa-file-import"></i>
+                <td class="text-center" contenteditable=false style="max-width:150px">{$row['nombre']}</td>
+                <td>
+                    <a class="btn btn-outline-dark" alt="documento de convocatoria" href="$url" download style="
+                    word-break: break-word;">
+                        Descargar <i class="fas fa-file-import"></i>
                     </a>
                 </td>
                 <td class="text-left">
@@ -259,7 +260,7 @@ class convocatorias extends handleSanitize
                             } else {
                                 input.html('Seleccione un archivo');
                             }
-                        ">
+                        " disabled>
                         <label class="custom-file-label text-left" for="docAdjunto{$row['id']}" data-browse="Archivo"></label>
                     </div>
                 </td>
@@ -268,7 +269,6 @@ class convocatorias extends handleSanitize
                         <a class="btn btn-danger edit-adjunto" alt="editar adjunto" title="Editar adjunto"><i class="fas fa-edit"></i></a>
                         <a class="btn btn-danger cancel-adjunto" alt="cancelar adjunto" title="Cancelar edición adjunto" style="display: none!important"> <i class="fas fa-times"></i></a>
                         <a class="btn btn-danger save-adjunto" alt="Guardar adjunto" title="Guardar cambios" style="display: none!important"><i class="fas fa-save"></i></a>
-                        <a class="btn btn-danger delete-adjunto" alt="eliminar adjunto" title="Eliminar adjunto" style="display: none!important"><i class="fas fa-trash-alt"></i></a>
                     </div>
                 </td>
             </tr>
@@ -288,9 +288,13 @@ class convocatorias extends handleSanitize
                                 <tr>
                                     <th class= "text-center" style="width: 10px">Id</th>
                                     <th class= "text-center" style="max-width:150px">Nombre</th>
-                                    <th class= "text-center">Ver Archivo</th>
+                                    <th class= "text-center" style="width: 160px">Ver Archivo</th>
                                     <th class= "text-center" style="max-width: 200px">Nuevo Archivo</th>
-                                    <th class= "text-right py-0 align-middle"><a class="btn btn-primary btn-sm insert-adjunto" alt="Insertar" title="Insertar adjunto"><i class="fa fa-plus-circle"></i></a></th>
+                                    <th class= "text-right py-0 align-middle">
+                                        <a class="btn btn-primary btn-sm insert-adjunto" alt="Insertar" title="Insertar adjunto">
+                                            <i class="fa fa-plus-circle"></i>
+                                        </a>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>

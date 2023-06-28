@@ -225,7 +225,7 @@ class Convocatoria extends handleSanitize
      * la convocatoria selecionada. 
      * @param array $stmt, contiene la devolución de una consulta sql
      * @return promise $respuesta, contiene una vista html con datos de la consulta   
-     */
+    */
     private function generarHtml($stmt)
     {
         return new Promise(function ($resolve, $reject) use ($stmt) {

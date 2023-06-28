@@ -211,3 +211,208 @@ $(document).on('click', '.edit-ico-upconv', function(){
     },
   });
 });
+
+$(document).on('click', '.edit-adjunto', function(){
+  let rowAdjunto = $(this).closest('tr');
+  rowAdjunto.find('td[contenteditable=false]').prop('contenteditable', true);
+  rowAdjunto.find('td:eq(1)').css('border-color', 'blue');
+  rowAdjunto.find('.imgadjunto').prop('disabled', false);
+  rowAdjunto.find('.edit-adjunto').hide();
+  rowAdjunto.find('.cancel-adjunto').show();
+  rowAdjunto.find('.save-adjunto').show();
+});
+
+$(document).on('click', '.cancel-adjunto', configSaveCancel);
+
+$(document).on('click', '.save-adjunto', function(){
+  configSaveCancel.bind(this)();
+  let rowAdjunto = $(this).closest('tr');
+
+  let formData = {
+    id: rowAdjunto.find('td:eq(0)').text(),
+    nombre: rowAdjunto.find('td:eq(1)').text(),
+    archivo : rowAdjunto.find('.imgadjunto').prop('files')[0]
+  };
+
+  if( rowAdjunto.find('td:eq(1)').text() == ''){
+    Toast.fire({
+      icon: "warning",
+      title: "El campo nombre no debe estar vacío."
+    });
+  } else{
+    $.ajax({
+      url: '',
+      method: '',
+      data: formData,
+      enctype: 'multipart/form-data',
+      processData: false,
+      contentType: false,
+      dataType: 'json',
+      success: function(resp){
+        if(resp.status === 'success'){
+          Toast.fire({
+            icon: 'success',
+            title:  resp.message
+          });
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        Toast.fire({
+          icon: "error",
+          title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+        });
+      }
+    });
+  }
+});
+
+function configSaveCancel(){
+  let rowAdjunto = $(this).closest('tr');
+  rowAdjunto.find('td[contenteditable=true]').prop('contenteditable', false);
+  rowAdjunto.find('td:eq(1)').css('border-color', 'transparent');
+  rowAdjunto.find('.imgadjunto').prop('disabled', false);
+  rowAdjunto.find('.edit-adjunto').show();
+  rowAdjunto.find('.cancel-adjunto').hide();
+  rowAdjunto.find('.save-adjunto').hide();
+}
+
+$(document).on('click', '.insert-adjunto', function(){
+  let uniqueIdConvo = 'file-conv'+Date.now();
+  let newRowConvo = `
+  <tr>
+    <td></td>
+    <td style="max-width:150px"></td>
+    <td style="max-width:150px">
+    </td>
+    <td class="text-left">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input imgadjunto" id="${uniqueIdConvo}" onchange= "
+                let input = $(this).closest('tr').find('.custom-file-label');
+                if (this.files.length > 0) { 
+                    input.html(this.files[0].name);
+                } else {
+                    input.html('Seleccione un archivo');
+                }
+            ">
+            <label class="custom-file-label text-left" for="${uniqueIdConvo}" data-browse="Archivo"></label>
+        </div>
+    </td>
+    <td class="text-right py-0 align-middle">
+        <div class="btn-group btn-group-sm">
+            <a class="btn btn-danger save-adjunto" alt="Guardar adjunto" title="Guardar cambios"><i class="fas fa-save"></i></a>
+            <a class="btn btn-danger delete-adjunto" alt="eliminar adjunto" title="Eliminar adjunto"><i class="fas fa-trash-alt"></i></a>
+        </div>
+    </td>
+  </tr>
+  `;
+  $('.table-adjunto').append(newRowConvo);
+});
+
+$(document).on('click', '.save-adjunto-new', function(){
+  let rowSaveNewAdjunto = $(this).closest('tr');
+  let formData = new FormData();
+  formData.append('archivo', rowSaveNewAdjunto.find('imgadjunto').prop('files')[0]);
+  formData.append('id', $('#idConvocatoria').val());
+  
+  let estado = true;
+
+  if (rowSaveNewAdjunto.find('imgadjunto').prop("files").length == 0){
+    estado = false;
+  }
+
+  if(estado){
+    $.ajax({
+      url: '/administrador/convocatoria/zona-editor/saveNewAdjunto',
+      method: 'POST',
+      enctype: 'multipart/form-data',
+      processData: false,
+      contentType: false,
+      data: formData,
+      success: function(response){
+        let resp = JSON.parse(response);
+        if(resp.status === 'success'){
+          Toast.fire({
+            icon: 'success',
+            title: resp.message 
+          });
+        } else {
+          Toast.fire({
+            icon: 'warning',
+            title: resp.message
+          });
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        Toast.fire({
+          icon: 'error',
+          title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`
+        });
+      }
+    });
+  } else {
+    Toast.fire({
+      icon: 'info',
+      title: 'No puede guardar sin antes cargar un archivo.'
+    });
+  }
+});
+
+$(document).on('click', '.delete-adjunto-new', function(){
+  let rowCancelNewAdjunto = $(this).closest('tr');
+  rowCancelNewAdjunto.remove();
+});
+
+$(document).on('click', '#saveGeneralDatos', function(){
+  let camposImportante = {
+    'tituloConvocatoria' :'titulo',
+    'descripcionConvocatoria': 'descripcion',
+    'dependenciaConvocatoria': 'dependencia',
+    'fechaRegistroConvocatoria': 'fecha_registro',
+    'fechaLimiteConvocatoria': 'fecha_limite',
+    'fechaFinalConvocatoria': 'fecha_finalizacion'
+  };
+  let camposLlenos = true;
+  for(let clave in camposImportante){
+    if($('#'+ clave).val() == ''){
+      Toast.fire({
+        icon: 'warning',
+        title: 'El campo' + camposImportante[clave] + ' no debe estar vacío.'
+      })
+      camposLlenos = false;
+      return false;
+    }
+  }
+
+  if(camposLlenos){
+    let formData = {};
+    for(let clave in camposImportante){
+      formData[camposImportante[clave]] = $('#'+clave).val();
+    }
+    formData['id'] = $('#idConvocatoria').val();
+    $.ajax({
+      url: '/administrador/convocatoria/zona-editor/updateGeneralDatos',
+      method: 'POST',
+      data: formData,
+      dataType: 'json',
+      success: function(resp){
+        if(resp.status === 'success'){
+          Toast.fire({
+            icon: 'success',
+            title: resp.message, 
+          });
+        } else{
+          Toast.fire({
+            icon: 'warning',
+            title: resp.message
+          });
+        } 
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        Toast.fire({
+            icon: "error",
+            title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+        });
+    }
+    });
+  }
+});
