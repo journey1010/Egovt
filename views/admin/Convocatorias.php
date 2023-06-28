@@ -81,7 +81,7 @@ class convocatorias extends handleSanitize
         </div>
         <script type ="module" src="$ruta" defer></script>
         Html;
-        return $html; 
+        return $html;
     }
 
     public function ActualizarConvocatorias(): string
@@ -144,9 +144,10 @@ class convocatorias extends handleSanitize
                 <td class='text-center' style='max-width: 300px;'>{$row['descripcion']}</td>
                 <td class='text-center'>{$row['fecha_registro']}</td>
                 <td class='text-center'>{$row['fecha_finalizacion']}</td>
-                <td class="text-center align-middle">
-                    <i class="fa fa-edit mr-2 edit-ico-upconv" style="color:#9c74dd !important"></i>
-                    <i class="fa fa-window-close fa-lg cancel-ico-upconv" style="color: #b40404; --fa-secondary-color: #c7fbff; display:none;"></i>
+                <td class="text-right py-0 align-middle">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-outline-primary edit-ico-upconv" title="Editar Convocatoria"><i class="fa fa-edit"></i></a>
+                    </div>
                 </td>
             </tr>
             Html;
@@ -178,7 +179,7 @@ class convocatorias extends handleSanitize
      *
      * @return string
      */
-    public function viewEditGeneralConvocatoria( $id, $titulo, $descripcion, $dependencia, $fechaR, $fechaL, $fechaF): string 
+    public function viewEditGeneralConvocatoria($id, $titulo, $descripcion, $dependencia, $fechaR, $fechaL, $fechaF): string
     {
         $view = <<<Html
         <div class="row">
@@ -316,7 +317,7 @@ class convocatorias extends handleSanitize
         <div class="container  container-md">
             <div class="row row-cols-3 d-flex justify-content-between">
                 <h4 class="font-weight-bold m-3">Zona Editor <i class="fas fa-angle-right"></i> Convocatorias</h4>
-                <a class="btn btn-primary badge badge-dark align-self-center btn-block mr-2" href="/administrador/convocatoria/actualizar-convocatoria/" alt="Regresar a listata" title="Volver a lista de convocatorias" style="max-width: 200px">
+                <a class="btn btn-primary badge badge-dark align-self-center btn-block mr-2" name="sidebarEnlace' data-page="convocatoria/actualizar-convocatoria" href="/administrador/convocatoria/actualizar-convocatoria/" alt="Regresar a listata" title="Volver a lista de convocatorias" style="max-width: 200px">
                     <span class="text-md mr-2">Regresar</span><i class="fas fa-undo"></i>
                 </a>
             </div>

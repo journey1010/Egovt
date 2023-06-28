@@ -165,6 +165,9 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
 $(document).on('click', '.edit-ico-upconv', function(){
   let row = $(this).closest("tr");
   let id = row.find("td:eq(0)").text();
+
+  let progressBar = $('.progress-bar');
+  let progressBarContainer = $('.progress-bar-container');
   $.ajax({
     url: '/administrador/convocatoria/edit-convocatoria',
     method: 'POST',
@@ -172,18 +175,33 @@ $(document).on('click', '.edit-ico-upconv', function(){
       id: id,
     },
     beforeSend: function (){
-
+        progressBar.width('0%');
+        progressBarContainer.show();
     },
     success: function(response){
       let resp = JSON.parse(response);
       if(resp.status === 'success'){
         $('#contentPage').html(resp.data);
+        $('#contentPage').append("<script>$('.select2').select2({closeOnSelect: true });</script>");
       } else {
         Toast.fire({
           icon: 'error',
           title: 'Error inesperado en la ejecución de consulta. Contacte con soporte o vuelva a intentarlo. '
         });
       }   
+    }, 
+    xhr: function() {
+      var xhr = new XMLHttpRequest();
+      xhr.addEventListener('progress', function(event) {
+        if (event.lengthComputable) {
+          var percentComplete = (event.loaded / event.total) * 100;
+          progressBar.css('width', percentComplete + '%');
+        }
+      }, false);
+      return xhr;
+    },
+    complete: function() {
+      progressBarContainer.hide();
     }, 
     error: function (jqXHR, textStatus, errorThrown) {
       Toast.fire({

@@ -23,7 +23,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <body class="hold-transition sidebar-mini">
   <div class="progress-bar-container">
-    <div class="progress-bar"></div>
+    <div class="progress-bar bg-success"></div>
   </div>
   <div class="wrapper">
     <!-- Navbar -->

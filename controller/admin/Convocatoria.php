@@ -167,7 +167,7 @@ class Convocatoria extends handleSanitize
     public  function editConvocatoria()
     {
         $id = $this->SanitizeVarInput($_POST['id']);
-        $sql = "SELECT titulo, descripcion, o.nombre AS oficina, fecha_registro, fecha_limite, fecha_finalizacion FROM convocatorias AS c 
+        $sql = "SELECT titulo, descripcion, o.id AS oficina, fecha_registro, fecha_limite, fecha_finalizacion FROM convocatorias AS c 
                 INNER JOIN oficinas AS o ON o.id = c.dependencia  
                 WHERE c.id = ?";
         $sqlAdjuntos = "SELECT id, nombre, archivo, id_convocatoria FROM convocatorias_adjuntos WHERE id_convocatoria = ?";
@@ -191,10 +191,11 @@ class Convocatoria extends handleSanitize
                 $viewAdjuntos = $htmlresults[1];
 
                 $this->generarFinalHtml($view, $viewAdjuntos);
-            })->otherwise(function ($error) {
+            }, function($error){
                 $this->handlerError($error, 'Promesa generadora de vistas, convocatoria, editConvocatoria');
             });
         });
+        $loop->run();
     }
 
     /**
@@ -228,21 +229,15 @@ class Convocatoria extends handleSanitize
     private function generarHtml($stmt)
     {
         return new Promise(function ($resolve, $reject) use ($stmt) {
-            $contador = 1;
             $idDependencia = $stmt[0]['oficina'];
 
             $sql = "SELECT id, CONCAT(nombre, ' ', sigla) AS nombre FROM oficinas";
             $statement = $this->conexion->query($sql, '', '', false)->fetchAll();
-
             $selectOptions = '';
             foreach ($statement as $row) {
-                if ($selectOptions === $idDependencia) {
-                    $selectOptions .= <<<Html
-                    <option value="{$row['id']} selected">{$row['nombre']}</option>
-                    Html;
-                }
-                $selectOptions = <<<Html
-                <option value="{$row['id']}">{$row['nombre']}</option>
+                $selected = ($row['id'] == $idDependencia) ? 'selected' : '';
+                $selectOptions .= <<<Html
+                <option value="{$row['id']}" $selected>{$row['nombre']}</option>
                 Html;
             }
 
@@ -251,7 +246,7 @@ class Convocatoria extends handleSanitize
                 $idDependencia,
                 $stmt[0]['titulo'],
                 $stmt[0]['descripcion'],
-                $stmt[0]['oficina'],
+                $selectOptions,
                 $stmt[0]['fecha_registro'],
                 $stmt[0]['fecha_limite'],
                 $stmt[0]['fecha_finalizacion']

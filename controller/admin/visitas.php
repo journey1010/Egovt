@@ -178,9 +178,11 @@ class visitas extends handleSanitize
         $fechaHasta = $this->SanitizeVarInput($_POST['fechaHasta']);
 
         $conexion = new MySQLConnection();
-        $sql = "SELECT v.apellidos_nombres as apn, v.dni as doc, v.institución_visitante as iv, o.nombre as ofi, v.persona_a_visitar as pv, v.hora_de_ingreso as hi, v.hora_de_salida as hs, v.quien_autoriza as qa, v.motivo as m FROM visitas AS v INNER JOIN oficinas AS o ON o.id = v.area_que_visita WHERE v.hora_de_ingreso >= :fechDesde AND (v.hora_de_salida <= :fechHasta OR v.hora_de_salida IS NULL)";
-        $params = [':fechDesde' => $fechaDesde, ':fechHasta' => $fechaHasta];
-        try {
+        $sql ="SELECT v.apellidos_nombres as apn, v.dni as doc, v.institución_visitante as iv, o.nombre as ofi, v.persona_a_visitar as pv, v.hora_de_ingreso as hi, v.hora_de_salida as hs, v.quien_autoriza as qa, v.motivo as m FROM visitas AS v 
+               INNER JOIN oficinas AS o ON o.id = v.area_que_visita 
+               WHERE v.hora_de_ingreso BETWEEN :fechDesde1 AND :fechHasta1  AND (v.hora_de_salida BETWEEN :fechDesde2 AND :fechHasta2 OR v.hora_de_salida IS NULL)
+               ORDER BY v.hora_de_ingreso";
+        $params = [':fechDesde1' => $fechaDesde, ':fechHasta1' => $fechaHasta, ':fechDesde2' => $fechaDesde, ':fechHasta2' => $fechaHasta];        try {
             $stmt = $conexion->query($sql, $params, '', false);
             $resultado = $stmt->fetchAll();
             $archivo = $this->makeReportVisitas($resultado);

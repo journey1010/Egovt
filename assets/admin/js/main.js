@@ -208,9 +208,9 @@ $(document).ready(function () {
 
   $('a[name="sidebarEnlace').click(function(e) {
     e.preventDefault();
-    var page = $(this).data('page');
-    var progressBar = $('.progress-bar');
-    var progressBarContainer = $('.progress-bar-container');
+    let page = $(this).data('page');
+    let progressBar = $('.progress-bar');
+    let progressBarContainer = $('.progress-bar-container');
 
     $.ajax({
       url: '/administrador/' + page,
@@ -237,5 +237,9 @@ $(document).ready(function () {
         return xhr;
       }
     });
+  });
+
+  window.addEventListener('popstate', function(event){
+    history.back();
   });
 });
