@@ -240,13 +240,14 @@ class convocatorias extends handleSanitize
     {
         $TableRows = '';
         foreach ($adjuntosConvocatoria as $row) {
+            $url = _BASE_URL . '/files/transparencia/convocatorias' . $row['archivo'];
             $TableRows .= <<<Html
             <tr>
                 <td>{$row['id']}</td>
-                <td>{$row['nombre']}</td>
-                <td>
-                    <a class="badge badge-info" alt="documento de convocatoria" href="https://regionloreto.gob.pe/files/convocatorias/{$row['archivo']}"download>
-                        <{$row['nombre']} <i class="fas fa-file-import"></i>
+                <td class="text-center" style="max-width:150px">{$row['nombre']}</td>
+                <td style="max-width:150px">
+                    <a class="btn btn-outline-dark" alt="documento de convocatoria" href="$url" download>
+                        {$row['nombre']} <i class="fas fa-file-import"></i>
                     </a>
                 </td>
                 <td class="text-left">
@@ -281,15 +282,15 @@ class convocatorias extends handleSanitize
                     <h3 class="card-title">Adjuntos de convocatoria</h3>
                 </div>
                 <div class="card-body p-3">
-                    <div id="adjuntosConvocatoria" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
-                        <table class="table table-hover table-adjunto">
+                    <div id="adjuntosConvocatoria" class="content table-responsive" role="tabpanel" aria-labelledby="logins-part-trigger">
+                        <table class="table table-hover table-adjunto table-bordered">
                             <thead>
                                 <tr>
                                     <th class= "text-center" style="width: 10px">Id</th>
-                                    <th class= "text-center" style="min-width:300px">Nombre</th>
+                                    <th class= "text-center" style="max-width:150px">Nombre</th>
                                     <th class= "text-center">Ver Archivo</th>
-                                    <th class= "text-center">Nuevo Archivo</th>
-                                    <th class= "text-center"><a class="btn btn-primary btn-sm insert-adjunto" alt="Insertar" title="Insertar adjunto"><i class="fa fa-plus-circle"></i></a></th>
+                                    <th class= "text-center" style="max-width: 200px">Nuevo Archivo</th>
+                                    <th class= "text-right py-0 align-middle"><a class="btn btn-primary btn-sm insert-adjunto" alt="Insertar" title="Insertar adjunto"><i class="fa fa-plus-circle"></i></a></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -309,7 +310,7 @@ class convocatorias extends handleSanitize
      * @param  string $viewGeneral, contiene la vista [con datos ] de edición de datos generales de convocatoria.
      * @param  string $viewAdjunto, contiene la vista [con datos] de los adjuntos.  
      * @return string $viweFinal
-     */
+    */
     public function viewEditFinalConvocatoria(string $viewGeneral, string $viewAdjunto): string
     {
         $ruta = $this->rutaAssets . 'js/convocatoria.js';

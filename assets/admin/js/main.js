@@ -240,6 +240,6 @@ $(document).ready(function () {
   });
 
   window.addEventListener('popstate', function(event){
-    history.back();
+    window.location.reload();
   });
 });
