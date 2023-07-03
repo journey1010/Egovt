@@ -1,13 +1,11 @@
 <?php
 
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat\DateFormatter;
-
 require_once(_ROOT_MODEL . 'conexion.php');
 require_once(_ROOT_CONTROLLER . 'paginador.php');
 
-class casGorel
+class Convocatoria
 {
-    public function verCas($pagina = 1)
+    public function verConvocatoria($pagina = 1)
     {
         $resultadosPorPagina = 12;
         if (!isset($conexion)) {

@@ -6,6 +6,7 @@ require_once(_ROOT_CONTROLLER . 'viewsRender.php');
 require_once(_ROOT_MODEL . 'visitas.php');
 require_once(_ROOT_MODEL . 'proyectosInversionPublica.php');
 require_once(_ROOT_MODEL . 'agendaGorel.php');
+require_once(_ROOT_MODEL . 'Convocatoria.php');
 
 class transparenciaController extends ViewRenderer
 {
@@ -15,7 +16,10 @@ class transparenciaController extends ViewRenderer
     {
         $this->ruta = _ROOT_ASSETS . 'images/';
     }
-
+    /**
+     * Genera una vista general para acceder a al registro de visitas actual y antiguo.
+     * @return void
+    */
     public function visitasMain()
     {
         $this->setCacheDir(_ROOT_CACHE . 'transparencia/visitas/');
@@ -33,6 +37,12 @@ class transparenciaController extends ViewRenderer
         $this->render('footer', $dataFooter, false);
     }
 
+    /**
+     * Genera una vista paginada para el nuevo registro de visitas.
+     *
+     * @param integer $pagina, establece el número de pagina actual
+     * @return void
+     */
     public function visitasNew($pagina = 1)
     {
         if (!is_numeric($pagina)) {
@@ -69,6 +79,11 @@ class transparenciaController extends ViewRenderer
         }
     }
 
+    /**
+     * Recibe una solicitud de busqueda para el registro de visitas
+     * Devuelve en formato de json el resultado de la busqueda.
+     * @return void
+     */
     public function visitasNewPost()
     {
         if (empty($_POST['fecha']) && strtotime($_POST['fecha'])) {
@@ -107,7 +122,12 @@ class transparenciaController extends ViewRenderer
         $this->render('transparencia/visitasgorel/oldVisitas', $data, false);
         $this->render('footer', $dataFooter, false);
     }
-    //pip = proyectos de inversion publica
+    
+    /**
+     * Genera una vista de todos los proyectos de inversión pública (pip)
+     * @param integer $pagina, establece la pagina actual.
+     * @return void
+     */
     public function pipTodos($pagina = 1)
     {
         if (!is_numeric($pagina)) {
@@ -300,6 +320,11 @@ class transparenciaController extends ViewRenderer
         }
     }
 
+    /**
+     * Recibe una solicitud de busqueda para el registro de proyectos de inversión pública
+     * Devuelve en formato de json el resultado de la busqueda.
+     * @return void
+     */
     public function BuscarObra()
     {
         $tipo = htmlspecialchars(($_POST['tipo']), ENT_QUOTES, "UTF-8");
@@ -316,7 +341,11 @@ class transparenciaController extends ViewRenderer
             $this->handleError($e);
         }
     }
-
+    /**
+     * Genera una vista de las actividades o agendas del gobernador. 
+     * @param integer $pagina, establece la página actual 
+     * @return void
+     */
     public function agendaGorel($pagina = 1)
     {
         if (!is_numeric($pagina)) {
@@ -352,6 +381,11 @@ class transparenciaController extends ViewRenderer
         }
     }
     
+    /**
+     * Recibe una solicitud de busqueda para el registro de agendas o actividades oficiales del gobernador.
+     * Devuelve en formato de json el resultado de la busqueda.
+     * @return void
+     */
     public function agendaGorelPost()
     {   
         $camposRequeridos = ['fechaDesde', 'fechaHasta', 'palabra'];
@@ -382,14 +416,35 @@ class transparenciaController extends ViewRenderer
         }
     }
 
-    //modulo de agenda
-    public function casGorel()
+    /**
+     * Generar una vista para las convocatorias de trabajo. 
+     * @return void
+    */
+    public function convocatorias($pagina = 1)
     {
-        $this->setCacheDir(_ROOT_CACHE . 'transparencia/cas/');
-        $this->setCacheTime(3600);
-        $this->render('header', '', false);
-        $this->render('transparencia/cas/cas', '', false);
-        $this->render('footer', '', false);
+        if (!is_numeric($pagina)) {
+            $this->setCacheDir(_ROOT_CACHE);
+            $this->setCacheTime(86000);
+            $this->render('ErrorView', '', true);
+            return;
+        }
+        try {
+            $this->setCacheDir(_ROOT_CACHE . 'transparencia/cas/');
+            $this->setCacheTime(3600);
+
+            
+            $data = [
+                'link' => _ROOT_ASSETS . 'css/datepicker.css',
+                'jsDatapicker' => _ROOT_ASSETS . 'js/bootstrap-datepicker.js',
+                'jsMaterialkit' => _ROOT_ASSETS . 'js/material-kit.js',
+                'paginator' => _ROOT_ASSETS . 'js/pagination.min.js'
+            ];
+            $this->render('header', '', false);
+            $this->render('transparencia/convocatoria/convocatoria', $data, false);
+            $this->render('footer', '', false);
+        } catch(Throwable $e){
+            $this->handleError($e);
+        }
     }
 
     private function handleError(Throwable $e)

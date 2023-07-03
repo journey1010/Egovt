@@ -66,6 +66,6 @@
         {"method" : "GET", "pattern" : "/transparencia/actividades-oficiales", "handler" : "transparenciaController@agendaGorel"},
         {"method" : "GET", "pattern" : "/transparencia/actividades-oficiales/?page={pagina}", "handler" : "transparenciaController@agendaGorel"},
         {"method": "POST", "pattern" : "/transparencia/actividades-oficiales/buscar", "handler": "transparenciaController@agendaGorelPost"},
-        {"method" : "GET", "pattern" : "/transparencia/cas-gorel", "handler" : "transparenciaController@casGorel"}
+        {"method" : "GET", "pattern" : "/transparencia/convocatorias-de-trabajo", "handler" : "transparenciaController@convocatorias"}
     ]
 }
