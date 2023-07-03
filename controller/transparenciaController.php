@@ -382,6 +382,16 @@ class transparenciaController extends ViewRenderer
         }
     }
 
+    //modulo de agenda
+    public function casGorel()
+    {
+        $this->setCacheDir(_ROOT_CACHE . 'transparencia/cas/');
+        $this->setCacheTime(3600);
+        $this->render('header', '', false);
+        $this->render('transparencia/cas/cas', '', false);
+        $this->render('footer', '', false);
+    }
+
     private function handleError(Throwable $e)
     {
         $errorMessage = date('Y-m-d H:i:s') . ' : ' . $e->getMessage() . "\n";
