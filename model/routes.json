@@ -17,6 +17,7 @@
         {"method" : "POST", "pattern" : "/administrador/convocatoria/registro-convocatoria", "handler" : "admin/Convocatoria@registrar"},
         {"method" : "POST", "pattern" : "/administrador/convocatoria/actualizar-convocatoria", "handler" : "admin/Convocatoria@actualizar"},
         {"method" : "POST", "pattern" : "/administrador/convocatoria/edit-convocatoria", "handler" : "admin/Convocatoria@editConvocatoria"},
+        {"method" : "POST", "pattern" : "/administrador/convocatoria/zona-editor/{function}", "handler" : "admin/Convocatoria@zoneEditor"},
         {"method" : "POST", "pattern": "/administrador/agenda/registrar-agenda", "handler" : "admin/AgendaGobernador@registrar"},
         {"method" : "POST", "pattern": "/administrador/agenda/buscar-agenda", "handler": "admin/AgendaGobernador@buscar"},
         {"method" : "POST", "pattern": "/administrador/agenda/actualizar-agenda", "handler": "admin/AgendaGobernador@actualizar"},

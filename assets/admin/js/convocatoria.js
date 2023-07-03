@@ -241,8 +241,8 @@ $(document).on('click', '.save-adjunto', function(){
     });
   } else{
     $.ajax({
-      url: '',
-      method: '',
+      url: '/administrador/convocatoria/zona-editor/saveAdjunto',
+      method: 'POST',
       data: formData,
       enctype: 'multipart/form-data',
       processData: false,
@@ -394,7 +394,11 @@ $(document).on('click', '#saveGeneralDatos', function(){
       method: 'POST',
       data: formData,
       dataType: 'json',
+      beforeSend: function(){
+        $('#saveGeneralDatos').html("Guardar");
+      },
       success: function(resp){
+        $('#saveGeneralDatos').html("Guardar");
         if(resp.status === 'success'){
           Toast.fire({
             icon: 'success',
@@ -408,6 +412,7 @@ $(document).on('click', '#saveGeneralDatos', function(){
         } 
       },
       error: function (jqXHR, textStatus, errorThrown) {
+        $('#saveGeneralDatos').html("Guardar");
         Toast.fire({
             icon: "error",
             title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,

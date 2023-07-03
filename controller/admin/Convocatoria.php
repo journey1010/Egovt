@@ -275,4 +275,173 @@ class Convocatoria extends handleSanitize
         $results = $views->viewEditFinalConvocatoria($view, $viewAdjuntos);
         echo (json_encode(['status' => 'success', 'data' => $results]));
     }
+
+    public function zoneEditor( string $function)
+    {
+        switch ($function){
+            case 'updateGeneralDatos':
+                $data = $_POST;
+                $this->updateGeneralDatos($_POST);
+            break;
+            case 'saveAdjunto':
+                $data = $_POST;
+                $archivo = $_FILES['archivo'] ??  '';
+                $this->saveAdjunto($data, $archivo);
+            break;
+            case 'saveNewAdjunto':
+                $archivo = $_FILES['archivo'];
+                $id = $this->SanitizeVarInput($_POST['id']);
+                $this->saveNewAdjunto($id, $archivo);
+            break;
+        }
+    }
+    /**
+     * Función que actualiza los datos de la tabla convocatorias. 
+     *
+     * @param array $data, contiende todos los datos enviador por POST
+     * @return void 
+     */
+    private function updateGeneralDatos(array $data)
+    {
+        $camposRequeridos = [
+            'id', 
+            'titulo', 
+            'descripcion', 
+            'dependencia', 
+            'fecha_registro', 
+            'fecha_limite', 
+            'fecha_finalizacion'
+        ];
+
+        foreach($camposRequeridos as $campo){
+            extract([$campo => $this->SanitizeVarInput($data[$campo])]);
+        }
+
+        $sql = "UPDATE convocatorias 
+                SET titulo=?, descripcion=?, dependencia=?, fecha_registro=?, fecha_limite=?, fecha_finalizacion=? 
+                WHERE id=? ";
+        $params = [
+            $titulo, 
+            $descripcion, 
+            $dependencia, 
+            $fecha_registro, 
+            $fecha_limite, 
+            $fecha_finalizacion,
+            $id
+        ];
+        try{
+            $this->conexion->query($sql, $params, '', false);
+            $this->updateEstadoConvocatoria($id, $fecha2, $fecha3);
+            echo (json_encode(['status'=>'success', 'message'=>'Actualización completada.']));
+        }catch(Throwable $e){
+            $this->handlerError($e, 'Controlador: Convocatoria, funccion : updateGeneralDatos');
+            echo (json_encode(['status'=>'error', 'message'=>'Ha ocurrido un error inesperado.']));
+        }
+
+    }
+    /**
+     * Actualiza el estado de una convocatoria de acuerdo a la fecha actual
+     *
+     * @param [type] $id, identificador de la convocatoria
+     * @param [type] $fecha1, fecha registro
+     * @param [type] $fecha2, fecha limite
+     * @param [type] $fecha3, fecha finalización
+     * @return void
+     */
+    private function updateEstadoConvocatoria($id, $fecha2, $fecha3)
+    {
+
+        date_default_timezone_set('America/Lima'); 
+
+        $fechaActual = new DateTime();
+
+        if ($fechaActual > new DateTime($fecha3)) {
+            $estado = 3;
+        } elseif ($fechaActual >= new DateTime($fecha2)) {
+            $estado = 2;
+        } else {
+            $estado = 1;
+        }
+    
+        $sql = "UPDATE convocatorias SET estado = ? WHERE id = ?";
+        $param = [$estado, $id];
+        $this->conexion->query($sql, $param, '', false);
+    }
+    /**
+     * Actualiza el registro de un adjunto especifico tanto en la base de datos como en el sistema de archivos
+     *  
+     * @param array $data, guarda el identificador y el nombre del archivo.
+     * @param array|string $archivo, guarda el nuevo archivo(si se envía) o una cadena vacía.
+     * @return void
+     */
+    private function saveAdjunto(array $data, array|string $archivo)
+    {
+        $id = $this->SanitizeVarInput($data['id']);
+        $nombre = $this->SanitizeVarInput($data['nombre']);
+
+        try {
+            if ($this->gestorArchivos->validarArchivo($archivo, ['xls', 'pdf', 'xlsx', 'doc', 'docx']) == true) {
+                $sql = "SELECT archivo FROM convocatorias_adjuntos WHERE id = :id";
+                $params["id"] = $id;
+                $this->gestorArchivos->borrarArchivo($sql, $params);
+                $newPathFile = date('Y/m') .'/' . $this->gestorArchivos->guardarFichero($archivo, $nombre);
+                $this->updateBdAdjunto($id, $nombre, $newPathFile);
+                return;
+            }
+            $this->updateBdAdjunto($id, $nombre);
+            echo (json_encode(['status'=>'success', 'message'=>'Nuevo archivo guardado.']));
+        } catch (Throwable $e){
+            $this->handlerError($e, 'Controlador: Convocatoria; funcion: saveAdjunto');
+            echo (json_encode(['status'=>'error', 'message'=>'Ha ocurrido un error al actualizar.']));
+        }
+    }
+
+    /**
+     * Crea un consulta sql para actualizar los campos de un adjunto espeficico. 
+     *
+     * @param int $id, identificador de convocatoria
+     * @param string $nombre, nuevo nombre de archivo
+     * @param string $newPathFile, nueva ruta de archivo si es que existe.
+     * @return void
+     */
+    private function updateBdAdjunto($id, $nombre, $newPathFile = null)
+    {
+        $sql = 'UPDATE convocatorias_adjuntos SET nombre = :nombre';
+        $params[':nombre'] = $nombre;
+        if($newPathFile !== null){
+            $sql .= ', archivo= :archivo';
+            $params[':archivo'] = $newPathFile;
+        }
+        $sql .= 'WHERE id = :id';
+        $params[':id'] = $id;
+
+        try{
+            $this->conexion->query($sql, $params, '', false);
+        } catch (Throwable $e){
+            $this->handlerError($e, 'Controlador: Convocatorias; funccion: updateBdAdjunto');
+        }
+
+    }
+
+    /**
+     * Adjunto un nuevo archivo para una convocatoria en especifico
+     * @param  int $id, identificador de la convocatoria
+     * @param  array $archivo, nuevo  adjunto de convocatoria
+     * @return void
+     */
+    private function saveNewAdjunto(int $id, array $archivo)
+    {   
+        $sql = "INSERT INTO convocatorias_adjuntos (nombre, archivo, id_convocatoria) VALUES (?,?,?)";
+
+        try{
+            $nombreArchivo = pathinfo($archivo['name'], PATHINFO_FILENAME);
+            $pathFullFile = date('Y/m') . '/' . $this->gestorArchivos->guardarFichero($archivo, $nombreArchivo);
+            $params =  [$nombreArchivo, $pathFullFile, $id];
+            $this->conexion->query($sql, $params, '', false);
+            echo (json_encode(['status'=>'success', 'message'=>'Nuevo adjunto guardado.']));
+        } catch (Throwable $e){
+            $this->handlerError($e, 'Controlladro: Convocatoria; funcion: saveNewAdjunto');
+            echo (json_encode(['status'=>'error', 'message'=>'Ha ocurrido un error en la actualización.']));
+        }
+    }
 }
