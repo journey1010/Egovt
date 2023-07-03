@@ -153,6 +153,6 @@
   <script>
     var username = "<?php echo $_SESSION['username']; ?>";
   </script>
-  <script src="<?= _ROOT_ASSETS_ADMIN . 'js/main.js' ?>"></script>
+  <script src="<?= _ROOT_ASSETS_ADMIN . 'js/main.js?ver=1.1' ?>"></script>
 </body>
 </html>

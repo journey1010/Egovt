@@ -18,7 +18,7 @@ class convocatorias extends handleSanitize
 
     public function RegistrarConvocatoria(): string
     {
-        $ruta = $this->rutaAssets . 'js/convocatoria.js';
+        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.1';
         $optionsDependencias = $this->getDependencias();
         $html = <<<Html
         <div class="card card-success mt-3 mx-auto w-100">
