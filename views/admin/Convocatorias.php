@@ -240,7 +240,7 @@ class convocatorias extends handleSanitize
     {
         $TableRows = '';
         foreach ($adjuntosConvocatoria as $row) {
-            $url = _BASE_URL . '/files/transparencia/convocatorias' . $row['archivo'];
+            $url = _BASE_URL . '/files/transparencia/convocatorias/' . $row['archivo'];
             $TableRows .= <<<Html
             <tr>
                 <td>{$row['id']}</td>

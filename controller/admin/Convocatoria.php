@@ -13,6 +13,7 @@ class Convocatoria extends handleSanitize
 {
     private $conexion;
     private $gestorArchivos;
+    private $idConvocatoria;
 
     public function __construct()
     {
@@ -166,12 +167,12 @@ class Convocatoria extends handleSanitize
      */
     public  function editConvocatoria()
     {
-        $id = $this->SanitizeVarInput($_POST['id']);
+        $this->idConvocatoria = $this->SanitizeVarInput($_POST['id']);
         $sql = "SELECT titulo, descripcion, o.id AS oficina, fecha_registro, fecha_limite, fecha_finalizacion FROM convocatorias AS c 
                 INNER JOIN oficinas AS o ON o.id = c.dependencia  
                 WHERE c.id = ?";
         $sqlAdjuntos = "SELECT id, nombre, archivo, id_convocatoria FROM convocatorias_adjuntos WHERE id_convocatoria = ?";
-        $param = [$id];
+        $param = [$this->idConvocatoria];
 
         /** Inicia el loop para las promesas */
         $loop = Loop::get();
@@ -243,7 +244,7 @@ class Convocatoria extends handleSanitize
 
             $view = new convocatorias();
             $viewResult = $view->viewEditGeneralConvocatoria(
-                $idDependencia,
+                $this->idConvocatoria,
                 $stmt[0]['titulo'],
                 $stmt[0]['descripcion'],
                 $selectOptions,
@@ -276,19 +277,19 @@ class Convocatoria extends handleSanitize
         echo (json_encode(['status' => 'success', 'data' => $results]));
     }
 
-    public function zoneEditor( string $function)
-    {
-        switch ($function){
-            case 'updateGeneralDatos':
+    public function zoneEditor($functionName)
+    { 
+        switch ($functionName){
+            case 'update-general-datos':
                 $data = $_POST;
                 $this->updateGeneralDatos($_POST);
             break;
-            case 'saveAdjunto':
+            case 'save-adjunto':
                 $data = $_POST;
-                $archivo = $_FILES['archivo'] ??  '';
+                $archivo = $_FILES['archivo'] ??  null;
                 $this->saveAdjunto($data, $archivo);
             break;
-            case 'saveNewAdjunto':
+            case 'save-new-adjunto':
                 $archivo = $_FILES['archivo'];
                 $id = $this->SanitizeVarInput($_POST['id']);
                 $this->saveNewAdjunto($id, $archivo);
@@ -331,8 +332,9 @@ class Convocatoria extends handleSanitize
         ];
         try{
             $this->conexion->query($sql, $params, '', false);
-            $this->updateEstadoConvocatoria($id, $fecha2, $fecha3);
-            echo (json_encode(['status'=>'success', 'message'=>'Actualización completada.']));
+            $this->updateEstadoConvocatoria($id, $fecha_limite, $fecha_finalizacion);
+            $respuesta = ['status'=>'success', 'message'=>'Actualización completada.'];
+            echo (json_encode($respuesta));
         }catch(Throwable $e){
             $this->handlerError($e, 'Controlador: Convocatoria, funccion : updateGeneralDatos');
             echo (json_encode(['status'=>'error', 'message'=>'Ha ocurrido un error inesperado.']));
@@ -378,14 +380,16 @@ class Convocatoria extends handleSanitize
     {
         $id = $this->SanitizeVarInput($data['id']);
         $nombre = $this->SanitizeVarInput($data['nombre']);
-
         try {
             if ($this->gestorArchivos->validarArchivo($archivo, ['xls', 'pdf', 'xlsx', 'doc', 'docx']) == true) {
                 $sql = "SELECT archivo FROM convocatorias_adjuntos WHERE id = :id";
                 $params["id"] = $id;
+                $this->gestorArchivos->setRuta(_ROOT_FILES . 'transparencia/convocatorias/');
                 $this->gestorArchivos->borrarArchivo($sql, $params);
+                $this->gestorArchivos->setRuta(_ROOT_FILES . 'transparencia/convocatorias/' . date('Y/m') . '/');
                 $newPathFile = date('Y/m') .'/' . $this->gestorArchivos->guardarFichero($archivo, $nombre);
                 $this->updateBdAdjunto($id, $nombre, $newPathFile);
+                echo (json_encode(['status'=>'success', 'message'=>'Nuevo archivo guardado.']));
                 return;
             }
             $this->updateBdAdjunto($id, $nombre);
@@ -412,7 +416,7 @@ class Convocatoria extends handleSanitize
             $sql .= ', archivo= :archivo';
             $params[':archivo'] = $newPathFile;
         }
-        $sql .= 'WHERE id = :id';
+        $sql .= ' WHERE id = :id';
         $params[':id'] = $id;
 
         try{
@@ -420,7 +424,6 @@ class Convocatoria extends handleSanitize
         } catch (Throwable $e){
             $this->handlerError($e, 'Controlador: Convocatorias; funccion: updateBdAdjunto');
         }
-
     }
 
     /**

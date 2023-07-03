@@ -228,11 +228,10 @@ $(document).on('click', '.save-adjunto', function(){
   configSaveCancel.bind(this)();
   let rowAdjunto = $(this).closest('tr');
 
-  let formData = {
-    id: rowAdjunto.find('td:eq(0)').text(),
-    nombre: rowAdjunto.find('td:eq(1)').text(),
-    archivo : rowAdjunto.find('.imgadjunto').prop('files')[0]
-  };
+  let formData = new FormData();
+  formData.append('id',  rowAdjunto.find('td:eq(0)').text());
+  formData.append('nombre', rowAdjunto.find('td:eq(1)').text());
+  formData.append('archivo', rowAdjunto.find('.imgadjunto').prop('files')[0]);
 
   if( rowAdjunto.find('td:eq(1)').text() == ''){
     Toast.fire({
@@ -241,7 +240,7 @@ $(document).on('click', '.save-adjunto', function(){
     });
   } else{
     $.ajax({
-      url: '/administrador/convocatoria/zona-editor/saveAdjunto',
+      url: '/administrador/convocatoria/zona-editor/save-adjunto',
       method: 'POST',
       data: formData,
       enctype: 'multipart/form-data',
@@ -299,8 +298,8 @@ $(document).on('click', '.insert-adjunto', function(){
     </td>
     <td class="text-right py-0 align-middle">
         <div class="btn-group btn-group-sm">
-            <a class="btn btn-danger save-adjunto" alt="Guardar adjunto" title="Guardar cambios"><i class="fas fa-save"></i></a>
-            <a class="btn btn-danger delete-adjunto" alt="eliminar adjunto" title="Eliminar adjunto"><i class="fas fa-trash-alt"></i></a>
+            <a class="btn btn-danger save-adjunto-new" alt="Guardar adjunto" title="Guardar cambios"><i class="fas fa-save"></i></a>
+            <a class="btn btn-danger delete-adjunto-new" alt="eliminar adjunto" title="Eliminar adjunto"><i class="fas fa-trash-alt"></i></a>
         </div>
     </td>
   </tr>
@@ -311,18 +310,18 @@ $(document).on('click', '.insert-adjunto', function(){
 $(document).on('click', '.save-adjunto-new', function(){
   let rowSaveNewAdjunto = $(this).closest('tr');
   let formData = new FormData();
-  formData.append('archivo', rowSaveNewAdjunto.find('imgadjunto').prop('files')[0]);
+  formData.append('archivo', rowSaveNewAdjunto.find('.imgadjunto').prop('files')[0]);
   formData.append('id', $('#idConvocatoria').val());
   
   let estado = true;
 
-  if (rowSaveNewAdjunto.find('imgadjunto').prop("files").length == 0){
+  if (rowSaveNewAdjunto.find('.imgadjunto').prop("files").length == 0){
     estado = false;
   }
 
   if(estado){
     $.ajax({
-      url: '/administrador/convocatoria/zona-editor/saveNewAdjunto',
+      url: '/administrador/convocatoria/zona-editor/save-new-adjunto',
       method: 'POST',
       enctype: 'multipart/form-data',
       processData: false,
@@ -390,24 +389,24 @@ $(document).on('click', '#saveGeneralDatos', function(){
     }
     formData['id'] = $('#idConvocatoria').val();
     $.ajax({
-      url: '/administrador/convocatoria/zona-editor/updateGeneralDatos',
+      url: '/administrador/convocatoria/zona-editor/update-general-datos',
       method: 'POST',
       data: formData,
       dataType: 'json',
       beforeSend: function(){
         $('#saveGeneralDatos').html("Guardar");
       },
-      success: function(resp){
+      success: function(response){
         $('#saveGeneralDatos').html("Guardar");
-        if(resp.status === 'success'){
+        if(response.status === 'success'){
           Toast.fire({
             icon: 'success',
-            title: resp.message, 
+            title: response.message, 
           });
         } else{
           Toast.fire({
             icon: 'warning',
-            title: resp.message
+            title: response.message
           });
         } 
       },
