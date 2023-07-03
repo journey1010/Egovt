@@ -72,6 +72,18 @@ class sideBarOptions {
                 <p>Actualizar</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="/administrador/visitas/regularizar-visitas" name="sidebarEnlace" class="nav-link"data-page="visitas/regularizar-visitas">
+                <i class="fas fa-edit"></i>
+                <p>Regularizar visitas</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/administrador/visitas/exportar-visitas" name="sidebarEnlace" class="nav-link"data-page="visitas/exportar-visitas">
+                <i class="fas fa-database"></i>
+                <p>Exportar datos</p>
+                </a>
+            </li>
             </ul>
         </li>
         Html;
@@ -190,6 +202,90 @@ class sideBarOptions {
                 <a href="/administrador/rr-hh/ver-registros" name="sidebarEnlace" class="nav-link" data-page="rr-hh/ver-registros">
                 <i class="fa fa-eye"></i>
                 <p> Ver registros de asistencias</p>
+                </a>
+            </li>
+            </ul>
+        </li>
+        Html;
+        return $html;
+    }
+
+    public function adminmainpage()
+    {
+        $html = <<<Html
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fas fa-id-card-alt"></i>
+            <p>
+                Inicio
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrdor/pagina-principal/editar" class="nav-link" name="sidebarEnlace" data-page="pagina-principal/editar">
+                <i class="fas fa-book"></i>
+                <p>Página principal</p>
+                </a>
+            </li>
+            </ul>
+        </li>
+        Html;
+        return $html;
+    }  
+    
+    public function agendagobernador()
+    {
+        $html = <<<Html
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fa fa-calendar-alt" style="color:#1291ab;"></i>
+            <p>
+                 Agenda de gobernación
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrador/agenda/registrar-agenda" name="sidebarEnlace" class="nav-link" data-page="agenda/registrar-agenda">
+                <i class="fa fa-calendar-plus"></i>
+                <p> Registrar Agenda</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/administrador/agenda/actualizar-agenda" name="sidebarEnlace" class="nav-link" data-page="agenda/actualizar-agenda">
+                <i class="fa fa-calendar-week"></i>
+                <p> Actualizar Agenda</p>
+                </a>
+            </li>
+            </ul>
+        </li>
+        Html;
+        return $html;
+    }
+
+    public function convocatorias()
+    {
+        $html = <<<Html
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fas fa-briefcase" style="color: #39c668;"></i>
+            <p>
+                 Convocatorias
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrador/convocatoria/registrar-convocatoria" name="sidebarEnlace" class="nav-link" data-page="convocatoria/registrar-convocatoria">
+                <i class="fa fa-calendar-plus"></i>
+                <p> Registrar convocatoria</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/administrador/convocatoria/actualizar-convocatoria" name="sidebarEnlace" class="nav-link" data-page="convocatoria/actualizar-convocatoria">
+                <i class="fa fa-calendar-week"></i>
+                <p> Actualizar Convocatoria</p>
                 </a>
             </li>
             </ul>

@@ -46,7 +46,7 @@ class Router extends AbstractController{
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         $url = $this->SanitizeVar($_SERVER['REQUEST_URI']);
         $requestUrl = parse_url($url, PHP_URL_PATH);
-        if ($requestUrl === '') {
+        if ($requestUrl === '' or NULL) {
             $requestUrl = '/';
         }
         foreach ($this->routes as [$method, $pattern, $handler]) {
@@ -78,7 +78,7 @@ class Router extends AbstractController{
                 return;
             }
         }
-
+        
         $this->renderView('ErrorView');
     }
 

@@ -239,8 +239,8 @@ function searchMarcacion() {
       method: 'POST',
       data: formData,
       beforeSend: function (){
-        if ($('#respuestaBusquedaAsistencias').is(':visible')) {
-          $('#respuestaBusquedaAsistencias').hide();
+        if ($('#respuestaReportVisitas').is(':visible')) {
+          $('#respuestaReportVisitas').hide();
         }
       },
       success: function (data) {

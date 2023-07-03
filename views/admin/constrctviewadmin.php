@@ -77,7 +77,7 @@ class viewConstruct{
         try {
             switch($tipoUser){
                 case 'admin':
-                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'funcionarios', 'rrhhasistencia');
+                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'funcionarios', 'rrhhasistencia', 'agendagobernador', 'convocatorias');
                 break;
                 case 'visitor':
                     $opciones = array ('visitas');
@@ -91,11 +91,20 @@ class viewConstruct{
                 case 'rrhhasistencia': 
                     $opciones = array ('rrhhasistencia');
                 break;
+                case 'adminmainpage':
+                    $opciones = array ('adminmainpage');
+                break;
+                case 'agendagobernador':
+                    $opciones = array ('agendagobernador');
+                break;
+                case 'convocatorias':
+                    $opciones = array ('convocatorias');
+                break;
                 default:
                     throw new Exception('Clase de usuario no valido');
                 break;
             }
-            //Creando menú sidebar
+
             $sideBarHtml = '';
             foreach ($opciones as $opcion ){
                 $sideBarHtml .= $sideBarOptions->$opcion();
@@ -123,18 +132,27 @@ class viewConstruct{
                     'actualizar-usuarios' => $contentPage->ActualizarUsuarios(),
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
                     'actualizar-visitas' => $contentPage->ActualizarVisitas(),
+                    'regularizar-visitas' => $contentPage->RegularizarVisitas(),
                     'registrar-obras' => $contentPage->RegistrarObras(),
                     'actualizar-obras' => $contentPage->ActualizarObras(),
                     'registrar-funcionarios' => $contentPage->RegistrarFuncionarios(),
                     'actualizar-funcionarios' => $contentPage->ActualizarFuncionarios(),
                     'registrar-archivo' => $contentPage->loadFile(),
-                    'ver-registros'=> $contentPage->verRegistros()
+                    'ver-registros'=> $contentPage->verRegistros(),
+                    'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),
+                    'actualizar-agenda' => $contentPage->ActualizarAgendaGobernador(),
+                    'exportar-visitas' => $contentPage->ExportarVisitas(),
+                    'registrar-convocatoria' => $contentPage->RegistrarConvocatoria(),
+                    'actualizar-convocatoria' => $contentPage->ActualizarConvocatoria()
+
                 ],
 
                 'visitor' =>[
                     '' => $contentPage->RegistrarVisitas(),
                     'registrar-visitas' => $contentPage->RegistrarVisitas(),
                     'actualizar-visitas' => $contentPage->ActualizarVisitas(),
+                    'regularizar-visitas' => $contentPage->RegularizarVisitas(),
+                    'exportar-visitas' => $contentPage->ExportarVisitas(),
                     'contacto' => $contentPage->Contacto()
                 ],
                 
@@ -153,6 +171,20 @@ class viewConstruct{
                     '' => $contentPage->loadFile(),
                     'registrar-archivo' => $contentPage->loadFile(),
                     'ver-registros' => $contentPage->verRegistros(),
+                ], 
+                'agendagobernador' => [
+                    '' => $contentPage->RegistrarAgendaGobernador(),
+                    'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),
+                    'actualizar-agenda' => $contentPage->ActualizarAgendaGobernador()
+                ],
+                'adminmainpage' => [
+                    '' => $contentPage->Mainpage(), 
+                    'editar' => $contentPage->Mainpage()
+                ],
+                'convocatorias' =>  [
+                    '' => $contentPage->RegistrarConvocatoria(),
+                    'registrar-convocatoria' => $contentPage->RegistrarConvocatoria(),
+                    'actualizar-convocatoria' => $contentPage->ActualizarConvocatoria()
                 ]
             ];
 

@@ -23,7 +23,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <body class="hold-transition sidebar-mini">
   <div class="progress-bar-container">
-    <div class="progress-bar"></div>
+    <div class="progress-bar bg-success"></div>
   </div>
   <div class="wrapper">
     <!-- Navbar -->
@@ -121,10 +121,10 @@
         </div>
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-2 sidebar-scroll">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+              with font-awesome or any other icon font library -->
             <?php echo $vistasAdmin->buildSideBar($tipoUser) ?>
           </ul>
         </nav>
@@ -153,6 +153,6 @@
   <script>
     var username = "<?php echo $_SESSION['username']; ?>";
   </script>
-  <script src="<?= _ROOT_ASSETS_ADMIN . 'js/main.js' ?>"></script>
+  <script src="<?= _ROOT_ASSETS_ADMIN . 'js/main.js?ver=1.1' ?>"></script>
 </body>
 </html>

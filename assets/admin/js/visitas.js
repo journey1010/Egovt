@@ -6,6 +6,8 @@ function select2() {
     closeOnSelect: true,
   });
 }
+
+
 //buscar dni visita
 $(document).on("click", "#BuscarDNIVisita", buscarDNIVisita);
 function buscarDNIVisita(e) {
@@ -89,7 +91,9 @@ $(document).on("submit", "#registrarVisitas", function (event) {
     $("#apellidos_nombres").val() === "" ||
     $("#oficina option:selected").text() === "" ||
     $("#quien_autoriza option:selected").text() === "" ||
-    $("#hora_de_ingreso").val() === ""
+    $("#hora_de_ingreso").val() === "" ||
+    $("#tipoDoc").val() === "" ||
+    $("#InstitucionVisitante").val() === ""
   ) {
     Toast.fire({
       background: "#E8EC14",
@@ -99,13 +103,15 @@ $(document).on("submit", "#registrarVisitas", function (event) {
     });
   } else {
     let formData = {
+      tipoDoc:  $("#tipoDoc").val(),
       dniVisita: $("#dniVisita").val(),
       apellidosNombres: $("#apellidos_nombres").val(),
+      institucionVisitante: $("#InstitucionVisitante").val(),
       oficina: $("#oficina option:selected").val(),
       personaAVisitar: $("#persona_a_visitar").val(),
       horaDeIngreso: $("#hora_de_ingreso").val(),
       quienAutoriza: $("#quien_autoriza option:selected").val(),
-      motivo: $("#motivo").val(),
+      motivo: $("#motivo").val()
     };
 
     $.ajax({
@@ -113,10 +119,12 @@ $(document).on("submit", "#registrarVisitas", function (event) {
       method: "POST",
       data: formData,
       beforeSend: function () {
-        $("#btn btn-primary").html("Guardando...");
+        $("#btnGuardar").html("Guardando...");
+        $("#btnGuardar").prop('disabled', true);
       },
       success: function (response) {
-        $("#btn btn-primary").html("Guardar");
+        $("#btnGuardar").html("Guardar");
+        $("#btnGuardar").prop('disabled', false);
         let resp = JSON.parse(response);
         let indice = Object.keys(resp)[0];
         switch (indice) {
@@ -141,6 +149,87 @@ $(document).on("submit", "#registrarVisitas", function (event) {
         }
       },
       error: function (jqXHR, textStatus, errorThrown) {
+        $("#btnGuardar").html("Guardar");
+        $("#btnGuardar").prop('disabled', false);
+
+        $("#dniVisita").val("");
+        $("#apellidos_nombres").val("");
+        $("#oficina").val(null).trigger("change"); // restablecer el select
+        $("#persona_a_visitar").val("");
+        $("#quien_autoriza").val("");
+        $("#motivo").val("");
+        Toast.fire({
+          icon: "error",
+          title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+          background: "#ff0000",
+        });
+      }
+    });
+  }
+});
+
+$(document).on("submit", "#regularizarVisitas", function (event){
+  event.preventDefault();
+  if(
+    $("#dniVisita").val() === "" ||
+    $("#apellidos_nombres").val() === "" ||
+    $("#oficina option:selected").text() === "" ||
+    $("#quien_autoriza option:selected").text() === "" ||
+    $("#hora_de_ingreso").val() === "" ||
+    $("#hora_de_salida").val() === ""
+  ) {
+    Toast.fire({
+      background: "#E8EC14",
+      icon: "warning",
+      iconColor: "#000000",
+      title: "Debe llenar todos los campos obligatorios",
+    });
+  } else {
+    let formData = {
+      dniVisita: $("#dniVisita").val(),
+      apellidosNombres: $("#apellidos_nombres").val(),
+      oficina: $("#oficina option:selected").val(),
+      personaAVisitar: $("#persona_a_visitar").val(),
+      horaDeIngreso: $("#hora_de_ingreso").val(),
+      quienAutoriza: $("#quien_autoriza option:selected").val(),
+      motivo: $("#motivo").val(),
+      horaDeSalida: $("#hora_de_salida").val()
+    };
+
+    $.ajax({
+      url: '/administrador/regularizar-visitas',
+      method: 'POST',
+      data: formData,
+      beforeSend: function () {
+        $("#btnRegularizar").html("Guardar");
+        $("#btnRegularizar").prop('disabled', false);
+      },
+      success: function (response) {
+        $("#btnRegularizar").html("Guardar");
+        $("#btnRegularizar").prop('disabled', false);
+        let resp = JSON.parse(response);
+        if(resp.status === 'success'){
+          Toast.fire({
+            icon: "success",
+            title: resp.message,
+          });
+        } else{
+          Toast.fire({
+            icon: "error",
+            title: resp.message,
+          });
+        }
+        $("#dniVisita").val("");
+        $("#apellidos_nombres").val("");
+        $("#quien_autoriza").val("");
+        $("#motivo").val("");
+        $("#hora_de_ingreso").val("");
+        $("#hora_de_salida").val("");
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        $("#btnRegularizar").html("Guardar");
+        $("#btnRegularizar").prop('disabled', false);
+
         $("#dniVisita").val("");
         $("#apellidos_nombres").val("");
         $("#oficina").val(null).trigger("change"); // restablecer el select
@@ -169,7 +258,6 @@ function edit() {
   let hora = moment().utcOffset('America/Phoenix').format('YYYY-MM-DD HH:mm:ss');
   let horaSalida = row.find("td:eq(3)");
   horaSalida.text(hora);
-
 }
 
 $(document).on("click", ".cancel-icon", cancel);
@@ -190,7 +278,6 @@ function save() {
   row.find(".edit-icon").show();
   row.find(".cancel-icon").hide();
   row.find(".save-icon").hide();
-  row.hide();
   let formData = {
     id: row.find("td:eq(0)").text(),
     horaSalida: row.find("td:eq(3)").text(),
@@ -214,6 +301,7 @@ function save() {
           });
           break;
         case "success":
+          row.hide();
           Toast.fire({
             icon: "success",
             title: resp[indice],
@@ -230,3 +318,71 @@ function save() {
     },
   });
 }
+
+$(document).on("click", "#generarReportVisit", function(){
+  if($('#fechaVistDesde').val() === '' || $('#fechaVisitHasta').val()===''){
+    Toast.fire({
+      icon: "warning",
+      title: 'Por favor, ingrese un rango de fechas.',
+    });
+  } else {
+    let formData = {
+      fechaDesde: $('#fechaVistDesde').val(),
+      fechaHasta: $('#fechaVisitHasta').val()
+    };
+
+    let progressBar = $('#reporteVisitas .progress-bar');
+    $('#reporteVisitas').show();
+    let maxProgress = Math.floor(Math.random() * 59) + 2; 
+    let currentProgress = 0;
+    let progressInterval = setInterval(function () {
+      if (currentProgress < maxProgress) {
+        currentProgress++;
+        progressBar.css('width', currentProgress + '%');
+        progressBar.text(currentProgress + '%');
+      } else {
+        clearInterval(progressInterval);
+      }
+    }, 50);
+  
+    $.ajax({
+      url: '/administrador/exportar-visitas',
+      method: 'POST',
+      data: formData,
+      beforeSend: function(){
+        if ($('#respuestaReportVisitas').is(':visible')) {
+          $('#respuestaReportVisitas').hide();
+        }
+      },
+      success: function(response){
+        let resp = JSON.parse(response);
+        if (resp.status ==='success') {
+          Toast.fire({
+            icon: "success",
+            title: resp.message,
+          });
+          clearInterval(progressInterval);
+          progressBar.css('width', '100%');
+          progressBar.text('100%');
+
+          $('#respuestaReportVisitas').show();
+          $('#respuestaReportVisitas').html('<a href="' + resp.archivo +'" download><button type="button" class="btn btn-block btn-outline-success"><i class="fa fa-download"></i> DESCARGAR REPORTE DE VISITAS</button></a>');
+        } else {
+          Toast.fire({
+            icon: "error",
+            title: resp.message,
+          });
+        }
+    },
+      error: function (jqXHR, textStatus, errorThrown) {
+        $('#fechaVistDesde').val('');
+        $('#fechaVisitHasta').val('');
+        Toast.fire({
+          icon: "error",
+          title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+          background: "#ff0000",
+        });
+      }
+    });
+  }
+});

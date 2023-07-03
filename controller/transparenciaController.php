@@ -1,4 +1,7 @@
 <?php
+
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat\DateFormatter;
+
 require_once(_ROOT_CONTROLLER . 'viewsRender.php');
 require_once(_ROOT_MODEL . 'visitas.php');
 require_once(_ROOT_MODEL . 'proyectosInversionPublica.php');
@@ -6,6 +9,12 @@ require_once(_ROOT_MODEL . 'agendaGorel.php');
 
 class transparenciaController extends ViewRenderer
 {
+    private $ruta;
+
+    public function __construct()
+    {
+        $this->ruta = _ROOT_ASSETS . 'images/';
+    }
 
     public function visitasMain()
     {
@@ -15,16 +24,20 @@ class transparenciaController extends ViewRenderer
             'imageNew' => _ROOT_ASSETS . 'images/nuevasVisitas.jpg',
             'imageOld' => _ROOT_ASSETS . 'images/oldVisitas.jpg'
         ];
+        $dataFooter = [
+            'logoWhite' => $this->ruta . 'logoWhite.png',
+            'año' => date('Y')
+        ];
         $this->render('header', '', false);
         $this->render('transparencia/visitasgorel/main', $data, true);
-        $this->render('footer', '', false);
+        $this->render('footer', $dataFooter, false);
     }
 
     public function visitasNew($pagina = 1)
     {
         if (!is_numeric($pagina)) {
             $this->setCacheDir(_ROOT_CACHE);
-            $this->setCacheTime(86000);
+            $this->setCacheTime(1);
             $this->render('ErrorView', '', true);
             return;
         }
@@ -41,11 +54,16 @@ class transparenciaController extends ViewRenderer
                 "link" => _ROOT_ASSETS . 'css/datepicker.css',
                 "jsDatapicker" => _ROOT_ASSETS . 'js/bootstrap-datepicker.js',
                 "jsMaterialkit" => _ROOT_ASSETS . 'js/material-kit.js',
-                "jsVisitas" => _ROOT_ASSETS . 'jsVisitas.js'
+                "jsVisitas" => _ROOT_ASSETS . 'jsVisitas.js',
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
+            ];
+            $dataFooter = [
+                'año' => date('Y')
             ];
             $this->render('header', '', false);
             $this->render('transparencia/visitasgorel/newVisitas', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -78,11 +96,16 @@ class transparenciaController extends ViewRenderer
         $visitas = new visitas();
         $resultado = $visitas->visitasOld();
         $data = [
-            "tablaFila" => $resultado
+            "tablaFila" => $resultado,
+            "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+            "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
+        ];
+        $dataFooter = [
+            'año' => date('Y')
         ];
         $this->render('header', '', false);
         $this->render('transparencia/visitasgorel/oldVisitas', $data, false);
-        $this->render('footer', '', false);
+        $this->render('footer', $dataFooter, false);
     }
     //pip = proyectos de inversion publica
     public function pipTodos($pagina = 1)
@@ -102,11 +125,16 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
+            ];
+            $dataFooter = [
+                'año' => date('Y')
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -129,11 +157,16 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
+            ];
+            $dataFooter = [
+                'año' => date('Y')
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -156,11 +189,16 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
+            ];
+            $dataFooter = [
+                'año' => date('Y')
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -183,11 +221,16 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
+            ];
+            $dataFooter = [
+                'año' => date('Y')
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -210,11 +253,16 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
+            ];
+            $dataFooter = [
+                'año' => date('Y')
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -237,11 +285,16 @@ class transparenciaController extends ViewRenderer
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
+                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
+            ];
+            $dataFooter = [
+                'año' => date('Y')
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $dataFooter, false);
         } catch (Throwable $e) {
             $this->handleError($e);
         }
@@ -264,7 +317,6 @@ class transparenciaController extends ViewRenderer
         }
     }
 
-    //modulo de agenda
     public function agendaGorel($pagina = 1)
     {
         if (!is_numeric($pagina)) {
@@ -277,17 +329,55 @@ class transparenciaController extends ViewRenderer
             $this->setCacheDir(_ROOT_CACHE . 'transparencia/agendaGorel/');
             $this->setCacheTime(1);
 
-            $aG = new agendaGorel();
-            list($tablaFila, $paginadorHtml) = $aG->verAgenda($pagina);
+            $agendaGorel = new agendaGorel();
+            list($tablaFila, $paginadorHtml) = $agendaGorel->verAgenda($pagina);
 
             $data = [
                 "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml
+                "paginadorHtml" => $paginadorHtml,
+                "link" => _ROOT_ASSETS . 'css/datepicker.css',
+                "jsDatapicker" => _ROOT_ASSETS . 'js/bootstrap-datepicker.js',
+                "jsMaterialkit" => _ROOT_ASSETS . 'js/material-kit.js',
+                "paginator" => _ROOT_ASSETS . 'js/pagination.min.js'
+                
+            ];
+            $dataFooter = [
+                'año' => date('Y')
             ];
             $this->render('header', '', false);
             $this->render('transparencia/agendaGorel/agendaGorel', $data, false);
-            $this->render('footer', '', false);            
+            $this->render('footer', $dataFooter, false);            
         }catch (Throwable $e) {
+            $this->handleError($e);
+        }
+    }
+    
+    public function agendaGorelPost()
+    {   
+        $camposRequeridos = ['fechaDesde', 'fechaHasta', 'palabra'];
+        foreach($camposRequeridos as $campo){
+            extract([$campo =>htmlspecialchars($_POST[$campo])]);
+        }
+        try {
+            $fechaDesde = date_format(date_create_from_format('d/m/Y', $fechaDesde), 'Y-m-d');
+            $fechaHasta = date_format(date_create_from_format('d/m/Y', $fechaHasta), 'Y-m-d');
+        } catch (Throwable $e) {
+            $respuesta = array('status' => 'error');
+            echo (json_encode($respuesta));
+            return;
+        }
+
+        if($fechaDesde === FALSE or $fechaHasta === FALSE){
+            $respuesta = array('status'=>'error', 'data'=>'');
+            echo(json_encode($respuesta));
+            return;
+        }
+        try{
+            $agendaGorel = new agendaGorel();
+            $resultado = $agendaGorel->buscarAgenda($fechaDesde, $fechaHasta, $palabra);
+            $respuesta = array('status'=>'success', 'data'=>$resultado);
+            echo (json_encode($respuesta));
+        } catch(Throwable $e){
             $this->handleError($e);
         }
     }

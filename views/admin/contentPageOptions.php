@@ -61,6 +61,20 @@ class contentPageOptions {
         return $resultado;
     }
 
+    public function ExportarVisitas()
+    {
+        $visitas = new visitas();
+        $resultado = $visitas->ExportarVisitas();
+        return $resultado;
+    }
+
+    public function RegularizarVisitas()
+    {
+        $visitas =  new visitas ();
+        $resultado = $visitas->RegularizarVisitas();
+        return $resultado;
+    }
+
     public function RegistrarObras()
     {
         $obras = new obras();
@@ -109,5 +123,33 @@ class contentPageOptions {
         $rrhhAsistencia = new RRHHasistencia();
         $resultado =$rrhhAsistencia->verRegistros();
         return $resultado;
+    }
+
+    public function RegistrarAgendaGobernador()
+    {
+        $agendaGobernador = new AgendaGobernador();
+        $resultado = $agendaGobernador->RegistrarAgenda();
+        return $resultado;
+    }
+
+    public function ActualizarAgendaGobernador()
+    {
+        $agendaGobernador = new AgendaGobernador();
+        $resultado = $agendaGobernador->ActualizarAgenda();
+        return $resultado;
+    }
+
+    public function RegistrarConvocatoria()
+    {
+        $convocatorias = new Convocatorias();
+        $resultado = $convocatorias->RegistrarConvocatoria();
+        return $resultado; 
+    }
+
+    public function ActualizarConvocatoria()
+    {
+        $convocatorias = new Convocatorias();
+        $resultado = $convocatorias->ActualizarConvocatorias();
+        return $resultado; 
     }
 }

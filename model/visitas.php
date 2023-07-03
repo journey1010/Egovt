@@ -10,8 +10,8 @@ class visitas
         $resultadosPorPagina = 15;
         if (!isset($conexion)) {
             $conexion = new MySQLConnection();
-            $sql = "SELECT v.apellidos_nombres as apnombre, v.dni as dni, CONCAT(o.nombre, ' ', o.sigla ) AS oficina, v.persona_a_visitar as visita, v.hora_de_ingreso as hringreso, v.hora_de_salida as hrsalida, v.quien_autoriza as quienautoriza,
-                v.motivo as motivo FROM visitas AS v INNER JOIN oficinas AS o ON v.area_que_visita =  o.id ";
+            $sql = "SELECT v.apellidos_nombres as apnombre, v.institución_visitante as iv, v.dni as dni, CONCAT(o.nombre, ' ', o.sigla ) AS oficina, v.persona_a_visitar as visita, v.hora_de_ingreso as hringreso, v.hora_de_salida as hrsalida, v.quien_autoriza as quienautoriza,
+                v.motivo as motivo FROM visitas AS v INNER JOIN oficinas AS o ON v.area_que_visita =  o.id  ORDER BY hringreso DESC";
             $params = '';
         }
         
@@ -19,7 +19,7 @@ class visitas
         session_start();
         if (isset($_SESSION['visitas_instance'])) {
             $paginador = $_SESSION['visitas_instance'];
-            $paginadorHTM = $paginador->setResultadosPorPagina($resultadosPorPagina);
+            $paginadorHTML = $paginador->setResultadosPorPagina($resultadosPorPagina);
         } else {
             $paginador = new Paginator($conexion, $sql, $params, $pagina, $resultadosPorPagina);
             $_SESSION['visitas_instance'] = $paginador;
@@ -29,6 +29,7 @@ class visitas
         $tablaFila = '';
         foreach ($resultados as $row) {
             $apnombre = $row['apnombre'];
+            $institucionVisitante = $row['iv'];
             $dni = $row['dni'];
             $oficina = $row['oficina'];
             $visita = $row['visita'];
@@ -39,12 +40,13 @@ class visitas
 
             $tablaFila .= <<<Html
                 <tr>
-                <td class="text-nowrap"><i class="fa fa-eye details-control"></i> $apnombre</td>    
+                <td class="d-flex align-items-center vertical-align"><i class="fa fa-eye details-control mr-2"></i> $apnombre</td>    
                 <td>$dni</td>
+                <td>$institucionVisitante</td>
                 <td>$oficina</td>
                 <td>$visita</td>
-                <td class="text-nowrap">$hringreso</td>
-                <td class="text-nowrap">$hrsalida</td>
+                <td>$hringreso</td>
+                <td>$hrsalida</td>
                 <td>$quienautoriza</td>
                 <td>$motivo</td>
                 </tr>

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="<?= $dataTableCss?>">
 <script>
 	$(document).ready(function() {
 		let url = window.location.href;
@@ -53,7 +53,7 @@
 											<input id="palabra" type="text" class="form-control inputHeightMedium inputBdrTransparent d-block w- shadow">
 										</div>
 									</div>
-									<button id="buscar" type="button" class="btn btnTheme ml-lg-3 mt-4 mt-lg-0 ml-auto mr-auto mr-lg-0 font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0" data-hover="Iniciar busqueda">
+									<button id="buscar" type="button" class="btn btnTheme ml-lg-3 mt-4 mt-lg-0 ml-auto mr-auto mr-lg-0 font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0" data-hover="Buscar">
 										<span class="d-block btnText">Buscar</span>
 									</button>
 								</div>
@@ -65,14 +65,13 @@
 							<div id="spinner" class="mt-1" style="display:none;">
 								<i class="fa fa-spinner fa-spin"></i> Cargando...
 							</div>
-
 						</div>
 					</div>
 				</div>
 				<div class="col-12 col-lg-4 col-xl-3 order-lg-1 mb-6 position-static">
 					<aside class="dscSidebar pt-1 mr-xl-n5">
 						<nav class="widget mb-6 mb-lg-10 widgetFiltersNav widgetBgLight py-3 py-lg-5 px-2">
-							<h3 class="fwSemiBold mb-4 position-relative">Documentos</h3>
+							<h3 class="fwSemiBold mb-4 position-relative">Documentos </h3>
 							<ul class="list-unstyled pl-0 mx-n2 mb-0 mb-3 isoFiltersList">
 								<li name="panel">
 									<a class="enlace" href="/transparencia/proyecto-de-inversion-publica">Todos los documentos</a>
@@ -107,7 +106,7 @@
 		window.location.href = destino;
 	});
 </script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="<?= $dataTableJs ?>"></script>
 <script>
 	$(document).on('click', '#buscar', searchObra);
 

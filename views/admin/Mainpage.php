@@ -13,10 +13,10 @@ class Mainpage extends  handleSanitize {
 
     public function AdministrarPaginaPrincipal() 
     {
-        $ruta = $this->rutaAssets . 'js/Inicio.js';
+        $ruta = $this->rutaAssets . 'js/Mainpage.js';
         
         $conexion = new MySQLConnection();
-        list($titulo, $mensaje, $frase, $entrada) = $this->getInfoGobernador($conexion);
+        list($titulo, $mensaje, $frase, $entrada, $enlaceVideo) = $this->getInfoGobernador($conexion);
         $tablaBanner = $this->getInfoBanners($conexion);
         $tablaDirectorio = $this->getInfoDirector($conexion);
         $tablaModal = $this->getInfoModal($conexion);
@@ -63,6 +63,10 @@ class Mainpage extends  handleSanitize {
                                 <label class="custom-file-label text-left" for="imgGobernador" data-browse="Elegir archivo">Elegir archivo</label>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="enlaceVideo">Enlace video</label>
+                            <input type="text" id="enlaceVideo" class="form-control" value="$enlaceVideo">
+                        </div>
                     </div>
                     <div class="card-footer">
                         <button id="editGobernador" type="button" class="btn btn-primary">Guardar</button>
@@ -85,8 +89,9 @@ class Mainpage extends  handleSanitize {
                                 <tr>
                                     <th style ="width: 8px">Id</th>
                                     <th style ="width: 300px">Nombre</th>
+                                    <th style ="width: 300px">Título</th>
                                     <th>Descripcion</th>
-                                    <th style = "width: 10px"></th>
+                                    <th style ="width: 10px"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -140,13 +145,13 @@ class Mainpage extends  handleSanitize {
                         </div>
                     </div>
                     <div class="card-body p-0 table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover table-modal">
                             <thead>
                                 <tr>
                                     <th class= "text-center" style="width: 10px">Id</th>
                                     <th class= "text-center" style="min-width:300px">Imagen</th>
                                     <th class= "text-center">Descripcion</th>
-                                    <th></th>
+                                    <th class= "text-center"><a class="btn btn-primary btn-sm insert-modal" alt="Insertar" title="Insertar modal"><i class="fa fa-plus-circle"></i></a></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -164,20 +169,21 @@ class Mainpage extends  handleSanitize {
 
     private function getInfoGobernador(MySQLConnection $conexion): array 
     {
-        $sql = "SELECT titulo, mensaje, entrada, frase FROM gobernador LIMIT 1";
+        $sql = "SELECT titulo, mensaje, entrada, frase, enlace_video FROM gobernador_paginaprincipal LIMIT 1";
         $stmt = $conexion->query($sql, '', '', false);
         $row = $stmt->fetch();
-        return [$row['titulo'], $row['mensaje'], $row['frase'], $row['entrada']];
+        return [$row['titulo'], $row['mensaje'], $row['frase'], $row['entrada'], $row['enlace_video']];
     }
 
     private function getInfoBanners(MySQLConnection $conexion): string 
     {
-        $sql = "SELECT * FROM banners";
+        $sql = "SELECT * FROM banners_paginaprincipal";
         $stmt = $conexion->query($sql, '', '', false);
         $resultado = $stmt->fetchAll();
         $tablaRow = '';
         foreach ($resultado as $row) {
             $id = $row['id_page_principal'];
+            $titulo = $row['titulo_banner'];
             $descripcion = $row['descripcion_banner'];
             $fileName = $row['banner'];
             $filePath = _BASE_URL . '/assets/images/banners/' .  $row['banner'];
@@ -197,6 +203,7 @@ class Mainpage extends  handleSanitize {
                         <label class="custom-file-label text-left" for="imgBanner$id" data-browse="Elegir archivo">$fileName</label>
                     </div>
                 </td>
+                <td class="text-center" style="max-width: 300px;" contenteditable="false">$titulo</td>
                 <td class="text-center" style="max-width: 300px;" contenteditable="false">$descripcion</td>
                 <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
@@ -262,7 +269,7 @@ class Mainpage extends  handleSanitize {
                 <td class="text-left" contenteditable="false" style="color: blue">{$row['linkedin']}</td>
                 <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
-                        <a class="btn btn-danger edit-directorio" alt="editar directorio"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger edit-directorio" alt="editar directorio" tittle=""><i class="fas fa-edit"></i></a>
                         <a class="btn btn-danger cancel-directorio" alt="editar directorio" style="display: none!important"> <i class="fas fa-times"></i></a>
                         <a class="btn btn-danger save-directorio" alt="editar directorio" style="display: none!important"><i class="fas fa-save"></i></a>
                     </div>
@@ -275,7 +282,7 @@ class Mainpage extends  handleSanitize {
 
     private function getInfoModal(MySQLConnection $conexion): String
     {   
-        $sql = "SELECT * FROM modal_inicio";
+        $sql = "SELECT * FROM modal_paginaprincipal";
         $stmt = $conexion->query($sql, '', '', false);
         $resultado = $stmt->fetchAll();
         $tablaRow = '';
@@ -299,9 +306,10 @@ class Mainpage extends  handleSanitize {
                 <td class="text-center" contenteditable="false">{$row['descripcion']}</td>
                 <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
-                        <a class="btn btn-danger edit-modal" alt="editar modal"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger cancel-modal" alt="editar modal" style="display: none!important"> <i class="fas fa-times"></i></a>
-                        <a class="btn btn-danger save-modal" alt="editar modal" style="display: none!important"><i class="fas fa-save"></i></a>
+                        <a class="btn btn-danger edit-modal" alt="editar modal" title="Editar Modal"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger cancel-modal" alt="cancelar modal" title="Cancelar edición Modal" style="display: none!important"> <i class="fas fa-times"></i></a>
+                        <a class="btn btn-danger save-modal" alt="Guardar modal" title="Guardar cambios" style="display: none!important"><i class="fas fa-save"></i></a>
+                        <a class="btn btn-danger delete-modal" alt="eliminar modal" title="Eliminar Modal" style="display: none!important"><i class="fas fa-trash-alt"></i></a>
                     </div>
                 </td>
             </tr>

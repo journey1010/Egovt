@@ -13,11 +13,15 @@ class oficinas extends handleSanitize {
             if (!empty ($jerarquia) && !empty($nombre) && !empty($sigla))  {
                 $jerarquia = $this->SanitizeVarInput($jerarquia);    
                 $nombre = $this->SanitizeVarInput($nombre);
-                $sigla = $this->SanitizeVarInput($sigla);
+                $sigla = $this->SanitizeVarInput($sigla);                
+
+                $jerarquia=strtoupper($jerarquia);
+                $nombre = strtoupper($nombre);
+                $sigla = strtoupper($sigla);
 
                 $conexion = new MySQLConnection ();
                 $sqlSentence = "INSERT INTO oficinas (nombre, sigla, jerarquia) VALUES (?,?,?)";
-                $params = [$nombre, $jerarquia, $sigla];
+                $params = [$nombre, $sigla, $jerarquia];
                 $conexion->query($sqlSentence, $params, '' , false);
                 $conexion->close();
                 $respuesta = array("success" => "Registro existosamente guardado");
