@@ -15,7 +15,7 @@ class visitas
             $params = '';
         }
         
-        session_set_cookie_params(900);
+        session_set_cookie_params(['lifetime' => 60]);
         session_start();
         if (isset($_SESSION['visitas_instance'])) {
             $paginador = $_SESSION['visitas_instance'];

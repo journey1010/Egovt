@@ -431,9 +431,12 @@ class transparenciaController extends ViewRenderer
         try {
             $this->setCacheDir(_ROOT_CACHE . 'transparencia/cas/');
             $this->setCacheTime(3600);
-
-            
+            $convocatoria = new Convocatoria();
+            list($lista, $paginadorHtml) = $convocatoria->verConvocatoria($pagina);
             $data = [
+                'lista' => $lista,
+                'paginador' => $paginadorHtml,
+                'image' => _ROOT_ASSETS . 'images/image-convocatoria.webp',
                 'link' => _ROOT_ASSETS . 'css/datepicker.css',
                 'jsDatapicker' => _ROOT_ASSETS . 'js/bootstrap-datepicker.js',
                 'jsMaterialkit' => _ROOT_ASSETS . 'js/material-kit.js',
@@ -445,6 +448,45 @@ class transparenciaController extends ViewRenderer
         } catch(Throwable $e){
             $this->handleError($e);
         }
+    }
+
+    /**
+     * Recibe una solicitud de busqueda para el registro convocatorias de trabajo del gobierno regional.
+     * Devuelve en formato de json el resultado de la busqueda.
+     * @return void
+     */
+    public function convocatoriasPost()
+    {
+        list($fechaDesde, $fechaHasta, $palabra) = $this->cleanDataPost($_POST);
+        
+    }
+    /**
+     * Convierte las fechas desde y fecha (Enviadas por POST)hasta en formatos validos para poder trabajar con la base datos.
+     * @param  array $post, contiene datos enviados en un solicitud POST
+     * @return array 
+    */
+
+    private function cleanDataPost(array $post)
+    {
+        $camposRequeridos = ['fechaDesde', 'fechaHasta', 'palabra'];
+        foreach($camposRequeridos as $campo){
+            extract([$campo =>htmlspecialchars($post[$campo])]);
+        }
+        try {
+            $fechaDesde = date_format(date_create_from_format('d/m/Y', $fechaDesde), 'Y-m-d');
+            $fechaHasta = date_format(date_create_from_format('d/m/Y', $fechaHasta), 'Y-m-d');
+        } catch (Throwable $e) {
+            $respuesta = array('status' => 'error');
+            echo (json_encode($respuesta));
+            return;
+        }
+
+        if($fechaDesde === FALSE or $fechaHasta === FALSE){
+            $respuesta = array('status'=>'error', 'data'=>'');
+            echo(json_encode($respuesta));
+            return;
+        }
+        return [$fechaDesde, $fechaHasta, $palabra];
     }
 
     private function handleError(Throwable $e)
