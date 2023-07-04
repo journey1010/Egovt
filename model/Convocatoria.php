@@ -137,14 +137,17 @@ class Convocatoria extends handleSanitize
             break;
       }
       $viewEstado = <<<Html
-      <a href="javascript:void(0);" class="btn btnCustomLightOutline bdrWidthAlter btn-sm text-capitalize position-relative border-1 p-0 flex-shrink-0 ml-md-4" style="border-color: #06163A" data-hover="$text" target="_blank">
+      <a href="javascript:void(0);" class="btn btnCustomLightOutline bdrWidthAlter btn-sm text-capitalize position-relative border-1 p-0 flex-shrink-0 ml-md-4" style="border-color: #06163A; width: 120px" data-hover="$text" target="_blank">
          <span class="d-block btnText">$text</span>
       </a>
       Html;
       return $viewEstado;
    }
    /**
-    * 
+    * crea una consulta dinamica para realizar una busqueda en los registros de convocatoria. 
+    * @param string $fechaDesde, fecha bottom,
+    * @param string $fechaHasta, fecha top,
+    * @param string $palabra, palabra clave a buscar 
    */
    public function buscarConvocatoria(string $fechaDesde, string $fechaHasta, string $palabra)
    {
@@ -152,7 +155,78 @@ class Convocatoria extends handleSanitize
       $sql = "SELECT conv.titulo AS titulo, conv.descripcion AS descripcion, conv.estado AS estado, conv.fecha_limite AS fecha_limite , ofi.nombre AS nombre, GROUP_CONCAT( adj.nombre, ';', adj.archivo ) AS adjuntos FROM convocatorias AS conv 
                INNER JOIN oficinas AS ofi ON conv.dependencia = ofi.id 
                INNER JOIN convocatorias_adjuntos AS adj ON conv.id = adj.id_convocatoria
-               GROUP BY conv.id
-               ORDER BY conv.fecha_registro DESC"; 
+               WHERE 1=1
+            "; 
+      $params = array();
+      if(!empty($fechaDesde)){
+         $sql .= " AND conv.fecha_registro  >= :fecha_desde";
+         $params[':fecha_desde'] = $fechaDesde;
+     }
+     if(!empty($fechaHasta)){
+         $sql .= " AND conv.fecha_registro <= :fecha_hasta";
+         $params[':fecha_hasta']=$fechaHasta;
+     }
+     if(!empty($palabra)){
+         $sql .= " AND (conv.titulo LIKE :palabra1 OR conv.descripcion LIKE :palabra2 )";
+         $params[':palabra1'] = '%' . $palabra . '%';
+         $params[':palabra2'] = '%' . $palabra . '%';
+     }
+     $sql .= " GROUP BY conv.id ORDER BY conv.fecha_registro DESC LIMIT 100 ";
+     try {
+         $stmt  = $conexion->query($sql, $params, '', false);
+         $resultados = $stmt->fetchAll();
+         $respuesta= $this->viewConvocatoriaPost($resultados);
+         return $respuesta;
+     } catch (Throwable $e) {
+         $this->handlerError($e);
+     }
+   }
+    
+   private function viewConvocatoriaPost(array $resultados): array
+   {
+      $image = _ROOT_ASSETS . 'images/image-convocatoria.webp';
+      $viewConvocatoria = [];
+      foreach ($resultados as $row) {
+         $fechaFormat = DateTime::createFromFormat('Y-m-d', $row['fecha_limite']);
+         $formato = new IntlDateFormatter('es_ES', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+         $fecha = $formato->format($fechaFormat);
+         $adjuntos = $this->viewAdjuntos($row['adjuntos']);
+         $estado  = $this->viewEstado($row['estado']);
+         $viewConvocatoria []= <<<Html
+         <article class="ueEveColumn__list bg-light mt-3 position-relative px-4 py-3 px-lg-8 py-lg-6">
+               <div class="d-lg-flex align-items-md-center">
+                  <div class="imgHolder overflow-hidden flex-shrink-0 mr-4 mr-lg-10 mb-1 mb-md-0">
+                     <img src="$image" class="img-fluid" alt="logo convocatoria">
+                  </div>
+                  <div class="d-md-flex align-items-md-center flex-grow-1">
+                     <div class="descrWrap flex-grow-1">
+                           <strong class="tagTitle d-block text-success fwSemiBold mb-2">Gobierno Regional de Loreto</strong>
+                           <h3 class="fwMedium">
+                              {$row['titulo']}
+                           </h3>
+                           <strong class="tagTitle d-block text-black fwSemiBold mb-2">
+                              {$row['descripcion']}
+                           </strong>
+                           <ul class="list-unstyled ueScheduleList mb-0">
+                              <li>
+                              <i class="icomoon-clock icn position-absolute"><span class="sr-only">icon</span></i>
+                              Fecha Limite de Postulación: $fecha
+                              </li>
+                              <li>
+                              <i class="icomoon-location icn position-absolute"><span class="sr-only">icon</span></i>
+                              Dependencia : {$row['nombre']}
+                              </li>
+                           </ul>
+                           <ul class="list-unstyled ueScheduleList mb-0">
+                              $adjuntos
+                           </ul>
+                     </div>
+                     $estado
+                  </div>
+               </div>
+         </article>
+         Html;
+      }
+      return $viewConvocatoria;
    }
 }

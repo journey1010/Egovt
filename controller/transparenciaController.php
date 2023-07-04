@@ -458,7 +458,10 @@ class transparenciaController extends ViewRenderer
     public function convocatoriasPost()
     {
         list($fechaDesde, $fechaHasta, $palabra) = $this->cleanDataPost($_POST);
-        
+        $convocatoria = new Convocatoria();
+        $resultado = $convocatoria->buscarConvocatoria($fechaDesde, $fechaHasta, $palabra);
+        $respuesta = array ('status'=>'success', 'data'=>$resultado);
+        echo (json_encode($respuesta));
     }
     /**
      * Convierte las fechas desde y fecha (Enviadas por POST)hasta en formatos validos para poder trabajar con la base datos.

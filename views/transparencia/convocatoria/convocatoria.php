@@ -31,7 +31,7 @@
                         <input id="palabra" type="text" class="border border-info form-control inputHeightMedium inputBdrTransparent d-block w- shadow">
                     </div>
                 </div>
-                <button id="buscarAgenda" type="button" class="btn btnTheme ml-lg-3 mt-4 mt-lg-0 ml-auto mr-auto mr-lg-0 font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0" data-hover="Buscar">
+                <button id="buscarConvocatoria" type="button" class="btn btnTheme ml-lg-3 mt-4 mt-lg-0 ml-auto mr-auto mr-lg-0 font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0" data-hover="Buscar">
                     <span class="d-block btnText">Buscar</span>
                 </button>
             </div>
@@ -52,7 +52,7 @@
 <script src="<?= $jsDatapicker ?>"></script>
 <script src="<?= $jsMaterialkit ?>"></script>
 <script src="<?= $paginator ?>"></script>
-<script defer>
+<script>
     $(document).on('click', '#buscarConvocatoria', BuscarConvocatoria);
 
     function BuscarConvocatoria() {
@@ -62,16 +62,17 @@
             palabra: $('#palabra').val()
         };
         $.ajax({
-            url: '/transparencia/convocatoria/buscar',
+            url: '/transparencia/convocatorias-de-trabajo/buscar',
             method: 'POST',
             data: formData,
             beforeSend: function() {
-                $('#spinner').hide();
+                $('#spinner').show();
             },
             success: function(response) {
+                $('#spinner').hide();
                 let resp = JSON.parse(response);
                 if (resp.status === 'success') {
-                    $('.convocatorias').html('<div class="row datos"></div>');
+                    $('.convocatorias').html('<div class="datos"></div>');
                     if (resp.data !== null) {
                         generarElementosPaginados(resp.data);
                     }
@@ -85,10 +86,10 @@
     function generarElementosPaginados(data) {
         $('.convocatorias').pagination({
             dataSource: data,
-            pageSize: 10,
+            pageSize: 2,
             ulClassName: 'pagination justify-content-center pt-2',
             callback: function(data, pagination) {
-                $('.datos').append(data.join(''));
+                $('.datos').html(data);
                 $('.paginationjs li').addClass('page-item');
                 $('.paginationjs a').addClass('page-link');
             },
