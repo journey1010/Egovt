@@ -1,6 +1,11 @@
 <?php
 
 class ViewRenderer {
+
+    /**
+     * @param $cache_dir, guarda la ubicación de la vista cacheada.
+     * @param $cache_time, guarda el tiempo(segundos) de duración de la vista
+    */
     private $cache_dir;
     private $cache_time = 3600;
   
@@ -44,11 +49,11 @@ class ViewRenderer {
         }
     }
     
-    public function setCacheDir($cache_dir) {
+    public function setCacheDir(string $cache_dir) {
       $this->cache_dir = $cache_dir;
     }
   
-    public function setCacheTime($cache_time) {
+    public function setCacheTime(int $cache_time) {
       $this->cache_time = $cache_time;
     }
   

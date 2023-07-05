@@ -269,7 +269,7 @@ class sideBarOptions {
         $html = <<<Html
         <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="far fa-briefcase" style="color: #39c668;"></i>
+            <i class="fas fa-briefcase" style="color: #39c668;"></i>
             <p>
                  Convocatorias
                 <i class="right fas fa-angle-left"></i>
@@ -277,7 +277,7 @@ class sideBarOptions {
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="/administrador/convocatoria/registrar-convocatoria" name="sidebarEnlace" class="nav-link" data-page="convocatoria/registrar-agenda">
+                <a href="/administrador/convocatoria/registrar-convocatoria" name="sidebarEnlace" class="nav-link" data-page="convocatoria/registrar-convocatoria">
                 <i class="fa fa-calendar-plus"></i>
                 <p> Registrar convocatoria</p>
                 </a>

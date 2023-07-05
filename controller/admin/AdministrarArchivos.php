@@ -1,4 +1,4 @@
-<?php 
+<?php
 class AdministrarArchivos {
 
     private $conexion;
@@ -30,7 +30,7 @@ class AdministrarArchivos {
             print_r(json_encode($respuesta));
             return false;
         }
-        return true; 
+        return true;  
     }
 
     public function guardarFichero ($archivo, $titulo)
@@ -54,7 +54,7 @@ class AdministrarArchivos {
     {       
         $pathForFile = $this->ruta ;
         if (!file_exists($pathForFile)) {
-            mkdir($pathForFile, 0777, true);
+            mkdir($pathForFile, 0755, true);
         }
         return $pathForFile;
     }
