@@ -162,6 +162,7 @@
 													<li><a class="dropdown-item" href="/transparencia/visitas" alt="Visitas">Visitas</a></li>
 													<li><a class="dropdown-item" href="/transparencia/proyecto-de-inversion-publica" alt="Proyectos de inversión publica ">Proyectos de Inversión Pública</a></li>
 													<li><a class="dropdown-item" href="/transparencia/actividades-oficiales" alt="Actividades oficiales">Actividades Oficiales</a></li>
+													<li><a class="dropdown-item" href="/transparencia/convocatorias-de-trabajo" alt="Convocatorias de trabajo">Convocatorias de trabajo</a></li>
 												</ul>
 											</div>
 										</li>

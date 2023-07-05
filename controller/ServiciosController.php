@@ -27,7 +27,7 @@ class ServiciosController extends ViewRenderer
         ];
 
         $this->render('header', '', false);
-        $this->render( 'servicios/MainAplicaciones', $data, false);
+        $this->render( 'servicios/MainAplicaciones', $data, true);
         $this->render('footer', $dataFooter, false);
     }
 }

@@ -3,6 +3,7 @@ export let Toast = Swal.mixin({
     position: 'top-end',
     showConfirmButton: false,
     timerProgressBar: true,
+    timer: 4000,
     customClass: {
         container: 'toast-container'
     }

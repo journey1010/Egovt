@@ -15,7 +15,9 @@
         {"method" : "GET", "pattern" : "/administrador/agenda/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/convocatoria/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "POST", "pattern" : "/administrador/convocatoria/registro-convocatoria", "handler" : "admin/Convocatoria@registrar"},
-        {"method" : "POST", "pattern" : "/administrador/convocatoria/actualizar-convocatoria", "handler" : "admin/Convocatoria@actualizar"}, 
+        {"method" : "POST", "pattern" : "/administrador/convocatoria/actualizar-convocatoria", "handler" : "admin/Convocatoria@actualizar"},
+        {"method" : "POST", "pattern" : "/administrador/convocatoria/edit-convocatoria", "handler" : "admin/Convocatoria@editConvocatoria"},
+        {"method" : "POST", "pattern" : "/administrador/convocatoria/zona-editor/{functionName}", "handler" : "admin/Convocatoria@zoneEditor"},
         {"method" : "POST", "pattern": "/administrador/agenda/registrar-agenda", "handler" : "admin/AgendaGobernador@registrar"},
         {"method" : "POST", "pattern": "/administrador/agenda/buscar-agenda", "handler": "admin/AgendaGobernador@buscar"},
         {"method" : "POST", "pattern": "/administrador/agenda/actualizar-agenda", "handler": "admin/AgendaGobernador@actualizar"},
@@ -64,6 +66,9 @@
         {"method" : "GET", "pattern" : "/transparencia/actividades-oficiales", "handler" : "transparenciaController@agendaGorel"},
         {"method" : "GET", "pattern" : "/transparencia/actividades-oficiales/?page={pagina}", "handler" : "transparenciaController@agendaGorel"},
         {"method": "POST", "pattern" : "/transparencia/actividades-oficiales/buscar", "handler": "transparenciaController@agendaGorelPost"},
+        {"method" : "GET", "pattern" : "/transparencia/convocatorias-de-trabajo", "handler" : "transparenciaController@convocatorias"},
+        {"method" : "GET", "pattern" : "/transparencia/convocatorias-de-trabajo/?page={pagina}", "handler": "transparenciaController@convocatorias"},
+        {"method" : "POST", "pattern" : "/transparencia/convocatorias-de-trabajo/buscar", "handler": "transparenciaController@convocatoriasPost"},
         {"method" : "GET", "pattern" : "/servicios/menu-aplicaciones", "handler" : "ServiciosController@ServiciosMain"}
     ]
 }
