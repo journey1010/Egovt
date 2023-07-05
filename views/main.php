@@ -302,7 +302,7 @@
 		<div class="container">
 			<header class="headingHead text-center cdTitle mb-7 mb-md-13">
 				<h2 class="fwSemiBold mb-4">Conoce Nuestro Directorio</h2>
-				<p>Él Gobierno Regional de Loreto cuenta con un directorio sumamente capaz de liderar la región.</p>
+				<p>El Gobierno Regional de Loreto cuenta con un directorio sumamente capaz de liderar la Región.</p>
 			</header>
 			<div class="row justify-content-center">
 				<?= $directorio ?>

@@ -64,13 +64,13 @@
 							<h3 class="ftHeading text-white mb-4">Enlaces útiles</h3>
 							<ul class="list-unstyled ftsrLinksList mb-0">
 								<li>
-									<a href="/enconstruccion" alt="Mapa del sitio" targert="_blank">Mapa del sitio</a>
+									<a href="/enconstruccion" alt="Mapa del sitio" targert="_blank">Mapa del Sitio</a>
 								</li>
 								<li>
-									<a href="https://correo.regionloreto.gob.pe/" target="_self" alt="Enlace al correo institicional">Correo institucional</a>
+									<a href="https://correo.regionloreto.gob.pe/" target="_self" alt="Enlace al correo institicional">Correo Institucional</a>
 								</li>
 								<li>
-									<a href="https://serviciosportal.reniec.gob.pe/cetdnipi/inicio.htm" alt="Consulta DNI" target="_blank">Consulta el estado de tu tramite para la obtención de tu DNI</a>
+									<a href="https://serviciosportal.reniec.gob.pe/cetdnipi/inicio.htm" alt="Consulta DNI" target="_blank">Consulta el estado de tu trámite para la obtención de tu DNI</a>
 								</li>
 								<li>
 									<a href="https://app.sis.gob.pe/SisConsultaEnLinea/Consulta/frmConsultaEnLinea.aspx" alt="Consulta SIS" target="_blank">Verifica si estás afiliado al SIS</a>
@@ -116,7 +116,7 @@
 									<li>
 										<i class="fa fa-envelope icn mr-1 mr-sm-0"><span class="sr-only">icon</span></i>
 										<strong class="title font-weight-normal text-white">Correo Electronico:</strong>
-										<a href="mailto:demo@example.com">infogorel@regiónloreto.gob.pe</a>
+										<a href="mailto:demo@example.com">infogorel@regionloreto.gob.pe</a>
 									</li>
 								</ul>
 							</div>
@@ -126,7 +126,7 @@
 			</aside>
 			<footer id="pageFooter" class="text-center bg-dark pt-6 pb-3 pt-md-8 pb-md-5">
 				<div class="container">
-					<p><a href="/">Gobierno Regiónal de Loreto</a> - </a> &copy; <?= $año ?>. <br class="d-md-none">Todos los derechos reservados</p>
+					<p><a href="/">Gobierno Regional de Loreto</a> - </a> &copy; <?= $año ?>. <br class="d-md-none">Todos los derechos reservados</p>
 				</div>
 			</footer>
 		</div>
