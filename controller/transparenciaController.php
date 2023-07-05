@@ -442,9 +442,12 @@ class transparenciaController extends ViewRenderer
                 'jsMaterialkit' => _ROOT_ASSETS . 'js/material-kit.js',
                 'paginator' => _ROOT_ASSETS . 'js/pagination.min.js'
             ];
+            $dataFooter = [
+                'año' => date('Y')
+            ];
             $this->render('header', '', false);
             $this->render('transparencia/convocatoria/convocatoria', $data, false);
-            $this->render('footer', '', false);
+            $this->render('footer', $data, false);
         } catch(Throwable $e){
             $this->handleError($e);
         }
