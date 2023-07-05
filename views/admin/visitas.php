@@ -14,7 +14,7 @@ class visitas extends handleSanitize {
 
     public function RegistrarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $hora = new DateTime('', new DateTimeZone('UTC'));
         $hora->setTimezone(new DateTimeZone('America/Bogota'));
@@ -124,7 +124,7 @@ class visitas extends handleSanitize {
 
     public function ActualizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $conexion = new MySQLConnection();
         $tablaRow = $this->getTablaRow($conexion);
@@ -134,12 +134,13 @@ class visitas extends handleSanitize {
                 <h3 class="card-title">Actualizar visitas</h3>
             </div>
             <div class="card-body table-responsive p-2" style="width:100% !important">
-                <table class="table table-hover table-md">
+                <table class="table table-hover table-md" style="font-size: 14px">
                     <thead class="table-bordered" >
                         <tr>
                             <th class="text-center">id</th>
                             <th class="text-center">Documento</th>
                             <th class="text-center">Nombre completo</th>
+                            <th class="text-center">Hora de ingreso</th>
                             <th style="text-center">Hora de salida</th>
                             <th class="text-center">Motivo u Observación</th>
                             <th style="width: 80px" class="text-center">Editar</th>
@@ -159,7 +160,7 @@ class visitas extends handleSanitize {
 
     public function RegularizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4';
         $conexion = new MySQLConnection();
         $select = $this->getSelect($conexion);
         $selectFuncionario = $this->getSelectFuncionario($conexion);
@@ -200,12 +201,16 @@ class visitas extends handleSanitize {
                             
                         </div>
                         <div class="col-md-3">
+                            <label for="institucionVisitanteR">Institución visitante(obligatorio)</label>
+                            <input type="text" class="form-control" id="institucionVisitanteR" value="">
+                        </div>
+                        <div class="col-md-3">
                             <label for="HoraIngreso">Hora de ingreso(obligatorio)</label>
-                            <input type="datetime-local" class="form-control" id="hora_de_ingreso" value="">
+                            <input type="datetime-local" class="form-control" id="hora_de_ingresoR" value="">
                         </div>
                         <div class="col-md-5">
-                            <label for="HoraIngreso">Hora de salida (obligatorio)</label>
-                            <input type="datetime-local" class="form-control" id="hora_de_salida" value="">
+                            <label for="HoraIngreso">Hora de salida</label>
+                            <input type="datetime-local" class="form-control" id="hora_de_salidaR" value="">
                         </div>
                         <div class="col-md-5">
                             <label for="persona_a_visitar">¿A quién visita? </label>
@@ -230,7 +235,7 @@ class visitas extends handleSanitize {
 
     public function ExportarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4';
         $html = <<<Html
         <div class="card card-primary mt-3 mx-auto w-100">
             <div class="card-header">
@@ -282,7 +287,7 @@ class visitas extends handleSanitize {
 
     private function getTablaRow(MySQLConnection $conexion): string
     {
-        $sql = "SELECT id, dni, apellidos_nombres, hora_de_salida, motivo  FROM visitas WHERE hora_de_salida IS NULL ";
+        $sql = "SELECT id, dni, apellidos_nombres, hora_de_ingreso, hora_de_salida, motivo  FROM visitas WHERE hora_de_salida IS NULL ";
         $smt = $conexion->query($sql, '', '', false);
         $resultado = $smt->fetchAll();
         $tablaRow = '';
@@ -290,12 +295,14 @@ class visitas extends handleSanitize {
             $id = $row['id'];
             $dni = $row['dni'];
             $apellidoNombre = $row['apellidos_nombres'];
+            $horaIngreso = $row['hora_de_ingreso'];
             $horaSalida = $row['hora_de_salida'];
             $motivo = $row['motivo'];
             $tablaRow .= "<tr>";
             $tablaRow .= "<td class=\"text-center\">$id</td>";
             $tablaRow .= "<td class=\"text-center\">$dni</td>";
             $tablaRow .= "<td class=\"text-center\">$apellidoNombre</td>";
+            $tablaRow .= "<td class=\"text-center\">$horaIngreso</td>";
             $tablaRow .= "<td class=\"text-center\">$horaSalida</td>";
             $tablaRow .= "<td class=\"text-center\" style=\"max-width: 300px;\" contenteditable=\"false\">$motivo</td>";
             $tablaRow .= '
@@ -313,8 +320,6 @@ class visitas extends handleSanitize {
 
     private function getSelectFuncionario (MySQLConnection $conexion)
     {
-
-        $oficina = (empty($_POST['oficina'])) ? '1' : $_POST['oficina'];
         
         $sql = "SELECT f.nombre_completo AS nombre FROM funcionarios AS f INNER JOIN oficinas as o ON f.id_oficina = o.id WHERE f.id_oficina =  1 AND f.estado = 1  AND f.nivel = 1 AND f.grupo_oficina = 1";
         $stmt = $conexion->query($sql, '', '', false);

@@ -151,6 +151,7 @@
 													<li><a class="dropdown-item" href="https://consulta.regionloreto.gob.pe/" alt="consulta tu tramite">Consulta tu tramite</a></li>
 													<li><a class="dropdown-item" href="https://facilita.gob.pe/t/641" alt="Mesa de partes virtuales ">Mesa de partes virtuales</a></li>
 													<li><a class="dropdown-item" href="/enconstruccion" alt="Formularios y procedimientos">Formularios y procedimientos</a></li>
+													<li><a class="dropdown-item" href="/servicios/menu-aplicaciones">Aplicaciones</a></li>
 												</ul>
 											</div>
 										</li>

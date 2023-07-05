@@ -17,8 +17,8 @@ class agendaGorel
         }
         session_set_cookie_params(900);
         session_start();
-        if (isset($_SESSION['verAgenda_instance'])) {
-            $paginador = $_SESSION['verAgenda_instance'];
+        if (isset($_SESSION['pverAgenda_instance'])) {
+            $paginador = $_SESSION['pverAgenda_instance'];
             $paginador->setResultadosPorPagina($resultadosPorPagina);
         }else {
             $paginador = new Paginator($conexion, $sql, $params, $pagina, $resultadosPorPagina);

@@ -93,7 +93,8 @@ $(document).on("submit", "#registrarVisitas", function (event) {
     $("#quien_autoriza option:selected").text() === "" ||
     $("#hora_de_ingreso").val() === "" ||
     $("#tipoDoc").val() === "" ||
-    $("#InstitucionVisitante").val() === ""
+    $("#InstitucionVisitante").val() === "" ||
+    $("#motivo").val() === ""
   ) {
     Toast.fire({
       background: "#E8EC14",
@@ -174,9 +175,8 @@ $(document).on("submit", "#regularizarVisitas", function (event){
     $("#dniVisita").val() === "" ||
     $("#apellidos_nombres").val() === "" ||
     $("#oficina option:selected").text() === "" ||
-    $("#quien_autoriza option:selected").text() === "" ||
-    $("#hora_de_ingreso").val() === "" ||
-    $("#hora_de_salida").val() === ""
+    $("#hora_de_ingresoR").val() === "" ||
+    $("#institucionVisitanteR").val() === ''
   ) {
     Toast.fire({
       background: "#E8EC14",
@@ -190,10 +190,11 @@ $(document).on("submit", "#regularizarVisitas", function (event){
       apellidosNombres: $("#apellidos_nombres").val(),
       oficina: $("#oficina option:selected").val(),
       personaAVisitar: $("#persona_a_visitar").val(),
-      horaDeIngreso: $("#hora_de_ingreso").val(),
+      horaDeIngreso: $("#hora_de_ingresoR").val(),
       quienAutoriza: $("#quien_autoriza option:selected").val(),
       motivo: $("#motivo").val(),
-      horaDeSalida: $("#hora_de_salida").val()
+      horaDeSalida: $("#hora_de_salidaR").val(),
+      institucionVisitante: $("#institucionVisitanteR").val()
     };
 
     $.ajax({
@@ -223,8 +224,9 @@ $(document).on("submit", "#regularizarVisitas", function (event){
         $("#apellidos_nombres").val("");
         $("#quien_autoriza").val("");
         $("#motivo").val("");
-        $("#hora_de_ingreso").val("");
-        $("#hora_de_salida").val("");
+        $("#hora_de_ingresoR").val("");
+        $("#hora_de_salidaR").val("");
+        $("#institucionVisitanteR").val("");
       },
       error: function (jqXHR, textStatus, errorThrown) {
         $("#btnRegularizar").html("Guardar");
@@ -236,6 +238,7 @@ $(document).on("submit", "#regularizarVisitas", function (event){
         $("#persona_a_visitar").val("");
         $("#quien_autoriza").val("");
         $("#motivo").val("");
+        $("#institucionVisitanteR").val("");
         Toast.fire({
           icon: "error",
           title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
@@ -256,7 +259,7 @@ function edit() {
   row.find(".save-icon").show();
 
   let hora = moment().utcOffset('America/Phoenix').format('YYYY-MM-DD HH:mm:ss');
-  let horaSalida = row.find("td:eq(3)");
+  let horaSalida = row.find("td:eq(4)");
   horaSalida.text(hora);
 }
 
@@ -267,7 +270,7 @@ function cancel() {
   row.find(".edit-icon").show();
   row.find(".cancel-icon").hide();
   row.find(".save-icon").hide();
-  let horaSalida = row.find("td:eq(3)");
+  let horaSalida = row.find("td:eq(4)");
   horaSalida.text("");
 }
 
@@ -280,8 +283,8 @@ function save() {
   row.find(".save-icon").hide();
   let formData = {
     id: row.find("td:eq(0)").text(),
-    horaSalida: row.find("td:eq(3)").text(),
-    motivo: row.find("td:eq(4)").text(),
+    horaSalida: row.find("td:eq(4)").text(),
+    motivo: row.find("td:eq(5)").text(),
   };
 
   $.ajax({
@@ -350,6 +353,7 @@ $(document).on("click", "#generarReportVisit", function(){
       method: 'POST',
       data: formData,
       beforeSend: function(){
+        $('#generarReportVisit').prop('disabled', true);
         if ($('#respuestaReportVisitas').is(':visible')) {
           $('#respuestaReportVisitas').hide();
         }
@@ -373,8 +377,10 @@ $(document).on("click", "#generarReportVisit", function(){
             title: resp.message,
           });
         }
+        $('#generarReportVisit').prop('disabled', false);
     },
       error: function (jqXHR, textStatus, errorThrown) {
+        $('#generarReportVisit').prop('disabled', false);
         $('#fechaVistDesde').val('');
         $('#fechaVisitHasta').val('');
         Toast.fire({
