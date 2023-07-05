@@ -376,7 +376,7 @@ class Convocatoria extends handleSanitize
      * @param array|string $archivo, guarda el nuevo archivo(si se envía) o una cadena vacía.
      * @return void
      */
-    private function saveAdjunto(array $data, array|string $archivo)
+    private function saveAdjunto(array $data, array|null $archivo)
     {
         $id = $this->SanitizeVarInput($data['id']);
         $nombre = $this->SanitizeVarInput($data['nombre']);
