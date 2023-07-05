@@ -199,6 +199,27 @@
 		</div>
 		<span class="cfbBgWrap bgCover position-absolute h-100 w-100 inaccessible" style="background-image: url(<?= $ImgInfoLoreto ?>);"></span>
 	</aside>
+	<section class="newsPulicationsBlock position-relative bg-light overflow-hidden pt-7 pb-4 pt-md-10 pb-md-4 pt-lg-16 pb-lg-10 pt-xl-22 pb-xl-16">
+		<div class="container position-relative npbHolder">
+			<div class="row">
+				<div class="col-12 col-lg-3">
+					<header class="headingHead pt-2 mb-7 mb-lg-0">
+						<h2 class="fwSemiBold mb-2">Convocatorias</h2>
+						<p>Ultimas convocatorias de trabajo del Gobierno Regional de Loreto</p>
+						<a href="/transparencia/convocatorias-de-trabajo" class="btn btn-outline-secondary bdrWidthAlter text-capitalize position-relative border-0 p-0 mt-5 btnXsMinWidth" data-hover="Ver más">
+							<span class="d-block btnText">Más convocatorias</span>
+						</a>
+					</header>
+				</div>
+				<div class="col-12 col-lg-9">
+					<div class="row">
+						<?= $convocatorias ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<span class="npbBgPattern w-100 h-100 bgCover position-absolute inaccessible" style="background-image: url(images/bgPattern2.jpg);"></span>
+	</section>
 	<section class="exploreHeightsBlock pt-4 pb-6 pb-md-9 pt-lg-7 pb-lg-14 pt-xl-11 pb-xl-20">
 		<div class="container">
 			<header class="headingHead text-center mb-12">
@@ -280,7 +301,7 @@
 	<section class="meetCouncilBlock position-relative pt-4 pt-md-9 pt-lg-7 pt-xl-7 pb-6">
 		<div class="container">
 			<header class="headingHead text-center cdTitle mb-7 mb-md-13">
-				<h2 class="fwSemiBold mb-4">Conoce  Nuestro Directorio</h2>
+				<h2 class="fwSemiBold mb-4">Conoce Nuestro Directorio</h2>
 				<p>Él Gobierno Regional de Loreto cuenta con un directorio sumamente capaz de liderar la región.</p>
 			</header>
 			<div class="row justify-content-center">

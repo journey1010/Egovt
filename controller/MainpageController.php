@@ -1,5 +1,7 @@
 <?php
 
+use PhpOffice\PhpSpreadsheet\Helper\Html;
+
 require_once _ROOT_CONTROLLER .  'viewsRender.php';
 require_once _ROOT_MODEL . 'conexion.php';
 require_once _ROOT_PATH . '/vendor/autoload.php';
@@ -32,6 +34,7 @@ class MainpageController extends ViewRenderer {
             'año' => date('Y'),
             'ImgInfoLoreto' => $this->ruta . 'bg01.png', 
             'directorio' => $this->sectionDirectorio(),
+            'convocatorias' => $this->sectionConvocatoria()
         ];
         list($modal, $script) = $this->sectionModal();
         if (empty($modal)){
@@ -221,5 +224,51 @@ class MainpageController extends ViewRenderer {
             $script = '';
         }
         return [$modal,$script];
+    }
+
+    private function sectionConvocatoria()
+    {
+        $sql = "SELECT conv.titulo AS titulo, conv.descripcion AS descripcion, conv.estado AS estado, conv.fecha_limite AS fecha_limite , ofi.nombre AS nombre FROM convocatorias AS conv 
+                INNER JOIN oficinas AS ofi ON conv.dependencia = ofi.id 
+                ORDER BY conv.fecha_registro DESC
+                LIMIT 3";
+
+        $stmt = $this->conexion->query($sql, '', '', false);
+        $resultado = $stmt->fetchAll();
+        $convocatoria = '';
+        foreach($resultado as $row){
+            $fechaFormat = DateTime::createFromFormat('Y-m-d', $row['fecha_limite']);
+            $formato = new IntlDateFormatter('es_ES', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+            $fecha = $formato->format($fechaFormat);
+            $convocatoria .= <<<Html
+            <div class="col-12 col-md-6 col-xl-4">
+                <article class="npbColumn shadow bg-white mb-6">
+                    <div class="imgHolder position-relative">
+                        <time datetime="2011-01-12" class="npbTimeTag font-weight-bold fontAlter position-absolute text-white px-2 py-1">$fecha</time>
+                    </div>
+                    <div class="npbDescriptionWrap px-5 pt-8 pb-5">
+                        <strong class="d-block npbcmWrap font-weight-normal mb-1">
+                            <span class="mr-5">In Goverment</span>
+                            <i class="icomoon-chat"><span class="sr-only">icon</span></i> 0
+                        </strong>
+                        <h3 class="fwSemiBold mb-6">
+                            <a href="/transparencia/convocatorias-de-trabajo">{$row['titulo']}</a>
+                        </h3>
+                        <ul class="list-unstyled ueScheduleList mb-0">
+                            <li>
+                            <i class="icomoon-clock icn position-absolute"><span class="sr-only">icon</span></i>
+                            Fecha Limite de Postulación: $fecha
+                            </li>
+                            <li>
+                            <i class="icomoon-location icn position-absolute"><span class="sr-only">icon</span></i>
+                            Dependencia : {$row['nombre']}
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+            Html;
+        }
+        return $convocatoria;
     }
 }
