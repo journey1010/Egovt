@@ -19,7 +19,7 @@
 						</div>
 						<div class="col-12 col-lg-5">
 							<div class="ctConnectWrap d-sm-flex justify-content-sm-center justify-content-lg-end align-items-sm-center">
-								<strong class="title flex-shrink-0 mb-1 font-weight-normal mr-sm-3 d-block">Contactate con nosotros:</strong>
+								<strong class="title flex-shrink-0 mb-1 font-weight-normal mr-sm-3 d-block">Contáctate con Nosotros:</strong>
 								<ul class="list-unstyled socialNetworks ftSocialNetworks d-flex flex-wrap justify-content-center justify-content-sm-end mb-0">
 									<li>
 										<a href="https://www.facebook.com/goreloretoperu/" alt="Página de facebook del gobierno regional de loreto">
@@ -85,7 +85,7 @@
 										<a href="https://www.empleosperu.gob.pe/CertificadoUnicoLaboral/irIndex.html;jsessionid=-jYMcfXqgh6WAbI0F5NUJUyCJ6fr7ThxjV8U-nu5.srv-cjl" target="_blank" alt="Enlace a Certiadulto">Obtén tu Certiadulto</a>
 									</li>
 									<li>
-										<a href="/enconstruccion" alt="Galeria de la region" target="_blank">Galería de la región</a>
+										<a href="/enconstruccion" alt="Galeria de la Región" target="_blank">Galería de la Región</a>
 									</li>
 									<li>
 										<a href="/enconstruccion" alt="Historia de loreto" target="_blank">Nuestra Historia</a>
@@ -115,7 +115,7 @@
 									</li>
 									<li>
 										<i class="fa fa-envelope icn mr-1 mr-sm-0"><span class="sr-only">icon</span></i>
-										<strong class="title font-weight-normal text-white">Correo Electronico:</strong>
+										<strong class="title font-weight-normal text-white">Correo Electrónico:</strong>
 										<a href="mailto:demo@example.com">infogorel@regionloreto.gob.pe</a>
 									</li>
 								</ul>
