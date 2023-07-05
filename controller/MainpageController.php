@@ -247,10 +247,6 @@ class MainpageController extends ViewRenderer {
                         <time datetime="2011-01-12" class="npbTimeTag font-weight-bold fontAlter position-absolute text-white px-2 py-1">$fecha</time>
                     </div>
                     <div class="npbDescriptionWrap px-5 pt-8 pb-5">
-                        <strong class="d-block npbcmWrap font-weight-normal mb-1">
-                            <span class="mr-5">In Goverment</span>
-                            <i class="icomoon-chat"><span class="sr-only">icon</span></i> 0
-                        </strong>
                         <h3 class="fwSemiBold mb-6">
                             <a href="/transparencia/convocatorias-de-trabajo">{$row['titulo']}</a>
                         </h3>
