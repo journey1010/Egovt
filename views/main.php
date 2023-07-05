@@ -205,7 +205,7 @@
 				<div class="col-12 col-lg-3">
 					<header class="headingHead pt-2 mb-7 mb-lg-0">
 						<h2 class="fwSemiBold mb-2">Convocatorias</h2>
-						<p>Ultimas convocatorias de trabajo del Gobierno Regional de Loreto</p>
+						<p>Últimas convocatorias de trabajo del Gobierno Regional de Loreto</p>
 						<a href="/transparencia/convocatorias-de-trabajo" class="btn btn-outline-secondary bdrWidthAlter text-capitalize position-relative border-0 p-0 mt-5 btnXsMinWidth" data-hover="Ver más">
 							<span class="d-block btnText">Más convocatorias</span>
 						</a>
