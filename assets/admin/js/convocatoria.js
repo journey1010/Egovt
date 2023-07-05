@@ -275,7 +275,7 @@ function configSaveCancel(){
   rowAdjunto.find('.save-adjunto').hide();
 }
 
-$(document).on('click', '.insert-adjunto', function(){
+$(document).off('click', '.insert-adjunto').on('click', '.insert-adjunto', function(){
   let uniqueIdConvo = 'file-conv'+Date.now();
   let newRowConvo = `
   <tr>
@@ -304,7 +304,7 @@ $(document).on('click', '.insert-adjunto', function(){
     </td>
   </tr>
   `;
-  $('.table-adjunto').append(newRowConvo);
+  $('.table-adjunto tbody').append(newRowConvo);
 });
 
 $(document).on('click', '.save-adjunto-new', function(){

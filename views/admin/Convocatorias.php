@@ -18,7 +18,7 @@ class convocatorias extends handleSanitize
 
     public function RegistrarConvocatoria(): string
     {
-        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.1';
+        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.2';
         $optionsDependencias = $this->getDependencias();
         $html = <<<Html
         <div class="card card-success mt-3 mx-auto w-100">
@@ -86,7 +86,7 @@ class convocatorias extends handleSanitize
 
     public function ActualizarConvocatorias(): string
     {
-        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.1';
+        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.2';
         $tabla = $this->listadoConvocatorias();
         $html = <<<Html
         <div class="card card-success mt-3 mx-auto w-100">
