@@ -86,7 +86,7 @@
     function generarElementosPaginados(data) {
         $('.convocatorias').pagination({
             dataSource: data,
-            pageSize: 2,
+            pageSize: 12,
             ulClassName: 'pagination justify-content-center pt-2',
             callback: function(data, pagination) {
                 $('.datos').html(data);

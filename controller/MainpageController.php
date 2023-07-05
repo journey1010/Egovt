@@ -1,8 +1,8 @@
 <?php
 
-require_once (_ROOT_CONTROLLER .  'viewsRender.php');
-require_once (_ROOT_MODEL . 'conexion.php');
-require 'vendor/autoload.php';
+require_once _ROOT_CONTROLLER .  'viewsRender.php';
+require_once _ROOT_MODEL . 'conexion.php';
+require_once _ROOT_PATH . '/vendor/autoload.php';
 
 class MainpageController extends ViewRenderer { 
     private $ruta;
