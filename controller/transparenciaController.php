@@ -466,12 +466,12 @@ class transparenciaController extends ViewRenderer
         $respuesta = array ('status'=>'success', 'data'=>$resultado);
         echo (json_encode($respuesta));
     }
+    
     /**
      * Convierte las fechas desde y fecha (Enviadas por POST)hasta en formatos validos para poder trabajar con la base datos.
      * @param  array $post, contiene datos enviados en un solicitud POST
      * @return array 
     */
-
     private function cleanDataPost(array $post)
     {
         $camposRequeridos = ['fechaDesde', 'fechaHasta', 'palabra'];
