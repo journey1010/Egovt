@@ -447,7 +447,7 @@ class transparenciaController extends ViewRenderer
             ];
             $this->render('header', '', false);
             $this->render('transparencia/convocatoria/convocatoria', $data, false);
-            $this->render('footer', $data, false);
+            $this->render('footer', $dataFooter, false);
         } catch(Throwable $e){
             $this->handleError($e);
         }
