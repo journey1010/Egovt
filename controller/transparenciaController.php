@@ -459,7 +459,10 @@ class transparenciaController extends ViewRenderer
      * @return void
      */
     public function convocatoriasPost()
-    {
+    {   
+        if($this->$this->cleanDataPost($_POST) == false){
+            return;
+        }
         list($fechaDesde, $fechaHasta, $palabra) = $this->cleanDataPost($_POST);
         $convocatoria = new Convocatoria();
         $resultado = $convocatoria->buscarConvocatoria($fechaDesde, $fechaHasta, $palabra);
@@ -484,13 +487,13 @@ class transparenciaController extends ViewRenderer
         } catch (Throwable $e) {
             $respuesta = array('status' => 'error');
             echo (json_encode($respuesta));
-            return;
+            return false;
         }
 
         if($fechaDesde === FALSE or $fechaHasta === FALSE){
             $respuesta = array('status'=>'error', 'data'=>'');
             echo(json_encode($respuesta));
-            return;
+            return false;
         }
         return [$fechaDesde, $fechaHasta, $palabra];
     }
