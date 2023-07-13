@@ -460,10 +460,12 @@ class transparenciaController extends ViewRenderer
      */
     public function convocatoriasPost()
     {   
-        if($this->$this->cleanDataPost($_POST) == false){
-            return;
-        }
         list($fechaDesde, $fechaHasta, $palabra) = $this->cleanDataPost($_POST);
+        if(empty($fechaDesde) || empty($fechaHasta)){
+            $respuesta = array('status'=>'error', 'data'=>'');
+            echo(json_encode($respuesta));
+            return false;
+        }
         $convocatoria = new Convocatoria();
         $resultado = $convocatoria->buscarConvocatoria($fechaDesde, $fechaHasta, $palabra);
         $respuesta = array ('status'=>'success', 'data'=>$resultado);
