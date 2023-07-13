@@ -149,7 +149,7 @@ class Convocatoria extends handleSanitize
     * @param string $fechaHasta, fecha top,
     * @param string $palabra, palabra clave a buscar 
    */
-   public function buscarConvocatoria(string $fechaDesde, string $fechaHasta, string $palabra)
+   public function buscarConvocatoria(string|null $fechaDesde, string|null $fechaHasta, string|null $palabra)
    {
       $conexion = new MySQLConnection();
       $sql = "SELECT conv.titulo AS titulo, conv.descripcion AS descripcion, conv.estado AS estado, conv.fecha_limite AS fecha_limite , ofi.nombre AS nombre, GROUP_CONCAT( adj.nombre, ';', adj.archivo ) AS adjuntos FROM convocatorias AS conv 

@@ -59,7 +59,7 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
   });
 
   const extensionesPermitidas = ['docx', 'xlsx', 'xls', 'pdf', 'txt', 'doc'];
-  const pesoMaximoArchivos = 10 * 1024 * 1024;
+  const pesoMaximoArchivos = 50 * 1024 * 1024;
   let archivosConvocatorias = $('#archivosConvocatorias')[0].files;
 
   for (const key in archivosConvocatorias) {
