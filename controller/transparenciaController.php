@@ -487,14 +487,10 @@ class transparenciaController extends ViewRenderer
             $fechaDesde = date_format(date_create_from_format('d/m/Y', $fechaDesde), 'Y-m-d');
             $fechaHasta = date_format(date_create_from_format('d/m/Y', $fechaHasta), 'Y-m-d');
         } catch (Throwable $e) {
-            $respuesta = array('status' => 'error');
-            echo (json_encode($respuesta));
             return false;
         }
 
         if($fechaDesde === FALSE or $fechaHasta === FALSE){
-            $respuesta = array('status'=>'error', 'data'=>'');
-            echo(json_encode($respuesta));
             return false;
         }
         return [$fechaDesde, $fechaHasta, $palabra];
