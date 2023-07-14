@@ -19,8 +19,24 @@ class convocatorias extends handleSanitize
     public function RegistrarConvocatoria(): string
     {
         $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.4';
+        $quilljs = _ROOT_ASSETS . 'js/cdn.quilljs.com_1.3.6_quill.min.js';
+        $quillcss = _ROOT_ASSETS . 'js/cdn.quilljs.com_1.3.6_quill.snow.css';
         $optionsDependencias = $this->getDependencias();
         $html = <<<Html
+        <link href="$quillcss" rel="stylesheet">
+        <style>
+            .select2-container {
+                width: 100% !important;
+            }
+          
+          .select2-selection {
+            height: auto !important;
+            min-height: 38px !important;
+          }
+          .select2-selection__choice {
+            color: black !important;
+          }          
+        </style>
         <div class="card card-success mt-3 mx-auto w-100">
             <div class="card-header">
                 <h3 class="card-title">Registrar convocatoria</h3>
@@ -45,11 +61,12 @@ class convocatorias extends handleSanitize
                             <input type="date" class="form-control" id="fechaFinalConvocatoria" value="" disabled>
                         </div>
                         <div class="col-md-6">
-                            <label for="tipo de obra">Dependencia (obligatorio)</label>
-                            <select id="dependenciaConvocatoria"class="form-control select2 select2-hidden-accessible" data-placeholder="Seleccione una dependencia" style="width: 100%; 
-                                height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
-                                $optionsDependencias
-                            </select>
+                            <div class="form-group">
+                                <label for="tipo de obra">Entidad (obligatorio)</label>
+                                <select id="dependenciaConvocatoria"class="select2" multiple="multiple" data-placeholder="Seleccione una dependencia">
+                                    $optionsDependencias
+                                </select>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <label>Seleccione uno o más archivos (Obligatorio)</label>
@@ -63,9 +80,9 @@ class convocatorias extends handleSanitize
                                 <label class="custom-file-label" for="archivosConvocatorias" data-browse="Elegir archivo">Elegir archivo</label>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin-bottom: 40px">
                             <label for="descripcion">Descripción (Obligatorio)</label>
-                            <textarea type="text" class="form-control text-content" id="descripcionConvocatoria" placeholder="Por favor ingrese una descripción..." style="min-height: 100px; max-width: 100%"></textarea>
+                            <div id="descripcionConvocatoria" class="form-control text-content"></div>
                         </div>
                     </div>
                 </div>
@@ -79,6 +96,21 @@ class convocatorias extends handleSanitize
                 </div>
             </form>
         </div>
+        <script src="$quilljs"></script>
+        <script>
+            if (typeof Quill !== 'undefined') {
+                var quill = new Quill('#descripcionConvocatoria', {
+                    theme: 'snow',
+                    preserveWhitespace: true,
+                    modules: {
+                        toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }]
+                        ]
+                    }
+                });
+            }
+        </script>
         <script type ="module" src="$ruta" defer></script>
         Html;
         return $html;
