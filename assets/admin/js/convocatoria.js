@@ -49,14 +49,28 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
   
   let enviarDatos = true;
   camposRequeridos.forEach(campo => {
-    if ($('#' + campo).val() === '') {
+    let valorCampo = '';
+    if (campo === 'descripcionConvocatoria') {
+      valorCampo = quill.getText().trim();
+    } else if (campo === 'archivosConvocatorias') {
+      valorCampo = $('#' + campo)[0].files;
+    }
+    
+    if (campo === 'descripcionConvocatoria' && valorCampo.length === 0) {
       Toast.fire({
         icon: 'warning',
         title: 'Debe completar todos los campos obligatorios'
       });
       enviarDatos = false;
+    } else if (campo === 'archivosConvocatorias' && (!valorCampo || valorCampo.length === 0)) {
+      Toast.fire({
+        icon: 'warning',
+        title: 'Debe seleccionar al menos un archivo en el campo de archivos'
+      });
+      enviarDatos = false;
     }
   });
+  
 
   const extensionesPermitidas = ['docx', 'xlsx', 'xls', 'pdf', 'txt', 'doc'];
   const pesoMaximoArchivos = 50 * 1024 * 1024;
@@ -89,13 +103,17 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
   }
   
   if(enviarDatos){
+    let descripcion = quill.root.innerHTML;
     let formData = new FormData();
+    let dependencias =  $('#dependenciaConvocatoria').val();
     formData.append('tituloConvocatoria', $('#tituloConvocatoria').val());
     formData.append('fechaInicioConvocatoria', $('#fechaInicioConvocatoria').val());
     formData.append('fechaLimiteConvocatoria', $('#fechaLimiteConvocatoria').val());
     formData.append('fechaFinalConvocatoria', $('#fechaFinalConvocatoria').val());
-    formData.append('dependenciaConvocatoria', $('#dependenciaConvocatoria').val());
-    formData.append('descripcionConvocatoria', $('#descripcionConvocatoria').val());
+    for(var i=0; i < dependencias.length; i++){
+      formData.append('dependenciaConvocatoria[]', dependencias[i]);
+    }
+    formData.append('descripcionConvocatoria', descripcion);
 
     for(let i =0;  i <= archivosConvocatorias.length - 1; i++){
       formData.append('archivosConvocatorias['+i+']',  archivosConvocatorias[i]);
@@ -363,7 +381,7 @@ $(document).on('click', '.delete-adjunto-new', function(){
 
 $(document).on('click', '#saveGeneralDatos', function(){
   let camposImportante = {
-    'tituloConvocatoria' :'titulo',
+    'tituloConvocatoria': 'titulo',
     'descripcionConvocatoria': 'descripcion',
     'dependenciaConvocatoria': 'dependencia',
     'fechaRegistroConvocatoria': 'fecha_registro',
@@ -371,22 +389,41 @@ $(document).on('click', '#saveGeneralDatos', function(){
     'fechaFinalConvocatoria': 'fecha_finalizacion'
   };
   let camposLlenos = true;
-  for(let clave in camposImportante){
-    if($('#'+ clave).val() == ''){
-      Toast.fire({
-        icon: 'warning',
-        title: 'El campo' + camposImportante[clave] + ' no debe estar vacío.'
-      })
-      camposLlenos = false;
-      return false;
+  
+  for (let clave in camposImportante) {
+    if (clave === 'descripcionConvocatoria') {
+      let descripcion = editor.getText().trim();
+  
+      if (descripcion === '') {
+        Toast.fire({
+          icon: 'warning',
+          title: 'El campo ' + camposImportante[clave] + ' no debe estar vacío.'
+        });
+        camposLlenos = false;
+        return false;
+      }
+    } else {
+      if ($('#' + clave).val() === '') {
+        Toast.fire({
+          icon: 'warning',
+          title: 'El campo ' + camposImportante[clave] + ' no debe estar vacío.'
+        });
+        camposLlenos = false;
+        return false;
+      }
     }
   }
-
+ 
   if(camposLlenos){
     let formData = {};
-    for(let clave in camposImportante){
-      formData[camposImportante[clave]] = $('#'+clave).val();
+    for (let clave in camposImportante) {
+      if (clave === 'descripcionConvocatoria') {
+        formData[camposImportante[clave]] = editor.root.innerHTML;
+      } else {
+        formData[camposImportante[clave]] = $('#' + clave).val();
+      }
     }
+    
     formData['id'] = $('#idConvocatoria').val();
     $.ajax({
       url: '/administrador/convocatoria/zona-editor/update-general-datos',

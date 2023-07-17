@@ -18,7 +18,7 @@ class convocatorias extends handleSanitize
 
     public function RegistrarConvocatoria(): string
     {
-        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.4';
+        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.5';
         $quilljs = _ROOT_ASSETS . 'js/cdn.quilljs.com_1.3.6_quill.min.js';
         $quillcss = _ROOT_ASSETS . 'js/cdn.quilljs.com_1.3.6_quill.snow.css';
         $optionsDependencias = $this->getDependencias();
@@ -98,18 +98,16 @@ class convocatorias extends handleSanitize
         </div>
         <script src="$quilljs"></script>
         <script>
-            if (typeof Quill !== 'undefined') {
-                var quill = new Quill('#descripcionConvocatoria', {
-                    theme: 'snow',
-                    preserveWhitespace: true,
-                    modules: {
-                        toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        [{ 'list': 'ordered' }, { 'list': 'bullet' }]
-                        ]
-                    }
-                });
+            let quill = new Quill('#descripcionConvocatoria', {
+            theme: 'snow',
+            preserveWhitespace: true,
+            modules: {
+                toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }]
+                ]
             }
+            });    
         </script>
         <script type ="module" src="$ruta" defer></script>
         Html;
@@ -118,7 +116,7 @@ class convocatorias extends handleSanitize
 
     public function ActualizarConvocatorias(): string
     {
-        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.4';
+        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.5';
         $tabla = $this->listadoConvocatorias();
         $html = <<<Html
         <div class="card card-success mt-3 mx-auto w-100">
@@ -141,19 +139,19 @@ class convocatorias extends handleSanitize
      */
     private function getDependencias(): string
     {
-        $sql = "SELECT id, nombre, sigla FROM oficinas";
+        $sql = "SELECT nombre, sigla FROM oficinas";
         $stmt = $this->conexion->query($sql, '', '', false);
         $resultado = $stmt->fetchAll();
         $optionSelect = '';
         foreach ($resultado  as $row) {
-            $optionSelect .= "<option value='{$row['id']}'>{$row['nombre']} - {$row['sigla']}</option>";
+            $optionSelect .= "<option value='{$row['nombre']} - {$row['sigla']}'>{$row['nombre']} - {$row['sigla']}</option>";
         }
         return $optionSelect;
     }
 
     private function listadoConvocatorias(): string
     {
-        $sql = "SELECT id, titulo, descripcion, fecha_registro, fecha_finalizacion FROM convocatorias WHERE estado IN (1,2)";
+        $sql = "SELECT id, titulo, fecha_registro, fecha_finalizacion FROM convocatorias WHERE estado IN (1,2)";
         $stmt = $this->conexion->query($sql, '', '', false);
         $resultado = $this->makeTblForConvocatoria($stmt->fetchAll());
         return $resultado;
@@ -173,7 +171,6 @@ class convocatorias extends handleSanitize
             <tr>
                 <td class='text-center'>{$row['id']}</td>
                 <td class='text-center'>{$row['titulo']}</td>
-                <td class='text-center' style='max-width: 300px;'>{$row['descripcion']}</td>
                 <td class='text-center'>{$row['fecha_registro']}</td>
                 <td class='text-center'>{$row['fecha_finalizacion']}</td>
                 <td class="text-right py-0 align-middle">
@@ -191,7 +188,6 @@ class convocatorias extends handleSanitize
                 <tr>
                     <th class="text-center">N#</th>
                     <th class="text-center">Titulo</th>
-                    <th class="text-center">Descripción</th>
                     <th class="text-center">Inicio</th>
                     <th class="text-center">Finalización</th>
                     <th style="width: 80px" class="text-center ">Editar</th>
@@ -213,6 +209,7 @@ class convocatorias extends handleSanitize
      */
     public function viewEditGeneralConvocatoria($id, $titulo, $descripcion, $dependencia, $fechaR, $fechaL, $fechaF): string
     {
+
         $view = <<<Html
         <div class="row">
             <div class="col-md-12">
@@ -222,34 +219,33 @@ class convocatorias extends handleSanitize
                     </div>
                     <div class="card-body p-3">
                             <div id="datosGenerales" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
-                                <div class="row row-cols-3">
-                                    <div class="form-group col">
+                                <div class="row" style="margin-bottom: 70px;">
+                                    <div class="form-group col-md-4 col-sm-12">
                                         <label for="tituloConvocatoria">Título</label>
                                         <input type="text" class="form-control" id="tituloConvocatoria" placeholder="Ingrese un título" value="$titulo">
                                         <input type="number" id="idConvocatoria" value="$id" style="display: none;">
                                     </div>
-                                    <div class="form-group col">
-                                        <label for="descripcionConvocatoria">Descripción</label>
-                                        <input type="text" class="form-control" id="descripcionConvocatoria" placeholder="Ingrese una descripción" value="$descripcion">
-                                    </div>
-                                    <div class="form-group col">
-                                        <label for="dependenciaConvocatoria">Dependencia</label>
-                                        <select id="dependenciaConvocatoria" class="form-control select2 select2-hidden-accessible" style="width: 100%; 
-                                        height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
-                                            $dependencia
-                                        </select>
-                                    </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-md-4 col-sm-12">
                                         <label for="fechaRegistroConvocatoria">Fecha de registro</label>
                                         <input type="date" class="form-control" id="fechaRegistroConvocatoria" value="$fechaR">
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-md-4 col-sm-12">
                                         <label for="fechaLimiteConvocatoria">Fecha Limite</label>
                                         <input type="date" class="form-control" id="fechaLimiteConvocatoria" value="$fechaL">
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-md-4 col-sm-12">
                                         <label for="fechaFinalConvocatoria">Fecha Finalización</label>
                                         <input type="date" class="form-control" id="fechaFinalConvocatoria" value="$fechaF">
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        <label for="dependenciaConvocatoria">Dependencia</label>
+                                        <select id="dependenciaConvocatoria" class="select2" multiple="multiple">
+                                            $dependencia
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        <label for="descripcionConvocatoria">Descripción</label>
+                                        <div class="form-control text-content" id="descripcionConvocatoria">$descripcion</div>
                                     </div>
                                 </div>
                                 <button id="saveGeneralDatos" class="btn btn-primary">Guardar</button>
@@ -265,7 +261,7 @@ class convocatorias extends handleSanitize
     /**
      * Vista de edición de los documentos adjunstos de convocatoria, contiene una plantilla 
      * donde estarán todos los adjuntos de una convocatoria en especifico. 
-     * @param array $
+     * @param array $adjuntosConvocatoria
      * @return string
      */
     public function viewEditAdjuntosConvocatoria(array $adjuntosConvocatoria): string
@@ -349,8 +345,24 @@ class convocatorias extends handleSanitize
     */
     public function viewEditFinalConvocatoria(string $viewGeneral, string $viewAdjunto): string
     {
-        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.4';
+        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.5';
+        $quilljs = _ROOT_ASSETS . 'js/cdn.quilljs.com_1.3.6_quill.min.js';
+        $quillcss = _ROOT_ASSETS . 'js/cdn.quilljs.com_1.3.6_quill.snow.css';
         $viewFinal = <<<Html
+        <link href="$quillcss" rel="stylesheet">
+        <style>
+            .select2-container {
+                width: 100% !important;
+            }
+        
+            .select2-selection {
+                height: auto !important;
+                min-height: 38px !important;
+            }
+            .select2-selection__choice {
+                color: black !important;
+            }          
+        </style>
         <div class="container  container-md">
             <div class="row row-cols-3 d-flex justify-content-between">
                 <h4 class="font-weight-bold m-3">Zona Editor <i class="fas fa-angle-right"></i> Convocatorias</h4>
@@ -362,6 +374,19 @@ class convocatorias extends handleSanitize
             $viewAdjunto
         </div>
         </div>
+        <script src="$quilljs"></script>
+        <script>
+                let editor = new Quill('#descripcionConvocatoria', {
+                theme: 'snow',
+                preserveWhitespace: true,
+                modules: {
+                    toolbar: [
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }]
+                    ]
+                }
+                });
+        </script>
         <script type ="module" src="$ruta" defer></script>
         Html;
         return $viewFinal;
