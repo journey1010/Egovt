@@ -15,12 +15,12 @@
   <link rel="stylesheet" href="<?php echo _ROOT_ASSETS_ADMIN . 'css/all.min.css' ?> ">
   <link rel="stylesheet" href="<?php echo _ROOT_ASSETS_ADMIN . 'css/adminlte.min.css' ?> ">
   <link rel="stylesheet" href="<?= _ROOT_ASSETS_ADMIN . 'css/styles.css'?>">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+  <link rel="stylesheet" href="<?= _ROOT_ASSETS_ADMIN . 'css/select2.min.css' ?>">
   <script src="<?= _ROOT_ASSETS_ADMIN . 'js/jquery.min.js' ?>"></script>
   <script src="<?= _ROOT_ASSETS_ADMIN . 'js/adminlte.min.js' ?> "></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+  <script src="<?= _ROOT_ASSETS_ADMIN . 'js/select2.full.min.js'?>"></script>
 <body class="hold-transition sidebar-mini">
   <div class="progress-bar-container">
     <div class="progress-bar bg-success"></div>

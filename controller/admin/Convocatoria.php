@@ -28,12 +28,13 @@ class Convocatoria extends handleSanitize
             'fechaInicioConvocatoria',
             'fechaLimiteConvocatoria',
             'fechaFinalConvocatoria',
-            'dependenciaConvocatoria',
-            'descripcionConvocatoria'
         ];
         foreach ($camposRequeridos as $campo) {
             extract([$campo => $this->SanitizeVarInput($_POST[$campo])]);
         }
+        $dependenciaConvocatoria = implode(';',$_POST['dependenciaConvocatoria']);
+        $descripcionConvocatoria = htmlentities($_POST['descripcionConvocatoria'], ENT_QUOTES, "UTF-8");
+
         $extensionPermitidas = ['docx', 'xlsx', 'xls', 'pdf', 'txt', 'doc'];
         $archivos =  $_FILES['archivosConvocatorias'];
         $nuevosArchivos = $this->reorganizarArchivos($archivos);
@@ -85,10 +86,10 @@ class Convocatoria extends handleSanitize
      * Valida multiples archivos 
      * @param array $archivos contiene archivos recividos por $_POST[]
      * @param array $extensionPermitidas lista de extensiones admitidas por el sistema
-     * @return boolean
+     * @return bool
      * @see $this->gestorArchivos->validarArchivo, función heredada que validad archivos individuales
      */
-    private function validarArchivos($archivos, $extensionPermitidas)
+    private function validarArchivos($archivos, $extensionPermitidas): bool
     {
         foreach ($archivos as $archivo) {
             if (!$this->gestorArchivos->validarArchivo($archivo, $extensionPermitidas)) {
@@ -168,8 +169,7 @@ class Convocatoria extends handleSanitize
     public  function editConvocatoria()
     {
         $this->idConvocatoria = $this->SanitizeVarInput($_POST['id']);
-        $sql = "SELECT titulo, descripcion, o.id AS oficina, fecha_registro, fecha_limite, fecha_finalizacion FROM convocatorias AS c 
-                INNER JOIN oficinas AS o ON o.id = c.dependencia  
+        $sql = "SELECT titulo, descripcion, dependencia AS oficina, fecha_registro, fecha_limite, fecha_finalizacion FROM convocatorias AS c  
                 WHERE c.id = ?";
         $sqlAdjuntos = "SELECT id, nombre, archivo, id_convocatoria FROM convocatorias_adjuntos WHERE id_convocatoria = ?";
         $param = [$this->idConvocatoria];
@@ -231,22 +231,25 @@ class Convocatoria extends handleSanitize
     {
         return new Promise(function ($resolve, $reject) use ($stmt) {
             $idDependencia = $stmt[0]['oficina'];
-
-            $sql = "SELECT id, CONCAT(nombre, ' ', sigla) AS nombre FROM oficinas";
+            $sql = "SELECT CONCAT(nombre, ' - ', sigla) AS nombre FROM oficinas";
             $statement = $this->conexion->query($sql, '', '', false)->fetchAll();
             $selectOptions = '';
+            
+            $idDependenciaArray = explode(';', $idDependencia);
+            
             foreach ($statement as $row) {
-                $selected = ($row['id'] == $idDependencia) ? 'selected' : '';
+                $selected = (in_array($row['nombre'], $idDependenciaArray)) ? 'selected' : '';
                 $selectOptions .= <<<Html
-                <option value="{$row['id']}" $selected>{$row['nombre']}</option>
+                    <option value="{$row['nombre']}" $selected>{$row['nombre']}</option>
                 Html;
             }
-
+            
             $view = new convocatorias();
+            $descripcion = htmlspecialchars_decode($stmt[0]['descripcion']);
             $viewResult = $view->viewEditGeneralConvocatoria(
                 $this->idConvocatoria,
                 $stmt[0]['titulo'],
-                $stmt[0]['descripcion'],
+                $descripcion,
                 $selectOptions,
                 $stmt[0]['fecha_registro'],
                 $stmt[0]['fecha_limite'],
@@ -307,8 +310,6 @@ class Convocatoria extends handleSanitize
         $camposRequeridos = [
             'id', 
             'titulo', 
-            'descripcion', 
-            'dependencia', 
             'fecha_registro', 
             'fecha_limite', 
             'fecha_finalizacion'
@@ -317,6 +318,9 @@ class Convocatoria extends handleSanitize
         foreach($camposRequeridos as $campo){
             extract([$campo => $this->SanitizeVarInput($data[$campo])]);
         }
+
+        $dependencia = implode(';',$_POST['dependencia']);
+        $descripcion = htmlentities($_POST['descripcion'], ENT_QUOTES, "UTF-8");
 
         $sql = "UPDATE convocatorias 
                 SET titulo=?, descripcion=?, dependencia=?, fecha_registro=?, fecha_limite=?, fecha_finalizacion=? 

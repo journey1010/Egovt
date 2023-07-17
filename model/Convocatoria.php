@@ -14,8 +14,7 @@ class Convocatoria extends handleSanitize
       $resultadosPorPagina = 10;
       if (!isset($conexion)) {
          $conexion = new MySQLConnection();
-         $sql = "SELECT conv.titulo AS titulo, conv.descripcion AS descripcion, conv.estado AS estado, conv.fecha_limite AS fecha_limite , ofi.nombre AS nombre, GROUP_CONCAT( adj.nombre, ';', adj.archivo ) AS adjuntos FROM convocatorias AS conv 
-                  INNER JOIN oficinas AS ofi ON conv.dependencia = ofi.id 
+         $sql = "SELECT conv.titulo AS titulo, conv.descripcion AS descripcion, conv.estado AS estado, conv.fecha_limite AS fecha_limite , conv.dependencia AS nombre, GROUP_CONCAT( adj.nombre, ';', adj.archivo ) AS adjuntos FROM convocatorias AS conv 
                   INNER JOIN convocatorias_adjuntos AS adj ON conv.id = adj.id_convocatoria
                   GROUP BY conv.id
                   ORDER BY conv.fecha_registro DESC";
@@ -41,7 +40,7 @@ class Convocatoria extends handleSanitize
    }
    /**
     * Crea una vista para las convocatorias apartir de los datos de la consulta sql
-    * @param  array $resultados. contiene los datos de la convocatoria
+    * @param  array $resultados. contiene los datos de la convocatoria obtenidos de la consulta sql
     * @return string
     * @see viewEstado()
     * @see viewAdjuntos()
@@ -56,6 +55,8 @@ class Convocatoria extends handleSanitize
          $fecha = $formato->format($fechaFormat);
          $adjuntos = $this->viewAdjuntos($row['adjuntos']);
          $estado  = $this->viewEstado($row['estado']);
+         $descripcion = htmlspecialchars_decode($row['descripcion']);
+         $dependencias = str_replace(';', '; ', $row['nombre']);
          $viewConvocatoria .= <<<Html
          <article class="ueEveColumn__list bg-light mt-3 position-relative px-4 py-3 px-lg-8 py-lg-6">
                <div class="d-lg-flex align-items-md-center">
@@ -69,7 +70,7 @@ class Convocatoria extends handleSanitize
                               {$row['titulo']}
                            </h3>
                            <strong class="tagTitle d-block text-black fwSemiBold mb-2">
-                              {$row['descripcion']}
+                              $descripcion
                            </strong>
                            <ul class="list-unstyled ueScheduleList mb-0">
                               <li>
@@ -78,7 +79,7 @@ class Convocatoria extends handleSanitize
                               </li>
                               <li>
                               <i class="icomoon-location icn position-absolute"><span class="sr-only">icon</span></i>
-                              Dependencia : {$row['nombre']}
+                                 Entidad : $dependencias
                               </li>
                            </ul>
                            <ul class="list-unstyled ueScheduleList mb-0">
@@ -137,7 +138,7 @@ class Convocatoria extends handleSanitize
             break;
       }
       $viewEstado = <<<Html
-      <a href="javascript:void(0);" class="btn btnCustomLightOutline bdrWidthAlter btn-sm text-capitalize position-relative border-1 p-0 flex-shrink-0 ml-md-4" style="border-color: #06163A; width: 120px" data-hover="$text" target="_blank">
+      <a href="javascript:void(0);" class="btn btnCustomLightOutline bdrWidthAlter btn-sm text-capitalize position-relative border-1 p-0 flex-shrink-0 ml-md-4" style="border-color: #06163A; width: 150px" data-hover="$text">
          <span class="d-block btnText">$text</span>
       </a>
       Html;
@@ -152,8 +153,7 @@ class Convocatoria extends handleSanitize
    public function buscarConvocatoria(string|null $fechaDesde, string|null $fechaHasta, string|null $palabra)
    {
       $conexion = new MySQLConnection();
-      $sql = "SELECT conv.titulo AS titulo, conv.descripcion AS descripcion, conv.estado AS estado, conv.fecha_limite AS fecha_limite , ofi.nombre AS nombre, GROUP_CONCAT( adj.nombre, ';', adj.archivo ) AS adjuntos FROM convocatorias AS conv 
-               INNER JOIN oficinas AS ofi ON conv.dependencia = ofi.id 
+      $sql = "SELECT conv.titulo AS titulo, conv.descripcion AS descripcion, conv.estado AS estado, conv.fecha_limite AS fecha_limite , conv.dependencia AS nombre, GROUP_CONCAT( adj.nombre, ';', adj.archivo ) AS adjuntos FROM convocatorias AS conv 
                INNER JOIN convocatorias_adjuntos AS adj ON conv.id = adj.id_convocatoria
                WHERE 1=1
             "; 
@@ -192,6 +192,8 @@ class Convocatoria extends handleSanitize
          $fecha = $formato->format($fechaFormat);
          $adjuntos = $this->viewAdjuntos($row['adjuntos']);
          $estado  = $this->viewEstado($row['estado']);
+         $descripcion = htmlspecialchars_decode($row['descripcion']);
+         $dependencias = str_replace(';', '; ', $row['nombre']);
          $viewConvocatoria []= <<<Html
          <article class="ueEveColumn__list bg-light mt-3 position-relative px-4 py-3 px-lg-8 py-lg-6">
                <div class="d-lg-flex align-items-md-center">
@@ -205,7 +207,7 @@ class Convocatoria extends handleSanitize
                               {$row['titulo']}
                            </h3>
                            <strong class="tagTitle d-block text-black fwSemiBold mb-2">
-                              {$row['descripcion']}
+                              $descripcion
                            </strong>
                            <ul class="list-unstyled ueScheduleList mb-0">
                               <li>
@@ -214,7 +216,8 @@ class Convocatoria extends handleSanitize
                               </li>
                               <li>
                               <i class="icomoon-location icn position-absolute"><span class="sr-only">icon</span></i>
-                              Dependencia : {$row['nombre']}
+                                 <strong> Dependencia : $dependencias
+                                 </strong>
                               </li>
                            </ul>
                            <ul class="list-unstyled ueScheduleList mb-0">

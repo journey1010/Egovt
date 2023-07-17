@@ -228,9 +228,9 @@ class MainpageController extends ViewRenderer {
 
     private function sectionConvocatoria()
     {
-        $sql = "SELECT conv.titulo AS titulo, conv.descripcion AS descripcion, conv.estado AS estado, conv.fecha_limite AS fecha_limite , ofi.nombre AS nombre FROM convocatorias AS conv 
-                INNER JOIN oficinas AS ofi ON conv.dependencia = ofi.id 
-                ORDER BY conv.fecha_registro DESC
+        $sql = "SELECT conv.titulo AS titulo, conv.descripcion AS descripcion, conv.estado AS estado, 
+                conv.fecha_limite AS fecha_limite , conv.dependencia AS nombre FROM convocatorias AS conv 
+                ORDER BY conv.estado ASC, conv.fecha_registro DESC
                 LIMIT 3";
 
         $stmt = $this->conexion->query($sql, '', '', false);
@@ -240,8 +240,13 @@ class MainpageController extends ViewRenderer {
             $fechaFormat = DateTime::createFromFormat('Y-m-d', $row['fecha_limite']);
             $formato = new IntlDateFormatter('es_ES', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
             $fecha = $formato->format($fechaFormat);
+            $maxLength = 80; 
+            $nombre = $row['nombre']; 
+            if (strlen($nombre) > $maxLength) {
+                $nombre = substr($nombre, 0, $maxLength) . ' ...'; 
+            }
             $convocatoria .= <<<Html
-            <div class="col-12 col-md-6 col-xl-4">
+            <div class="col-12 col-md-6 col-xl-4 d-flex">
                 <article class="npbColumn shadow bg-white mb-6">
                     <div class="imgHolder position-relative">
                         <time datetime="2011-01-12" class="npbTimeTag font-weight-bold fontAlter position-absolute text-white px-2 py-1">$fecha</time>
@@ -257,9 +262,9 @@ class MainpageController extends ViewRenderer {
                             </li>
                             <li>
                             <i class="icomoon-location icn position-absolute"><span class="sr-only">icon</span></i>
-                            Dependencia : {$row['nombre']}
+                               <strong> Entidad : $nombre </strong>
                             </li>
-                        </ul>
+                        </ul>                   
                     </div>
                 </article>
             </div>
