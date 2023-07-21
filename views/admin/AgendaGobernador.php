@@ -14,7 +14,7 @@ class AgendaGobernador extends handleSanitize
 
     public function RegistrarAgenda()
     {
-        $ruta = $this->rutaAssets . 'js/agendaGobernador.js';
+        $ruta = $this->rutaAssets . 'js/agendaGobernador.js?ver=1.1';
         $html = <<<Html
         <div class="card mt-3 mx-auto w-100">
             <div class="card-header text-white" style="background-color:#1291ab;">
@@ -70,7 +70,7 @@ class AgendaGobernador extends handleSanitize
 
     public function ActualizarAgenda()
     {
-        $ruta = $this->rutaAssets . 'js/agendaGobernador.js';
+        $ruta = $this->rutaAssets . 'js/agendaGobernador.js?ver=1.1';
         
         $html = <<<Html
         <div class="card card-warning mt-3 mx-auto w-100">
