@@ -258,7 +258,7 @@ class MainpageController extends ViewRenderer {
                         <ul class="list-unstyled ueScheduleList mb-0">
                             <li>
                             <i class="icomoon-clock icn position-absolute"><span class="sr-only">icon</span></i>
-                            Fecha Limite de Postulación: $fecha
+                            Fecha Límite de Postulación: $fecha
                             </li>
                             <li>
                             <i class="icomoon-location icn position-absolute"><span class="sr-only">icon</span></i>

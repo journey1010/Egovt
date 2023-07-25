@@ -53,7 +53,7 @@ class convocatorias extends handleSanitize
                             <input type="date" class="form-control" id="fechaInicioConvocatoria" value="">
                         </div>
                         <div class="col-md-6">
-                            <label for="fechaLimiteConvocatoria">Fecha Limite de convocatoria (obligatorio)</label>
+                            <label for="fechaLimiteConvocatoria">Fecha Límite de convocatoria (obligatorio)</label>
                             <input type="date" class="form-control" id="fechaLimiteConvocatoria" value="" disabled>
                         </div>
                         <div class="col-md-6">
@@ -230,7 +230,7 @@ class convocatorias extends handleSanitize
                                         <input type="date" class="form-control" id="fechaRegistroConvocatoria" value="$fechaR">
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
-                                        <label for="fechaLimiteConvocatoria">Fecha Limite</label>
+                                        <label for="fechaLimiteConvocatoria">Fecha Límite</label>
                                         <input type="date" class="form-control" id="fechaLimiteConvocatoria" value="$fechaL">
                                     </div>
                                     <div class="form-group col-md-4 col-sm-12">
