@@ -132,4 +132,6 @@
 		</div>
 	</div>
 	</body>
+	<script src="<?= _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
+	<script src="<?= _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
 </html>
