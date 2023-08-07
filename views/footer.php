@@ -133,5 +133,5 @@
 	</div>
 	</body>
 	<script src="<?= _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
-	<script src="<?= _ROOT_ASSETS . 'js/plugins.js' ?>"></script>
+	<script src="<?= _ROOT_ASSETS . 'js/plugins.js' ?>" defer></script>
 </html>
