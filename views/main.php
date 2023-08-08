@@ -147,13 +147,13 @@
 				<div class="col-12 col-md-6">
 					<div class="imgTwoImageHolder position-relative mt-7 mt-md-0 mb-20 mb-md-0">
 						<span class="img img1 position-relative d-block">
-							<img src="<?= $img ?>" alt="Imagen del gobernador regional de loreto" class="img-fluid" alt="image description">
+							<img loading="lazy" src="<?= $img ?>" alt="Imagen del gobernador regional de loreto" class="img-fluid" alt="image description" width="645" height="363">
 						</span>
 						<span class="img img2 d-block position-absolute">
-							<img src="<?= $gobernadorBackground ?>" alt="Gobernador regional en una seccion de traba" class="img-fluid" alt="image description">
+							<img  loading="lazy"src="<?= $gobernadorBackground ?>" alt="Gobernador regional en una seccion de traba" class="img-fluid" alt="image description" width="377" height="377">
 						</span>
 						<span class="itihBgPattern position-absolute">
-							<img src="<?= $pattern ?>" class="img-fluid" alt="Gobernador pattmer">
+							<img  loading="lazy" src="<?= $pattern ?>" class="img-fluid" alt="Gobernador pattmer">
 						</span>
 					</div>
 				</div>

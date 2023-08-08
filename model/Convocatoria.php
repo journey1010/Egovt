@@ -61,7 +61,7 @@ class Convocatoria extends handleSanitize
          <article class="ueEveColumn__list bg-light mt-3 position-relative px-4 py-3 px-lg-8 py-lg-6">
                <div class="d-lg-flex align-items-md-center">
                   <div class="imgHolder overflow-hidden flex-shrink-0 mr-4 mr-lg-10 mb-1 mb-md-0">
-                     <img src="$image" class="img-fluid" alt="logo convocatoria">
+                     <img loading="lazy" src="$image" class="img-fluid" alt="logo convocatoria" width="290" height="282.5">
                   </div>
                   <div class="d-md-flex align-items-md-center flex-grow-1">
                      <div class="descrWrap flex-grow-1">

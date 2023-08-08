@@ -10,12 +10,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Administrador | Egovt</title>
+  <style>
+		@font-face { font-family: 'icomoon'; src: url('fonts/icomoon.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+		@font-face {
+		font-family: 'Pacifico';
+		font-style: normal;
+		font-weight: 400;
+		src: local('Pacifico Regular'), local('Pacifico-Regular'),
+			url(https://fonts.gstatic.com/s/pacifico/v12/FwZY7-Qmy14u9lezJ-6H6MmBp0u-.woff2)
+			format('woff2');
+		font-display: swap;
+		}
+	</style>
   <link rel='icon' type='image/x-icon' href = '<?php echo _ROOT_ASSETS . 'images/gorel_favicon.png'?>'>
+  <link rel="preload" href="<?=_ROOT_ASSETS_ADMIN . 'css/all.min.css' ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="<?= _ROOT_ASSETS_ADMIN . 'css/all.min.css' ?>"></noscript>
+  <link rel="preload" href="<?= _ROOT_ASSETS_ADMIN . 'css/adminlte.min.css' ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="<?= _ROOT_ASSETS_ADMIN . 'css/adminlte.min.css' ?>"></noscript>
+  <link rel="preload" href="<?=_ROOT_ASSETS_ADMIN . 'css/styles.css' ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="<?= _ROOT_ASSETS_ADMIN . 'css/styles.css' ?>"></noscript>
+  <link rel="preload" href="<?=_ROOT_ASSETS_ADMIN . 'css/select2.min.css' ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="<?=_ROOT_ASSETS_ADMIN . 'css/select2.min.css' ?>"></noscript>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="<?= _ROOT_ASSETS_ADMIN . 'css/all.min.css' ?> ">
-  <link rel="stylesheet" href="<?= _ROOT_ASSETS_ADMIN . 'css/adminlte.min.css' ?> ">
-  <link rel="stylesheet" href="<?= _ROOT_ASSETS_ADMIN . 'css/styles.css'?>">
-  <link rel="stylesheet" href="<?= _ROOT_ASSETS_ADMIN . 'css/select2.min.css' ?>">
   <script src="<?= _ROOT_ASSETS_ADMIN . 'js/jquery.min.js' ?>"></script>
   <script src="<?= _ROOT_ASSETS_ADMIN . 'js/adminlte.min.js' ?> "></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

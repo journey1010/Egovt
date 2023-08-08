@@ -6,7 +6,7 @@
 							<nav class="ftcaNav mb-4 mb-lg-0">
 								<ul class="list-unstyled d-flex flex-wrap mb-0 justify-content-center justify-content-lg-start">
 									<li>
-										<a href="/enconstruccion" alt="Acerca del gobierno regional de loreto" title="Acerca del Gobierno Regional de Loreto">Acerca de nosotros</a>
+										<a href="https://regionloreto.gob.pe/enconstruccion" alt="Acerca del gobierno regional de loreto" title="Acerca del Gobierno Regional de Loreto">Acerca de nosotros</a>
 									</li>
 									<li>
 										<a href="https://www.gob.pe/regionloreto" alt="Acceso al gob.pe region loreto" target="_blank" title="Pagina del GORE-LORETO en el Portal GOB.PE">GOB.PE/Loreto</a>
@@ -53,7 +53,7 @@
 						<div class="col-12 col-sm-6 col-md-5 col-xl-3 mb-6">
 							<div class="ftLogo mt-md-1 mb-6">
 								<a href="/" target="_self" title="página principal ">
-									<img src="<?= _ROOT_ASSETS . 'images/logoWhite.webp' ?>" class="img-fluid" alt="Logo blanco gorel">
+									<img loading="lazy" src="<?= _ROOT_ASSETS . 'images/logoWhite.webp' ?>" class="img-fluid" alt="Logo blanco gorel" width="246" height="256">
 								</a>
 							</div>
 							<address class="mb-0 ftPlace">

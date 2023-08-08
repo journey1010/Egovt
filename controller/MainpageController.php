@@ -74,7 +74,7 @@ class MainpageController extends ViewRenderer {
             <div name="directorio" class="col-12 col-sm-6 col-lg-4 col-xl-3">
                 <article class="mccColumn bg-white shadow mb-6 mx-auto mx-sm-0">
                     <div class="imgHolder position-relative">
-                        <img src="$img" class="img-thumbnail d-block w-100" alt="{$row['nombre']}" style="width: 282.5px; height: 282.5px;">
+                        <img loading="lazy" src="$img" class="img-thumbnail d-block w-100" alt="{$row['nombre']}" style="width: 282.5px; height: 282.5px;">
                         <div class="mcssHolder">
                             <ul class="mcssList list-unstyled rounded-pill bg-white overflow-hidden p-0 m-0 d-flex">
                                 <li>
