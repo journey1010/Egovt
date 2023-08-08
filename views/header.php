@@ -84,7 +84,7 @@
 							<div class="col-md-8 align-items-center">
 								<ul class="list-unstyled hdScheduleList mb-0 text-center text-md-left d-flex" style="margin-left: 3%;">
 									<li class="mb-2 mb-md-0">
-										<a href="tel:065-266969">
+										<a href="tel:065-266969" alt="telefono gorel">
 											<i class="icomoon-telRcv align-middle icn" style="color: white !important"><span class="sr-only">icon</span></i>
 											Llamar a : 065-266969 o 065-267010
 										</a>
@@ -123,8 +123,8 @@
 					<div class="container">
 						<nav class="navbar navbar-expand-md navbar-light p-0">
 							<div class="logo flex-shrink-0 mr-3 mr-xl-8 mr-xlwd-16">
-								<a href="/">
-									<img src="<?= _ROOT_ASSETS . 'images/circle_logo_gorel.png' ?>" class="img-fluid" alt="Gobierno regional de loreto Logo">
+								<a href="/" alt="pagina principal">
+									<img src="<?= _ROOT_ASSETS . 'images/circle_logo_gorel.png' ?>" class="img-fluid" alt="Gobierno regional de loreto Logo" width="80" height="60">
 								</a>
 							</div>
 							<div class="hdNavWrap flex-grow-1 d-flex align-items-center justify-content-end justify-content-lg-start">
