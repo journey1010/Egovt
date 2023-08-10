@@ -72,6 +72,16 @@
 			}
 		}
 	</style>
+	<script src="https://cdn.jsdelivr.net/npm/lozad@1.14.0/dist/lozad.min.js"></script>
+	<script>
+		const images = document.querySelectorAll('.lozad');
+		const observer = lozad(images, {
+		loaded: function(el) {
+			el.classList.add('imagen-cargada'); 
+		},
+		});
+		observer.observe();
+	</script>
 </head>
 <body>
 	<div id="pageWrapper">

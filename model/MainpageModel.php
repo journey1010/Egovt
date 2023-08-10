@@ -132,7 +132,7 @@ class MainpageModel {
                                     </div>
                                 </div>
                             </div>
-                            <span class="ibBgImage bgCover position-absolute" style="background-image: url($img);"></span>
+                            <span class="ibBgImage bgCover position-absolute lozad" style="background-image: url($img);"></span>
                         </article>
                     </div>
                     Html;
@@ -170,7 +170,7 @@ class MainpageModel {
                         if($contador == 0){
                             $carruselItem .=<<<Html
                             <div class='carousel-item active'>
-                                <img class='img-size' Loading="lazy" src='$img' alt='banner' />
+                                <img class='img-size'  src='$img' alt='banner' />
                                 <div class="carousel-caption">
                                     <p>{$row['descripcion']}</p>
                                 </div>
@@ -179,7 +179,7 @@ class MainpageModel {
                         } else {
                             $carruselItem .=<<<Html
                             <div class='carousel-item'>
-                                <img class='img-size' Loading="lazy" src='$img' alt='banner' />
+                                <img class='img-size lozad' data-src='$img' alt='banner' />
                                 <div class="carousel-caption">
                                     <p>{$row['descripcion']}</p>
                                 </div>
