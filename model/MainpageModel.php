@@ -53,7 +53,7 @@ class MainpageModel {
                 $resultado = $stmt->fetchAll();
                 $directorio = '';
                 foreach ($resultado as $row) {
-                    $img =_ROOT_ASSETS . 'directorio/' . $row['imagen'];
+                    $img =_ROOT_ASSETS . 'images/directorio/' . $row['imagen'];
                     $directorio .=<<<Html
                     <div name="directorio" class="col-12 col-sm-6 col-lg-4 col-xl-3">
                         <article class="mccColumn bg-white shadow mb-6 mx-auto mx-sm-0">
@@ -113,7 +113,7 @@ class MainpageModel {
                 $respuesta = $stmt->fetchAll();
                 $banner = '';
                 foreach($respuesta as $row){
-                    $img =_ROOT_ASSETS . 'banners/' . $row['banner'];
+                    $img = _ROOT_ASSETS . 'images/banners/' . $row['banner'];
                     $banner .=<<<Html
                     <div>
                         <article class="d-flex w-100 position-relative ibColumn text-white overflow-hidden">
@@ -156,7 +156,7 @@ class MainpageModel {
                     $carruselItem =  '';
                     $contador  = 0;
                     foreach($respuesta as $row){
-                        $img =_ROOT_ASSETS . 'modal/' . $row['img'];
+                        $img =_ROOT_ASSETS . 'images/modal/' . $row['img'];
                         if($contador == 0){
                             $ol .=<<<Html
                             <li data-target='#carouselExampleIndicators' data-slide-to='$contador' class='active'></li>
