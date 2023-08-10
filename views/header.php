@@ -10,7 +10,6 @@
     <meta name="autor" content="Journii">
 	<title>GOREL - Portal Web del Gobierno Regional de Loreto</title>
 	<style>
-		@font-face { font-family: 'icomoon'; src: url('fonts/icomoon.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
 		@font-face {
 		font-family: 'Pacifico';
 		font-style: normal;
