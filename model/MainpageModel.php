@@ -179,7 +179,7 @@ class MainpageModel {
                         } else {
                             $carruselItem .=<<<Html
                             <div class='carousel-item'>
-                                <img class='img-size lozad' data-src='$img' alt='banner' />
+                                <img class='img-size lozad' src='$img' alt='banner' />
                                 <div class="carousel-caption">
                                     <p>{$row['descripcion']}</p>
                                 </div>
