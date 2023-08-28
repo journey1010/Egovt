@@ -43,10 +43,11 @@ class MainpageController extends ViewRenderer {
             $data['modal'] = $modal;
             $data['script'] = $script;
         }
-
+        
         $dataFooter = [
             'logoWhite' => $this->ruta . 'logoWhite.png',
-            'año' => date('Y')
+            'año' => date('Y'),
+            'scripts' => ''
         ];
         $this->render('header', '', false);
         $this->render( 'main', $data, false);

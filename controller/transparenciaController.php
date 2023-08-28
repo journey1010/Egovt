@@ -1,7 +1,5 @@
 <?php
 
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat\DateFormatter;
-
 require_once(_ROOT_CONTROLLER . 'viewsRender.php');
 require_once(_ROOT_MODEL . 'visitas.php');
 require_once(_ROOT_MODEL . 'proyectosInversionPublica.php');
@@ -11,15 +9,14 @@ require_once(_ROOT_MODEL . 'Convocatoria.php');
 class transparenciaController extends ViewRenderer
 {
     private $ruta;
+    private $rutaJs;
 
     public function __construct()
     {
         $this->ruta = _ROOT_ASSETS . 'images/';
+        $this->rutaJs = _ROOT_ASSETS . 'js/';
     }
-    /**
-     * Genera una vista general para acceder a al registro de visitas actual y antiguo.
-     * @return void
-    */
+
     public function visitasMain()
     {
         $this->setCacheDir(_ROOT_CACHE . 'transparencia/visitas/');
@@ -37,12 +34,6 @@ class transparenciaController extends ViewRenderer
         $this->render('footer', $dataFooter, false);
     }
 
-    /**
-     * Genera una vista paginada para el nuevo registro de visitas.
-     *
-     * @param integer $pagina, establece el número de pagina actual
-     * @return void
-     */
     public function visitasNew($pagina = 1)
     {
         if (!is_numeric($pagina)) {
@@ -62,14 +53,19 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml,
                 "link" => _ROOT_ASSETS . 'css/datepicker.css',
-                "jsDatapicker" => _ROOT_ASSETS . 'js/bootstrap-datepicker.js',
-                "jsMaterialkit" => _ROOT_ASSETS . 'js/material-kit.js',
-                "jsVisitas" => _ROOT_ASSETS . 'jsVisitas.js',
                 "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
-                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
+
+            $moreScript = <<<html
+            <script src="{$this->rutaJs}bootstrap-datepicker.js"></script>
+            <script src="{$this->rutaJs}material-kit.js"></script>
+            <script src="{$this->rutaJs}jquery.dataTables.min.js"></script>
+            <script src="{$this->rutaJs}visitas.js"></script>
+            html;
+
             $dataFooter = [
-                'año' => date('Y')
+                'año' => date('Y'),
+                'scripts' => $moreScript
             ];
             $this->render('header', '', false);
             $this->render('transparencia/visitasgorel/newVisitas', $data, false);
@@ -79,16 +75,11 @@ class transparenciaController extends ViewRenderer
         }
     }
 
-    /**
-     * Recibe una solicitud de busqueda para el registro de visitas
-     * Devuelve en formato de json el resultado de la busqueda.
-     * @return void
-     */
     public function visitasNewPost()
     {
         if (empty($_POST['fecha']) && strtotime($_POST['fecha'])) {
-            $respuesta = array("error" => "Ha ocurrido un error inesperado en la solicitud.");
-            print_r(json_encode($respuesta));
+            $respuesta = ['error' => 'Ha ocurrido un error inesperado en la solicitud.'];
+            echo (json_encode($respuesta));
             return;
         }
         $fecha = $_POST['fecha'];
@@ -113,10 +104,13 @@ class transparenciaController extends ViewRenderer
         $data = [
             "tablaFila" => $resultado,
             "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
-            "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
         ];
+        $moreScript = <<<html
+        <script src="{$this->rutaJs}jquery.dataTables.min.js"></script>
+        html;
         $dataFooter = [
-            'año' => date('Y')
+            'año' => date('Y'),
+            'scripts' => $moreScript
         ];
         $this->render('header', '', false);
         $this->render('transparencia/visitasgorel/oldVisitas', $data, false);
@@ -146,11 +140,15 @@ class transparenciaController extends ViewRenderer
             $data = [
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml,
-                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
-                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css"
             ];
+            $moreScript = <<<html
+            <script src="{$this->rutaJs}jquery.dataTables.min.js"></script>
+            <script src="{$this->rutaJs}proyectoInversion.js"></script>
+            html;
             $dataFooter = [
-                'año' => date('Y')
+                'año' => date('Y'),
+                'scripts' => $moreScript
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
@@ -179,10 +177,14 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml,
                 "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
-                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
+            $moreScript = <<<html
+            <script src="{$this->rutaJs}jquery.dataTables.min.js"></script>
+            <script src="{$this->rutaJs}proyectoInversion.js"></script>
+            html;
             $dataFooter = [
-                'año' => date('Y')
+                'año' => date('Y'),
+                'scripts' => $moreScript
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
@@ -211,10 +213,14 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml,
                 "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
-                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
+            $moreScript = <<<html
+            <script src="{$this->rutaJs}jquery.dataTables.min.js"></script>
+            <script src="{$this->rutaJs}proyectoInversion.js"></script>
+            html;
             $dataFooter = [
-                'año' => date('Y')
+                'año' => date('Y'),
+                'scripts' => $moreScript
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
@@ -243,10 +249,14 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml,
                 "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
-                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
+            $moreScript = <<<html
+            <script src="{$this->rutaJs}jquery.dataTables.min.js"></script>
+            <script src="{$this->rutaJs}proyectoInversion.js"></script>
+            html;
             $dataFooter = [
-                'año' => date('Y')
+                'año' => date('Y'),
+                'scripts' => $moreScript
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
@@ -275,10 +285,15 @@ class transparenciaController extends ViewRenderer
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml,
                 "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
-                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
             ];
+
+            $moreScript = <<<html
+            <script src="{$this->rutaJs}jquery.dataTables.min.js"></script>
+            <script src="{$this->rutaJs}proyectoInversion.js"></script>
+            html;
             $dataFooter = [
-                'año' => date('Y')
+                'año' => date('Y'),
+                'scripts' => $moreScript
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
@@ -306,11 +321,15 @@ class transparenciaController extends ViewRenderer
             $data = [
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml,
-                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
-                "dataTableJs" => _ROOT_ASSETS . "js/jquery.dataTables.min.js"
+                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css"
             ];
+            $moreScript = <<<html
+            <script src="{$this->rutaJs}jquery.dataTables.min.js"></script>
+            <script src="{$this->rutaJs}proyectoInversion.js"></script>
+            html;
             $dataFooter = [
-                'año' => date('Y')
+                'año' => date('Y'),
+                'scripts' => $moreScript
             ];
             $this->render('header', '', false);
             $this->render('transparencia/ProyectosInversion/proyectosinversion', $data, false);
@@ -364,14 +383,17 @@ class transparenciaController extends ViewRenderer
             $data = [
                 "tablaFila" => $tablaFila,
                 "paginadorHtml" => $paginadorHtml,
-                "link" => _ROOT_ASSETS . 'css/datepicker.css',
-                "jsDatapicker" => _ROOT_ASSETS . 'js/bootstrap-datepicker.js',
-                "jsMaterialkit" => _ROOT_ASSETS . 'js/material-kit.js',
-                "paginator" => _ROOT_ASSETS . 'js/pagination.min.js'
-                
+                "link" => _ROOT_ASSETS . 'css/datepicker.css'                
             ];
+            $moreScript = <<<html
+            <script src="{$this->rutaJs}bootstrap-datepicker.js"></script>
+            <script src="{$this->rutaJs}material-kit.js"></script>
+            <script src="{$this->rutaJs}pagination.min.js"></script>
+            <script src="{$this->rutaJs}agenda.js"></script>
+            html;
             $dataFooter = [
-                'año' => date('Y')
+                'año' => date('Y'),
+                'scripts' => $moreScript
             ];
             $this->render('header', '', false);
             $this->render('transparencia/agendaGorel/agendaGorel', $data, false);
@@ -438,12 +460,17 @@ class transparenciaController extends ViewRenderer
                 'paginador' => $paginadorHtml,
                 'image' => _ROOT_ASSETS . 'images/image-convocatoria.webp',
                 'link' => _ROOT_ASSETS . 'css/datepicker.css',
-                'jsDatapicker' => _ROOT_ASSETS . 'js/bootstrap-datepicker.js',
-                'jsMaterialkit' => _ROOT_ASSETS . 'js/material-kit.js',
-                'paginator' => _ROOT_ASSETS . 'js/pagination.min.js'
             ];
+
+            $moreScript = <<<html
+            <script src="{$this->rutaJs}bootstrap-datepicker.js"></script>
+            <script src="{$this->rutaJs}material-kit.js"></script>
+            <script src="{$this->rutaJs}pagination.min.js"></script>
+            <script src="{$this->rutaJs}convocatoria.js"></script>
+            html;
             $dataFooter = [
-                'año' => date('Y')
+                'año' => date('Y'),
+                'script' => $moreScript
             ];
             $this->render('header', '', false);
             $this->render('transparencia/convocatoria/convocatoria', $data, false);

@@ -1,8 +1,5 @@
 <?php
 
-use PhpOffice\PhpSpreadsheet\Helper\Html;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\FunctionPrefix;
-
 require_once _ROOT_MODEL . 'conexion.php';
 require_once _ROOT_CONTROLLER . 'paginador.php';
 require_once _ROOT_CONTROLLER . 'admin/handleSanitize.php';
