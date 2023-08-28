@@ -210,10 +210,8 @@ class MainpageModel {
                     </div>
                     html;
                     $script = <<<html
-                    <script>
-                        $(document).ready(function() {
+                    <script defer>
                             $('#largeModal').modal('show');
-                        });
                     </script>
                     html;
                 } else {
