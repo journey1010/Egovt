@@ -115,7 +115,6 @@ class MainpageModel {
                 foreach($respuesta as $row){
                     $img = _ROOT_ASSETS . 'images/banners/' . $row['banner'];
                     $banner .=<<<Html
-                    <div>
                         <article class="d-flex w-100 position-relative ibColumn text-white overflow-hidden">
                             <div class="alignHolder d-flex align-items-center w-100">
                                 <div class="align w-100 pt-20 pb-20 pt-md-40 pb-md-30 px-md-17">
@@ -134,7 +133,6 @@ class MainpageModel {
                             </div>
                             <span class="ibBgImage bgCover position-absolute lozad" style="background-image: url($img);"></span>
                         </article>
-                    </div>
                     Html;
                 }
                 $resolve($banner);
@@ -210,10 +208,8 @@ class MainpageModel {
                     </div>
                     html;
                     $script = <<<html
-                    <script>
-                        $(document).ready(function() {
+                    <script defer>
                             $('#largeModal').modal('show');
-                        });
                     </script>
                     html;
                 } else {
