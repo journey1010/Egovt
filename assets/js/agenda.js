@@ -1,3 +1,5 @@
+$(datepicker).();
+
 $(document).on('click', '#buscarAgenda', BuscarAgenda);
 function BuscarAgenda(){
     let formData = {

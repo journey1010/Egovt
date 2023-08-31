@@ -32,7 +32,7 @@ class BaseViewInterfaz
     /**
      * @param string $date
      * @param string $fromat, format of date.
-     * @return void
+     * @return bool it is true if date's format of $date is equal that $dateExample
      */
     public static function validateDate($date, $fromat)
     {

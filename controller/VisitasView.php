@@ -3,26 +3,28 @@
 require_once _ROOT_CONTROLLER . 'BaseViewInterfaz.php';
 require_once _ROOT_MODEL . 'visitas.php'; 
 
-
 class VisitasView extends BaseViewInterfaz
 {
     public static function mainView()
     {
         $data = [
-            'imageNew' => self::$pathImg . 'images/nuevasVisitas.jpg',
-            'imageOld' => self::$pathImg . 'images/oldVisitas.jpg'
+            'imageNew' => self::$pathImg . 'nuevasVisitas.jpg',
+            'imageOld' => self::$pathImg . 'oldVisitas.jpg'
         ];
         $dataFooter = [
-            'logoWhite' => self::$pathImg . 'logoWhite.png',
-            'año' => date('Y')
+            'año' => date('Y'),
+            'scripts' => ''
         ];
 
         $render = new ViewRenderer();
-        $render->setCacheDir(self::$pathCache . 'transparencia/view/');
+        $render->setCacheDir(self::$pathCache . 'transparencia/view/main/');
         $render->setCacheTime(2678400);
+        $render->render('header', '', false);
+        $render->render('transparencia/visitasgorel/main', $data, true);
+        $render->render('footer', $dataFooter, false);
     }
      
-    public static function newVisits($pagina)
+    public static function newVisitsView($pagina = 1)
     {
         if(!self::isNumeric($pagina)){
             self::viewForNotNumericPage();
@@ -60,7 +62,7 @@ class VisitasView extends BaseViewInterfaz
         $render->render('footer', $dataFooter, false);
     }
 
-    public static function oldVisits($pagina)
+    public static function oldVisitsView()
     {
         $visitas = new visitas();
         $data = [
@@ -83,7 +85,7 @@ class VisitasView extends BaseViewInterfaz
         $render->render('footer', $dataFooter, false);
     }
 
-    public function searchVisits($fecha)
+    public static function searchVisitsView($fecha)
     {
         if(!self::validateDate($fecha, 'Y-m-d')){
             $respuesta = ['error' => 'Ha ocurrido un error inesperado en la solicitud.'];

@@ -1,127 +1,37 @@
 <?php
 
-require_once(_ROOT_CONTROLLER . 'viewsRender.php');
-require_once(_ROOT_MODEL . 'visitas.php');
-require_once(_ROOT_MODEL . 'proyectosInversionPublica.php');
-require_once(_ROOT_MODEL . 'agendaGorel.php');
-require_once(_ROOT_MODEL . 'Convocatoria.php');
+require _ROOT_CONTROLLER . 'Agenda/Agenda.php';
+require _ROOT_CONTROLLER . 'Convocatoria/ConvocatoriaView.php';
+require _ROOT_CONTROLLER . 'ProyectosInversion/ProyectosInversionPublicaView.php';
+require _ROOT_CONTROLLER . 'Visitas/VisitasView.php';
 
-class transparenciaController extends ViewRenderer
+spl_autoload_register(function ($nombreClase){
+    $pathClass = _ROOT_CONTROLLER . $nombreClase . 'View.php';
+    require_once $pathClass;
+});
+
+class transparenciaController
 {
-    private $ruta;
-    private $rutaJs;
-
-    public function __construct()
-    {
-        $this->ruta = _ROOT_ASSETS . 'images/';
-        $this->rutaJs = _ROOT_ASSETS . 'js/';
-    }
-
     public function visitasMain()
     {
-        $this->setCacheDir(_ROOT_CACHE . 'transparencia/visitas/');
-        $this->setCacheTime(2678400);
-        $data = [
-            'imageNew' => _ROOT_ASSETS . 'images/nuevasVisitas.jpg',
-            'imageOld' => _ROOT_ASSETS . 'images/oldVisitas.jpg'
-        ];
-        $dataFooter = [
-            'logoWhite' => $this->ruta . 'logoWhite.png',
-            'año' => date('Y')
-        ];
-        $this->render('header', '', false);
-        $this->render('transparencia/visitasgorel/main', $data, true);
-        $this->render('footer', $dataFooter, false);
+        VisitasView::mainView();   
     }
 
     public function visitasNew($pagina = 1)
     {
-        if (!is_numeric($pagina)) {
-            $this->setCacheDir(_ROOT_CACHE);
-            $this->setCacheTime(1);
-            $this->render('ErrorView', '', true);
-            return;
-        }
-        try {
-            $this->setCacheDir(_ROOT_CACHE . 'transparencia/visitas/');
-            $this->setCacheTime(86000);
-
-            $visitas = new visitas();
-            list($tablaFila, $paginadorHtml) = $visitas->visitasNuevas($pagina);
-
-            $data = [
-                "tablaFila" => $tablaFila,
-                "paginadorHtml" => $paginadorHtml,
-                "link" => _ROOT_ASSETS . 'css/datepicker.css',
-                "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
-            ];
-
-            $moreScript = <<<html
-            <script src="{$this->rutaJs}bootstrap-datepicker.js"></script>
-            <script src="{$this->rutaJs}material-kit.js"></script>
-            <script src="{$this->rutaJs}jquery.dataTables.min.js"></script>
-            <script src="{$this->rutaJs}visitas.js"></script>
-            html;
-
-            $dataFooter = [
-                'año' => date('Y'),
-                'scripts' => $moreScript
-            ];
-            $this->render('header', '', false);
-            $this->render('transparencia/visitasgorel/newVisitas', $data, false);
-            $this->render('footer', $dataFooter, false);
-        } catch (Throwable $e) {
-            $this->handleError($e);
-        }
+        VisitasView::newVisitsView($pagina);
     }
 
     public function visitasNewPost()
     {
-        if (empty($_POST['fecha']) && strtotime($_POST['fecha'])) {
-            $respuesta = ['error' => 'Ha ocurrido un error inesperado en la solicitud.'];
-            echo (json_encode($respuesta));
-            return;
-        }
-        $fecha = $_POST['fecha'];
-        $nueva_fecha = date_format(date_create_from_format('d/m/Y', $fecha), 'Y-m-d');
-        try {
-            $visitas = new visitas();
-            $resultado = $visitas->visitasNuevasPost($nueva_fecha);
-            echo $resultado;
-        } catch (Throwable $e) {
-            $respuesta = array("error" => "Ha ocurrido un error inesperado.");
-            print_r(json_encode($respuesta));
-            $this->handleError($e);
-        }
+        VisitasView::searchVisitsView($_POST['fecha']);
     }
 
     public function visitasOld()
     {
-        $this->setCacheDir(_ROOT_CACHE . 'transparencia/visitas/');
-        $this->setCacheTime(83600);
-        $visitas = new visitas();
-        $resultado = $visitas->visitasOld();
-        $data = [
-            "tablaFila" => $resultado,
-            "dataTableCss" => _ROOT_ASSETS . "css/jquery.dataTables.min.css",
-        ];
-        $moreScript = <<<html
-        <script src="{$this->rutaJs}jquery.dataTables.min.js"></script>
-        html;
-        $dataFooter = [
-            'año' => date('Y'),
-            'scripts' => $moreScript
-        ];
-        $this->render('header', '', false);
-        $this->render('transparencia/visitasgorel/oldVisitas', $data, false);
-        $this->render('footer', $dataFooter, false);
+        VisitasView::oldVisitsView();
     }
     
-    /**
-     * Genera una vista de todos los proyectos de inversión pública (pip)
-     * @param integer $pagina, establece la pagina actual.
-     * @return void
-     */
     public function pipTodos($pagina = 1)
     {
         if (!is_numeric($pagina)) {
@@ -339,11 +249,6 @@ class transparenciaController extends ViewRenderer
         }
     }
 
-    /**
-     * Recibe una solicitud de busqueda para el registro de proyectos de inversión pública
-     * Devuelve en formato de json el resultado de la busqueda.
-     * @return void
-     */
     public function BuscarObra()
     {
         $tipo = htmlspecialchars(($_POST['tipo']), ENT_QUOTES, "UTF-8");
@@ -360,11 +265,7 @@ class transparenciaController extends ViewRenderer
             $this->handleError($e);
         }
     }
-    /**
-     * Genera una vista de las actividades o agendas del gobernador. 
-     * @param integer $pagina, establece la página actual 
-     * @return void
-     */
+
     public function agendaGorel($pagina = 1)
     {
         if (!is_numeric($pagina)) {
@@ -410,10 +311,10 @@ class transparenciaController extends ViewRenderer
      */
     public function agendaGorelPost()
     {   
-        $camposRequeridos = ['fechaDesde', 'fechaHasta', 'palabra'];
-        foreach($camposRequeridos as $campo){
-            extract([$campo =>htmlspecialchars($_POST[$campo])]);
-        }
+        $fechaDesde = htmlspecialchars($_POST['fechaDesde'], ENT_QUOTES, 'UTF-8');
+        $fechaHasta = htmlspecialchars($_POST['fechaHasta'], ENT_QUOTES, 'UTF-8');
+        $palabra = htmlspecialchars($_POST['palabra'], ENT_QUOTES, 'UTF-8');
+
         try {
             $fechaDesde = date_format(date_create_from_format('d/m/Y', $fechaDesde), 'Y-m-d');
             $fechaHasta = date_format(date_create_from_format('d/m/Y', $fechaHasta), 'Y-m-d');
@@ -497,35 +398,5 @@ class transparenciaController extends ViewRenderer
         $resultado = $convocatoria->buscarConvocatoria($fechaDesde, $fechaHasta, $palabra);
         $respuesta = array ('status'=>'success', 'data'=>$resultado);
         echo (json_encode($respuesta));
-    }
-    
-    /**
-     * Convierte las fechas desde y fecha (Enviadas por POST)hasta en formatos validos para poder trabajar con la base datos.
-     * @param  array $post, contiene datos enviados en un solicitud POST
-     * @return array 
-    */
-    private function cleanDataPost(array $post)
-    {
-        $camposRequeridos = ['fechaDesde', 'fechaHasta', 'palabra'];
-        foreach($camposRequeridos as $campo){
-            extract([$campo =>htmlspecialchars($post[$campo])]);
-        }
-        try {
-            $fechaDesde = date_format(date_create_from_format('d/m/Y', $fechaDesde), 'Y-m-d');
-            $fechaHasta = date_format(date_create_from_format('d/m/Y', $fechaHasta), 'Y-m-d');
-        } catch (Throwable $e) {
-            return false;
-        }
-
-        if($fechaDesde === FALSE or $fechaHasta === FALSE){
-            return false;
-        }
-        return [$fechaDesde, $fechaHasta, $palabra];
-    }
-
-    private function handleError(Throwable $e)
-    {
-        $errorMessage = date('Y-m-d H:i:s') . ' : ' . $e->getMessage() . "\n";
-        error_log($errorMessage, 3, _ROOT_PATH . '/log/error.log');
     }
 }
