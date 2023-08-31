@@ -87,7 +87,7 @@ class VisitasView extends BaseViewInterfaz
 
     public static function searchVisitsView($fecha)
     {
-        if(!self::validateDate($fecha, 'Y-m-d')){
+        if(!self::validateDate($fecha)){
             $respuesta = ['error' => 'Ha ocurrido un error inesperado en la solicitud.'];
             echo (json_encode($respuesta));
             return;

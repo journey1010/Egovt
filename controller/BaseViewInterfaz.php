@@ -31,16 +31,14 @@ class BaseViewInterfaz
 
     /**
      * @param string $date
-     * @param string $fromat, format of date.
      * @return bool it is true if date's format of $date is equal that $dateExample
      */
-    public static function validateDate($date, $fromat)
+    public static function validateDate($date)
     {
-        $dateExample = '2023-06-05';
-        $format  = $fromat;
-        $dateFormat1 = date_create_from_format($format, $date);
-        $dateFormat2 = date_create_from_format($format, $dateExample);
-        if($dateFormat1 !== false && $dateFormat2 !== false){
+        $date = $date == null ? 'im not date' : $date;
+        $format  = 'Y-m-d';
+        $dateFormat = DateTime::createFromFormat($format, $date);
+        if($dateFormat !== false){
             return true;
         }
         return false;

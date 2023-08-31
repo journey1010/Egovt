@@ -212,6 +212,12 @@ class ProyectosInversionView extends BaseViewInterfaz
     public static function searchObra($tipo, $año, $palabra)
     {
         try {
+            $tipo = htmlspecialchars($tipo, ENT_QUOTES, 'UTF-8');
+            $palabra = htmlspecialchars($palabra, ENT_QUOTES, 'UTF-8');
+            $año = filter_var($año, FILTER_VALIDATE_INT);
+            if(!$año){
+                throw new Exception('$año no es una fecha.');
+            }
             $pip = new ProyectoInversionPublica();
             $resultado = $pip->BuscarObra($tipo, $año, $palabra);
             echo $resultado;

@@ -13,7 +13,6 @@
     .details-control .fa {
         margin-right: 0.5em;
     }
-
 </style>
 <main class="breadcrumb">
     <div class="container-fluid">
@@ -26,7 +25,7 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group p-0">
-                            <input type="text" class="datepicker form-control bg-transparent border-dark" data-date-format=dd" value="" id="dp4" />
+                            <input class="datepicker form-control bg-transparent border-dark date-visita" data-date-format="yyyy-mm-dd" />
                             <button id="btnFecha" class="btn btnTheme btnNoOver d-flex align-items-center justify-content-center" type="button">
                                 <i class="icomoon-search"><span class="sr-only">Buscar</span></i>
                             </button>

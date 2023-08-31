@@ -30,7 +30,7 @@ class ConvocatoriaView extends BaseViewInterfaz
         html;
         $dataFooter = [
             'año' => date('Y'),
-            'script' => $moreScript
+            'scripts' => $moreScript
         ];
         
         $render = new ViewRenderer();
@@ -43,10 +43,11 @@ class ConvocatoriaView extends BaseViewInterfaz
 
     public static function searchConvocatoriaView($desde, $hasta, $palabra)
     {   
-        if(!self::validateDate($desde, 'Y-m-d') || !self::validateDate($hasta, 'Y-m-d')){
+        if(!self::validateDate($desde) || !self::validateDate($hasta)){
             echo(json_encode(['status'=>'error', 'data'=>'']));
             return false;
         }
+        $palabra = htmlspecialchars($palabra, ENT_QUOTES, 'UTF-8');
 
         try {
             $convocatoria = new Convocatoria();

@@ -32,7 +32,7 @@ $(document).ready(function() {
     }
 });
 $(document).on('click', '#btnFecha', function() {
-    fecha = $('#dp4').val();
+    fecha = $('.date-visita').val();
     if (fecha !== '') {
         $.ajax({
             url: '/transparencia/visitas-nuevas/post',

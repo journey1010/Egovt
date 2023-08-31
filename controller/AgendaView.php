@@ -42,11 +42,12 @@ class AgendaView extends BaseViewInterfaz
 
     public static function searchAgendaView($desde, $hasta, $palabra)
     {
-        if(!self::validateDate($desde, 'Y-m-d') || !self::validateDate($hasta, 'Y-m-d')){
+        if(!self::validateDate($desde) || !self::validateDate($hasta)){
             $respuesta = ['status' => 'error', 'data'=>''];
             echo (json_encode($respuesta));
             return;
         }
+        $palabra = htmlspecialchars($palabra, ENT_QUOTES, 'UTF-8');
 
         try{
             $agendaGorel = new agendaGorel();
