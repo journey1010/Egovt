@@ -81,8 +81,8 @@ $(document).on('click', '#enviarForm', function(event){
     }
 });
 
+$(document).on('click', '.insert-agenda', insertForm);
 
-$('.insert-agenda').click(insertForm);
 function insertForm(){
     let formularioOriginal = $('.registrarAgenda');
     let nuevoFormulario = formularioOriginal.clone();

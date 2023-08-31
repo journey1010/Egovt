@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5325c30e36afca5f5907eee40afe6001",
+    "content-hash": "cfbbbd84184f7900ddda19c0d1f2fc65",
     "packages": [
         {
             "name": "dompdf/dompdf",
@@ -598,7 +598,7 @@
         {
             "name": "masterminds/html5",
             "version": "2.8.0",
-            "source": {  
+            "source": {
                 "type": "git",
                 "url": "https://github.com/Masterminds/html5-php.git",
                 "reference": "3c5d5a56d56f48a1ca08a0670f0f80c1dad368f3"
