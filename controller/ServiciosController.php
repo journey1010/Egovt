@@ -23,7 +23,8 @@ class ServiciosController extends ViewRenderer
         ];
 
         $dataFooter = [
-            'año' => date('Y')
+            'año' => date('Y'),
+            'scripts' => ''
         ];
 
         $this->render('header', '', false);

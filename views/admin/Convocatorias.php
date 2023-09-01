@@ -1,7 +1,5 @@
 <?php
 
-use PhpOffice\PhpSpreadsheet\Helper\Html;
-
 require_once(_ROOT_CONTROLLER . 'admin/handleSanitize.php');
 require_once(_ROOT_MODEL . 'conexion.php');
 
