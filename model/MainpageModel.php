@@ -131,7 +131,7 @@ class MainpageModel {
                                     </div>
                                 </div>
                             </div>
-                            <span class="ibBgImage bgCover position-absolute lozad" style="background-image: url($img);"></span>
+                            <div class="ibBgImage position-absolute lozad" style="background-image: url($img);"></div>
                         </article>
                     Html;
                 }
