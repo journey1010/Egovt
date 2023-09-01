@@ -21,8 +21,8 @@
 		}
 		@font-face {
 			font-family: 'Roboto';
-			src: url('https://egovt.test/assets/fonts/icomoon.woff') format('woff'),
-				 url('https://egovt.test/assets/fonts/icomoon.ttf') format('ttf');
+			src: url('https://regionloreto.gob.pe/assets/fonts/icomoon.woff') format('woff'),
+				 url('https://regionloreto.gob.pe/assets/fonts/icomoon.ttf') format('ttf');
 			font-display: swap;
 		}
 		.img-size {
@@ -78,8 +78,8 @@
 			}
 		}
 		.ibBgImage {
-		opacity: 0;
-		visibility: hidden;
+			opacity: 0;
+			visibility: hidden;
 		}
 	</style>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
