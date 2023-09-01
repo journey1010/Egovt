@@ -209,7 +209,9 @@ class MainpageModel {
                     html;
                     $script = <<<html
                     <script defer>
+                        $(document).ready(function() {
                             $('#largeModal').modal('show');
+                        });
                     </script>
                     html;
                 } else {
