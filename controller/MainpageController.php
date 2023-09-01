@@ -35,19 +35,21 @@ class MainpageController extends ViewRenderer {
             'directorio' => $Directorio,
             'convocatorias' => $Convocatoria
         ];
+
+        $dataFooter = [
+            'año' => date('Y')
+        ];
+        
         list($modal, $script) = $Modal;
         if (empty($modal)){
             $data['modal'] = '';
-            $data['script'] = '';
+            $dataFooter['scripts'] = '';
         } else {
             $data['modal'] = $modal;
-            $data['script'] = $script;
+            $dataFooter['scripts'] = $script;
         }
         
-        $dataFooter = [
-            'año' => date('Y'),
-            'scripts' => ''
-        ];
+
         $this->render('header', '', false);
         $this->render( 'main', $data, false);
         $this->render('footer', $dataFooter, false);

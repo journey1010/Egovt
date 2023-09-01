@@ -120,17 +120,17 @@
 									</li>
 									<li class="mb-2 mb-md-0">
 										<a href="https://www.gob.pe/regionloreto" alt="enlace al portal gob.pe" target="_blank">
-											<img src="<?= _ROOT_ASSETS . 'images/gob_pe_white.svg'?>" width="103" height="30.39" title="GORE-LORETO">
+											<img src="<?= _ROOT_ASSETS . 'images/gob_pe_white.svg'?>" class="lozad" width="103" height="30.39" title="GORE-LORETO">
 										</a>
 									</li>
 									<li class="mb-2 mb-md-0">
 										<a href="https://www.transparencia.gob.pe/reportes_directos/pte_transparencia_reg_visitas.aspx?id_entidad=10152&ver=&id_tema=500" alt="enlace portal de transparencia" target="_blank">
-											<img src="<?= _ROOT_ASSETS . 'images/logo_portal_transparencia.png' ?>">
+											<img src="<?= _ROOT_ASSETS . 'images/logo_portal_transparencia.png' ?>" class="lozad">
 										</a>
 									</li>
 									<li>
 										<a href="https://www.gob.pe/institucion/minjus/campa%C3%B1as/4200-libro-de-reclamaciones" alt="enlace libro de reclamaciones" target="_blank">
-											<img src="<?= _ROOT_ASSETS . 'images/logo_libro_reclamaciones.png'  ?>">
+											<img src="<?= _ROOT_ASSETS . 'images/logo_libro_reclamaciones.png'  ?>" class="lozad">
 										</a>
 									</li>
 								</ul>
