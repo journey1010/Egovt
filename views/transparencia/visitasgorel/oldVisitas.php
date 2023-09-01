@@ -24,28 +24,3 @@
         </div>
     </div>
 </main>
-<script src="<?= $dataTableJs ?>"></script>
-<script id="rowChildDatatable">
-    $(document).ready(function() {
-        var table = $('#tabla').DataTable({
-            stateSave: true,
-            paging: true,
-            searching: false,
-            ordering: false,
-            info: false,
-            pagingType: "simple_numbers",
-            language: {
-                lengthMenu: "Mostrar _MENU_ registros por página",
-                zeroRecords: "No se encontraron resultados",
-                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                paginate: {
-                    first: 'Primera',
-                    last: 'Última',
-                    next: 'Siguiente',
-                    previous: 'Anterior'
-                }
-            }
-        });
-    });
-</script>
