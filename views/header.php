@@ -77,6 +77,10 @@
 				overflow-y: auto;
 			}
 		}
+		.ibBgImage {
+		opacity: 0;
+		visibility: hidden;
+		}
 	</style>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 	<script>

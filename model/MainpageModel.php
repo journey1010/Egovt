@@ -115,7 +115,7 @@ class MainpageModel {
                 foreach($respuesta as $row){
                     $img = _ROOT_ASSETS . 'images/banners/' . $row['banner'];
                     $banner .=<<<Html
-                        <article class="d-flex w-100 position-relative ibColumn text-white overflow-hidden lozad">
+                        <article class="d-flex w-100 position-relative ibColumn text-white overflow-hidden">
                             <div class="alignHolder d-flex align-items-center w-100">
                                 <div class="align w-100 pt-20 pb-20 pt-md-40 pb-md-30 px-md-17">
                                     <div class="container position-relative">
@@ -131,7 +131,7 @@ class MainpageModel {
                                     </div>
                                 </div>
                             </div>
-                            <div class="ibBgImage bgCover position-absolute lozad" style="background-image: url($img);"></div>
+                            <span class="ibBgImage bgCover position-absolute lozad" style="background-image: url($img);"></span>
                         </article>
                     Html;
                 }
@@ -168,7 +168,7 @@ class MainpageModel {
                         if($contador == 0){
                             $carruselItem .=<<<Html
                             <div class='carousel-item active'>
-                                <img class='img-size lozad'  src='$img' alt='banner' />
+                                <img class='img-size'  src='$img' alt='banner' />
                                 <div class="carousel-caption">
                                     <p>{$row['descripcion']}</p>
                                 </div>
