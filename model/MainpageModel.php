@@ -131,7 +131,7 @@ class MainpageModel {
                                     </div>
                                 </div>
                             </div>
-                            <span class="ibBgImage bgCover position-absolute lozad" style="background-image: url($img);"></span>
+                            <div class="ibBgImage position-absolute lozad" style="background-image: url($img);"></div>
                         </article>
                     Html;
                 }
@@ -177,7 +177,7 @@ class MainpageModel {
                         } else {
                             $carruselItem .=<<<Html
                             <div class='carousel-item'>
-                                <img class='img-size lozad' src='$img' alt='banner' />
+                                <img class='img-size' src='$img' alt='banner' />
                                 <div class="carousel-caption">
                                     <p>{$row['descripcion']}</p>
                                 </div>
@@ -209,7 +209,9 @@ class MainpageModel {
                     html;
                     $script = <<<html
                     <script defer>
+                        $(document).ready(function() {
                             $('#largeModal').modal('show');
+                        });
                     </script>
                     html;
                 } else {
