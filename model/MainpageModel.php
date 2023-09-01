@@ -145,7 +145,7 @@ class MainpageModel {
     private static function sectionModal(MySQLConnection $conexion)
     {
         return new Promise(function($resolve, $reject) use ($conexion){
-            $sql = "SELECT img, descripcion FROM modal_paginaprincipal";
+            $sql = "SELECT img, descripcion FROM modal_paginaprincipal ORDER BY id_modal DESC";
             $stmt = $conexion->query($sql, '', '', false);
             if($stmt){
                 $respuesta = $stmt->fetchAll();
