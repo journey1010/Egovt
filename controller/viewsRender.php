@@ -53,6 +53,12 @@ class ViewRenderer {
       $this->cache_dir = $cache_dir;
     }
   
+    /**
+     * set time for cache view 
+     *
+     * @param integer $cache_time The time is in seconds.
+     * @return void
+     */
     public function setCacheTime(int $cache_time) {
       $this->cache_time = $cache_time;
     }

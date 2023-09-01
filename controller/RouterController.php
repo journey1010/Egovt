@@ -46,9 +46,8 @@ class Router extends AbstractController{
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         $url = $this->SanitizeVar($_SERVER['REQUEST_URI']);
         $requestUrl = parse_url($url, PHP_URL_PATH);
-        if ($requestUrl === '' or NULL) {
-            $requestUrl = '/';
-        }
+        $requestUrl = $requestUrl === '' || $requestUrl === null ? '/' : $requestUrl;
+
         foreach ($this->routes as [$method, $pattern, $handler]) {
             if ($method !== $requestMethod) {
                 continue;
@@ -62,7 +61,7 @@ class Router extends AbstractController{
                     return;
                 }
 
-                list($controllerName, $methodName) = explode('@', $handler);
+                list($controllerName, $methodName, $operadorAccess) = $this->determineClass($handler);
                 require_once _ROOT_CONTROLLER . $controllerName . '.php'; 
                 if (strpos($controllerName, 'admin/') !== false) {
                     session_start();
@@ -73,12 +72,15 @@ class Router extends AbstractController{
                         die;
                     }    
                 }
-                $controller = new $controllerName();
-                $controller->$methodName(...$matches);
+                if ($operadorAccess === '@'){
+                    $controller = new $controllerName();
+                    $controller->$methodName(...$matches);
+                } else {
+                    $controllerName::$methodName(...$matches);
+                }
                 return;
             }
         }
-        
         $this->renderView('ErrorView');
     }
 
@@ -88,7 +90,22 @@ class Router extends AbstractController{
         }, $pattern) . '/?$#';
         return $regex;
     }
-        
+      
+    protected function determineClass($handler)
+    {
+        if(strpos($handler, '@')){
+            $retorno = explode('@', $handler);
+            $retorno[] = '@';
+            return $retorno;
+        } elseif ( strpos($handler, '::')) {
+            $retorno = explode('::', $handler);
+            $retorno[] = '::';
+            return $retorno;
+        }else{
+            throw 'formato de $handler en routes.json incorrecto';
+        }
+    }
+
     protected function SanitizeVar($var)
     {
         $var = filter_var( $var, FILTER_SANITIZE_URL);

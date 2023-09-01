@@ -132,6 +132,8 @@
 		</div>
 	</div>
 	</body>
+	<script src="<?= _ROOT_ASSETS . 'js/jquery-3.4.1.min.js?v=1.1' ?>"></script>
 	<script src="<?= _ROOT_ASSETS . 'js/jqueryCustom.js' ?>"></script>
 	<script src="<?= _ROOT_ASSETS . 'js/plugins.js' ?>" defer></script>
+	<?= $scripts ?>
 </html>

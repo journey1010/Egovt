@@ -16,19 +16,19 @@
                 <div class="formCol px-4">
                     <div class="form-group">
                         <label class="d-block fwMedium fontAlter text-lDark mb-2">Desde</label>
-                        <input type="text" class="datepicker form-control border-dark" value="" id="dp4" />
+                        <input type="text" class="datepicker form-control border-dark date-convocatoria1" placeholder="<?= date('Y-m-d')?>" data-date-format="yyyy-mm-dd" value=""/>
                     </div>
                 </div>
                 <div class="formCol px-4">
                     <div class="form-group">
                         <label class="d-block fwMedium fontAlter text-lDark mb-2">Hasta</label>
-                        <input type="text" class="datepicker form-control bg-white border-dark" value="<?= date('d/m/Y') ?>" id="dp1" />
+                        <input type="text" class="datepicker form-control bg-white border-dark date-convocatoria2" placeholder="<?= date('Y-m-d')?>" data-date-format="yyyy-mm-dd"/>
                     </div>
                 </div>
                 <div class="formCol px-4">
                     <div class="form-group">
                         <label class="d-block fwMedium fontAlter text-lDark mb-2">Palabra clave</label>
-                        <input id="palabra" type="text" class="border border-info form-control inputHeightMedium inputBdrTransparent d-block w- shadow">
+                        <input id="palabra" type="text" class="border-dark form-control inputHeightMedium inputBdrTransparent d-block">
                     </div>
                 </div>
                 <button id="buscarConvocatoria" type="button" class="btn btnTheme ml-lg-3 mt-4 mt-lg-0 ml-auto mr-auto mr-lg-0 font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0" data-hover="Buscar">
@@ -49,51 +49,3 @@
         </div>
     </section>
 </main>
-<script src="<?= $jsDatapicker ?>"></script>
-<script src="<?= $jsMaterialkit ?>"></script>
-<script src="<?= $paginator ?>"></script>
-<script>
-    $(document).on('click', '#buscarConvocatoria', BuscarConvocatoria);
-
-    function BuscarConvocatoria() {
-        let formData = {
-            fechaDesde: $('#dp4').val(),
-            fechaHasta: $('#dp1').val(),
-            palabra: $('#palabra').val()
-        };
-        $.ajax({
-            url: '/transparencia/convocatorias-de-trabajo/buscar',
-            method: 'POST',
-            data: formData,
-            beforeSend: function() {
-                $('#spinner').show();
-            },
-            success: function(response) {
-                $('#spinner').hide();
-                let resp = JSON.parse(response);
-                if (resp.status === 'success') {
-                    $('.convocatorias').html('<div class="datos"></div>');
-                    if (resp.data !== null) {
-                        generarElementosPaginados(resp.data);
-                    }
-                } else {
-                    $('.convocatorias').html('');
-                }
-            }
-        });
-    }
-
-    function generarElementosPaginados(data) {
-        $('.convocatorias').pagination({
-            dataSource: data,
-            pageSize: 12,
-            ulClassName: 'pagination justify-content-center pt-2',
-            callback: function(data, pagination) {
-                $('.datos').html(data);
-                $('.paginationjs li').addClass('page-item');
-                $('.paginationjs a').addClass('page-link');
-            },
-
-        });
-    }
-</script>

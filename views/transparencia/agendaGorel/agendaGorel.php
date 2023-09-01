@@ -9,19 +9,19 @@
                     <div class="formCol px-4">
                         <div class="form-group">
                             <label class="d-block fwMedium fontAlter text-lDark mb-2">Desde</label>
-                            <input type="text" class="datepicker form-control border-dark" value="" id="dp4" />
+                            <input type="text" class="datepicker form-control border-dark date-agenda1" value="<?= date('Y-m-d') ?>" data-date-format="yyyy-mm-dd" />
                         </div>
                     </div>
                     <div class="formCol px-4">
                         <div class="form-group">
-                            <label class="d-block fwMedium fontAlter text-lDark mb-2">Hasta</label>
-                            <input type="text" class="datepicker form-control bg-white border-dark" value="<?= date('d/m/Y') ?>" id="dp1" />
+                            <label class="d-block fwMedium fontAlter text-lDark mb-2" >Hasta</label>
+                            <input type="text" class="datepicker form-control bg-white border-dark date-agenda2" value="<?= date('Y-m-d') ?>" data-date-format="yyyy-mm-dd"/>
                         </div>
                     </div>
                     <div class="formCol px-4">
                         <div class="form-group">
                             <label class="d-block fwMedium fontAlter text-lDark mb-2">Palabra clave</label>
-                            <input id="palabra" type="text" class="border border-info form-control inputHeightMedium inputBdrTransparent d-block w- shadow">
+                            <input id="palabra" type="text" class="form-control border-dark">
                         </div>
                     </div>
                     <button id="buscarAgenda" type="button" class="btn btnTheme ml-lg-3 mt-4 mt-lg-0 ml-auto mr-auto mr-lg-0 font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0" data-hover="Buscar">
@@ -43,48 +43,3 @@
         </div>
     </section>
 </main>
-<script src="<?= $jsDatapicker ?>"></script>
-<script src="<?= $jsMaterialkit ?>"></script>
-<script src="<?= $paginator ?>"></script>
-<script defer>
-    $(document).on('click', '#buscarAgenda', BuscarAgenda);
-    function BuscarAgenda(){
-        let formData = {
-            fechaDesde : $('#dp4').val(),
-            fechaHasta : $('#dp1').val(),
-            palabra: $('#palabra').val()
-        };
-        $.ajax({
-            url: '/transparencia/actividades-oficiales/buscar',
-            method: 'POST',
-            data: formData,
-            beforeSend: function(){
-                $('#spinner').hide();
-            },
-            success: function(response){
-                let resp = JSON.parse(response);
-                if(resp.status === 'success'){
-                    $('.agendas').html('<div class="row datos"></div>');
-                    if( resp.data !== null){
-                        generarElementosPaginados(resp.data);
-                    } 
-                } else {
-                    $('.agendas').html('');
-                }
-            }
-        });
-    }
-    function generarElementosPaginados(data) {
-        $('.agendas').pagination({
-            dataSource: data,
-            pageSize: 10,
-            ulClassName: 'pagination justify-content-center pt-2',
-            callback: function(data, pagination) {
-                $('.datos').append(data.join(''));
-                $('.paginationjs li').addClass('page-item');
-                $('.paginationjs a').addClass('page-link');
-            },
-
-        });
-    }
-</script>
