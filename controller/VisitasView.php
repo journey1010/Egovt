@@ -88,7 +88,7 @@ class VisitasView extends BaseViewInterfaz
     {
         $fecha = $_POST['fecha'];
         if(!self::validateDate($fecha)){
-            $respuesta = ['error' => 'Ha ocurrido un error inesperado en la solicitud.'];
+            $respuesta = ['error' => 'Sin registros! Vuelva a intentar con otra fecha.'];
             echo (json_encode($respuesta));
             return;
         }
@@ -97,7 +97,7 @@ class VisitasView extends BaseViewInterfaz
             $resultado = $visitas->visitasNuevasPost($fecha);
             echo $resultado;
         } catch (Throwable $e) {
-            $respuesta = ['error' => 'Ha ocurrido un error inesperado.'];
+            $respuesta = ['error' => 'Sin registros! Vuelva a intentar con otra fecha.'];
             echo(json_encode($respuesta));
             Helper::handlerError($e, 'VisitasView::searchVisits');
         }
