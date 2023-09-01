@@ -209,12 +209,12 @@ class ProyectosInversionView extends BaseViewInterfaz
         $render->render('footer', $dataFooter, false);
     }
 
-    public static function searchObra($tipo, $año, $palabra)
+    public static function searchObra()
     {
         try {
-            $tipo = htmlspecialchars($tipo, ENT_QUOTES, 'UTF-8');
-            $palabra = htmlspecialchars($palabra, ENT_QUOTES, 'UTF-8');
-            $año = filter_var($año, FILTER_VALIDATE_INT);
+            $tipo = htmlspecialchars($_POST['tipo'], ENT_QUOTES, 'UTF-8');
+            $palabra = htmlspecialchars($_POST['palabra'], ENT_QUOTES, 'UTF-8');
+            $año = filter_var($_POST['año'], FILTER_VALIDATE_INT);
             if(!$año){
                 throw new Exception('$año no es una fecha.');
             }

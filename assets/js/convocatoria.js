@@ -1,8 +1,11 @@
+$('.datepicker').datepicker({
+    language: 'es'
+});
 $(document).on('click', '#buscarConvocatoria', BuscarConvocatoria);
 function BuscarConvocatoria() {
     let formData = {
-        fechaDesde: $('#dp4').val(),
-        fechaHasta: $('#dp1').val(),
+        fechaDesde: $('.date-convocatoria1').val(),
+        fechaHasta: $('.date-convocatoria2').val(),
         palabra: $('#palabra').val()
     };
     $.ajax({

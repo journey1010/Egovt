@@ -20,10 +20,9 @@ class AgendaView extends BaseViewInterfaz
             "link" => _ROOT_ASSETS . 'css/datepicker.css'                
         ];
 
-        $pathJs = self::$pathCache;
+        $pathJs = self::$pathJs;
         $moreScript = <<<html
         <script src="{$pathJs}bootstrap-datepicker.js"></script>
-        <script src="{$pathJs}material-kit.js"></script>
         <script src="{$pathJs}pagination.min.js"></script>
         <script src="{$pathJs}agenda.js"></script>
         html;
@@ -40,14 +39,16 @@ class AgendaView extends BaseViewInterfaz
         $render->render('footer', $dataFooter, false);      
     }
 
-    public static function searchAgendaView($desde, $hasta, $palabra)
-    {
+    public static function searchAgendaView()
+    {   
+        $desde = $_POST['fechaDesde'];
+        $hasta = $_POST['fechaHasta'];
         if(!self::validateDate($desde) || !self::validateDate($hasta)){
             $respuesta = ['status' => 'error', 'data'=>''];
             echo (json_encode($respuesta));
             return;
         }
-        $palabra = htmlspecialchars($palabra, ENT_QUOTES, 'UTF-8');
+        $palabra = htmlspecialchars($_POST['palabra'], ENT_QUOTES, 'UTF-8');
 
         try{
             $agendaGorel = new agendaGorel();

@@ -1,3 +1,6 @@
+$('.datepicker').datepicker({
+    language: 'es'
+});
 $(document).ready(function() {
     var table = $('#tabla').DataTable({
         stateSave: true,

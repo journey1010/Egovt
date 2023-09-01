@@ -16,19 +16,19 @@
                 <div class="formCol px-4">
                     <div class="form-group">
                         <label class="d-block fwMedium fontAlter text-lDark mb-2">Desde</label>
-                        <input type="text" class="datepicker form-control border-dark" value="" id="dp4" />
+                        <input type="text" class="datepicker form-control border-dark date-convocatoria1" placeholder="<?= date('Y-m-d')?>" data-date-format="yyyy-mm-dd" value=""/>
                     </div>
                 </div>
                 <div class="formCol px-4">
                     <div class="form-group">
                         <label class="d-block fwMedium fontAlter text-lDark mb-2">Hasta</label>
-                        <input type="text" class="datepicker form-control bg-white border-dark" value="<?= date('d/m/Y') ?>" id="dp1" />
+                        <input type="text" class="datepicker form-control bg-white border-dark date-convocatoria2" placeholder="<?= date('Y-m-d')?>" data-date-format="yyyy-mm-dd"/>
                     </div>
                 </div>
                 <div class="formCol px-4">
                     <div class="form-group">
                         <label class="d-block fwMedium fontAlter text-lDark mb-2">Palabra clave</label>
-                        <input id="palabra" type="text" class="border border-info form-control inputHeightMedium inputBdrTransparent d-block w- shadow">
+                        <input id="palabra" type="text" class="border-dark form-control inputHeightMedium inputBdrTransparent d-block">
                     </div>
                 </div>
                 <button id="buscarConvocatoria" type="button" class="btn btnTheme ml-lg-3 mt-4 mt-lg-0 ml-auto mr-auto mr-lg-0 font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0" data-hover="Buscar">

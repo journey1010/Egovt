@@ -44,7 +44,6 @@ class VisitasView extends BaseViewInterfaz
         $pathJs = self::$pathJs;
         $moreScript = <<<html
         <script src="{$pathJs}bootstrap-datepicker.js"></script>
-        <script src="{$pathJs}material-kit.js"></script>
         <script src="{$pathJs}jquery.dataTables.min.js"></script>
         <script src="{$pathJs}visitas.js"></script>
         html;
@@ -85,8 +84,9 @@ class VisitasView extends BaseViewInterfaz
         $render->render('footer', $dataFooter, false);
     }
 
-    public static function searchVisitsView($fecha)
+    public static function searchVisitsView()
     {
+        $fecha = $_POST['fecha'];
         if(!self::validateDate($fecha)){
             $respuesta = ['error' => 'Ha ocurrido un error inesperado en la solicitud.'];
             echo (json_encode($respuesta));

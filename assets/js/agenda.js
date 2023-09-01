@@ -1,10 +1,12 @@
-$(datepicker).();
+$('.datepicker').datepicker({
+    languaje: 'es'
+});
 
 $(document).on('click', '#buscarAgenda', BuscarAgenda);
 function BuscarAgenda(){
     let formData = {
-        fechaDesde : $('#dp4').val(),
-        fechaHasta : $('#dp1').val(),
+        fechaDesde : $('.date-agenda1').val(),
+        fechaHasta : $('.date-agenda2').val(),
         palabra: $('#palabra').val()
     };
     $.ajax({

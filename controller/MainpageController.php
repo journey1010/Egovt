@@ -45,7 +45,6 @@ class MainpageController extends ViewRenderer {
         }
         
         $dataFooter = [
-            'logoWhite' => $this->ruta . 'logoWhite.png',
             'año' => date('Y'),
             'scripts' => ''
         ];
