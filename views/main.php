@@ -310,4 +310,3 @@
 		</div>
 	</section>
 </main>
-<?= $script ?>
