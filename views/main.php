@@ -56,14 +56,6 @@
 						</a>
 					</li>
 					<li>
-						<a href="https://correo.regionloreto.gob.pe/" alt="correo institucional gore loreto" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
-							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
-								<i class="fal fa-mailbox"><span class="sr-only">icon</span></i>
-							</span>
-							<h2 class="mb-0">Correo <br>Institucional</h2>
-						</a>
-					</li>
-					<li>
 						<a href="https://aplicaciones02.regionloreto.gob.pe/" alt="Enlace a normas, resoluciones e intrumentos de gestión" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
 							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
 								<i class="fal fa-book"><span class="sr-only">icon</span></i>

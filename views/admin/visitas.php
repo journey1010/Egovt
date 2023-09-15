@@ -14,7 +14,7 @@ class visitas extends handleSanitize {
 
     public function RegistrarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.12';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $hora = new DateTime('', new DateTimeZone('UTC'));
         $hora->setTimezone(new DateTimeZone('America/Bogota'));
@@ -93,7 +93,15 @@ class visitas extends handleSanitize {
                 </div>
             </form>
         </div>
-        <script type ="module" src="$ruta"></script>
+        <script type="module">
+            if (!window.miScriptCargado) {
+                const script = document.createElement('script');
+                script.src = '$ruta';
+                script.type = 'module';
+                document.body.appendChild(script);
+                window.miScriptCargado = true;
+            }
+        </script>
         <script src="$ruta2"></script>
         <script>
             function updateDateTime() {
@@ -124,7 +132,7 @@ class visitas extends handleSanitize {
 
     public function ActualizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.12';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $conexion = new MySQLConnection();
         $tablaRow = $this->getTablaRow($conexion);
@@ -153,14 +161,22 @@ class visitas extends handleSanitize {
             </div>
         </div>
         <script src="$ruta2"></script>
-        <script type ="module" src="$ruta"></script>
+        <script type="module">
+            if (!window.miScriptCargado) {
+                const script = document.createElement('script');
+                script.src = '$ruta';
+                script.type = 'module';
+                document.body.appendChild(script);
+                window.miScriptCargado = true;
+            }
+        </script>
         Html;
         return $html;
     }
 
     public function RegularizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.12';
         $conexion = new MySQLConnection();
         $select = $this->getSelect($conexion);
         $selectFuncionario = $this->getSelectFuncionario($conexion);
@@ -228,14 +244,22 @@ class visitas extends handleSanitize {
                 </div>
             </form>
         </div>
-        <script type ="module" src="$ruta"></script>
+        <script type="module">
+            if (!window.miScriptCargado) {
+                const script = document.createElement('script');
+                script.src = '$ruta';
+                script.type = 'module';
+                document.body.appendChild(script);
+                window.miScriptCargado = true;
+            }
+        </script>
         Html;
         return $html;
     }
 
     public function ExportarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.12';
         $html = <<<Html
         <div class="card card-primary mt-3 mx-auto w-100">
             <div class="card-header">
@@ -280,7 +304,15 @@ class visitas extends handleSanitize {
             <div class="card-body table-responsive p-2 mt-3 mx-auto" id="respuestaReportVisitas">     
             </div>
         </div>
-        <script  type ="module" src="$ruta"></script>
+        <script type="module">
+            if (!window.miScriptCargado) {
+                const script = document.createElement('script');
+                script.src = '$ruta';
+                script.type = 'module';
+                document.body.appendChild(script);
+                window.miScriptCargado = true;
+            }
+        </script>
         Html;
         return $html;
     }

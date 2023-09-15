@@ -67,9 +67,6 @@
 									<a href="/enconstruccion" alt="Mapa del sitio" targert="_blank">Mapa del Sitio</a>
 								</li>
 								<li>
-									<a href="https://correo.regionloreto.gob.pe/" target="_self" alt="Enlace al correo institicional">Correo Institucional</a>
-								</li>
-								<li>
 									<a href="https://serviciosportal.reniec.gob.pe/cetdnipi/inicio.htm" alt="Consulta DNI" target="_blank">Consulta el estado de tu trámite para la obtención de tu DNI</a>
 								</li>
 								<li>
