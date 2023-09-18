@@ -9,7 +9,6 @@
         background-color: #f1f1f1;
         cursor: pointer;
     }
-
     .details-control .fa {
         margin-right: 0.5em;
     }
@@ -44,7 +43,6 @@
                             <th>¿A quién visita?</th>
                             <th>Ingreso</th>
                             <th>Salida</th>
-                            <th>Autorización</th>
                             <th>Motivo</th>
                         </tr>
                     </thead>

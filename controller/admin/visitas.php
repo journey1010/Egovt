@@ -5,8 +5,6 @@ require_once(_ROOT_PATH . '/vendor/autoload.php');
 
 
 use Dompdf\Dompdf;
-use Dompdf\Css\Stylesheet;
-
 
 class visitas extends handleSanitize
 {
@@ -14,18 +12,17 @@ class visitas extends handleSanitize
     public function RegistrarVisita()
     {
         try {
-            $dniVisita = $_POST['dniVisita'];
+            $numeroDoc = $_POST['numeroDoc'];
             $tipoDoc = $_POST['tipoDoc'];
             $apellidosNombres = $_POST['apellidosNombres'];
             $institucionVisitante = $_POST['institucionVisitante'];
             $oficina = $_POST['oficina'];
             $personaAVisitar = $_POST['personaAVisitar'];
             $horaDeIngreso = $_POST['horaDeIngreso'];
-            $quienAutoriza = $_POST['quienAutoriza'];
             $motivo = $_POST['motivo'];
 
             if (
-                !empty($dniVisita) &&
+                !empty($numeroDoc) &&
                 !empty($tipoDoc) &&
                 !empty($institucionVisitante) &&
                 !empty($apellidosNombres) &&
@@ -33,26 +30,23 @@ class visitas extends handleSanitize
                 !empty($horaDeIngreso)
 
             ) {
-                $dniVisita = $this->strtoupperString($dniVisita);
+                $numeroDoc = $this->strtoupperString($numeroDoc);
                 $tipoDoc = $this->strtoupperString($tipoDoc);
-                $documento = $tipoDoc . ' : ' . $dniVisita;
                 $apellidosNombres = $this->strtoupperString($apellidosNombres);
                 $institucionVisitante = $this->strtoupperString($institucionVisitante);
-                $oficina = $this->strtoupperString($oficina);
-                $oficina = explode('-', $oficina);
+                $oficina = explode('-',$this->strtoupperString($oficina));
                 $oficina = $oficina[0];
                 $personaAVisitar = $this->strtoupperString($personaAVisitar);
-                $quienAutoriza = $this->strtoupperString($quienAutoriza);
                 $motivo = $this->strtoupperString($motivo);
 
                 $conexion = new MySQLConnection();
                 $sqlSentence = 'INSERT INTO visitas (
                     apellidos_nombres,
-                    dni,
+                    tipo_documento,
+                    numero_documento,
                     area_que_visita, 
                     persona_a_visitar, 
                     hora_de_ingreso,
-                    quien_autoriza, 
                     motivo,
                     institución_visitante
                 ) VALUES (
@@ -60,11 +54,11 @@ class visitas extends handleSanitize
                 )';
                 $params = [
                     $apellidosNombres,
-                    $documento,
+                    $tipoDoc,
+                    $numeroDoc,
                     $oficina,
                     $personaAVisitar,
                     $horaDeIngreso,
-                    $quienAutoriza,
                     $motivo,
                     $institucionVisitante
                 ];
@@ -114,7 +108,7 @@ class visitas extends handleSanitize
     public function RegularizarVisita()
     {
         try {
-            $camposRequeridos = ['dniVisita', 'apellidosNombres', 'oficina', 'personaAVisitar', 'institucionVisitante', 'horaDeIngreso', 'quienAutoriza', 'motivo', 'horaDeSalida'];
+            $camposRequeridos = ['numeroDoc', 'apellidosNombres', 'oficina', 'personaAVisitar', 'institucionVisitante', 'horaDeIngreso', 'quienAutoriza', 'motivo', 'horaDeSalida'];
             foreach ($camposRequeridos as $campo) {
                 extract([$campo => $this->SanitizeVarInput($_POST[$campo])]);
             }
@@ -142,7 +136,7 @@ class visitas extends handleSanitize
             )';
             $params = [
                 $apellidosNombres,
-                $dniVisita,
+                $numeroDoc,
                 $oficina,
                 $personaAVisitar,
                 $horaDeIngreso,
@@ -186,7 +180,7 @@ class visitas extends handleSanitize
         $fechaHasta = $this->SanitizeVarInput($_POST['fechaHasta']);
 
         $conexion = new MySQLConnection();
-        $sql ="SELECT v.apellidos_nombres as apn, v.dni as doc, v.institución_visitante as iv, o.nombre as ofi, v.persona_a_visitar as pv, v.hora_de_ingreso as hi, v.hora_de_salida as hs, v.quien_autoriza as qa, v.motivo as m FROM visitas AS v 
+        $sql ="SELECT v.apellidos_nombres as apn, CONCAT(v.tipo_documento, ' ', v.numero_documento) as doc, v.institución_visitante as iv, o.nombre as ofi, v.persona_a_visitar as pv, v.hora_de_ingreso as hi, v.hora_de_salida as hs, v.motivo as m FROM visitas AS v 
                INNER JOIN oficinas AS o ON o.id = v.area_que_visita 
                WHERE v.hora_de_ingreso BETWEEN :fechDesde1 AND :fechHasta1  AND (v.hora_de_salida BETWEEN :fechDesde2 AND :fechHasta2 OR v.hora_de_salida IS NULL)
                ORDER BY v.hora_de_ingreso";
@@ -218,7 +212,6 @@ class visitas extends handleSanitize
                 <td>{$row['pv']}</td>
                 <td>{$row['hi']}</td>
                 <td>{$row['hs']}</td>
-                <td>{$row['qa']}</td>
                 <td>{$row['m']}</td>
             </tr>
             Html;
@@ -245,8 +238,8 @@ class visitas extends handleSanitize
                     margin: 0;
                     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
                     font-size: 1rem;
-                    font-weight: 400;
-                    line-height: 1.5;
+                    font-weight: 300;
+                    line-height: 1.2;
                     color: #212529;
                     text-align: left;
                     background-color: #fff;
@@ -486,7 +479,6 @@ class visitas extends handleSanitize
                                     <th scope="col" style="width: 15%">¿A quién visita?</th>
                                     <th scope="col" style="width: 15%">Ingreso</th>
                                     <th scope="col" style="width: 15%">Salida</th>
-                                    <th scope="col" style="width: 15%">Quien Autoriza</th>
                                     <th scope="col" style="width: 15%">Motivo</th>
                                 </tr>
                             </thead>

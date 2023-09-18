@@ -6,22 +6,16 @@ class oficinas extends handleSanitize {
 
     public function RegistrarOficina () {
         try {
-            $jerarquia = $_POST['jerarquia'];    
             $nombre = $_POST['nombre'];    
             $sigla = $_POST['sigla'];
 
-            if (!empty ($jerarquia) && !empty($nombre) && !empty($sigla))  {
-                $jerarquia = $this->SanitizeVarInput($jerarquia);    
+            if (!empty($nombre) && !empty($sigla))  {    
                 $nombre = $this->SanitizeVarInput($nombre);
                 $sigla = $this->SanitizeVarInput($sigla);                
 
-                $jerarquia=strtoupper($jerarquia);
-                $nombre = strtoupper($nombre);
-                $sigla = strtoupper($sigla);
-
                 $conexion = new MySQLConnection ();
-                $sqlSentence = "INSERT INTO oficinas (nombre, sigla, jerarquia) VALUES (?,?,?)";
-                $params = [$nombre, $sigla, $jerarquia];
+                $sqlSentence = "INSERT INTO oficinas (nombre, sigla) VALUES (?,?)";
+                $params = [$nombre, $sigla];
                 $conexion->query($sqlSentence, $params, '' , false);
                 $conexion->close();
                 $respuesta = array("success" => "Registro existosamente guardado");
@@ -42,13 +36,12 @@ class oficinas extends handleSanitize {
     {
         try{
             $id =$this->SanitizeVarInput($_POST['id']);        
-            $jerarquia = $this->SanitizeVarInput($_POST['jerarquia']);    
             $nombre = $this->SanitizeVarInput($_POST['nombre']);
             $sigla = $this->SanitizeVarInput($_POST['sigla']);
 
             $conexion = new MySQLConnection();
-            $sqlSentence = "UPDATE oficinas SET  nombre  = ?, sigla = ? , jerarquia = ? WHERE id= ?";
-            $params =  [$nombre, $sigla, $jerarquia, $id];
+            $sqlSentence = "UPDATE oficinas SET nombre  = ?, sigla = ? WHERE id= ?";
+            $params =  [$nombre, $sigla, $id];
             $conexion->query($sqlSentence, $params,  '', false);
             $conexion->close();
             $respuesta = array("success" => "Actualización existosa");

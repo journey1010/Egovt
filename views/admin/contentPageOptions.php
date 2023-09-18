@@ -89,19 +89,19 @@ class contentPageOptions {
         return $resultado; 
     }
 
-    public function RegistrarFuncionarios() 
-    {
-        $funcionarios = new funcionarios();
-        $resultado = $funcionarios->RegistrarFuncionarios();
-        return $resultado;
-    }
+    // public function RegistrarFuncionarios() 
+    // {
+    //     $funcionarios = new funcionarios();
+    //     $resultado = $funcionarios->RegistrarFuncionarios();
+    //     return $resultado;
+    // }
 
-    public function ActualizarFuncionarios()
-    {
-        $funcionarios = new funcionarios();
-        $resultado = $funcionarios->ActualizarFuncionarios();
-        return $resultado;
-    }   
+    // public function ActualizarFuncionarios()
+    // {
+    //     $funcionarios = new funcionarios();
+    //     $resultado = $funcionarios->ActualizarFuncionarios();
+    //     return $resultado;
+    // }   
 
     public function Contacto()
     {
