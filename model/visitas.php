@@ -10,8 +10,11 @@ class visitas
         $resultadosPorPagina = 15;
         if (!isset($conexion)) {
             $conexion = new MySQLConnection();
-            $sql = "SELECT v.apellidos_nombres as apnombre, v.institución_visitante as iv, v.dni as dni, CONCAT(o.nombre, ' ', o.sigla ) AS oficina, v.persona_a_visitar as visita, v.hora_de_ingreso as hringreso, v.hora_de_salida as hrsalida, v.quien_autoriza as quienautoriza,
-                v.motivo as motivo FROM visitas AS v INNER JOIN oficinas AS o ON v.area_que_visita =  o.id  ORDER BY hringreso DESC";
+            $sql = "SELECT v.apellidos_nombres as apnombre, v.institución_visitante as iv, CONCAT(v.tipo_documento, ' : ', v.numero_documento ) as documento, CONCAT(o.nombre, ' ', o.sigla ) AS oficina, v.persona_a_visitar as visita, v.hora_de_ingreso as hringreso, v.hora_de_salida as hrsalida,
+                v.motivo as motivo 
+                FROM visitas AS v 
+                INNER JOIN oficinas AS o ON v.area_que_visita =  o.id  
+                ORDER BY hringreso DESC";
             $params = '';
         }
         
@@ -30,24 +33,22 @@ class visitas
         foreach ($resultados as $row) {
             $apnombre = $row['apnombre'];
             $institucionVisitante = $row['iv'];
-            $dni = $row['dni'];
+            $documento = $row['documento'];
             $oficina = $row['oficina'];
             $visita = $row['visita'];
             $hringreso = $row['hringreso'];
             $hrsalida = $row['hrsalida'];
-            $quienautoriza = $row['quienautoriza'];
             $motivo = $row['motivo'];
 
             $tablaFila .= <<<Html
                 <tr>
                 <td class="d-flex align-items-center vertical-align"><i class="fa fa-eye details-control mr-2"></i> $apnombre</td>    
-                <td>$dni</td>
+                <td>$documento</td>
                 <td>$institucionVisitante</td>
                 <td>$oficina</td>
                 <td>$visita</td>
                 <td>$hringreso</td>
                 <td>$hrsalida</td>
-                <td>$quienautoriza</td>
                 <td>$motivo</td>
                 </tr>
             Html;
@@ -59,31 +60,32 @@ class visitas
     public function visitasNuevasPost(string $fecha)
     {
         $conexion = new MySQLConnection();
-        $sql = "SELECT v.apellidos_nombres as apnombre, v.dni as dni, CONCAT(o.nombre, ' ', o.sigla ) AS oficina, v.persona_a_visitar as visita, v.hora_de_ingreso as hringreso, v.hora_de_salida as hrsalida, v.quien_autoriza as quienautoriza,
-        v.motivo as motivo FROM visitas AS v INNER JOIN oficinas AS o ON v.area_que_visita =  o.id  WHERE DATE(v.hora_de_ingreso)= :fecha ";
+        $sql = "SELECT v.apellidos_nombres as apnombre, CONCAT(v.tipo_documento, ' : ', v.numero_documento) as documento, CONCAT(o.nombre, ' ', o.sigla ) AS oficina, v.persona_a_visitar as visita, v.hora_de_ingreso as hringreso, v.hora_de_salida as hrsalida,
+        v.motivo as motivo 
+        FROM visitas AS v 
+        INNER JOIN oficinas AS o ON v.area_que_visita =  o.id  
+        WHERE DATE(v.hora_de_ingreso)= :fecha ";
         $params[":fecha"] = $fecha;
         $stmt =  $conexion->query($sql, $params, '', false);
         $resultado = $stmt->fetchAll();
         $tablaFila = '';
         foreach ($resultado as $row) {
             $apnombre = $row['apnombre'];
-            $dni = $row['dni'];
+            $documento = $row['documento'];
             $oficina = $row['oficina'];
             $visita = $row['visita'];
             $hringreso = $row['hringreso'];
             $hrsalida = $row['hrsalida'];
-            $quienautoriza = $row['quienautoriza'];
             $motivo = $row['motivo'];
 
             $tablaFila .= <<<Html
                 <tr>
-                <td class="text-nowrap"><i class="fa fa-eye details-control"></i> $apnombre</td>    
-                <td>$dni</td>
+                <td class="text-nowrap">$apnombre</td>    
+                <td>$documento</td>
                 <td>$oficina</td>
                 <td>$visita</td>
                 <td class="text-nowrap">$hringreso</td>
                 <td class="text-nowrap">$hrsalida</td>
-                <td>$quienautoriza</td>
                 <td>$motivo</td>
                 </tr>
             Html;
@@ -99,7 +101,6 @@ class visitas
                     <th class="text-nowrap">¿A quién visita?</th>
                     <th>Ingreso</th>
                     <th>Salida</th>
-                    <th>Autorización</th>
                     <th>Motivo</th>
                 </tr>
             </thead>

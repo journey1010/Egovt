@@ -45,7 +45,7 @@ class VisitasView extends BaseViewInterfaz
         $moreScript = <<<html
         <script src="{$pathJs}bootstrap-datepicker.js"></script>
         <script src="{$pathJs}jquery.dataTables.min.js"></script>
-        <script src="{$pathJs}visitas.js?v=1.1"></script>
+        <script src="{$pathJs}visitas.js?v=1.2"></script>
         html;
 
         $dataFooter = [

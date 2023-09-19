@@ -77,7 +77,7 @@ class viewConstruct{
         try {
             switch($tipoUser){
                 case 'admin':
-                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'funcionarios', 'rrhhasistencia', 'agendagobernador', 'convocatorias');
+                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'rrhhasistencia', 'agendagobernador', 'convocatorias');
                 break;
                 case 'visitor':
                     $opciones = array ('visitas');
@@ -85,9 +85,9 @@ class viewConstruct{
                 case 'obras':
                     $opciones = array ( 'obras' );
                 break; 
-                case 'funcionarios':
-                    $opciones = array ('funcionarios');
-                break;
+                // case 'funcionarios':
+                //     $opciones = array ('funcionarios');
+                // break;
                 case 'rrhhasistencia': 
                     $opciones = array ('rrhhasistencia');
                 break;
@@ -135,8 +135,8 @@ class viewConstruct{
                     'regularizar-visitas' => $contentPage->RegularizarVisitas(),
                     'registrar-obras' => $contentPage->RegistrarObras(),
                     'actualizar-obras' => $contentPage->ActualizarObras(),
-                    'registrar-funcionarios' => $contentPage->RegistrarFuncionarios(),
-                    'actualizar-funcionarios' => $contentPage->ActualizarFuncionarios(),
+                    // 'registrar-funcionarios' => $contentPage->RegistrarFuncionarios(),
+                    // 'actualizar-funcionarios' => $contentPage->ActualizarFuncionarios(),
                     'registrar-archivo' => $contentPage->loadFile(),
                     'ver-registros'=> $contentPage->verRegistros(),
                     'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),
@@ -163,9 +163,9 @@ class viewConstruct{
                     'contacto' => $contentPage->Contacto()
                 ],
 
-                'funcionarios' => [
-                    '' => $contentPage->RegistrarFuncionarios()
-                ],
+                // 'funcionarios' => [
+                //     '' => $contentPage->RegistrarFuncionarios()
+                // ],
 
                 'rrhhasistencia' => [
                     '' => $contentPage->loadFile(),

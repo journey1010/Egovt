@@ -121,7 +121,7 @@ class funcionarios extends handleSanitize {
 
     private function getOficinas(MySQLConnection $conexion) 
     {   
-        $sql = "SELECT CONCAT(id,'-', grupo ) AS id_ofi ,CONCAT(nombre, ' ', sigla) AS nombreCompleto FROM oficinas";
+        $sql = "SELECT id AS id_ofi ,CONCAT(nombre, ' ', sigla) AS nombreCompleto FROM oficinas";
         $smt = $conexion->query($sql, '', '', false);
         $resultado = $smt->fetchAll();
         $options = '';

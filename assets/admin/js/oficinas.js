@@ -12,7 +12,6 @@ $(document).on("submit", "#registrarOficina", function (e) {
   e.preventDefault();
   if ($('input[name="nombreOfi"]').val() !== '' && $('input[name="sigla"]').val() !== '') {
     let formData = {
-      jerarquia: $('#tipoOrgano').val(),
       nombre: $('#nombreOfi').val(),
       sigla: $('#sigla').val()
     };
@@ -89,8 +88,7 @@ function save() {
   let formData = {
     id: row.find("td:eq(0)").text(),
     nombre: row.find("td:eq(1)").text(),
-    jerarquia : row.find("td:eq(2)").text(),
-    sigla: row.find("td:eq(3)").text()
+    sigla: row.find("td:eq(2)").text()
   };
 
   $.ajax({

@@ -9,7 +9,7 @@ $(document).ready(function() {
         ordering: false,
         info: false
     });
-    table.columns([7, 8]).visible(false);
+    table.columns([7]).visible(false);
 
     $('#tabla tbody').on('click', '.details-control', function() {
         var tr = $(this).closest('tr');
@@ -27,8 +27,7 @@ $(document).ready(function() {
     function format(rowData) {
         data = `
             <div >
-                <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Autorización:</strong> <br> ${rowData[7]}</p> 
-                <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Motivo:</strong> <br> ${rowData[8]}</p>
+                <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Motivo:</strong> <br> ${rowData[7]}</p>
             </div>
             `;
         return data;
@@ -77,29 +76,5 @@ $(document).on('click', '#btnFecha', function() {
                 }
             }
         });
-        table.columns([7, 8]).visible(false);
-
-        $('#tabla tbody').on('click', '.details-control', function() {
-            var tr = $(this).closest('tr');
-            var row = table.row(tr);
-
-            if (row.child.isShown()) {
-                row.child.hide();
-                tr.removeClass('shown');
-            } else {
-                row.child(format(row.data())).show();
-                tr.addClass('shown');
-            }
-        });
-
-        function format(rowData) {
-            data = `
-            <div>
-                <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Autorización:</strong> <br> ${rowData[7]}</p> 
-                <p style=" margin-bottom: 0px; overflow-wrap: anywhere"><strong>Motivo:</strong> <br> ${rowData[8]}</p>
-            </div>
-            `;
-            return data;
-        }
     }
 });

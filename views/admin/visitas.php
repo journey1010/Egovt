@@ -14,7 +14,7 @@ class visitas extends handleSanitize {
 
     public function RegistrarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.12';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.13';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $hora = new DateTime('', new DateTimeZone('UTC'));
         $hora->setTimezone(new DateTimeZone('America/Bogota'));
@@ -22,7 +22,6 @@ class visitas extends handleSanitize {
 
         $conexion = new MySQLConnection();
         $select = $this->getSelect($conexion);
-        $selectFuncionario = $this->getSelectFuncionario($conexion);
         $html = <<<Html
         <div class="card card-primary mt-3 mx-auto">
             <div class="card-header">
@@ -46,15 +45,15 @@ class visitas extends handleSanitize {
                         </div>
                         <button type="submit" class="btn btn-secondary" id="BuscarDNIVisita">Buscar DNI</button>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-12">
                                 <label for="labelNombreCompleto">Nombre completo (obligatorio)</label>
                                 <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-12">
                                 <label for="InstitucionVisitante">Institución del visitante (obligatorio)</label>
                                 <input type="text" class="form-control" id="InstitucionVisitante" placeholder="">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>Oficina (obligatorio)</label>
                                     <select id="oficina" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
@@ -63,25 +62,15 @@ class visitas extends handleSanitize {
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="quien_autoriza">¿Quién autoriza? *</label>
-                                    <select id="quien_autoriza" class="form-control select2 select2-hidden-accessible" data-placeholder="" style="width: 100%; 
-                                        height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
-                                        $selectFuncionario
-                                    </select>
-                                </div>
-                                
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-12">
                                 <label for="HoraIngreso">Hora de ingreso</label>
                                 <input type="text" class="form-control" id="hora_de_ingreso" value="$dateTimeNow" disabled>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-12">
                                 <label for="persona_a_visitar">¿A quién visita?</label>
                                 <input type="text" class="form-control" id="persona_a_visitar" placeholder="">
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-7 col-sm-12">
                                 <label for="motivo">Motivo de la visita</label>
                                 <textarea type="text" class="form-control text-content" id="motivo" placeholder="Descripción del motivo de visita"  style="min-height: 100px;
                                 max-width: 100%"></textarea>
@@ -117,7 +106,7 @@ class visitas extends handleSanitize {
 
     private function getSelect(MySQLConnection $conexion): string
     {
-        $sql = "SELECT CONCAT(id,'-', grupo ) AS id_ofi ,CONCAT(nombre, ' ', sigla) AS nombreCompleto FROM oficinas";
+        $sql = "SELECT id AS id_ofi ,CONCAT(nombre, ' ', sigla) AS nombreCompleto FROM oficinas";
         $smt = $conexion->query($sql, '', '', false);
         $resultado = $smt->fetchAll();
         $options = '';
@@ -132,7 +121,7 @@ class visitas extends handleSanitize {
 
     public function ActualizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.12';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.13';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $conexion = new MySQLConnection();
         $tablaRow = $this->getTablaRow($conexion);
@@ -176,10 +165,9 @@ class visitas extends handleSanitize {
 
     public function RegularizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.12';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.13';
         $conexion = new MySQLConnection();
         $select = $this->getSelect($conexion);
-        $selectFuncionario = $this->getSelectFuncionario($conexion);
         $html = <<<Html
         <div class="card card-primary mt-3 mx-auto">
             <div class="card-header">
@@ -193,7 +181,7 @@ class visitas extends handleSanitize {
                     </div>
                     <button type="submit" class="btn btn-secondary" id="BuscarDNIVisita">Buscar</button>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-sm-12">
                             <label for="labelNombreCompleto">Nombre completo (obligatorio)</label>
                             <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
                         </div>
@@ -206,33 +194,23 @@ class visitas extends handleSanitize {
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="quien_autoriza">¿Quién autoriza?</label>
-                                <select id="quien_autoriza" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
-                                    height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
-                                    $selectFuncionario
-                                </select>
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-sm-12">
                             <label for="institucionVisitanteR">Institución visitante(obligatorio)</label>
                             <input type="text" class="form-control" id="institucionVisitanteR" value="">
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-sm-12">
                             <label for="HoraIngreso">Hora de ingreso(obligatorio)</label>
                             <input type="datetime-local" class="form-control" id="hora_de_ingresoR" value="">
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 col-sm-12">
                             <label for="HoraIngreso">Hora de salida</label>
                             <input type="datetime-local" class="form-control" id="hora_de_salidaR" value="">
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 col-sm-12">
                             <label for="persona_a_visitar">¿A quién visita? </label>
                             <input type="text" class="form-control" id="persona_a_visitar" placeholder="">
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-sm-12">
                             <label for="motivo">Motivo de la visita</label>
                             <textarea type="text" class="form-control text-content" id="motivo" placeholder="Descripción del motivo de visita"  style="min-height: 100px;
                             max-width: 100%"></textarea>
@@ -319,20 +297,20 @@ class visitas extends handleSanitize {
 
     private function getTablaRow(MySQLConnection $conexion): string
     {
-        $sql = "SELECT id, dni, apellidos_nombres, hora_de_ingreso, hora_de_salida, motivo  FROM visitas WHERE hora_de_salida IS NULL ";
+        $sql = "SELECT id, CONCAT(tipo_documento, ': ', numero_documento) as documento, apellidos_nombres, hora_de_ingreso, hora_de_salida, motivo  FROM visitas WHERE hora_de_salida IS NULL ";
         $smt = $conexion->query($sql, '', '', false);
         $resultado = $smt->fetchAll();
         $tablaRow = '';
         foreach ($resultado as $row) {
             $id = $row['id'];
-            $dni = $row['dni'];
+            $documento = $row['documento'];
             $apellidoNombre = $row['apellidos_nombres'];
             $horaIngreso = $row['hora_de_ingreso'];
             $horaSalida = $row['hora_de_salida'];
             $motivo = $row['motivo'];
             $tablaRow .= "<tr>";
             $tablaRow .= "<td class=\"text-center\">$id</td>";
-            $tablaRow .= "<td class=\"text-center\">$dni</td>";
+            $tablaRow .= "<td class=\"text-center\">$documento</td>";
             $tablaRow .= "<td class=\"text-center\">$apellidoNombre</td>";
             $tablaRow .= "<td class=\"text-center\">$horaIngreso</td>";
             $tablaRow .= "<td class=\"text-center\">$horaSalida</td>";
@@ -348,20 +326,5 @@ class visitas extends handleSanitize {
         }
         $conexion->close();
         return $tablaRow;
-    }
-
-    private function getSelectFuncionario (MySQLConnection $conexion)
-    {
-        
-        $sql = "SELECT f.nombre_completo AS nombre FROM funcionarios AS f INNER JOIN oficinas as o ON f.id_oficina = o.id WHERE f.id_oficina =  1 AND f.estado = 1  AND f.nivel = 1 AND f.grupo_oficina = 1";
-        $stmt = $conexion->query($sql, '', '', false);
-        $resultado = $stmt->fetchAll();
-
-        $options =  '<option value="">Seleccionar</option>';
-        foreach($resultado as $row) {
-            $funcionario = $row['nombre'];
-            $options .= "<option value=\"$funcionario\">$funcionario</option>";
-        }
-        return $options;
     }
 }
