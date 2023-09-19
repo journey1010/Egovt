@@ -77,7 +77,7 @@ class viewConstruct{
         try {
             switch($tipoUser){
                 case 'admin':
-                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'rrhhasistencia', 'agendagobernador', 'convocatorias');
+                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'agendagobernador', 'convocatorias');
                 break;
                 case 'visitor':
                     $opciones = array ('visitas');
@@ -88,9 +88,6 @@ class viewConstruct{
                 // case 'funcionarios':
                 //     $opciones = array ('funcionarios');
                 // break;
-                case 'rrhhasistencia': 
-                    $opciones = array ('rrhhasistencia');
-                break;
                 case 'adminmainpage':
                     $opciones = array ('adminmainpage');
                 break;
@@ -137,8 +134,6 @@ class viewConstruct{
                     'actualizar-obras' => $contentPage->ActualizarObras(),
                     // 'registrar-funcionarios' => $contentPage->RegistrarFuncionarios(),
                     // 'actualizar-funcionarios' => $contentPage->ActualizarFuncionarios(),
-                    'registrar-archivo' => $contentPage->loadFile(),
-                    'ver-registros'=> $contentPage->verRegistros(),
                     'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),
                     'actualizar-agenda' => $contentPage->ActualizarAgendaGobernador(),
                     'exportar-visitas' => $contentPage->ExportarVisitas(),
@@ -166,12 +161,6 @@ class viewConstruct{
                 // 'funcionarios' => [
                 //     '' => $contentPage->RegistrarFuncionarios()
                 // ],
-
-                'rrhhasistencia' => [
-                    '' => $contentPage->loadFile(),
-                    'registrar-archivo' => $contentPage->loadFile(),
-                    'ver-registros' => $contentPage->verRegistros(),
-                ], 
                 'agendagobernador' => [
                     '' => $contentPage->RegistrarAgendaGobernador(),
                     'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),

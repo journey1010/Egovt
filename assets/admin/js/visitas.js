@@ -7,7 +7,6 @@ function select2() {
   });
 }
 
-//buscar dni visita
 $(document).on("click", "#BuscarDNIVisita", buscarDNIVisita);
 function buscarDNIVisita(e) {
   e.preventDefault();
