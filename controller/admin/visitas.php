@@ -22,14 +22,16 @@ class visitas extends handleSanitize
             $motivo = $_POST['motivo'];
 
             if (
-                !empty($numeroDoc) &&
-                !empty($tipoDoc) &&
-                !empty($institucionVisitante) &&
-                !empty($apellidosNombres) &&
-                !empty($oficina) &&
-                !empty($horaDeIngreso)
-
+                empty($numeroDoc) &&
+                empty($tipoDoc) &&
+                empty($institucionVisitante) &&
+                empty($apellidosNombres) &&
+                empty($oficina) &&
+                empty($horaDeIngreso)
             ) {
+                echo (json_encode(['error'=>'Los datos obligatorios no deben estar vacíos.']));
+                return;
+            } else {
                 $numeroDoc = $this->strtoupperString($numeroDoc);
                 $tipoDoc = $this->strtoupperString($tipoDoc);
                 $apellidosNombres = $this->strtoupperString($apellidosNombres);
@@ -63,19 +65,12 @@ class visitas extends handleSanitize
                     $institucionVisitante
                 ];
                 $conexion->query($sqlSentence, $params, '', false);
-                $conexion->close();
-                $respuesta = array('success' => 'visita registrado con exito');
-                print_r(json_encode($respuesta));
-            } else {
-                $respuesta = array('error' => 'Los datos obligatorios no deben estar vacíos.');
-                print_r(json_encode($respuesta));
+                echo (json_encode(['status'=>'success','message'=>'Registro guardado.']));
             }
         } catch (Throwable $e) {
             $this->handlerError($e);
-            $respuesta = array('error' => 'Error al guardar datos.');
-            print_r(json_encode($respuesta));
+            echo(json_encode(['status'=>'error', 'message'=>'Error al guardar registro.']));
         }
-        return;
     }
 
     public function ActualizarVisita()
@@ -86,34 +81,26 @@ class visitas extends handleSanitize
             $motivo = $_POST['motivo'];
             if (!empty($horaSalida)) {
                 $motivo = $this->strtoupperString($motivo);
-
                 $conexion = new MySQLConnection();
                 $sqlSentence = "UPDATE visitas SET hora_de_salida = ?, motivo = ? WHERE id= ?";
                 $params = [$horaSalida, $motivo, $id];
                 $conexion->query($sqlSentence, $params, '', false);
-                $conexion->close();
-                $respuesta = array('success' => 'visita actualizada con exito');
-                print_r(json_encode($respuesta));
+                echo(json_encode(['status'=>'success', 'message'=>'Visita actualizada.']));
             } else {
-                $respuesta = array('error' => 'Los datos obligatorios no deben estar vacíos.');
-                print_r(json_encode($respuesta));
+                echo(json_encode(['status'=>'error','message'=>'Los datos obligatorios no debe estar vacíos']));
             }
         } catch (Throwable $e) {
             $this->handlerError($e);
-            $respuesta = array('error' => 'Error al actualizar datos.');
-            print_r(json_encode($respuesta));
+            echo(json_encode(['status'=>'error', 'message'=>'Error al actualizar los datos']));
         }
     }
 
     public function RegularizarVisita()
     {
         try {
-            $camposRequeridos = ['numeroDoc', 'apellidosNombres', 'oficina', 'personaAVisitar', 'institucionVisitante', 'horaDeIngreso', 'quienAutoriza', 'motivo', 'horaDeSalida'];
+            $camposRequeridos = ['tipoDoc', 'numeroDoc', 'apellidosNombres', 'oficina', 'personaAVisitar', 'institucionVisitante', 'horaDeIngreso', 'motivo', 'horaDeSalida'];            
             foreach ($camposRequeridos as $campo) {
-                extract([$campo => $this->SanitizeVarInput($_POST[$campo])]);
-            }
-            foreach($camposRequeridos as $campo){
-                ${$campo} = $this->strtoupperString(${$campo});
+                $$campo = $this->SanitizeVarInput($_POST[$campo]);
             }
             if(empty($horaDeSalida)){
                 $horaDeSalida = NULL;
@@ -122,12 +109,12 @@ class visitas extends handleSanitize
             $oficina = $oficina[0];
             $conexion = new MySQLConnection();
             $sqlSentence = 'INSERT INTO visitas (
-                apellidos_nombres, 
-                dni,
+                apellidos_nombres,
+                tipo_documento, 
+                numero_documento,
                 area_que_visita, 
                 persona_a_visitar, 
-                hora_de_ingreso,
-                quien_autoriza, 
+                hora_de_ingreso, 
                 motivo,
                 hora_de_salida,
                 institución_visitante
@@ -136,11 +123,11 @@ class visitas extends handleSanitize
             )';
             $params = [
                 $apellidosNombres,
+                $tipoDoc,
                 $numeroDoc,
                 $oficina,
                 $personaAVisitar,
                 $horaDeIngreso,
-                $quienAutoriza,
                 $motivo,
                 $horaDeSalida,
                 $institucionVisitante
@@ -238,7 +225,6 @@ class visitas extends handleSanitize
                     margin: 0;
                     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
                     font-size: 1rem;
-                    font-weight: 300;
                     line-height: 1.2;
                     color: #212529;
                     text-align: left;
@@ -395,7 +381,7 @@ class visitas extends handleSanitize
                     color: #212529;
                 }
                 .table td, .table th {
-                    padding: .75rem;
+                    padding: .65rem;
                     vertical-align: top;
                     border-top: 1px solid #dee2e6;
                 }
@@ -469,16 +455,16 @@ class visitas extends handleSanitize
                     </div>
                     <div class="col-lg-12 line"></div>
                     <div class="col-lg-12 mt-1">
-                        <table class="table table-bordered" style="font-size: 14px">
+                        <table class="table table-bordered" style="font-size: 10px">
                             <thead>
                                 <tr>
-                                    <th scope="col" style="width: 15%">Apellidos y Nombres</th>
-                                    <th scope="col" style="width: 15%">Documento</th>
+                                    <th scope="col" style="width: 12%">Apellidos y Nombres</th>
+                                    <th scope="col" style="width: 9%">Documento</th>
                                     <th scope="col" style="width: 15%">Institución del visitante</th>
-                                    <th scope="col" style="width: 15%">Área que visita</th>
+                                    <th scope="col" style="width: 33%">Área que visita</th>
                                     <th scope="col" style="width: 15%">¿A quién visita?</th>
-                                    <th scope="col" style="width: 15%">Ingreso</th>
-                                    <th scope="col" style="width: 15%">Salida</th>
+                                    <th scope="col" style="width: 8%">Ingreso</th>
+                                    <th scope="col" style="width: 8%">Salida</th>
                                     <th scope="col" style="width: 15%">Motivo</th>
                                 </tr>
                             </thead>

@@ -45,7 +45,7 @@ class visitas extends handleSanitize {
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button" id="BuscarDNIVisita">Buscar DNI</button>
                                 </div>
-                                <input type="text" id="dniVisita" class="form-control" placeholder="Ingresar Número de documento..." aria-label="Guardar numero de documento" aria-describedby="Campo dni"required>
+                                <input type="text" id="dniVisita" class="form-control" placeholder="Ingresar Número de documento..." aria-label="Guardar número de documento" aria-describedby="Campo dni"required>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-12">
@@ -124,6 +124,7 @@ class visitas extends handleSanitize {
     public function ActualizarVisitas()
     {
         $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.14';
+        $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $conexion = new MySQLConnection();
         $tablaRow = $this->getTablaRow($conexion);
         $html = <<<Html
@@ -151,7 +152,8 @@ class visitas extends handleSanitize {
                 </table>  
             </div>
         </div>
-        <script type="module">
+        <script src='$ruta2'></script>
+        <script type='module'>
             if (!window.miScriptCargado) {
                 const script = document.createElement('script');
                 script.src = '$ruta';
@@ -185,47 +187,59 @@ class visitas extends handleSanitize {
                 <h3 class="card-title">Regularizar visitas</h3>
             </div>
             <form id="regularizarVisitas">
-                    <div class="card-body">
-                        <div class="form-group">
-                        <label for="buscarDNI">DNI (obligatorio)</label>
-                        <input type="number" class="form-control" id="dniVisita" placeholder="Ingresar DNI..." required>
+                <div class="row card-body">
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label for="tipoDoc" class="form-label">Tipo de documento (obligatorio)</label>
+                        <select id="tipoDoc" class="form-control select2 select2-hidden-accesible" style="width: 100%;
+                            height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+                            <option value="DNI">DNI</option>
+                            <option value="CARNET DE EXTRANJERIA">CARNET DE EXTRANJERÍA</option>
+                            <option value="PASAPORTE">PASAPORTE</option>
+                            <option value="PART - NACIMIENTO-IDENTIDAD">PART. DE NACIMIENTO-IDENTIDAD</option>
+                        </select>
                     </div>
-                    <button type="submit" class="btn btn-secondary" id="BuscarDNIVisita">Buscar</button>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12">
-                            <label for="labelNombreCompleto">Nombre completo (obligatorio)</label>
-                            <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Oficina (obligatorio)</label>
-                                <select id="oficina" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
-                                    height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
-                                    $select
-                                </select>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label for="buscarDNI">Número de documento (obligatorio)</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-secondary" type="button" id="BuscarDNIVisita">Buscar DNI</button>
                             </div>
+                            <input type="text" id="dniVisita" class="form-control" placeholder="Ingresa número de documento..." aria-label="Guardar número de documento" arai-describedby="Campo DNI" required>
                         </div>
-                        <div class="col-md-3 col-sm-12">
-                            <label for="institucionVisitanteR">Institución visitante(obligatorio)</label>
-                            <input type="text" class="form-control" id="institucionVisitanteR" value="">
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <label for="labelNombreCompleto">Nombre completo (obligatorio)</label>
+                        <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Oficina (obligatorio)</label>
+                            <select id="oficina" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
+                                height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+                                $select
+                            </select>
                         </div>
-                        <div class="col-md-3 col-sm-12">
-                            <label for="HoraIngreso">Hora de ingreso(obligatorio)</label>
-                            <input type="datetime-local" class="form-control" id="hora_de_ingresoR" value="">
-                        </div>
-                        <div class="col-md-5 col-sm-12">
-                            <label for="HoraIngreso">Hora de salida</label>
-                            <input type="datetime-local" class="form-control" id="hora_de_salidaR" value="">
-                        </div>
-                        <div class="col-md-5 col-sm-12">
-                            <label for="persona_a_visitar">¿A quién visita? </label>
-                            <input type="text" class="form-control" id="persona_a_visitar" placeholder="">
-                        </div>
-                        <div class="col-md-12 col-sm-12">
-                            <label for="motivo">Motivo de la visita</label>
-                            <textarea type="text" class="form-control text-content" id="motivo" placeholder="Descripción del motivo de visita"  style="min-height: 100px;
-                            max-width: 100%"></textarea>
-                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <label for="institucionVisitanteR">Institución visitante(obligatorio)</label>
+                        <input type="text" class="form-control" id="institucionVisitanteR" value="">
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <label for="HoraIngreso">Hora de ingreso(obligatorio)</label>
+                        <input type="datetime-local" class="form-control" id="hora_de_ingresoR" value="">
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <label for="HoraIngreso">Hora de salida</label>
+                        <input type="datetime-local" class="form-control" id="hora_de_salidaR" value="">
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        <label for="persona_a_visitar">¿A quién visita? </label>
+                        <input type="text" class="form-control" id="persona_a_visitar" placeholder="">
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <label for="motivo">Motivo de la visita</label>
+                        <textarea type="text" class="form-control text-content" id="motivo" placeholder="Descripción del motivo de visita"  style="min-height: 100px;
+                        max-width: 100%"></textarea>
                     </div>
                 </div>
                 <div class="card-footer mt-3">
