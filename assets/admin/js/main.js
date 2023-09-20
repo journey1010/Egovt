@@ -238,8 +238,4 @@ $(document).ready(function () {
       }
     });
   });
-
-  window.addEventListener('popstate', function(event){
-    window.location.reload();
-  });
 });

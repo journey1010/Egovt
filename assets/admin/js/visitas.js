@@ -7,7 +7,6 @@ function select2() {
   });
 }
 
-//buscar dni visita
 $(document).on("click", "#BuscarDNIVisita", buscarDNIVisita);
 function buscarDNIVisita(e) {
   e.preventDefault();
@@ -116,6 +115,7 @@ $(document).on("submit", "#registrarVisitas", function (event) {
       url: "/administrador/resgistravisitas",
       method: "POST",
       data: formData,
+      dataType: 'json',
       beforeSend: function () {
         $("#btnGuardar").html("Guardando...");
         $("#btnGuardar").prop('disabled', true);
@@ -123,41 +123,32 @@ $(document).on("submit", "#registrarVisitas", function (event) {
       success: function (response) {
         $("#btnGuardar").html("Guardar");
         $("#btnGuardar").prop('disabled', false);
-        let resp = JSON.parse(response);
-        let indice = Object.keys(resp)[0];
-        switch (indice) {
-          case "error":
-            Toast.fire({
-              background: "#E75E15",
-              iconColor: "#000000",
-              icon: "error",
-              title: resp[indice],
-            });
-            break;
-          case "success":
-            $("#dniVisita").val("");
-            $("#apellidos_nombres").val("");
-            $("#motivo").val("");
-            Toast.fire({
-              icon: "success",
-              title: resp[indice],
-            });
-            break;
+        if(response.status==='success'){
+          $("#dniVisita").val("");
+          $("#apellidos_nombres").val("");
+          $("#motivo").val("");
+          Toast.fire({
+            icon: "success",
+            title: response.message
+          });
+        } else {
+          Toast.fire({
+            icon: "error",
+            title: response.message,
+          });
         }
       },
       error: function (jqXHR, textStatus, errorThrown) {
         $("#btnGuardar").html("Guardar");
         $("#btnGuardar").prop('disabled', false);
-
         $("#dniVisita").val("");
         $("#apellidos_nombres").val("");
-        $("#oficina").val(null).trigger("change"); // restablecer el select
+        $("#oficina").val(null).trigger("change");
         $("#persona_a_visitar").val("");
         $("#motivo").val("");
         Toast.fire({
           icon: "error",
           title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
-          background: "#ff0000",
         });
       }
     });
@@ -181,6 +172,7 @@ $(document).on("submit", "#regularizarVisitas", function (event){
     });
   } else {
     let formData = {
+      tipoDoc:  $("#tipoDoc").val(),
       numeroDoc: $("#dniVisita").val(),
       apellidosNombres: $("#apellidos_nombres").val(),
       oficina: $("#oficina option:selected").val(),
@@ -195,14 +187,14 @@ $(document).on("submit", "#regularizarVisitas", function (event){
       url: '/administrador/regularizar-visitas',
       method: 'POST',
       data: formData,
+      dataType: 'json',
       beforeSend: function () {
         $("#btnRegularizar").html("Guardar");
         $("#btnRegularizar").prop('disabled', false);
       },
-      success: function (response) {
+      success: function (resp) {
         $("#btnRegularizar").html("Guardar");
         $("#btnRegularizar").prop('disabled', false);
-        let resp = JSON.parse(response);
         if(resp.status === 'success'){
           Toast.fire({
             icon: "success",
@@ -227,7 +219,7 @@ $(document).on("submit", "#regularizarVisitas", function (event){
 
         $("#dniVisita").val("");
         $("#apellidos_nombres").val("");
-        $("#oficina").val(null).trigger("change"); // restablecer el select
+        $("#oficina").val(null).trigger("change");
         $("#persona_a_visitar").val("");
         $("#motivo").val("");
         $("#institucionVisitanteR").val("");
@@ -283,25 +275,19 @@ function save() {
     url: "/administrador/actualizarvisitas",
     method: "POST",
     data: formData,
+    dataType: 'json',
     success: function (response) {
-      let resp = JSON.parse(response);
-      let indice = Object.keys(resp)[0];
-      switch (indice) {
-        case "error":
-          Toast.fire({
-            background: "#E75E15",
-            iconColor: "#000000",
-            icon: "error",
-            title: resp[indice],
-          });
-          break;
-        case "success":
-          row.hide();
-          Toast.fire({
-            icon: "success",
-            title: resp[indice],
-          });
-          break;
+      if(response.status ==='success'){
+        row.remove();
+        Toast.fire({
+          icon: "success",
+          title: response.message,
+        });
+      }else {
+        Toast.fire({
+          icon: "error",
+          title: response.message,
+        });
       }
     },
     error: function (jqXHR, textStatus, errorThrown) {
@@ -328,7 +314,7 @@ $(document).on("click", "#generarReportVisit", function(){
 
     let progressBar = $('#reporteVisitas .progress-bar');
     $('#reporteVisitas').show();
-    let maxProgress = Math.floor(Math.random() * 59) + 2; 
+    let maxProgress = Math.floor(Math.random() * 10) + 60; 
     let currentProgress = 0;
     let progressInterval = setInterval(function () {
       if (currentProgress < maxProgress) {
@@ -344,6 +330,7 @@ $(document).on("click", "#generarReportVisit", function(){
       url: '/administrador/exportar-visitas',
       method: 'POST',
       data: formData,
+      dataType: 'json',
       beforeSend: function(){
         $('#generarReportVisit').prop('disabled', true);
         if ($('#respuestaReportVisitas').is(':visible')) {
@@ -351,22 +338,21 @@ $(document).on("click", "#generarReportVisit", function(){
         }
       },
       success: function(response){
-        let resp = JSON.parse(response);
-        if (resp.status ==='success') {
+        if (response.status ==='success') {
           Toast.fire({
             icon: "success",
-            title: resp.message,
+            title: response.message,
           });
           clearInterval(progressInterval);
           progressBar.css('width', '100%');
           progressBar.text('100%');
 
           $('#respuestaReportVisitas').show();
-          $('#respuestaReportVisitas').html('<a href="' + resp.archivo +'" download><button type="button" class="btn btn-block btn-outline-success"><i class="fa fa-download"></i> DESCARGAR REPORTE DE VISITAS</button></a>');
+          $('#respuestaReportVisitas').html('<a href="' + response.archivo +'" download><button type="button" class="btn btn-block btn-outline-success"><i class="fa fa-download"></i> DESCARGAR REPORTE DE VISITAS</button></a>');
         } else {
           Toast.fire({
             icon: "error",
-            title: resp.message,
+            title: response.message,
           });
         }
         $('#generarReportVisit').prop('disabled', false);
@@ -377,8 +363,7 @@ $(document).on("click", "#generarReportVisit", function(){
         $('#fechaVisitHasta').val('');
         Toast.fire({
           icon: "error",
-          title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
-          background: "#ff0000",
+          title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`
         });
       }
     });

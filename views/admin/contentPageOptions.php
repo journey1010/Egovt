@@ -111,19 +111,6 @@ class contentPageOptions {
         return $html;
     }
 
-    public function loadFile() 
-    {
-        $rrhhAsistencia = new RRHHasistencia();
-        $resultado = $rrhhAsistencia->loadFile();
-        return $resultado; 
-    }
-
-    public function verRegistros()
-    {
-        $rrhhAsistencia = new RRHHasistencia();
-        $resultado =$rrhhAsistencia->verRegistros();
-        return $resultado;
-    }
 
     public function RegistrarAgendaGobernador()
     {

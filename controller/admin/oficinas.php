@@ -38,7 +38,6 @@ class oficinas extends handleSanitize {
             $id =$this->SanitizeVarInput($_POST['id']);        
             $nombre = $this->SanitizeVarInput($_POST['nombre']);
             $sigla = $this->SanitizeVarInput($_POST['sigla']);
-
             $conexion = new MySQLConnection();
             $sqlSentence = "UPDATE oficinas SET nombre  = ?, sigla = ? WHERE id= ?";
             $params =  [$nombre, $sigla, $id];

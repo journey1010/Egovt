@@ -14,7 +14,7 @@ class visitas extends handleSanitize {
 
     public function RegistrarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.13';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.14';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $hora = new DateTime('', new DateTimeZone('UTC'));
         $hora->setTimezone(new DateTimeZone('America/Bogota'));
@@ -28,8 +28,8 @@ class visitas extends handleSanitize {
                 <h3 class="card-title">Registrar visitas</h3>
             </div>
             <form id="registrarVisitas">
-                    <div class="card-body">
-                        <div class="form-group">
+                    <div class="row card-body">
+                        <div class="col-md-6 col-sm-12 form-group">
                             <label for="tipoDoc">Tipo de documento (obligatorio)</label>
                             <select id="tipoDoc" class="form-control select2 select2-hidden-accessible" data-placeholder="" style="width: 100%; 
                                 height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
@@ -39,42 +39,44 @@ class visitas extends handleSanitize {
                                 <option value="PART-NACIMIENTO-IDENTIDAD">PART. DE NACIMIENTO-IDENTIDAD</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="col-md-6 col-sm-12 form-group">
                             <label for="buscarDNI">Número de documento(obligatorio)</label>
-                            <input type="text" class="form-control" id="dniVisita" placeholder="Ingresar Número de documento..." required>
-                        </div>
-                        <button type="submit" class="btn btn-secondary" id="BuscarDNIVisita">Buscar DNI</button>
-                        <div class="row">
-                            <div class="col-md-3 col-sm-12">
-                                <label for="labelNombreCompleto">Nombre completo (obligatorio)</label>
-                                <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
-                            </div>
-                            <div class="col-md-5 col-sm-12">
-                                <label for="InstitucionVisitante">Institución del visitante (obligatorio)</label>
-                                <input type="text" class="form-control" id="InstitucionVisitante" placeholder="">
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Oficina (obligatorio)</label>
-                                    <select id="oficina" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
-                                        height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
-                                        $select
-                                    </select>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button" id="BuscarDNIVisita">Buscar DNI</button>
                                 </div>
+                                <input type="text" id="dniVisita" class="form-control" placeholder="Ingresar Número de documento..." aria-label="Guardar número de documento" aria-describedby="Campo dni"required>
                             </div>
-                            <div class="col-md-3 col-sm-12">
-                                <label for="HoraIngreso">Hora de ingreso</label>
-                                <input type="text" class="form-control" id="hora_de_ingreso" value="$dateTimeNow" disabled>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <label for="labelNombreCompleto">Nombre completo (obligatorio)</label>
+                            <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
+                        </div>
+                        <div class="col-md-5 col-sm-12">
+                            <div class="form-group">
+                                <label>Oficina (obligatorio)</label>
+                                <select id="oficina" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
+                                    height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+                                    $select
+                                </select>
                             </div>
-                            <div class="col-md-5 col-sm-12">
-                                <label for="persona_a_visitar">¿A quién visita?</label>
-                                <input type="text" class="form-control" id="persona_a_visitar" placeholder="">
-                            </div>
-                            <div class="col-md-7 col-sm-12">
-                                <label for="motivo">Motivo de la visita</label>
-                                <textarea type="text" class="form-control text-content" id="motivo" placeholder="Descripción del motivo de visita"  style="min-height: 100px;
-                                max-width: 100%"></textarea>
-                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <label for="InstitucionVisitante">Institución del visitante (obligatorio)</label>
+                            <input type="text" class="form-control" id="InstitucionVisitante" placeholder="">
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <label for="HoraIngreso">Hora de ingreso</label>
+                            <input type="text" class="form-control" id="hora_de_ingreso" value="$dateTimeNow" disabled>
+                        </div>
+                        <div class="col-md-5 col-sm-12">
+                            <label for="persona_a_visitar">¿A quién visita?</label>
+                            <input type="text" class="form-control" id="persona_a_visitar" placeholder="">
+                        </div>
+                        <div class="col-md-7 col-sm-12">
+                            <label for="motivo">Motivo de la visita</label>
+                            <textarea type="text" class="form-control text-content" id="motivo" placeholder="Descripción del motivo de visita"  style="min-height: 100px;
+                            max-width: 100%"></textarea>
                         </div>
                     </div>
                 <div class="card-footer mt-3">
@@ -121,17 +123,18 @@ class visitas extends handleSanitize {
 
     public function ActualizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.13';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.14';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $conexion = new MySQLConnection();
         $tablaRow = $this->getTablaRow($conexion);
         $html = <<<Html
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
         <div class="card card-primary mt-3" style="width: 100% !important;">
             <div class="card-header">
                 <h3 class="card-title">Actualizar visitas</h3>
             </div>
             <div class="card-body table-responsive p-2" style="width:100% !important">
-                <table class="table table-hover table-md" style="font-size: 14px">
+                <table class="table table-hover table-md" id="visitasForUpdate" style="font-size: 14px">
                     <thead class="table-bordered" >
                         <tr>
                             <th class="text-center">id</th>
@@ -149,8 +152,8 @@ class visitas extends handleSanitize {
                 </table>  
             </div>
         </div>
-        <script src="$ruta2"></script>
-        <script type="module">
+        <script src='$ruta2'></script>
+        <script type='module'>
             if (!window.miScriptCargado) {
                 const script = document.createElement('script');
                 script.src = '$ruta';
@@ -158,6 +161,16 @@ class visitas extends handleSanitize {
                 document.body.appendChild(script);
                 window.miScriptCargado = true;
             }
+
+            $(document).ready(function (){
+                $.getScript('https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js', function (){
+                   $('#visitasForUpdate').DataTable({
+                        language: {
+                            url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+                        }
+                    });
+                });
+              })
         </script>
         Html;
         return $html;
@@ -165,7 +178,7 @@ class visitas extends handleSanitize {
 
     public function RegularizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.13';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.14';
         $conexion = new MySQLConnection();
         $select = $this->getSelect($conexion);
         $html = <<<Html
@@ -174,47 +187,59 @@ class visitas extends handleSanitize {
                 <h3 class="card-title">Regularizar visitas</h3>
             </div>
             <form id="regularizarVisitas">
-                    <div class="card-body">
-                        <div class="form-group">
-                        <label for="buscarDNI">DNI (obligatorio)</label>
-                        <input type="number" class="form-control" id="dniVisita" placeholder="Ingresar DNI..." required>
+                <div class="row card-body">
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label for="tipoDoc" class="form-label">Tipo de documento (obligatorio)</label>
+                        <select id="tipoDoc" class="form-control select2 select2-hidden-accesible" style="width: 100%;
+                            height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+                            <option value="DNI">DNI</option>
+                            <option value="CARNET DE EXTRANJERIA">CARNET DE EXTRANJERÍA</option>
+                            <option value="PASAPORTE">PASAPORTE</option>
+                            <option value="PART - NACIMIENTO-IDENTIDAD">PART. DE NACIMIENTO-IDENTIDAD</option>
+                        </select>
                     </div>
-                    <button type="submit" class="btn btn-secondary" id="BuscarDNIVisita">Buscar</button>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12">
-                            <label for="labelNombreCompleto">Nombre completo (obligatorio)</label>
-                            <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Oficina (obligatorio)</label>
-                                <select id="oficina" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
-                                    height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
-                                    $select
-                                </select>
+                    <div class="col-md-4 col-sm-12 form-group">
+                        <label for="buscarDNI">Número de documento (obligatorio)</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-secondary" type="button" id="BuscarDNIVisita">Buscar DNI</button>
                             </div>
+                            <input type="text" id="dniVisita" class="form-control" placeholder="Ingresa número de documento..." aria-label="Guardar número de documento" arai-describedby="Campo DNI" required>
                         </div>
-                        <div class="col-md-3 col-sm-12">
-                            <label for="institucionVisitanteR">Institución visitante(obligatorio)</label>
-                            <input type="text" class="form-control" id="institucionVisitanteR" value="">
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <label for="labelNombreCompleto">Nombre completo (obligatorio)</label>
+                        <input type="text" class="form-control" id="apellidos_nombres" placeholder="Ingrese su nombre completo">
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Oficina (obligatorio)</label>
+                            <select id="oficina" class="form-control select2 select2-hidden-accessible" data-placeholder="Selecciona una oficina" style="width: 100%; 
+                                height: calc(2.25rem + 2px);" tabindex="-1" aria-hidden="true">
+                                $select
+                            </select>
                         </div>
-                        <div class="col-md-3 col-sm-12">
-                            <label for="HoraIngreso">Hora de ingreso(obligatorio)</label>
-                            <input type="datetime-local" class="form-control" id="hora_de_ingresoR" value="">
-                        </div>
-                        <div class="col-md-5 col-sm-12">
-                            <label for="HoraIngreso">Hora de salida</label>
-                            <input type="datetime-local" class="form-control" id="hora_de_salidaR" value="">
-                        </div>
-                        <div class="col-md-5 col-sm-12">
-                            <label for="persona_a_visitar">¿A quién visita? </label>
-                            <input type="text" class="form-control" id="persona_a_visitar" placeholder="">
-                        </div>
-                        <div class="col-md-12 col-sm-12">
-                            <label for="motivo">Motivo de la visita</label>
-                            <textarea type="text" class="form-control text-content" id="motivo" placeholder="Descripción del motivo de visita"  style="min-height: 100px;
-                            max-width: 100%"></textarea>
-                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <label for="institucionVisitanteR">Institución visitante(obligatorio)</label>
+                        <input type="text" class="form-control" id="institucionVisitanteR" value="">
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <label for="HoraIngreso">Hora de ingreso(obligatorio)</label>
+                        <input type="datetime-local" class="form-control" id="hora_de_ingresoR" value="">
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <label for="HoraIngreso">Hora de salida</label>
+                        <input type="datetime-local" class="form-control" id="hora_de_salidaR" value="">
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        <label for="persona_a_visitar">¿A quién visita? </label>
+                        <input type="text" class="form-control" id="persona_a_visitar" placeholder="">
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <label for="motivo">Motivo de la visita</label>
+                        <textarea type="text" class="form-control text-content" id="motivo" placeholder="Descripción del motivo de visita"  style="min-height: 100px;
+                        max-width: 100%"></textarea>
                     </div>
                 </div>
                 <div class="card-footer mt-3">
@@ -237,7 +262,8 @@ class visitas extends handleSanitize {
 
     public function ExportarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.12';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.14';
+        $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $html = <<<Html
         <div class="card card-primary mt-3 mx-auto w-100">
             <div class="card-header">
@@ -282,6 +308,7 @@ class visitas extends handleSanitize {
             <div class="card-body table-responsive p-2 mt-3 mx-auto" id="respuestaReportVisitas">     
             </div>
         </div>
+        <script src='$ruta2'></script>
         <script type="module">
             if (!window.miScriptCargado) {
                 const script = document.createElement('script');
@@ -317,9 +344,9 @@ class visitas extends handleSanitize {
             $tablaRow .= "<td class=\"text-center\" style=\"max-width: 300px;\" contenteditable=\"false\">$motivo</td>";
             $tablaRow .= '
                 <td class="text-center align-middle">
-                    <i class="fa fa-edit mr-2 edit-icon" style="color:#9c74dd !important"></i>
-                    <i class="fa fa-times mr-2 cancel-icon" style="color:#d90a0a !important; display:none;"></i>
-                    <i class="fa fa-check save-icon" style="color:#acc90e !important; display:none;"></i>
+                    <button type="button" class="btn btn-secondary btn-sm edit-icon" title="Editar"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger btn-sm cancel-icon" title="Cancelar" style="display:none"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn btn-primary btn-sm save-icon"  title="Guardar" style="display:none"><i class="fa fa-check"></i></button>
                 </td>
             ';
             $tablaRow .= "</tr>";
