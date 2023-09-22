@@ -19,18 +19,18 @@ function buscarDNIVisita(e) {
     });
   } else {
     $.ajax({
-      url: "https://dniruc.apisperu.com/api/v1/dni/" + dni + "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imdpbm9fcGFyZWRlc0BvdXRsb29rLmNvbS5wZSJ9.1rXghi0JQb2I-COt_4J7juPDkIgCBZZbHcixnwGF0mI",
-      method: "GET",
+      url: "/administrador/vistias/consultar/"+dni,
+      method: "POST",
+      dataType: 'json',
       beforeSend: function () {
         $("#BuscarDNIVisita").html("Buscando ...");
       },
       success: function (data) {
         $("#BuscarDNIVisita").html("Buscar");
-        if (data.success == false) {
+        if (data.status === 'error') {
           Toast.fire({
             icon: "error",
-            title:
-              "Ha ocurrido un error en la solicitud! En este momento no se puede Consultar a la API.",
+            title: data.message
           });
         } else {
           $("#apellidos_nombres").val(

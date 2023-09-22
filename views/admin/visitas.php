@@ -14,7 +14,7 @@ class visitas extends handleSanitize {
 
     public function RegistrarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.14';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.15';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $hora = new DateTime('', new DateTimeZone('UTC'));
         $hora->setTimezone(new DateTimeZone('America/Bogota'));
@@ -123,7 +123,7 @@ class visitas extends handleSanitize {
 
     public function ActualizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.14';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.15';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $conexion = new MySQLConnection();
         $tablaRow = $this->getTablaRow($conexion);
@@ -178,7 +178,7 @@ class visitas extends handleSanitize {
 
     public function RegularizarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.14';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.15';
         $conexion = new MySQLConnection();
         $select = $this->getSelect($conexion);
         $html = <<<Html
@@ -262,7 +262,7 @@ class visitas extends handleSanitize {
 
     public function ExportarVisitas()
     {
-        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.14';
+        $ruta = $this->rutaAssets  . 'js/visitas.js?v=4.2.15';
         $ruta2 = $this->rutaAssets . 'js/moment.min.js';
         $html = <<<Html
         <div class="card card-primary mt-3 mx-auto w-100">
