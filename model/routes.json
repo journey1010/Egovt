@@ -63,6 +63,7 @@
         {"method" : "GET", "pattern" : "/transparencia/convocatorias-de-trabajo", "handler" : "ConvocatoriaView::convocatoriaView"},
         {"method" : "GET", "pattern" : "/transparencia/convocatorias-de-trabajo/?page={pagina}", "handler": "ConvocatoriaView::convocatoriaView"},
         {"method" : "POST", "pattern" : "/transparencia/convocatorias-de-trabajo/buscar", "handler": "ConvocatoriaView::searchConvocatoriaView"},
+        {"method" : "GET", "pattern" : "/transparencia/saldos-de-balance/?page={pagina}", "handler": "PresupuestoController@showSaldo"},
         {"method" : "GET", "pattern" : "/servicios/menu-aplicaciones", "handler" : "ServiciosController@ServiciosMain"}
     ]
 }

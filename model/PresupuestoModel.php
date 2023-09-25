@@ -10,8 +10,8 @@ class PresupuestoModel
         session_set_cookie_params(['lifetime' => 60]);
         session_start();
 
-        $resultsPerPage = 10;
-        $sql = 'SELECT title, CONCAT(YEAR(load_date), '/',MONTH(load_date), '/', path_file ), load_date  FROM saldos_de_balance';
+        $resultsPerPage = 12;
+        $sql = "SELECT title, CONCAT(YEAR(load_date), '/',MONTH(load_date), '/', path_file )as pathfile, load_date FROM saldos_de_balance ORDER BY id DESC";
         $params = [];
 
         if (isset($_SESSION['saldo_balance'])) {
