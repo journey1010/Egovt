@@ -16,7 +16,7 @@ class convocatorias extends handleSanitize
 
     public function RegistrarConvocatoria(): string
     {
-        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.5';
+        $ruta = $this->rutaAssets . 'js/convocatoria.js?v=1.5.2';
         $quilljs = _ROOT_ASSETS . 'js/cdn.quilljs.com_1.3.6_quill.min.js';
         $quillcss = _ROOT_ASSETS . 'js/cdn.quilljs.com_1.3.6_quill.snow.css';
         $optionsDependencias = $this->getDependencias();
@@ -95,26 +95,41 @@ class convocatorias extends handleSanitize
             </form>
         </div>
         <script src="$quilljs"></script>
+
         <script>
-            let quill = new Quill('#descripcionConvocatoria', {
-            theme: 'snow',
-            preserveWhitespace: true,
-            modules: {
-                toolbar: [
-                ['bold', 'italic', 'underline', 'strike'],
-                [{ 'list': 'ordered' }, { 'list': 'bullet' }]
-                ]
+            if (!window.miScriptCargado) {
+                const script = document.createElement('script');
+                script.src = '$ruta';
+                script.type = 'module';
+                document.body.appendChild(script);
+                window.miScriptCargado = true;
+            }            
+            $(document).ready(select2);
+                function select2() {
+                $(".select2").select2({
+                    "closeOnSelect": true,
+                });
             }
-            });    
+            if (typeof Quill !== 'undefined') {
+                var quill = new Quill('#descripcionConvocatoria', {
+                    theme: 'snow',
+                    preserveWhitespace: true,
+                    modules: {
+                        toolbar: [
+                          ['bold', 'italic', 'underline', 'strike'],
+                          [{ 'list': 'ordered' }, { 'list': 'bullet' }]
+                        ]
+                      }
+                });
+            }
         </script>
-        <script type ="module" src="$ruta" defer></script>
         Html;
         return $html;
     }
 
     public function ActualizarConvocatorias(): string
     {
-        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.5';
+        $ruta = $this->rutaAssets . 'js/convocatoria.js?v=1.5.2';
         $tabla = $this->listadoConvocatorias();
         $html = <<<Html
         <div class="card card-success mt-3 mx-auto w-100">
@@ -125,7 +140,21 @@ class convocatorias extends handleSanitize
                 $tabla
             </div>
         </div>
-        <script  type ="module" src="$ruta"></script>
+        <script type="module">
+            if (!window.miScriptCargado) {
+                const script = document.createElement('script');
+                script.src = '$ruta';
+                script.type = 'module';
+                document.body.appendChild(script);
+                window.miScriptCargado = true;
+            }
+            $(document).ready(select2);
+            function select2() {
+              $(".select2").select2({
+                "closeOnSelect": true,
+              });
+            }
+        </script>
         Html;
         return $html;
     }
@@ -343,7 +372,7 @@ class convocatorias extends handleSanitize
     */
     public function viewEditFinalConvocatoria(string $viewGeneral, string $viewAdjunto): string
     {
-        $ruta = $this->rutaAssets . 'js/convocatoria.js?ver=1.5';
+        $ruta = $this->rutaAssets . 'js/convocatoria.js?v=1.5';
         $quilljs = _ROOT_ASSETS . 'js/cdn.quilljs.com_1.3.6_quill.min.js';
         $quillcss = _ROOT_ASSETS . 'js/cdn.quilljs.com_1.3.6_quill.snow.css';
         $viewFinal = <<<Html
@@ -374,18 +403,33 @@ class convocatorias extends handleSanitize
         </div>
         <script src="$quilljs"></script>
         <script>
-                let editor = new Quill('#descripcionConvocatoria', {
-                theme: 'snow',
-                preserveWhitespace: true,
-                modules: {
-                    toolbar: [
-                    ['bold', 'italic', 'underline', 'strike'],
-                    [{ 'list': 'ordered' }, { 'list': 'bullet' }]
-                    ]
-                }
+            if (typeof Quill !== 'undefined') {
+                var editor = new Quill('#descripcionConvocatoria', {
+                    theme: 'snow',
+                    preserveWhitespace: true,
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic', 'underline', 'strike'],
+                            [{ 'list': 'ordered' }, { 'list': 'bullet' }]
+                        ]
+                    }
                 });
+            }
         </script>
-        <script type ="module" src="$ruta" defer></script>
+        <script>
+            if (!window.miScriptCargado) {
+                const script = document.createElement('script');
+                script.src = '$ruta';
+                document.body.appendChild(script);
+                window.miScriptCargado = true;
+            }
+            $(document).ready(select2);
+                function select2() {
+                $(".select2").select2({
+                    "closeOnSelect": true,
+                });
+            }
+        </script>
         Html;
         return $viewFinal;
     }

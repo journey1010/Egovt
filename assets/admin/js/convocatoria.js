@@ -1,12 +1,5 @@
 import { Toast } from "./Toast.js";
 
-$(document).ready(select2);
-function select2() {
-  $(".select2").select2({
-    "closeOnSelect": true,
-  });
-}
-
 $(document).on("change", "#fechaInicioConvocatoria", function() {
   var fechaInicio = $(this).val();
   var fechaLimite = $("#fechaLimiteConvocatoria");
@@ -59,7 +52,7 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
     if (campo === 'descripcionConvocatoria' && valorCampo.length === 0) {
       Toast.fire({
         icon: 'warning',
-        title: 'Debe completar todos los campos obligatorios'
+        title: 'Debe proporcionar una descripción.'
       });
       enviarDatos = false;
     } else if (campo === 'archivosConvocatorias' && (!valorCampo || valorCampo.length === 0)) {
@@ -69,9 +62,15 @@ $(document).on('submit', '#registrarConvocatoria', function(event){
       });
       enviarDatos = false;
     }
+    if((campo != 'descripcionConvocatoria' && campo != 'archivosConvocatorias') && $('#'+campo).val() == ''){
+      Toast.fire({
+        icon: 'warning',
+        title: 'Debe completar todos los campos obigatorios'
+      });
+      enviarDatos = false;
+    }
   });
   
-
   const extensionesPermitidas = ['docx', 'xlsx', 'xls', 'pdf', 'txt', 'doc'];
   const pesoMaximoArchivos = 50 * 1024 * 1024;
   let archivosConvocatorias = $('#archivosConvocatorias')[0].files;
@@ -247,16 +246,29 @@ $(document).on('click', '.save-adjunto', function(){
   let rowAdjunto = $(this).closest('tr');
 
   let formData = new FormData();
-  formData.append('id',  rowAdjunto.find('td:eq(0)').text());
+  formData.append('id', rowAdjunto.find('td:eq(0)').text());
   formData.append('nombre', rowAdjunto.find('td:eq(1)').text());
   formData.append('archivo', rowAdjunto.find('.imgadjunto').prop('files')[0]);
 
-  if( rowAdjunto.find('td:eq(1)').text() == ''){
+  if(rowAdjunto.find('td:eq(1)').text() == ''){
     Toast.fire({
       icon: "warning",
       title: "El campo nombre no debe estar vacío."
     });
-  } else{
+  } else {
+    let progressBarId = Date.now();
+    let progressBarHTML = `
+    <div class="progress div-${progressBarId} mt-1">
+      <div class="progress-bar ${progressBarId} active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; border-radius: 10px;">
+        0%
+      </div>
+    </div>`;
+    
+    $('#adjuntosConvocatoria').append(progressBarHTML);
+
+    let progressBar = $('.' + progressBarId);
+    let totalFiles = 1; 
+    
     $.ajax({
       url: '/administrador/convocatoria/zona-editor/save-adjunto',
       method: 'POST',
@@ -265,19 +277,31 @@ $(document).on('click', '.save-adjunto', function(){
       processData: false,
       contentType: false,
       dataType: 'json',
+      xhr: function(){
+        let xhr = new window.XMLHttpRequest();
+        xhr.upload.addEventListener('progress', function(e){
+          if(e.lengthComputable){
+            let porcentaje = Math.round((e.loaded / e.total) * 100);
+            progressBar.css('width', porcentaje + '%').attr('aria-valuenow', porcentaje).text(porcentaje + '%');
+          }
+        }, false);
+        return xhr;
+      },
       success: function(resp){
         if(resp.status === 'success'){
           Toast.fire({
             icon: 'success',
-            title:  resp.message
+            title: resp.message
           });
         }
+        $('.div-'+progressBarId).remove();
       },
-      error: function (jqXHR, textStatus, errorThrown) {
+      error: function(jqXHR, textStatus, errorThrown){
         Toast.fire({
           icon: "error",
           title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
         });
+        $('.div-'+progressBarId).remove();
       }
     });
   }
@@ -338,6 +362,19 @@ $(document).on('click', '.save-adjunto-new', function(){
   }
 
   if(estado){
+    let progressBarId = Date.now();
+    let progressBarHTML = `
+    <div class="progress div-${progressBarId} mt-1 mt-1">
+      <div class="progress-bar ${progressBarId} active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; border-radius: 10px;">
+        0%
+      </div>
+    </div>`;
+    
+    $('#adjuntosConvocatoria').append(progressBarHTML);
+
+    let progressBar = $('.' + progressBarId);
+    let totalFiles = 1; 
+
     $.ajax({
       url: '/administrador/convocatoria/zona-editor/save-new-adjunto',
       method: 'POST',
@@ -345,6 +382,16 @@ $(document).on('click', '.save-adjunto-new', function(){
       processData: false,
       contentType: false,
       data: formData,
+      xhr: function(){
+        let xhr = new window.XMLHttpRequest();
+        xhr.upload.addEventListener('progress', function(e){
+          if(e.lengthComputable){
+            let porcentaje = Math.round((e.loaded / e.total) * 100);
+            progressBar.css('width', porcentaje + '%').attr('aria-valuenow', porcentaje).text(porcentaje + '%');
+          }
+        }, false);
+        return xhr;
+      },
       success: function(response){
         let resp = JSON.parse(response);
         if(resp.status === 'success'){
@@ -358,12 +405,14 @@ $(document).on('click', '.save-adjunto-new', function(){
             title: resp.message
           });
         }
+        $('.div-'+progressBarId).remove();
       },
       error: function(jqXHR, textStatus, errorThrown){
         Toast.fire({
           icon: 'error',
           title: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`
         });
+        $('.div-'+progressBarId).remove();
       }
     });
   } else {
