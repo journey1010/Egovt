@@ -14,13 +14,19 @@ class PresupuestoController extends BaseViewInterfaz
         list($resultados, $paginadorHtml) = PresupuestoModel::getSaldoBalance($pagina);
 
         $data = [
+            'link' => self::$pathCss . 'datepicker.css',
             'dataTable' => $resultados,
             'Paginidaor' => $paginadorHtml,
         ];
-
+        $pathJs = self::$pathJs;
+        $moreScript = <<<html
+            <script src="{$pathJs}pagination.min.js"></script>
+            <script src="{$pathJs}bootstrap-datepicker.js"></script>
+            <script src="{$pathJs}SaldoBalance.js"></script>
+        html;
         $dataFooter = [
             'año' => date('Y'),
-            'scripts' => ''
+            'scripts' => $moreScript
         ];
 
         $render = new ViewRenderer();
