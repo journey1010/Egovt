@@ -51,6 +51,13 @@ $(document).on('submit', '#saldoBalanceForm', function (event) {
             title: 'Falta incluir un tipo de documento para este registro.'
         });
     }
+    if ($('#tipo-participacion').val() == '') {
+        enviarDatos = false;
+        Toast.fire({
+            icon: 'warning',
+            title: 'Falta incluir un tipo de documento para este registro.'
+        });
+    }
 
     if (!archivosParticipacion) {
         Toast.fire({
@@ -63,6 +70,8 @@ $(document).on('submit', '#saldoBalanceForm', function (event) {
     if (enviarDatos) {
         let formData = new FormData();
         formData.append('titulo', $('.title-participacion').val());
+        formData.append('descripcion', $('.descripcion-participacion').val());
+        formData.append('tipoDoc', $('#tipo-participacion').val());
         for (let i = 0; i <= archivosParticipacion.length - 1; i++) {
             formData.append('archivosParticipacion[' + i + ']', archivosParticipacion[i]);
         }

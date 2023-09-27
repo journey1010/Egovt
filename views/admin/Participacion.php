@@ -24,7 +24,7 @@ class Participacion {
                         </div>
                         <div class="col-md-5 col-sm-12 form-group">
                             <label class="form-label">Título</label>
-                            <input type="text" class="form-control title-participacion"maxlength="355" required>
+                            <input type="text" class="form-control title-participacion" maxlength="355" required>
                         </div>
                         <div class="col-md-5 col-sm-12 form-group">
                             <label class="form-label" for="participacionFile">Archivo</label>
@@ -44,7 +44,7 @@ class Participacion {
                         </div>
                         <div class="col-md-5 col-sm-12 form-group">
                             <label class="form-label">Tipo</label>
-                            <select id="tipo-partiticipacion" aria-label="tipos de documentos" class="form-control select2"  style="width: 100%;">
+                            <select id="tipo-participacion" aria-label="tipos de documentos" class="form-control select2"  style="width: 100%;">
                                 <option selected="selected" value="Presupuesto Participativo">Presupuesto Participativo</option>
                                 <option value="Audiencia Públicas">Audiencia Públicas</option>
                                 <option value="Consejo de Coordinación Regional/Local">Consejo de Coordinación Regional/Local</option>
