@@ -13,13 +13,13 @@
         margin-right: 0.5em;
     }
 </style>
-<main class="breadcrumb">
+<main class="mt-3">
     <div class="container-fluid">
-        <div class="container bg-white p-3">
+        <div class="container bg-white p-1">
             <h3 class="text-blue mb-2 text-center">REGISTRO DE VISITAS AL GOBIERNO REGIONAL DE LORETO</h3>
             <strong class="d-block text-secondary mb-3 text-center">SEDE CENTRAL</strong>
         </div>
-        <div class="container bg-white p-3">
+        <div class="container bg-white p-1">
             <div class="coupenEnterWrap d-flex justify-content-center align-items-center">
                 <div class="form-group row">
                     <div class="col-md-12">

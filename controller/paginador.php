@@ -61,7 +61,7 @@ class Paginator extends handleSanitize {
               $paginador .= '<li class="page-item"><a class="page-link" href="?page=' . ($this->paginaActual - 1) . '">Anterior</a></li>';
             }
 
-            $rangoPaginas = 9; 
+            $rangoPaginas = 5; 
         
             $paginaInicio = max(1, $this->paginaActual - floor($rangoPaginas / 2));
             $paginaFin = min($this->totalDePaginas, $paginaInicio + $rangoPaginas - 1);

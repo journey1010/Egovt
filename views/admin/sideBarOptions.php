@@ -2,7 +2,7 @@
 class sideBarOptions {
     public function principalPage()
     {
-        $html = <<<Html
+        $html = '
         <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fas fa-id-card-alt"></i>
@@ -19,14 +19,13 @@ class sideBarOptions {
                 </a>
             </li>
             </ul>
-        </li>
-        Html;
+        </li>';
         return $html;
     }
 
     public function oficinas()
     {
-        $html = <<<Html
+        $html = '
         <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fas fa-table" style="color: #8C92E9;"></i>
@@ -43,14 +42,13 @@ class sideBarOptions {
                 </a>
             </li>
             </ul>
-        </li>
-        Html;
+        </li>';
         return $html;
     }
 
     public function visitas()
     {
-        $html = <<<Html
+        $html = '
         <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fas fa-id-card-alt" style="color: #8A47FF;"></i>
@@ -85,14 +83,13 @@ class sideBarOptions {
                 </a>
             </li>
             </ul>
-        </li>
-        Html;
+        </li>';
         return $html;
     }
 
     public function usuarios()
     {
-        $html = <<<Html
+        $html = '
         <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fas fa-users" style="color: #F21331;"></i>
@@ -115,14 +112,13 @@ class sideBarOptions {
                 </a>
             </li>
             </ul>
-        </li>
-        Html;
+        </li>';
         return $html;
     }
     
     public function obras()
     {
-        $html = <<<Html
+        $html = '
         <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fas fa-hard-hat" style="color: #edf019;"></i>
@@ -145,44 +141,13 @@ class sideBarOptions {
                 </a>
             </li>
             </ul>
-        </li>
-        Html;
+        </li>';
         return $html;
     }
 
-    // public function funcionarios()
-    // {
-    //     $html = <<<Html
-    //     <li class="nav-item">
-    //         <a href="#" class="nav-link">
-    //         <i class="fas fa-user-plus" style="color: #35b332;"></i>
-    //         <p>
-    //             Funcionarios
-    //             <i class="right fas fa-angle-left"></i>
-    //         </p>
-    //         </a>
-    //         <ul class="nav nav-treeview">
-    //         <li class="nav-item">
-    //             <a href="/administrador/funcionarios/registrar-funcionarios" name="sidebarEnlace" class="nav-link" data-page="funcionarios/registrar-funcionarios">
-    //             <i class="fas fa-book"></i>
-    //             <p>Registrar</p>
-    //             </a>
-    //         </li>
-    //         <li class="nav-item">
-    //             <a href="/administrador/funcionarios/actualizar-funcionarios" name="sidebarEnlace" class="nav-link" data-page="funcionarios/actualizar-funcionarios">
-    //             <i class="fas fa-edit"></i>
-    //             <p>Administrar funcionarios</p>
-    //             </a>
-    //         </li>
-    //         </ul>
-    //     </li>
-    //     Html;
-    //     return $html;
-    // }
-
     public function adminmainpage()
     {
-        $html = <<<Html
+        $html = '
         <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fas fa-id-card-alt"></i>
@@ -199,14 +164,13 @@ class sideBarOptions {
                 </a>
             </li>
             </ul>
-        </li>
-        Html;
+        </li>';
         return $html;
     }  
     
     public function agendagobernador()
     {
-        $html = <<<Html
+        $html = '
         <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fa fa-calendar-alt" style="color:#1291ab;"></i>
@@ -229,14 +193,13 @@ class sideBarOptions {
                 </a>
             </li>
             </ul>
-        </li>
-        Html;
+        </li>';
         return $html;
     }
 
     public function convocatorias()
     {
-        $html = <<<Html
+        $html = '
         <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fas fa-briefcase" style="color: #39c668;"></i>
@@ -259,9 +222,39 @@ class sideBarOptions {
                 </a>
             </li>
             </ul>
+        </li>';
+        return $html;
+    }
+
+    /*
+        <li class="nav-item">
+            <a href="/administrador/presupuesto/editar-saldo-balance" name="sidebarEnlace" class="nav-link" data-page="presupuesto/editar-saldo-balance">
+                <i class="fa fa-calendar-week"></i>
+                <p> Editor Saldo de Balance</p>
+            </a>
         </li>
-        Html;
+    */
+
+    public function Presupuesto()
+    {
+        $html = '
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fas fa-coins"></i>
+            <p>
+                Presupuesto
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrador/presupuesto/registrar-saldo-balance" name="sidebarEnlace" class="nav-link" data-page="presupuesto/registrar-saldo-balance">
+                <i class="fa fa-calendar-plus"></i>
+                <p> Registrar Saldo de Balance</p>
+                </a>
+            </li>
+            </ul>
+        </li>';
         return $html;
     }
 }
-?>

@@ -1,7 +1,5 @@
 <?php
 
-use JetBrains\PhpStorm\Internal\ReturnTypeContract;
-
 spl_autoload_register( function ($nombreClase) {
     $rutaArchivo = _ROOT_VIEWS . 'admin/' . $nombreClase . '.php';
     if (file_exists($rutaArchivo)) {
@@ -14,7 +12,7 @@ class contentPageOptions {
     public function Dashboard()
     {
         $html = <<<Html
-        <div>Hola soy un dashboard</div>
+        <div></div>
         Html;
         return $html;
     }
@@ -89,20 +87,6 @@ class contentPageOptions {
         return $resultado; 
     }
 
-    // public function RegistrarFuncionarios() 
-    // {
-    //     $funcionarios = new funcionarios();
-    //     $resultado = $funcionarios->RegistrarFuncionarios();
-    //     return $resultado;
-    // }
-
-    // public function ActualizarFuncionarios()
-    // {
-    //     $funcionarios = new funcionarios();
-    //     $resultado = $funcionarios->ActualizarFuncionarios();
-    //     return $resultado;
-    // }   
-
     public function Contacto()
     {
         $html = <<<Html
@@ -110,7 +94,6 @@ class contentPageOptions {
         Html;
         return $html;
     }
-
 
     public function RegistrarAgendaGobernador()
     {
@@ -138,5 +121,17 @@ class contentPageOptions {
         $convocatorias = new Convocatorias();
         $resultado = $convocatorias->ActualizarConvocatorias();
         return $resultado; 
+    }
+    
+    public function registrarSaldoBalance()
+    {
+        $presupuesto = Presupuesto::viewRegistrarSaldoBalance();
+        return $presupuesto;
+    }
+
+    public function editarSaldoBalance()
+    {
+        $presupuesto = Presupuesto::viewEditarSaldoBalance();
+        return $presupuesto;
     }
 }
