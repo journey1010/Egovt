@@ -134,4 +134,10 @@ class contentPageOptions {
         $presupuesto = Presupuesto::viewEditarSaldoBalance();
         return $presupuesto;
     }
+
+    public function registrarParticipacionCiudadana()
+    {
+        $participacion = Participacion::viewRegistrar();
+        return $participacion;
+    }
 }

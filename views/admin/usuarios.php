@@ -69,6 +69,8 @@ class usuarios extends handleSanitize {
                                             <option value="agendagobernador">Agenda Gobernación</option>
                                             <option value="adminmainpage">Pagina de inicio</option>
                                             <option value="convocatorias">Convocatoria</option>
+                                            <option value='saldo-balance'>Presupuesto - Saldo de Balance</option>
+                                            <option value='participacion-ciudadana'>Participacion Ciudadana</option>
                                         </select>
                                     </div>
                                 </div>
