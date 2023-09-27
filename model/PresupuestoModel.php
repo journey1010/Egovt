@@ -42,4 +42,17 @@ class PresupuestoModel
         $conexion->query($sql, $params, '', false);
         return true;
     }
+
+    public static function buscarSaldoBalance($startDate, $endDate)
+    {
+        $sql = "SELECT title, CONCAT(YEAR(load_date), '/',MONTH(load_date), '/', path_file )as pathfile, load_date 
+                FROM saldos_de_balance 
+                WHERE load_date BETWEEN :startDate AND :endDate
+                ORDER BY id DESC";
+        $params = [':startDate'=> $startDate, ':endDate'=>$endDate];
+        $conexion = new MySQLConnection();
+        $stmt = $conexion->query($sql, $params, '', false);
+        $resultado = $stmt->fetchAll();
+        return $resultado;
+    }
 }

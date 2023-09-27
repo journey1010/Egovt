@@ -4,7 +4,7 @@
         <h2 class="text-monospace ml-3">Transparencia <i class="fas fa-angle-right"></i> Saldos de balance</h2>
     </div>
     <article class="dsSingleContent pt-4 pb-2 pt-md-7 pb-md-1 pt-lg-4 pb-lg-10 pt-xl-3 pb-xl-16">
-        <div class="container">
+        <div class="container saldo-container">
             <div class="ifbFilterHead col-12 bg-light px-4 pb-3 px-lg-4 pb-lg-1 mb-2 d-flex justify-content-center pb-2 mb-3">
                 <div class="form-inline mx-n3 align-items-center mt-3 px-4">
                     <div class="col-12">
@@ -12,16 +12,16 @@
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="d-block fwMedium fontAlter text-lDark mb-2 mr-3">Desde  </label>
-                        <input type="date" class="datepicker form-control bg-transparent border-dark date-start" placeholder="<?= date('Y-m-d')?>" data-date-format="yyyy-mm-dd" value=""/>
+                        <input type="date" class="datepicker form-control bg-transparent border-dark date-start" data-date-format="yyyy-mm-dd" value=""/>
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="d-block fwMedium fontAlter text-lDark mb-2 mr-3 ml-3">Hasta  </label>
-                        <input type="date" class="datepicker form-control bg-transparent border-dark date-end" placeholder="<?= date('Y-m-d')?>" data-date-format="yyyy-mm-dd"/>
+                        <input type="date" class="datepicker form-control bg-transparent border-dark date-end" data-date-format="yyyy-mm-dd"/>
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="d-block fwMedium fontAlter text-lDark mb-2 mr-3"></label>
-                        <button id="searchSaldoBalance" type="button" class="btn btnTheme form-control font-weight-bold btnMinSm text-capitalize position-relative border-0 px-0" style="height:auto;" data-hover="Buscar">
-                            <span class="d-block btnText">Buscar</span>
+                        <button id="searchSaldoBalance" type="button" class="btn btnTheme btnNoOver d-flex align-items-center justify-content-center" data-hover="Buscar">
+                            <i class="icomoon-search"><span class="sr-only">Buscar</span></i>
                         </button>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ class Presupuesto
                         </div>
                         <div class="col-md-5 col-sm-12 form-group">
                             <label class="form-label">Título</label>
-                            <input type="text" class="form-control title-saldoBalance" required>
+                            <input type="text" class="form-control title-saldoBalance"maxlength="355" required>
                         </div>
                         <div class="col-md-5 col-sm-12 form-group">
                             <label class="form-label" for="saldoBlanceFile">Archivo</label>

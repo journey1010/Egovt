@@ -16,7 +16,7 @@ class PresupuestoController extends BaseViewInterfaz
         $data = [
             'link' => self::$pathCss . 'datepicker.css',
             'dataTable' => $resultados,
-            'Paginidaor' => $paginadorHtml,
+            'Paginidaor' => $paginadorHtml
         ];
         $pathJs = self::$pathJs;
         $moreScript = <<<html
@@ -35,5 +35,22 @@ class PresupuestoController extends BaseViewInterfaz
         $render->render('header', '', false);
         $render->render('transparencia/Presupuesto/SaldoBalanceView', $data, false);
         $render->render('footer', $dataFooter, false);
+    }
+
+    public function buscarSaldoBalance()
+    {
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+        if(!self::validateDate($startDate) && !self::validateDate($endDate)){
+            echo (json_encode(['error' => 'Sin registros! Vuelva a intentar con otra fecha.']));
+            return;
+        }
+        try {
+            $resultado = PresupuestoModel::buscarSaldoBalance($startDate, $endDate);
+            echo (json_encode(['status'=>'success', 'data'=>$resultado]));
+        } catch (Throwable $e) {
+            echo(json_encode(['status'=>'error', 'message' => 'Sin registros! Vuelva a intentar con otra fecha.']));
+            Helper::handlerError($e, 'PresupuestoController::buscarSaldoBalance');
+        }
     }
 }

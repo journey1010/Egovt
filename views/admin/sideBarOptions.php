@@ -226,6 +226,15 @@ class sideBarOptions {
         return $html;
     }
 
+    /*
+        <li class="nav-item">
+            <a href="/administrador/presupuesto/editar-saldo-balance" name="sidebarEnlace" class="nav-link" data-page="presupuesto/editar-saldo-balance">
+                <i class="fa fa-calendar-week"></i>
+                <p> Editor Saldo de Balance</p>
+            </a>
+        </li>
+    */
+
     public function Presupuesto()
     {
         $html = '
@@ -244,15 +253,8 @@ class sideBarOptions {
                 <p> Registrar Saldo de Balance</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="/administrador/presupuesto/editar-saldo-balance" name="sidebarEnlace" class="nav-link" data-page="presupuesto/editar-saldo-balance">
-                <i class="fa fa-calendar-week"></i>
-                <p> Editor Saldo de Balance</p>
-                </a>
-            </li>
             </ul>
         </li>';
         return $html;
     }
 }
-?>
