@@ -77,7 +77,7 @@ class viewConstruct{
         try {
             switch($tipoUser){
                 case 'admin':
-                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'agendagobernador', 'convocatorias');
+                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'agendagobernador', 'convocatorias', 'Presupuesto');
                 break;
                 case 'visitor':
                     $opciones = array ('visitas');
@@ -85,9 +85,6 @@ class viewConstruct{
                 case 'obras':
                     $opciones = array ( 'obras' );
                 break; 
-                // case 'funcionarios':
-                //     $opciones = array ('funcionarios');
-                // break;
                 case 'adminmainpage':
                     $opciones = array ('adminmainpage');
                 break;
@@ -96,6 +93,9 @@ class viewConstruct{
                 break;
                 case 'convocatorias':
                     $opciones = array ('convocatorias');
+                break;
+                case 'presupuesto':
+                    $opciones = array('Presupuesto');    
                 break;
                 default:
                     throw new Exception('Clase de usuario no valido');
@@ -132,14 +132,13 @@ class viewConstruct{
                     'regularizar-visitas' => $contentPage->RegularizarVisitas(),
                     'registrar-obras' => $contentPage->RegistrarObras(),
                     'actualizar-obras' => $contentPage->ActualizarObras(),
-                    // 'registrar-funcionarios' => $contentPage->RegistrarFuncionarios(),
-                    // 'actualizar-funcionarios' => $contentPage->ActualizarFuncionarios(),
                     'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),
                     'actualizar-agenda' => $contentPage->ActualizarAgendaGobernador(),
                     'exportar-visitas' => $contentPage->ExportarVisitas(),
                     'registrar-convocatoria' => $contentPage->RegistrarConvocatoria(),
-                    'actualizar-convocatoria' => $contentPage->ActualizarConvocatoria()
-
+                    'actualizar-convocatoria' => $contentPage->ActualizarConvocatoria(),
+                    'registrar-saldo-balance' => $contentPage->registrarSaldoBalance(),
+                    'editar-saldo-balance' => $contentPage->editarSaldoBalance()
                 ],
 
                 'visitor' =>[
@@ -158,9 +157,6 @@ class viewConstruct{
                     'contacto' => $contentPage->Contacto()
                 ],
 
-                // 'funcionarios' => [
-                //     '' => $contentPage->RegistrarFuncionarios()
-                // ],
                 'agendagobernador' => [
                     '' => $contentPage->RegistrarAgendaGobernador(),
                     'registrar-agenda' => $contentPage->RegistrarAgendaGobernador(),
@@ -174,6 +170,12 @@ class viewConstruct{
                     '' => $contentPage->RegistrarConvocatoria(),
                     'registrar-convocatoria' => $contentPage->RegistrarConvocatoria(),
                     'actualizar-convocatoria' => $contentPage->ActualizarConvocatoria()
+                ],
+
+                'presupuesto' => [
+                    '' => $contentPage->registrarSaldoBalance(),
+                    'registrar-saldo-balance' => $contentPage->registrarSaldoBalance(),
+                    'editar-saldo-balance' => $contentPage->editarSaldoBalance()
                 ]
             ];
 

@@ -28,4 +28,18 @@ class PresupuestoModel
         $paginadorHTML = $paginador->obtenerPaginador();
         return [$resultados, $paginadorHTML];
     }
+
+    public static function registrarSaldoBalance($titulo, $archivo, $fecha)
+    {
+        $userName = $_SESSION['username'];
+        $userIdsql = 'SELECT id FROM usuarios  where nombre_usuario = ?';
+        $conexion = new MySQLConnection();
+        $stmt = $conexion->query($userIdsql, [$userName], '', false);
+        $userId = $stmt->fetchColumn();
+
+        $sql = 'INSERT INTO saldos_de_balance (title, load_date, user_id_who_load, path_file) VALUES (:title, :load_date, :user_id_who_load, :path_file )';
+        $params = [':title'=>$titulo, ':load_date'=>$fecha, ':user_id_who_load'=>$userId, ':path_file'=>$archivo];
+        $conexion->query($sql, $params, '', false);
+        return true;
+    }
 }

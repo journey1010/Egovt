@@ -231,7 +231,7 @@ class sideBarOptions {
         $html = '
         <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="fas fa-briefcase" style="color: #39c668;"></i>
+            <i class="fas fa-coins"></i>
             <p>
                 Presupuesto
                 <i class="right fas fa-angle-left"></i>
@@ -239,22 +239,19 @@ class sideBarOptions {
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="/administrador/convocatoria/registrar-convocatoria" name="sidebarEnlace" class="nav-link" data-page="convocatoria/registrar-convocatoria">
+                <a href="/administrador/presupuesto/registrar-saldo-balance" name="sidebarEnlace" class="nav-link" data-page="presupuesto/registrar-saldo-balance">
                 <i class="fa fa-calendar-plus"></i>
                 <p> Registrar Saldo de Balance</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/administrador/convocatoria/actualizar-convocatoria" name="sidebarEnlace" class="nav-link" data-page="convocatoria/actualizar-convocatoria">
+                <a href="/administrador/presupuesto/editar-saldo-balance" name="sidebarEnlace" class="nav-link" data-page="presupuesto/editar-saldo-balance">
                 <i class="fa fa-calendar-week"></i>
                 <p> Editor Saldo de Balance</p>
                 </a>
             </li>
             </ul>
         </li>';
-        if($_SESSION['tipoUser'] === ){
-
-        }
         return $html;
     }
 }
