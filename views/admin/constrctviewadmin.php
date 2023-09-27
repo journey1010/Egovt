@@ -94,7 +94,7 @@ class viewConstruct{
                 case 'convocatorias':
                     $opciones = array ('convocatorias');
                 break;
-                case 'presupuesto':
+                case 'saldo-balance':
                     $opciones = array('Presupuesto');    
                 break;
                 default:
@@ -172,7 +172,7 @@ class viewConstruct{
                     'actualizar-convocatoria' => $contentPage->ActualizarConvocatoria()
                 ],
 
-                'presupuesto' => [
+                'saldo-balance' => [
                     '' => $contentPage->registrarSaldoBalance(),
                     'registrar-saldo-balance' => $contentPage->registrarSaldoBalance(),
                     'editar-saldo-balance' => $contentPage->editarSaldoBalance()
