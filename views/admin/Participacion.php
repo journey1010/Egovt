@@ -44,7 +44,7 @@ class Participacion {
                         </div>
                         <div class="col-md-5 col-sm-12 form-group">
                             <label class="form-label">Tipo</label>
-                            <select id="tipoUsuario"aria-label="tiposUsuarios"class="form-control select2"  style="width: 100%;">
+                            <select id="tipo-partiticipacion" aria-label="tipos de documentos" class="form-control select2"  style="width: 100%;">
                                 <option selected="selected" value="Presupuesto Participativo">Presupuesto Participativo</option>
                                 <option value="Audiencia Públicas">Audiencia Públicas</option>
                                 <option value="Consejo de Coordinación Regional/Local">Consejo de Coordinación Regional/Local</option>
@@ -52,7 +52,7 @@ class Participacion {
                             </select>
                         </div>
                         <div class="col-md-2 col-sm-6 form-group">
-                            <label class="form-label">Boton</label>
+                            <label class="form-label" style="color: white;"> boton</label>
                             <button type="submit" class="btn btn-dark form-control btn-participacion-ciudadana">Guardar</button>
                         </div>
                     </div>
