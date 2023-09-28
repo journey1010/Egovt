@@ -14,7 +14,7 @@
         {"method" : "GET", "pattern" : "/administrador/convocatoria/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/prespuesto/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "GET", "pattern" : "/administrador/participacion-ciudadana/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
-        {"method" : "POST", "pattern" : "/administrador/participacion-ciudadana/{metodo}","handler": "admin/ParticipacionAdminController@index"},
+        {"method" : "POST", "pattern" : "/administrador/participacion/admin/{metodo}","handler": "admin/ParticipacionAdminController@index"},
         {"method" : "POST", "pattern" : "/administrador/prespuesto/saldo-balance/{metodo}","handler": "admin/PresupuestoAdminController@index"},
         {"method" : "POST", "pattern" : "/administrador/convocatoria/registro-convocatoria", "handler" : "admin/Convocatoria@registrar"},
         {"method" : "POST", "pattern" : "/administrador/convocatoria/actualizar-convocatoria", "handler" : "admin/Convocatoria@actualizar"},
@@ -69,6 +69,11 @@
         {"method" : "POST", "pattern" : "/transparencia/convocatorias-de-trabajo/buscar", "handler": "ConvocatoriaView::searchConvocatoriaView"},
         {"method" : "GET", "pattern" : "/transparencia/saldos-de-balance/?page={pagina}", "handler": "PresupuestoController@showSaldo"},
         {"method" : "POST", "pattern" : "/transparencia/saldos-balance/buscador-saldo-balance", "handler" : "PresupuestoController@buscarSaldoBalance"},
+        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
+        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/presupuesto-participativo/?page={pagina}", "handler" : "ParticipacionController@showPresupuesto"},
+        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/consejo-de-coordinacion-regional/?page={pagina}", "handler" : "ParticipacionController@showConsejo"},
+        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/audiencia-publica/?page={pagina}", "handler" : "ParticipacionController@showAudiencia"},
+        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/información-adicional/?page={pagina}", "handler" : "ParticipacionController@showInformacion"},
         {"method" : "GET", "pattern" : "/servicios/menu-aplicaciones", "handler" : "ServiciosController@ServiciosMain"}
     ]
 }

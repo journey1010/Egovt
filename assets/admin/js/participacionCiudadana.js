@@ -1,6 +1,6 @@
 import { Toast } from "./Toast.js";
 
-$(document).on('submit', '#saldoBalanceForm', function (event) {
+$(document).on('submit', '#participacionCiudadanaForm', function (event) {
     event.preventDefault();
 
     let enviarDatos = true;
@@ -86,7 +86,7 @@ $(document).on('submit', '#saldoBalanceForm', function (event) {
         }
 
         $.ajax({
-            url: '/administrador/participacion/registrar-archivos',
+            url: '/administrador/participacion/admin/registrar-archivos',
             method: 'POST',
             data: formData,
             processData: false,
@@ -121,6 +121,11 @@ $(document).on('submit', '#saldoBalanceForm', function (event) {
                         title: resp.message
                     });
                 }
+                $('.title-participacion').val('');
+                $('#tipo-partiticipacion').prop('selectedIndex', 0);
+                $('#participacionFile').val('');
+                $('.descripcion-participacion').val('');
+                $('.custom-file-label').html('Seleccione un archivo');
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('.btn-participacion-ciudadana').html('Guardar');
@@ -132,9 +137,6 @@ $(document).on('submit', '#saldoBalanceForm', function (event) {
             },
             complete: function () {
                 progressBar.css('width', '0%').attr('aria-valuenow', 0).text('0%');
-                $('.title-participacion').val('');
-                $('#tipo-partiticipacion').prop('selectedIndex', 0);
-                $('.custom-file-label').html('Seleccione un archivo');
             }
         });
     }

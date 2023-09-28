@@ -5,22 +5,15 @@ require_once(_ROOT_CONTROLLER . 'paginador.php');
 
 class ParticipacionModel 
 {
-    public static function getPaticipacion($pagina)
+    public static function getPaticipacion($pagina, $tipoDoc)
     {
-        session_set_cookie_params(['lifetime'=>60]);
-        session_start();
         $resultsPerPage = 10;
-        $sql = 'SELECT title, descriptions, load_date, files FROM participacion_ciudadana ORDER BY id DESC';
-        
-        if(isset($_SESSION['participacion_ciudadana'])){
-            $paginador = $_SESSION['participacion_ciudadana'];
-            $paginadorHTML = $paginador->setResultadosPorPagina($resultsPerPage);
-        } else {
-            $conexion = new MySQLConnection();
-            $paginador = new Paginator($conexion, $sql, [], $pagina, $resultsPerPage);
-            $_SESSION['saldo_balance'] = $paginador;
-        }
+        $sql = 'SELECT title, type_doc, descriptions, load_date, files FROM participacion_ciudadana ';
+        $sql = $tipoDoc == 'documentos' ? $sql .= 'ORDER BY id DESC' : $sql .= 'WHERE type_doc = :typeDoc ORDER BY id DESC';
+        $params = $tipoDoc == 'documentos' ? $params = [] : $params =  [':typeDoc'=>$tipoDoc];
+        $conexion = new MySQLConnection();
 
+        $paginador = new Paginator($conexion, $sql, $params, $pagina, $resultsPerPage);
         $paginador->setPaginaActual($pagina);
         $resultados = $paginador->getResultados();
         $paginadorHTML = $paginador->obtenerPaginador();
@@ -35,11 +28,11 @@ class ParticipacionModel
         $stmt = $conexion->query($userIdsql, [$userName], '', false);
         $userId = $stmt->fetchColumn();
 
-        $sql = 'INSERT INTO participacion_ciudadana (title, descriptions, load_date, user_id_who_load, files) VALUES ( :title, :descriptions, :load_date, :user_id_who_load, :files)';
+        $sql = 'INSERT INTO participacion_ciudadana (title, type_doc, descriptions, load_date, user_id_who_load, files) VALUES ( :title, :tipoDoc, :descriptions, :load_date, :user_id_who_load, :files)';
         $params = [
-            ':title' => $titulo, 
-            ':descripcion' => $descripcion,
-            ':tipoDoc' => $tipoDoc, 
+            ':title' => $titulo,
+            ':descriptions' => $descripcion,
+            ':tipoDoc' => $tipoDoc,
             ':load_date' => date('Y-m-d'),
             ':user_id_who_load' => $userId,
             ':files' => $files
