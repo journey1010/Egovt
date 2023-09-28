@@ -23,7 +23,7 @@ class ParticipacionController extends BaseViewInterfaz
         $moreScript = <<<html
             <script src="{$pathJs}pagination.min.js"></script>
             <script src="{$pathJs}bootstrap-datepicker.js"></script>
-            <script src="{$pathJs}paricipacion.js"></script>
+            <script src="{$pathJs}participacion.js"></script>
         html;
         $dataFooter = [
             'año' => date('Y'),

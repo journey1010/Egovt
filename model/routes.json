@@ -70,10 +70,10 @@
         {"method" : "GET", "pattern" : "/transparencia/saldos-de-balance/?page={pagina}", "handler": "PresupuestoController@showSaldo"},
         {"method" : "POST", "pattern" : "/transparencia/saldos-balance/buscador-saldo-balance", "handler" : "PresupuestoController@buscarSaldoBalance"},
         {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
-        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/presupuesto-participativo/?page={pagina}", "handler" : "ParticipacionController@showPresupuesto"},
-        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/consejo-de-coordinacion-regional/?page={pagina}", "handler" : "ParticipacionController@showConsejo"},
-        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/audiencia-publica/?page={pagina}", "handler" : "ParticipacionController@showAudiencia"},
-        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/información-adicional/?page={pagina}", "handler" : "ParticipacionController@showInformacion"},
+        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/presupuesto-participativo/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
+        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/consejo-de-coordinacion-regional/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
+        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/audiencia-publica/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
+        {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/información-adicional/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
         {"method" : "GET", "pattern" : "/servicios/menu-aplicaciones", "handler" : "ServiciosController@ServiciosMain"}
     ]
 }

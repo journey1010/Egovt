@@ -45,7 +45,7 @@
                                     $fechaFormat = DateTime::createFromFormat('Y-m-d', $row['load_date']);
                                     $formato = new IntlDateFormatter('es_Es', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
                                     $fecha = $formato->format($fechaFormat); 
-                                    $div =  '<div class="card">
+                                    $div =  '<div class="card p-0">
                                                 <div class="card-body">
                                                 <div class="d-flex mb-3">
                                                     <span class="icnWrap pt-1 mr-3" style="font-size: 20px">
@@ -73,19 +73,19 @@
 							<h3 class="fwSemiBold mb-4 position-relative">Documentos </h3>
 							<ul class="list-unstyled pl-0 mx-n2 mb-0 mb-3 isoFiltersList">
 								<li name="panel" class="active">
-									<a class="enlace" href="/transparencia/participacion-ciudadana/?page=1">Todos los documentos</a>
+									<a class="enlace" href="/transparencia/participacion-ciudadana/documentos/?page=1">Todos los documentos</a>
 								</li>
 								<li name="panel">
-									<a class="enlace" href="/transparencia/participacion-ciudadana/presupuesto-participativo/?page=1">Presupuesto participativo</a>
+									<a class="enlace" href="/transparencia/participacion-ciudadana/presupuesto/presupuesto-participativo/?page=1">Presupuesto participativo</a>
 								</li>
 								<li name="panel">
-									<a class="enlace" href="/transparencia/participacion-ciudadana/consejo-de-coordinacion-regional/?page=1">Consejo de coordinación regional</a>
+									<a class="enlace" href="/transparencia/participacion-ciudadana/consejo/consejo-de-coordinacion-regional/?page=1">Consejo de coordinación regional</a>
 								</li>
 								<li name="panel">
-									<a class="enlace" href="/transparencia/participacion-ciudadana/audiencia-publica/?page=1">Audiencia Pública</a>
+									<a class="enlace" href="/transparencia/participacion-ciudadana/audiencia/audiencia-publica/?page=1">Audiencia Pública</a>
 								</li>
 								<li name="panel">
-									<a class="enlace" href="/transparencia/participacion-ciudadana/información-adicional/?page=1">Información adicional</a>
+									<a class="enlace" href="/transparencia/participacion-ciudadana/informacion/información-adicional/?page=1">Información adicional</a>
 								</li>
 							</ul>
 						</nav>

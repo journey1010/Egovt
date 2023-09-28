@@ -10,7 +10,23 @@ class ParticipacionModel
         $resultsPerPage = 10;
         $sql = 'SELECT title, type_doc, descriptions, load_date, files FROM participacion_ciudadana ';
         $sql = $tipoDoc == 'documentos' ? $sql .= 'ORDER BY id DESC' : $sql .= 'WHERE type_doc = :typeDoc ORDER BY id DESC';
-        $params = $tipoDoc == 'documentos' ? $params = [] : $params =  [':typeDoc'=>$tipoDoc];
+        switch($tipoDoc){
+            case 'documentos':
+                $params = [];
+            break;
+            case 'presupuesto':
+                $params = [':typeDoc' => 'Presupuesto Participativo'];
+            break;
+            case 'consejo':
+                $params =  [':typeDoc'=>'Consejo de Coordinación Regional/Local'];
+            break; 
+            case 'audiencia':
+                $params = [':typeDoc'=>'Audiencia Públicas'];
+            break;
+            case 'informacion':
+                $params = [':typeDoc'=>'Información Adicional'];
+            break;
+        }
         $conexion = new MySQLConnection();
 
         $paginador = new Paginator($conexion, $sql, $params, $pagina, $resultsPerPage);
