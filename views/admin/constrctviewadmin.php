@@ -77,7 +77,7 @@ class viewConstruct{
         try {
             switch($tipoUser){
                 case 'admin':
-                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'agendagobernador', 'convocatorias', 'Presupuesto');
+                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'agendagobernador', 'convocatorias', 'PresupuestoSaldoBalance', 'ParticipacionCiudadana');
                 break;
                 case 'visitor':
                     $opciones = array ('visitas');
@@ -94,8 +94,11 @@ class viewConstruct{
                 case 'convocatorias':
                     $opciones = array ('convocatorias');
                 break;
-                case 'presupuesto':
-                    $opciones = array('Presupuesto');    
+                case 'saldo-balance':
+                    $opciones = array('PresupuestoSaldoBalance');    
+                break;
+                case  'participacion-ciudadana';
+                    $opciones = array('ParticipacionCiudadana');
                 break;
                 default:
                     throw new Exception('Clase de usuario no valido');
@@ -138,7 +141,8 @@ class viewConstruct{
                     'registrar-convocatoria' => $contentPage->RegistrarConvocatoria(),
                     'actualizar-convocatoria' => $contentPage->ActualizarConvocatoria(),
                     'registrar-saldo-balance' => $contentPage->registrarSaldoBalance(),
-                    'editar-saldo-balance' => $contentPage->editarSaldoBalance()
+                    'editar-saldo-balance' => $contentPage->editarSaldoBalance(),
+                    'registrar-participacion-ciudadana' => $contentPage->registrarParticipacionCiudadana()
                 ],
 
                 'visitor' =>[
@@ -172,10 +176,15 @@ class viewConstruct{
                     'actualizar-convocatoria' => $contentPage->ActualizarConvocatoria()
                 ],
 
-                'presupuesto' => [
+                'saldo-balance' => [
                     '' => $contentPage->registrarSaldoBalance(),
                     'registrar-saldo-balance' => $contentPage->registrarSaldoBalance(),
                     'editar-saldo-balance' => $contentPage->editarSaldoBalance()
+                ],
+
+                'participacion-ciudadana' => [
+                    '' => $contentPage->registrarParticipacionCiudadana(),
+                    'registrar-participacion-ciudadana' => $contentPage->registrarParticipacionCiudadana()
                 ]
             ];
 

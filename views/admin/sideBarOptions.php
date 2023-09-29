@@ -235,7 +235,7 @@ class sideBarOptions {
         </li>
     */
 
-    public function Presupuesto()
+    public function PresupuestoSaldoBalance()
     {
         $html = '
         <li class="nav-item">
@@ -256,5 +256,28 @@ class sideBarOptions {
             </ul>
         </li>';
         return $html;
-    }
+    }   
+
+    public function ParticipacionCiudadana()
+    {
+        $html = '
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fas fa-coins"></i>
+            <p>
+                Participacion Ciudadana
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrador/participacion-ciudadana/registrar-participacion-ciudadana" name="sidebarEnlace" class="nav-link" data-page="participacion-ciudadana/registrar-participacion-ciudadana">
+                <i class="fa fa-calendar-plus"></i>
+                <p> Registrar archivo</p>
+                </a>
+            </li>
+            </ul>
+        </li>';
+        return $html;
+    }  
 }

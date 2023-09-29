@@ -90,7 +90,7 @@ class contentPageOptions {
     public function Contacto()
     {
         $html = <<<Html
-        <div>hola</div>
+        <div></div>
         Html;
         return $html;
     }
@@ -133,5 +133,11 @@ class contentPageOptions {
     {
         $presupuesto = Presupuesto::viewEditarSaldoBalance();
         return $presupuesto;
+    }
+
+    public function registrarParticipacionCiudadana()
+    {
+        $participacion = Participacion::viewRegistrar();
+        return $participacion;
     }
 }
