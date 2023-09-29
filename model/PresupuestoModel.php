@@ -11,9 +11,9 @@ class PresupuestoModel
         session_start();
 
         $resultsPerPage = 12;
-        $sql = "SELECT title, CONCAT(YEAR(load_date), '/',MONTH(load_date), '/', path_file )as pathfile, load_date FROM saldos_de_balance ORDER BY id DESC";
+        $sql = "SELECT title, CONCAT(YEAR(load_date), '/',DATE_FORMAT(load_date, '%m'), '/', path_file )as pathfile, load_date FROM saldos_de_balance ORDER BY id DESC";
         $params = [];
-
+      
         if (isset($_SESSION['saldo_balance'])) {
             $paginador = $_SESSION['saldo_balance'];
             $paginadorHTML = $paginador->setResultadosPorPagina($resultsPerPage);
@@ -45,7 +45,7 @@ class PresupuestoModel
 
     public static function buscarSaldoBalance($startDate, $endDate)
     {
-        $sql = "SELECT title, CONCAT(YEAR(load_date), '/',MONTH(load_date), '/', path_file )as pathfile, load_date 
+        $sql = "SELECT title, CONCAT(YEAR(load_date), '/',DATE_FORMAT(load_date, '%m'), '/', path_file )as pathfile, load_date 
                 FROM saldos_de_balance 
                 WHERE load_date BETWEEN :startDate AND :endDate
                 ORDER BY id DESC";

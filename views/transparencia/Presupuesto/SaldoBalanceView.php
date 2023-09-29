@@ -41,9 +41,9 @@
                                         <div class="descrWrap">
                                         <h5 class="fwSemiBold">
                         ';
-                        $div .= '<a href="https://regionloreto.gob.pe/files/presupuesto/'.$row['pathfile'].'" class="card-title">'. $row['title'].'</a><h5>';
+                        $div .= '<a href="https://regionloreto.gob.pe/files/transparencia/presupuesto/saldo-balance/'.$row['pathfile'].'" class="card-title" download>'. $row['title'].'</a><h5>';
                         $div .= '<strong class="d-block fileSize font-weight-normal card-text">' . $fecha . '</strong></div>';
-                        $div .= '</div><a class="btn btn-outline light btnAlerDark btnNoOver btn-sm">Ver Documento</a></div></div>';
+                        $div .= '</div><a class="btn btn-outline light btnAlerDark btnNoOver btn-sm" "https://regionloreto.gob.pe/files/transparencia/presupuesto/saldo-balance/'.$row['pathfile'].'" download>Ver Documento</a></div></div>';
                         echo $div;
                     }
                 ?>
