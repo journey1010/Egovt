@@ -30,6 +30,10 @@ class Presupuesto
                                 <label class="custom-file-label" for="saldoBalanceFile" data-browse="Elegir archivo">Elegir archivo</label>
                             </div>
                         </div>
+                        <div class="col-md-5 col-sm-12 form-group">
+                            <label class="form-label">Fecha de Saldo de Balance</label>
+                            <input type="date" class="form-control date-saldo-balance" aria-label="Fecha de saldo de balance">        
+                        </div>
                         <div class="col-md-2 col-sm-6 form-group">
                             <label class="form-label">Boton</label>
                             <button type="submit" class="btn btn-dark form-control btn-saldo-balance">Guardar</button>
