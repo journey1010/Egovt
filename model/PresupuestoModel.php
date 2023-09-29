@@ -13,7 +13,7 @@ class PresupuestoModel
         $resultsPerPage = 12;
         $sql = "SELECT title, CONCAT(YEAR(load_date), '/',DATE_FORMAT(load_date, '%m'), '/', path_file )as pathfile, load_date FROM saldos_de_balance ORDER BY id DESC";
         $params = [];
-
+      
         if (isset($_SESSION['saldo_balance'])) {
             $paginador = $_SESSION['saldo_balance'];
             $paginadorHTML = $paginador->setResultadosPorPagina($resultsPerPage);
