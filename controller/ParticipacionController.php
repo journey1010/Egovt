@@ -16,7 +16,8 @@ class ParticipacionController extends BaseViewInterfaz
         $data = [
             'link' => self::$pathCss . 'datepicker.css',
             'dataTable' => $resultados,
-            'Paginador' => $paginadorHtml
+            'Paginador' => $paginadorHtml,
+            'tipo' => $tipo
         ];
 
         $pathJs = self::$pathJs;
@@ -38,15 +39,16 @@ class ParticipacionController extends BaseViewInterfaz
         $render->render('footer', $dataFooter, false);
     }
 
-    public function buscarSaldoBalance()
+    public function buscarParticipacion()
     {
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-        $tipoDoc = htmlspecialchars($_POST['tipoDoc'], ENT_QUOTES, 'utf-8');
-        if(!self::validateDate($startDate) && !self::validateDate($endDate)){
-            echo (json_encode(['error' => 'Sin registros! Vuelva a intentar con otra fecha.']));
+        if(!self::validateDate($_POST['startDate']) && !self::validateDate( $_POST['endDate'])){
+            echo (json_encode(['status'=>'error', 'message' => 'Sin registros! Vuelva a intentar con otra fecha.']));
             return;
         }
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+        $tipoDoc = htmlspecialchars($_POST['typeDoc'], ENT_QUOTES, 'utf-8');
+
         try {
             $resultado = ParticipacionModel::buscarParticipacion($startDate, $endDate, $tipoDoc);
             echo (json_encode(['status'=>'success', 'data'=>$resultado]));

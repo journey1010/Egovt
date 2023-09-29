@@ -61,9 +61,13 @@ class ParticipacionModel
     {
         $sql = 'SELECT title, descriptions, load_date, files 
                 FROM participacion_ciudadana 
-                WHERE load_date BETWEEN :startDate AND :endDate AND type_doc = :typeDoc
-                ORDER BY id DESC';
-        $params = [':startDate'=> $startDate, ':endDate'=>$endDate, ':typeDoc'=> $tipoDoc];
+                WHERE load_date BETWEEN :startDate AND :endDate 
+                ';
+        $sql .= $tipoDoc === 'all' ? ' ORDER BY id DESC' : 'AND type_doc = :typeDoc ORDER BY id DESC';
+        $params = [':startDate'=> $startDate, ':endDate'=>$endDate];
+        if($tipoDoc != 'all'){
+            $params[':typeDoc'] = $tipoDoc;
+        }
         $conexion = new MySQLConnection();
         $stmt = $conexion->query($sql, $params, '', false);
         $resultado = $stmt->fetchAll();

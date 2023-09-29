@@ -74,6 +74,7 @@
         {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/consejo-de-coordinacion-regional/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
         {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/audiencia-publica/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
         {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/información-adicional/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
+        {"method" : "POST", "pattern": "/transparencia/participacion-ciudadana/buscador-participacion", "handler" : "ParticipacionController@buscarParticipacion"},
         {"method" : "GET", "pattern" : "/servicios/menu-aplicaciones", "handler" : "ServiciosController@ServiciosMain"}
     ]
 }
