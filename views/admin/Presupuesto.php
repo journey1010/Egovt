@@ -6,7 +6,7 @@ class Presupuesto
 {
     public static function viewRegistrarSaldoBalance()
     {
-        $ruta = _ROOT_ASSETS_ADMIN .  'js/saldoBalance.js';
+        $ruta = _ROOT_ASSETS_ADMIN .  'js/saldoBalance.js?v=1.1';
         $html = '
             <div class="container card mt-4 px-4 mb-4">
                 <form id="saldoBalanceForm" enctype="multipart/form-data">
