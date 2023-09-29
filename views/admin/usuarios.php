@@ -15,7 +15,7 @@ class usuarios extends handleSanitize {
     public function RegistrarUsuarios() 
     {
         try {
-            $ruta = $this->rutaAssets . 'js/usuarios.js';
+            $ruta = $this->rutaAssets . 'js/usuarios.js?v=1.1';
             $selectOficinas = $this->getOficinas();
             $html = <<<Html
             <div class="card card-danger mt-3 mx-auto w-100">
@@ -100,7 +100,7 @@ class usuarios extends handleSanitize {
 
     public function ActualizarUsuarios()
     {
-        $ruta = $this->rutaAssets . 'js/usuarios.js';
+        $ruta = $this->rutaAssets . 'js/usuarios.js?v=1.1';
         $oficinas = $this->getOficinas();
         $html = <<<Html
         <div class="card card-danger mt-3 mx-auto w-100">

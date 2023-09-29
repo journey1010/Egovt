@@ -90,7 +90,7 @@ class contentPageOptions {
     public function Contacto()
     {
         $html = <<<Html
-        <div>hola</div>
+        <div></div>
         Html;
         return $html;
     }

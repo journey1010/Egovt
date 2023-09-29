@@ -7,7 +7,7 @@ $(document).on('submit', '#participacionCiudadanaForm', function (event) {
     let archivosParticipacion = $('#participacionFile')[0].files;
     if (archivosParticipacion) {
         const extensionesPermitidas = ['docx', 'xlsx', 'xls', 'pdf', 'txt', 'doc', 'pptx', 'ppt', ];
-        const pesoMaximoArchivos = 50 * 1024 * 1024;
+        const pesoMaximoArchivos = 125 * 1024 * 1024;
 
         for (const key in archivosParticipacion) {
             if (archivosParticipacion.hasOwnProperty(key)) {

@@ -1,1 +1,9 @@
 2023-09-29 16:12:44 : SQLSTATE[HY093]: Invalid parameter number: parameter was not defined, info:PresupuestoController::buscarSaldoBalance
+2023-09-29 16:44:19 : SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'tipo_usuario' at row 1, info:
+2023-09-29 16:44:25 : SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'tipo_usuario' at row 1, info:
+2023-09-29 16:45:07 : SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'tipo_usuario' at row 1, info:
+2023-09-29 16:47:12 : SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'tipo_usuario' at row 1, info:
+2023-09-29 16:47:36 : SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'tipo_usuario' at row 1, info:
+2023-09-29 16:49:53 : SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'tipo_usuario' at row 1, info:
+2023-09-29 16:50:21 : SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'tipo_usuario' at row 1, info:
+2023-09-29 16:50:44 : SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'tipo_usuario' at row 1, info:

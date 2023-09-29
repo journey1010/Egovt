@@ -98,7 +98,7 @@ class viewConstruct{
                     $opciones = array('PresupuestoSaldoBalance');    
                 break;
                 case  'participacion-ciudadana';
-                    $opcion = array('ParticipacionCiudadana');
+                    $opciones = array('ParticipacionCiudadana');
                 break;
                 default:
                     throw new Exception('Clase de usuario no valido');
