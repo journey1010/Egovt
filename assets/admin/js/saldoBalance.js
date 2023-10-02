@@ -7,7 +7,7 @@ $(document).on('submit', '#saldoBalanceForm', function (event) {
     let archivosSaldoBalance = $('#saldoBalanceFile')[0].files;
     if (archivosSaldoBalance) {
         const extensionesPermitidas = ['docx', 'xlsx', 'xls', 'pdf', 'txt', 'doc'];
-        const pesoMaximoArchivos = 50 * 1024 * 1024;
+        const pesoMaximoArchivos =  150 * 1024 * 1024;
 
         for (const key in archivosSaldoBalance) {
             if (archivosSaldoBalance.hasOwnProperty(key)) {
