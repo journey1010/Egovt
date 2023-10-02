@@ -123,6 +123,7 @@ $(document).on('submit', '#saldoBalanceForm', function (event) {
             complete: function () {
                 progressBar.css('width', '0%').attr('aria-valuenow', 0).text('0%');
                 $('.title-saldoBalance').val('');
+                $('.date-saldo-balance').val('');
                 $('.custom-file-label').html('Seleccione un archivo');
             }
         });

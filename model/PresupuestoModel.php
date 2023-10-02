@@ -11,7 +11,7 @@ class PresupuestoModel
         session_start();
 
         $resultsPerPage = 12;
-        $sql = "SELECT title, CONCAT(YEAR(load_date), '/',DATE_FORMAT(load_date, '%m'), '/', path_file )as pathfile, load_date FROM saldos_de_balance ORDER BY id DESC";
+        $sql = "SELECT title, load_date, files, docs_date load_date FROM saldos_de_balance ORDER BY id DESC";
         $params = [];
       
         if (isset($_SESSION['saldo_balance'])) {
@@ -29,7 +29,7 @@ class PresupuestoModel
         return [$resultados, $paginadorHTML];
     }
 
-    public static function registrarSaldoBalance($titulo, $archivo, $fecha)
+    public static function saveFormSaldoBalance($titulo, $archivo, $fecha)
     {
         $userName = $_SESSION['username'];
         $userIdsql = 'SELECT id FROM usuarios  where nombre_usuario = ?';
@@ -37,19 +37,26 @@ class PresupuestoModel
         $stmt = $conexion->query($userIdsql, [$userName], '', false);
         $userId = $stmt->fetchColumn();
 
-        $sql = 'INSERT INTO saldos_de_balance (title, load_date, user_id_who_load, path_file) VALUES (:title, :load_date, :user_id_who_load, :path_file )';
-        $params = [':title'=>$titulo, ':load_date'=>$fecha, ':user_id_who_load'=>$userId, ':path_file'=>$archivo];
+        $sql = 'INSERT INTO saldos_de_balance (title, load_date, user_id_who_load, files, docs_date) VALUES (:title, :load_date, :user_id_who_load, :path_file, :docs_date )';
+        $params = [
+            ':title'=>$titulo,
+            ':load_date'=>date('Y-m-d'),
+            ':user_id_who_load'=>$userId,
+            ':path_file'=>$archivo,
+            ':docs_date' =>$fecha
+        ];
         $conexion->query($sql, $params, '', false);
         return true;
     }
 
-    public static function buscarSaldoBalance($startDate, $endDate)
+    public static function buscarSaldoBalance($startDate)
     {
-        $sql = "SELECT title, CONCAT(YEAR(load_date), '/',DATE_FORMAT(load_date, '%m'), '/', path_file )as pathfile, load_date 
-                FROM saldos_de_balance 
-                WHERE load_date BETWEEN :startDate AND :endDate
-                ORDER BY id DESC";
-        $params = [':startDate'=> $startDate, ':endDate'=>$endDate];
+        $sql = 'SELECT title, load_date, files, docs_date 
+                FROM saldo_de_balance 
+                WHERE YEAR(docs_date) = :startDate 
+                ORDER BY id DESC
+                ';
+        $params = [':startDate'=> $startDate];
         $conexion = new MySQLConnection();
         $stmt = $conexion->query($sql, $params, '', false);
         $resultado = $stmt->fetchAll();

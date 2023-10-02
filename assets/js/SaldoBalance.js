@@ -5,10 +5,8 @@ $('.datepicker').datepicker({
 let button = document.getElementById('searchSaldoBalance');
 button.addEventListener('click', () => {
     let starDate = $('.date-start').val();
-    let endDate = $('.date-end').val();
     let formData = {
         startDate: starDate,
-        endDate: endDate
     };
 
     $.ajax({

@@ -26,7 +26,7 @@ class Presupuesto
                                     document.querySelector(`.custom-file-label`).innerHTML = this.files.length + ` archivos seleccionados`;    
                                 } else {
                                     document.querySelector(`.custom-file-label`).innerHTML =  `Seleccione un archivo`
-                                } ">
+                                } " multiple>
                                 <label class="custom-file-label" for="saldoBalanceFile" data-browse="Elegir archivo">Elegir archivo</label>
                             </div>
                         </div>
