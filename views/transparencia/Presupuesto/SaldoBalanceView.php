@@ -12,11 +12,12 @@
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="d-block fwMedium fontAlter text-lDark mb-2 mr-3">Año</label>
-                        <?php $cont = date ('Y'); ?>
-                        <select id="typeDoc" class="custom-select inputHeightMedium inputBdrTransparent shadow">
+                        <?php $cont = date('Y'); ?>
+                        <select class="custom-select inputHeightMedium inputBdrTransparent shadow date-start">
                             <?php while ($cont >= 2000) { ?>
-                            <option value="<?= ($cont); ?>"><?= ($cont); ?></option>
-                            <?php $cont = ($cont-1); } ?>
+                                <option value="<?= ($cont); ?>"><?= ($cont); ?></option>
+                            <?php $cont = ($cont - 1);
+                            } ?>
                         </select>
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
@@ -27,46 +28,64 @@
                     </div>
                 </div>
             </div>
-			<section class="ItemfullBlock pb-md-9 pb-lg-13 pb-xl-19">
-				<div class="container">
-					<div class="pt-3 pb-3 pt-lg-3 pb-lg-9 pt-xl-7 pb-xl-12">
-						<article class="ueEveColumn__list position-relative px-4 py-3 px-lg-8 py-lg-6">
-							<div class="d-lg-flex align-items-md-center">
-								<time datetime="2011-01-12" class="uecTime text-lDark fontAlter text-uppercase flex-shrink-0 mr-4 mr-lg-6 d-block mb-2 mb-lg-0">
-									<span class="textLarge">01</span> October
-									<span class="d-block textDay fwMedium pt-1">WEDNESDAY</span>
-								</time>
-								<div class="d-md-flex align-items-md-center flex-grow-1">
-									<div class="imgHolder rounded-circle overflow-hidden flex-shrink-0 mr-4 mr-lg-10 mb-1 mb-md-0">
-										<img src="images/img67.jpg" class="img-fluid rounded-circle" alt="image description">
-									</div>
-									<div class="descrWrap flex-grow-1">
-										<strong class="tagTitle d-block text-secondary fwSemiBold mb-2">Entertainement</strong>
-										<h3 class="fwMedium">
-											<a href="eventSingle.html">Organizing City Photography Contest-2022</a>
-										</h3>
-										<ul class="list-unstyled ueScheduleList mb-0">
-											<li>
-												<i class="icomoon-clock icn position-absolute"><span class="sr-only">icon</span></i>
-												9:30am - 1:00pm
-											</li>
-											<li>
-												<i class="icomoon-location icn position-absolute"><span class="sr-only">icon</span></i>
-												Mayor Office, Texas city
-											</li>
-										</ul>
-									</div>
-									<a href="eventSingle.html" class="btn btnCustomLightOutline bdrWidthAlter btn-sm text-capitalize position-relative border-0 p-0 flex-shrink-0 ml-md-4" data-hover="More Details">
-										<span class="d-block btnText">More Details</span>
-									</a>
-								</div>
-							</div>
-						</article>
-					</div>
-				</div>
-			</section>
+            <section class="ItemfullBlock pb-md-9 pb-lg-13 pb-xl-19">
+                <div class="container">
+                    <div class="pt-3 pb-3 pt-lg-3 pb-lg-9 pt-xl-7 pb-xl-12 saldo-balance">
+                        <?php
+                        foreach ($dataTable as $data) :
+                            $fechaFormat = DateTime::createFromFormat('Y-m-d', $data['docs_date']);
+                            $fechaFormatLoad = DateTime::createFromFormat('Y-m-d', $data['load_date']);
+                            $formato = new IntlDateFormatter('es_Es', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+                            $fecha = explode(' ', $formato->format($fechaFormat));
+                            $partialPath = $fechaFormatLoad->format('Y/m/');
+                            $files = json_decode($data['files'], true);
+                            $id = $data['id'];
+                        ?>
+                            <article class="ueEveColumn__list position-relative px-4 py-3 px-lg-8 py-lg-6">
+                                <div class="d-lg-flex align-items-md-center">
+                                    <span class="flex-shrink-0 mr-4 mr-lg-6 d-block mb-2 mb-lg-0">Corresponde al : </span>
+                                    <time class="uecTime text-lDark fontAlter text-uppercase flex-shrink-0 mr-4 mr-lg-6 d-block mb-2 mb-lg-0">
+                                        <span class="textLarge"><?= $fecha[0] ?></span> <?= $fecha[2] ?>
+                                        <span class="d-block textDay fwMedium pt-1"><?= $fecha[4] ?></span>
+                                    </time>
+                                    <div class="d-md-flex align-items-md-center flex-grow-1">
+                                        <div class="imgHolder rounded-circle overflow-hidden flex-shrink-0 mr-4 mr-lg-10 mb-1 mb-md-0">
+                                            <img src="<?= _BASE_URL . '/assets/images/saldosdebalance.webp' ?>" class="img-fluid rounded-circle lozad" alt="icono saldo balance" width="200" height="200">
+                                        </div>
+                                        <div class="descrWrap flex-grow-1">
+                                            <strong class="tagTitle d-block text-secondary fwSemiBold mb-2">Saldo de Balance</strong>
+                                            <h3 class="fwMedium">
+                                                <p><?= $data['title']; ?></p>
+                                            </h3>
+                                            <ul class="list-unstyled ueScheduleList mb-0">
+                                                <li>
+                                                    <i class="icomoon-clock icn position-absolute"><span class="sr-only">icon</span></i>
+                                                    Subido : <?= $data['load_date']; ?>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <a href="javascript:void(0);" class="btn btnCustomLightOutline bdrWidthAlter btn-sm text-capitalize position-relative border-0 p-0 flex-shrink-0 ml-md-4" data-hover="Más detalles" data-toggle="collapse" data-target="#data-<?= $id ?>">
+                                            <span class="d-block btnText">Ver documentos</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="data-<?= $id ?>" class="collapse" aria-label="Archivos adjuntos">
+                                    <div class="descrWrap mt-3">
+                                        <p class="d-block fileSize text-dark card-text mb-1"> <i class="fal fa-file-pdf"></i> Archivos:</p>
+                                        <div class="row row-cols-3 p-3">
+                                            <?php foreach ($files as $file) : ?>
+                                                <a href="<?= _BASE_URL ?>/files/transparencia/presupuesto/saldo-balance/<?= $partialPath . $file['file'] ?>" class=""><?= $file['namefile'] ?></a>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </section>
             <div class="paginador-saldo-balance">
-                <?= $Paginidaor ?>
+                <?= $Paginador ?>
             </div>
         </div>
     </article>

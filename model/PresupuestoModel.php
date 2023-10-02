@@ -10,8 +10,8 @@ class PresupuestoModel
         session_set_cookie_params(['lifetime' => 60]);
         session_start();
 
-        $resultsPerPage = 12;
-        $sql = "SELECT title, load_date, files, docs_date load_date FROM saldos_de_balance ORDER BY id DESC";
+        $resultsPerPage = 6;
+        $sql = "SELECT id, title, load_date, files, docs_date FROM saldos_de_balance ORDER BY id DESC";
         $params = [];
       
         if (isset($_SESSION['saldo_balance'])) {
@@ -52,7 +52,7 @@ class PresupuestoModel
     public static function buscarSaldoBalance($startDate)
     {
         $sql = 'SELECT title, load_date, files, docs_date 
-                FROM saldo_de_balance 
+                FROM saldos_de_balance 
                 WHERE YEAR(docs_date) = :startDate 
                 ORDER BY id DESC
                 ';

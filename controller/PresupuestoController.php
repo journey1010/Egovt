@@ -16,13 +16,13 @@ class PresupuestoController extends BaseViewInterfaz
         $data = [
             'link' => self::$pathCss . 'datepicker.css',
             'dataTable' => $resultados,
-            'Paginidaor' => $paginadorHtml
+            'Paginador' => $paginadorHtml
         ];
         $pathJs = self::$pathJs;
         $moreScript = <<<html
             <script src="{$pathJs}pagination.min.js"></script>
             <script src="{$pathJs}bootstrap-datepicker.js"></script>
-            <script src="{$pathJs}SaldoBalance.js"></script>
+            <script src="{$pathJs}SaldoBalance.js?v=1.1"></script>
         html;
         $dataFooter = [
             'año' => date('Y'),
@@ -39,14 +39,14 @@ class PresupuestoController extends BaseViewInterfaz
 
     public function buscarSaldoBalance()
     {
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-        if(!self::validateDate($startDate) && !self::validateDate($endDate)){
-            echo (json_encode(['error' => 'Sin registros! Vuelva a intentar con otra fecha.']));
+        if(empty($_POST['startDate']) || !is_numeric($_POST['startDate'])){
+            echo (json_encode(['status'=>'error', 'message'=> 'Sin registros! Vuelva a intentar con otra fecha.']));
             return;
         }
+        $startDate = $_POST['startDate'];
+
         try {
-            $resultado = PresupuestoModel::buscarSaldoBalance($startDate, $endDate);
+            $resultado = PresupuestoModel::buscarSaldoBalance($startDate);
             echo (json_encode(['status'=>'success', 'data'=>$resultado]));
         } catch (Throwable $e) {
             echo(json_encode(['status'=>'error', 'message' => 'Sin registros! Vuelva a intentar con otra fecha.']));
