@@ -43,6 +43,13 @@ $(document).on('submit', '#saldoBalanceForm', function (event) {
             title: 'Falta incluir un título para este registro.'
         });
     }
+    if($('.date-saldo-balance').val() == ''){
+        enviarDatos = false;
+        Toast.fire({
+            icon: '',
+            title:  'Falta incluir una fecha para el registro.'
+        });
+    }
     if (!archivosSaldoBalance) {
         Toast.fire({
             icon: 'warning',
@@ -54,6 +61,7 @@ $(document).on('submit', '#saldoBalanceForm', function (event) {
     if (enviarDatos) {
         let formData = new FormData();
         formData.append('titulo', $('.title-saldoBalance').val());
+        formData.append('fecha', $('.date-saldo-balance').val());
         for (let i = 0; i <= archivosSaldoBalance.length - 1; i++) {
             formData.append('archivosSaldoBalance[' + i + ']', archivosSaldoBalance[i]);
         }
@@ -115,6 +123,7 @@ $(document).on('submit', '#saldoBalanceForm', function (event) {
             complete: function () {
                 progressBar.css('width', '0%').attr('aria-valuenow', 0).text('0%');
                 $('.title-saldoBalance').val('');
+                $('.date-saldo-balance').val('');
                 $('.custom-file-label').html('Seleccione un archivo');
             }
         });
