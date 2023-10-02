@@ -6,7 +6,7 @@ class Presupuesto
 {
     public static function viewRegistrarSaldoBalance()
     {
-        $ruta = _ROOT_ASSETS_ADMIN .  'js/saldoBalance.js';
+        $ruta = _ROOT_ASSETS_ADMIN .  'js/saldoBalance.js?v=1.1.2';
         $html = '
             <div class="container card mt-4 px-4 mb-4">
                 <form id="saldoBalanceForm" enctype="multipart/form-data">
@@ -26,7 +26,7 @@ class Presupuesto
                                     document.querySelector(`.custom-file-label`).innerHTML = this.files.length + ` archivos seleccionados`;    
                                 } else {
                                     document.querySelector(`.custom-file-label`).innerHTML =  `Seleccione un archivo`
-                                } ">
+                                } " multiple>
                                 <label class="custom-file-label" for="saldoBalanceFile" data-browse="Elegir archivo">Elegir archivo</label>
                             </div>
                         </div>

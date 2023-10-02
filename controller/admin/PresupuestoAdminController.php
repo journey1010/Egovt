@@ -35,6 +35,17 @@ Class PresupuestoAdminController extends handleSanitize
             echo (json_encode(['status'=>'error', 'message'=>'El campo archivo no debe estar vacío.']));
             return; 
         }
+
+        if(!isset($_POST['fecha'])){
+            echo (json_encode(['status'=>'error', 'message'=>'El campo Fecha Saldo de Balance no puede estar vacío.']));
+            return;
+        }else {
+           if (!strtotime($_POST['fecha'])){
+            echo (json_encode(['status'=>'error', 'message'=>'El campo Fecha Saldo de Balance tiene un formato invalido.']));
+            return;
+           } 
+        }  
+
         $extensionPermitidas = ['docx', 'xlsx', 'xls', 'pdf', 'txt', 'doc'];
         $archivos =  $_FILES['archivosSaldoBalance'];
         $nuevosArchivos = $this->reorganizarArchivos($archivos);
@@ -44,11 +55,12 @@ Class PresupuestoAdminController extends handleSanitize
             return;
         }
         $titulo = htmlspecialchars($_POST['titulo']);
-        $fecha = date('Y-m-d');
+        $fecha = filter_var($_POST['fecha'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $pathFullFile = [];
         foreach ($nuevosArchivos as $index => $datosArchivo) {
-            $pathFullFile = $this->gestorArchivos->guardarFichero($datosArchivo, 'SALDO-BALANCE');
-            PresupuestoModel::registrarSaldoBalance($titulo, $pathFullFile, $fecha);
+            $pathFullFile []= ['namefile'=> pathinfo($datosArchivo['name'], PATHINFO_FILENAME), 'file' => $this->gestorArchivos->guardarFichero($datosArchivo, 'documento-adjunto')];
         }
+        PresupuestoModel::saveFormSaldoBalance($titulo,json_encode($pathFullFile), $fecha);
         echo (json_encode(['status'=>'success', 'message'=>'Registro guardado.']));
     }
 
