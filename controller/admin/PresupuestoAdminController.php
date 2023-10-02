@@ -58,7 +58,8 @@ Class PresupuestoAdminController extends handleSanitize
         $fecha = filter_var($_POST['fecha'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $pathFullFile = [];
         foreach ($nuevosArchivos as $index => $datosArchivo) {
-            $pathFullFile []= ['namefile'=> pathinfo($datosArchivo['name'], PATHINFO_FILENAME), 'file' => $this->gestorArchivos->guardarFichero($datosArchivo, 'documento-adjunto')];
+            $file = $this->gestorArchivos->guardarFichero($datosArchivo, 'documento-adjunto');
+            $pathFullFile []= ['namefile'=> pathinfo($datosArchivo['name'], PATHINFO_FILENAME), 'file' => $file];
         }
         PresupuestoModel::saveFormSaldoBalance($titulo,json_encode($pathFullFile), $fecha);
         echo (json_encode(['status'=>'success', 'message'=>'Registro guardado.']));
