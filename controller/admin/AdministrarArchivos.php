@@ -40,7 +40,7 @@ class AdministrarArchivos {
         $milliseconds = (int) (substr($now * 1000, -4));
         $archivotemp = $archivo['tmp_name'];
         $extension = strtolower(pathinfo($archivo["name"] , PATHINFO_EXTENSION));
-        $nuevoNombre = $titulo . '-'. $milliseconds . date("H-i-s-m-d-Y.") .  $extension;
+        $nuevoNombre = $titulo . '-'. $milliseconds .   date("H-i-s-m-d-Y.") .  $extension;
         $pathFullFile = $rutaArchivo . $nuevoNombre;
 
         if (!move_uploaded_file($archivotemp, $pathFullFile)) {

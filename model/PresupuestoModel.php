@@ -11,7 +11,7 @@ class PresupuestoModel
         session_start();
 
         $resultsPerPage = 6;
-        $sql = "SELECT id, title, load_date, files, docs_date FROM saldos_de_balance ORDER BY id DESC";
+        $sql = "SELECT id, title, load_date, files, docs_date FROM saldos_de_balance ORDER BY docs_date DESC";
         $params = [];
       
         if (isset($_SESSION['saldo_balance'])) {
