@@ -96,7 +96,7 @@
                                     $partialPath = $fechaFormat->format('Y/m/');
                                     $files = json_decode($row['files'], true);
                                 ?>
-                                <div class="card p-0">
+                                <div class="card p-3">
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <div class="descrWrap">
