@@ -77,7 +77,7 @@ class viewConstruct{
         try {
             switch($tipoUser){
                 case 'admin':
-                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'agendagobernador', 'convocatorias', 'PresupuestoSaldoBalance', 'ParticipacionCiudadana');
+                    $opciones = array ('principalPage', 'usuarios', 'oficinas', 'visitas', 'obras', 'agendagobernador', 'convocatorias', 'PresupuestoSaldoBalance', 'ParticipacionCiudadana', 'Publicaciones');
                 break;
                 case 'visitor':
                     $opciones = array ('visitas');
@@ -142,7 +142,8 @@ class viewConstruct{
                     'actualizar-convocatoria' => $contentPage->ActualizarConvocatoria(),
                     'registrar-saldo-balance' => $contentPage->registrarSaldoBalance(),
                     'editar-saldo-balance' => $contentPage->editarSaldoBalance(),
-                    'registrar-participacion-ciudadana' => $contentPage->registrarParticipacionCiudadana()
+                    'registrar-participacion-ciudadana' => $contentPage->registrarParticipacionCiudadana(),
+                    'registrar-publicacion' => $contentPage->registrarPublicacion()
                 ],
 
                 'visitor' =>[
