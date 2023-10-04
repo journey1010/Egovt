@@ -140,4 +140,9 @@ class contentPageOptions {
         $participacion = Participacion::viewRegistrar();
         return $participacion;
     }
+
+    public function registrarPublicacion(){
+        $publicacion = Publicaciones::viewRegistrar();
+        return $publicacion;
+    }
 }

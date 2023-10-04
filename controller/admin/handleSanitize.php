@@ -22,4 +22,15 @@ class handleSanitize {
         $text = mb_strtoupper(mb_convert_case($text, MB_CASE_UPPER, 'UTF-8'), 'UTF-8');
         return $text;
     }
+    
+    public static function validateDate($date)
+    {
+        $date = $date == null ? 'im not date' : $date;
+        $format  = 'Y-m-d';
+        $dateFormat = DateTime::createFromFormat($format, $date);
+        if($dateFormat !== false){
+            return true;
+        }
+        return false;
+    }  
 }

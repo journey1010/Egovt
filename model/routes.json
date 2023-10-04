@@ -16,6 +16,8 @@
         {"method" : "GET", "pattern" : "/administrador/participacion-ciudadana/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
         {"method" : "POST", "pattern" : "/administrador/participacion/admin/{metodo}","handler": "admin/ParticipacionAdminController@index"},
         {"method" : "GET", "pattern" : "/administrador/presupuesto/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
+        {"method" : "GET", "pattern" : "/administrador/publicaciones/{contenidoPage}", "handler" : "AdminMainpage@showContentPage"},
+        {"method" : "POST", "pattern" : "/administrador/publicaciones/admin/{metodo}", "handler": "admin/PublicacionesAdminController@index"},
         {"method" : "POST", "pattern" : "/administrador/prespuesto/saldo-balance/{metodo}","handler": "admin/PresupuestoAdminController@index"},
         {"method" : "POST", "pattern" : "/administrador/convocatoria/registro-convocatoria", "handler" : "admin/Convocatoria@registrar"},
         {"method" : "POST", "pattern" : "/administrador/convocatoria/actualizar-convocatoria", "handler" : "admin/Convocatoria@actualizar"},
@@ -76,6 +78,7 @@
         {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/audiencia-publica/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
         {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/información-adicional/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
         {"method" : "POST", "pattern": "/transparencia/participacion-ciudadana/buscador-participacion", "handler" : "ParticipacionController@buscarParticipacion"},
-        {"method" : "GET", "pattern" : "/servicios/menu-aplicaciones", "handler" : "ServiciosController@ServiciosMain"}
+        {"method" : "GET", "pattern" : "/servicios/menu-aplicaciones", "handler" : "ServiciosController@ServiciosMain"},
+        {"method" : "GET", "pattern" : "/publicaciones/?page={pagina}", "handler": "PublicacionesController@showPublicaciones"}
     ]
 }

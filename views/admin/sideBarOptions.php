@@ -280,4 +280,27 @@ class sideBarOptions {
         </li>';
         return $html;
     }  
+
+    public function Publicaciones()
+    {
+        $html = '
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="fas fa-coins"></i>
+            <p>
+                Publicaciones
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/administrador/publicaciones/registrar-publicacion" name="sidebarEnlace" class="nav-link" data-page="publicaciones/registrar-publicacion">
+                <i class="fa fa-calendar-plus"></i>
+                <p> Registrar archivo</p>
+                </a>
+            </li>
+            </ul>
+        </li>';
+        return $html;
+    }  
 }
