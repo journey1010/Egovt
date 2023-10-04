@@ -167,7 +167,8 @@
 													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/noticias" alt="Noticias">Noticias</a></li>
 													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/campa%C3%B1as" alt="Proximos eventos">Próximos eventos</a></li>
 													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/normas-legales/tipos" alt="Normas legales">Normas Legales</a></li>
-													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/informes-publicaciones" alt="Informes y publicaciones">Informes y publicaciones</a></li>
+													<li><a class="dropdown-item" href="https://www.gob.pe/institucion/regionloreto/informes-publicaciones" alt="Informes y publicaciones">Informes GOB.PE</a></li>
+													<li><a class="dropdown-item" href="/publicaciones/?page=1" alt="publicaciones">Publicaciones</a></li>
 												</ul>
 											</div>
 										</li>
