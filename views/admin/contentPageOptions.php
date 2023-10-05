@@ -145,4 +145,9 @@ class contentPageOptions {
         $publicacion = Publicaciones::viewRegistrar();
         return $publicacion;
     }
+
+    public function listarPublicacion(){
+        $publicacion = Publicaciones::viewEdit();
+        return $publicacion;
+    }
 }

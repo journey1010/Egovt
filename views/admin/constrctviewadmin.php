@@ -143,7 +143,8 @@ class viewConstruct{
                     'registrar-saldo-balance' => $contentPage->registrarSaldoBalance(),
                     'editar-saldo-balance' => $contentPage->editarSaldoBalance(),
                     'registrar-participacion-ciudadana' => $contentPage->registrarParticipacionCiudadana(),
-                    'registrar-publicacion' => $contentPage->registrarPublicacion()
+                    'registrar-publicacion' => $contentPage->registrarPublicacion(),
+                    'listar-publicacion' => $contentPage->listarPublicacion()
                 ],
 
                 'visitor' =>[

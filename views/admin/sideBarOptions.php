@@ -299,6 +299,12 @@ class sideBarOptions {
                 <p> Registrar archivo</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="/administrador/publicaciones/listar-publicacion" name="sidebarEnlace" class="nav-link" data-page="publicaciones/listar-publicacion">
+                    <i class="fa fa-calendar-week"></i>
+                    <p>Editar Registro</p>
+                </a>
+            </li>
             </ul>
         </li>';
         return $html;
