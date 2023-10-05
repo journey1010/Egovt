@@ -102,4 +102,43 @@ class Publicaciones
         ';
         return $html;
     }
+
+    public static function viewEdit()
+    {
+        $ruta = _ROOT_ASSETS_ADMIN . 'js/publicaciones.js';
+        $html = '
+        <style>
+            hr.style-two {
+                border: 0;
+                height: 1px;
+                background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            }
+        </style>
+        <div class="container card mt-4 px-4 mb-4">
+            <div class="card-body row">
+                <div class=" col-12 mt-3">
+                    <h3 class="text-monospace">Publicaciones <i class="fas fa-angle-right"></i> Lista de publicaciones</h3>
+                    <hr class="style-two">
+                </div>
+                <div class="row col-12">
+                    <div class="col-12 mt-1">
+                        <h3 class="text-monospace text-center"> Buscador </h3>
+                    </div>
+                    <div class="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            if (!window.publicacionesCargado) {
+                const script = document.createElement("script");
+                script.src = "'.$ruta.'";
+                script.type = "module";
+                document.body.appendChild(script);
+                window.saldoBalanceCargado = true;
+            }    
+        </script>
+        ';
+        return $html;
+    }
 }
