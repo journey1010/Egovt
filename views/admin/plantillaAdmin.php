@@ -144,7 +144,7 @@
   </div>
   <script src="<?= _ROOT_ASSETS . 'js/ohsnap/ohsnap.js' ?>"></script>
   <script>
-    var username = "<?php echo $_SESSION['username']; ?>";
+    var username = "<?= $_SESSION['username']; ?>";
   </script>
   <script src="<?= _ROOT_ASSETS_ADMIN . 'js/main.js?ver=1.2' ?>"></script>
 </body>

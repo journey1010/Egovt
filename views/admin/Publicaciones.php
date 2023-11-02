@@ -107,7 +107,7 @@ class Publicaciones
     {
         $ruta = _ROOT_ASSETS_ADMIN . 'js/publicaciones.js';
         $html = '
-        <link rel="stylesheet" href=" '._ROOT_ASSETS_ADMIN . 'css/' .'"
+        <link rel="stylesheet" href=" '._ROOT_ASSETS_ADMIN . 'datatables-bs4/css/dataTables.bootstrao4.min.css' .'"
         <style>
             hr.style-two {
                 border: 0;
@@ -177,7 +177,7 @@ class Publicaciones
         </div>
         <div class="container card mt-4 px-4 mb-4">
             <div class="card-body row">
-                <table class="table table-bordered table-striped">
+                <table id="list-public" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>id</th>
@@ -207,6 +207,13 @@ class Publicaciones
                 document.body.appendChild(script);
                 window.publicacionesCargado = true;
             }    
+        </script>
+        <script>
+            $(document).ready(function(){
+                if(typeof tablePubli !== "undefined"){
+                    const tablePubli = new DataTable("#list-public");
+                }
+            })
         </script>
         ';
         return $html;
