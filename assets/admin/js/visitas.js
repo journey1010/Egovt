@@ -33,7 +33,7 @@ function buscarDNIVisita(e) {
             title: data.message
           });
         } else {
-          $("#apellidos_nombres").val(
+          $("#full-name").val(
             data.nombres +
             " " +
             data.apellidoPaterno +

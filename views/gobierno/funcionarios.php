@@ -19,8 +19,8 @@
                 <div class="col">
                     <label class="form-label"></label>
                     <div class="input-group mb-3">
-                        <button class="btn btn-outline-secondary" type="button" id="buscar-dni">Buscar DNI</button>
-                        <input id="number-dni" type="text" class="form-control numero-dni" placeholder="" aria-label="numero de dni" aria-describedby="buscar-dni">
+                        <button class="btn btn-outline-secondary" type="button" id="BuscarDNI">Buscar DNI</button>
+                        <input id="number-dni" type="text" class="form-control" placeholder="" aria-label="numero de dni" aria-describedby="buscar-dni">
                     </div>
                 </div>
                 <div class="col">
@@ -59,9 +59,57 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function() {
         $('#oficina').select2();
     });
+    $(document).on("click", "#BuscarDNI", buscarDNIVisita);
+    function buscarDNIVisita(e) {
+        e.preventDefault();
+        let dni = $("#number-dni").val();
+        if (dni == "") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'El campo DNI no puede estar vacío!',
+            })
+        } else {
+            $.ajax({
+                url: "/administrador/vistias/consultar/"+dni,
+                method: "POST",
+                dataType: 'json',
+                beforeSend: function () {
+                    $("#BuscarDNI").html("Buscando ...");
+                },
+                success: function (data) {
+                    $("#BuscarDNI").html("Buscar");
+                    if (data.status === 'error') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'El campo DNI no puede estar vacío!',
+                        })
+                    } else {
+                    $("#apellidos_nombres").val(
+                        data.nombres +
+                        " " +
+                        data.apellidoPaterno +
+                        " " +
+                        data.apellidoMaterno
+                    );
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#BuscarDNI").html("Buscar");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `Ha ocurrido un error en la solicitud! Código: ${jqXHR.status}, Estado: ${textStatus}, Error: ${errorThrown}`,
+                    })
+                }
+            });
+        }
+    }
 </script>
 </html>
