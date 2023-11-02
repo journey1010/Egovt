@@ -12,9 +12,12 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container card border-dark mt-4 p-0">
-        <div class="card-header">Registro de datos</div>
+    <div class="container card border-dark mt-4 p-0 mb-3">
+        <img src="<?= _ROOT_ASSETS . 'images/banners/portada1.webp'?>" class="card-img-top" alt="Banner los colores de la amazonia" height="300">
         <form id="funcionarios" enctype="multipart/form-data">
+            <div class="card-body text-dark d-flex justify-content-center">
+                <h4 class="card-title">Registro de datos para Funcionarios</h4>
+            </div>
             <div class="card-body text-dark row row-cols-2">
                 <div class="col">
                     <label class="form-label"></label>
@@ -29,11 +32,11 @@
                 </div>
                 <div class="col">
                     <label for="number-phone" class="form-label">Número de teléfono (opcional)</label>
-                    <input id="number-phone" type="text" class="form-control" aria-label="number-phone">
+                    <input id="number-phone" type="number" class="form-control" aria-label="number-phone">
                 </div>
                 <div class="col">
                     <label for="email" class="form-label">Correo Electronico</label>
-                    <input type="number" id="email" class="form-control" aria-label="email">
+                    <input type="email" id="email" class="form-control" aria-label="email">
                 </div>
                 <div class="col">
                     <label for="oficina" class="form-label">Oficina</label>
