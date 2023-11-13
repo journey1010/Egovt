@@ -55,7 +55,7 @@ class GestorArchivos extends handleSanitize
             $milliseconds = (int) (substr($now * 1000, -4));
             $archivoNombre = $archivos['name'][$index];
             $extension = strtolower(pathinfo($archivoNombre, PATHINFO_EXTENSION));
-            $nuevoNombre = $titulo . '-' . $milliseconds . date("Y-m-d H:i:s") . '-' . $index . '.' . $extension;
+            $nuevoNombre = $titulo . '-' . $milliseconds . date("Y-m-d H-i-s") . '-' . $index . '.' . $extension;
             $pathFullFile = $rutaArchivo . $nuevoNombre;
     
             if (!move_uploaded_file($archivoTemp, $pathFullFile)) {

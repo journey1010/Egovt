@@ -79,6 +79,8 @@
         {"method" : "GET", "pattern": "/transparencia/participacion-ciudadana/{tipo}/información-adicional/?page={pagina}", "handler" : "ParticipacionController@showParticipacion"},
         {"method" : "POST", "pattern": "/transparencia/participacion-ciudadana/buscador-participacion", "handler" : "ParticipacionController@buscarParticipacion"},
         {"method" : "GET", "pattern" : "/servicios/menu-aplicaciones", "handler" : "ServiciosController@ServiciosMain"},
-        {"method" : "GET", "pattern" : "/publicaciones/?page={pagina}", "handler": "PublicacionesController@showPublicaciones"}
+        {"method" : "GET", "pattern" : "/publicaciones/?page={pagina}", "handler": "PublicacionesController@showPublicaciones"},
+        {"method" : "GET", "pattern" : "/transparencia/acceso-a-la-informacion", "handler": "AccessInformation@showView"},
+        {"method" : "POST", "pattern" : "/transparencia/acceso-a-la-informacion/save", "handler": "AccessInformation@save"}
     ]
 }
