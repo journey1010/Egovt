@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <label class="form-label">Tipo de documento</label>
-                    <select class="form-control">
+                    <select id="type-document" class="form-control">
                         <option value="DNI">DNI</option>
                         <option value="PASAPORTE">PASAPORTE</option>
                         <option value="CARNET-EXTRANJERIA">CARNET DE EXTRANJERÍA</option>
@@ -78,9 +78,15 @@
                 <div class="col-md-12 col-sm-12">
                     <label class="form-label">Descripción de la solicitud (máximo 500 caracteres)</label>
                     <textarea id="descripcion" class="form-control" maxlength="500"></textarea>
-                    <div class="custom-file mt-1">
-                        <input type="file" class="custom-file-input" id="archivo-adjunto">
-                        <label class="custom-file-label" for="archivo-adjunto" aria-describedby="archivo-adjunto">Cargue un archivo</label>
+                    <label class="form-label">Adjuntar información complementaria a la solicitud que permita facilitar la evaluación por parte de la entidad. (Opcional).</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="archivo-adjunto" onchange="
+                        if (this.files.length > 0) {
+                            document.querySelector(`.custom-file-label`).innerHTML = this.files.length + ` archivo seleccionado`;    
+                        } else {
+                            document.querySelector(`.custom-file-label`).innerHTML =  `Seleccione un archivo`
+                        } ">
+                        <label class="custom-file-label" for="archivo-adjunto" data-browse="Elegir archivo">Elegir archivo</label>
                     </div>
                 </div>
                 <div class="col-md-12 col-sm-12 pt-2">

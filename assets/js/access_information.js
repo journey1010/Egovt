@@ -115,7 +115,7 @@ $(document).ready(function() {
 
     $('.btn-primary').click(function() {
         let camposObligatorios = [
-            '#dniVisita', '#nombres', '#primer-apellido', 
+            '#dniVisita', '#nombres', '#primer-apellido', '#type-document',
             '#segundo-apellido', '#email', '#phone', 
             '#direccion', '#departamento', '#provincia', 
             '#distrito', '#descripcion'
@@ -136,7 +136,59 @@ $(document).ready(function() {
         });
 
         if (todosLlenos) {
-            
+          let formData = new FormData();
+
+          formData.append('personaEdad', $('#persona-edad').val());
+          formData.append('tipoDocumento', $('#type-document').val());
+          formData.append('dniVisita', $('#dniVisita').val());
+          formData.append('nombres', $('#nombres').val());
+          formData.append('primerApellido', $('#primer-apellido').val());
+          formData.append('segundoApellido', $('#segundo-apellido').val());
+          formData.append('email', $('#email').val());
+          formData.append('telefono', $('#phone').val());
+          formData.append('direccion', $('#direccion').val());
+          formData.append('departamento', $('#departamento option:selected').text());
+          formData.append('provincia', $('#provincia option:selected').text());
+          formData.append('distrito', $('#distrito option:selected').text());
+          formData.append('descripcion', $('#descripcion').val());
+  
+          let archivoAdjunto = $('#archivo-adjunto')[0].files;
+          if (archivoAdjunto) {
+            for (let i = 0; i <= archivoAdjunto.length - 1; i++) {
+              formData.append('archivos[' + i + ']', archivoAdjunto[i]);
+            }
+          }
+  
+          $.ajax({
+              url: '/transparencia/acceso-a-la-informacion/save',
+              method: 'POST',
+              data: formData,
+              dataType: 'json',
+              processData: false, 
+              contentType: false, 
+              success: function(response) {
+                  if(response.status == 'success'){
+                    Swal.fire({
+                      title: "Enviado",
+                      text: "Su solicitud fue enviada.",
+                      icon: "success"
+                    });
+                  } else {
+                    Swal.fire({
+                      title: "Error",
+                      text: response.message,
+                      icon: "error"
+                    });
+                  }
+              },
+              error: function(xhr, status, error) {
+                Swal.fire({
+                  title: "Error",
+                  text: "No pudo enviarse su solicitud",
+                  icon: "error"
+                });;
+              }
+          });
         }
     });
 });
