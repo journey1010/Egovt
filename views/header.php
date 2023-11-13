@@ -193,6 +193,7 @@
 													<li><a class="dropdown-item" href="/transparencia/convocatorias-de-trabajo" alt="Convocatorias de trabajo">Convocatorias de trabajo</a></li>
 													<li><a class="dropdown-item" href="/transparencia/saldos-de-balance/?page=1" alt="Saldos de balance">Saldos de balance</a></li>
 													<li><a class="dropdown-item" href="/transparencia/participacion-ciudadana/documentos/?page=1" alt="Participación Ciudadana">Participación Ciudadana</a></li>
+													<li><a class="dropdown-item" href="/transparencia/acceso-a-la-informacion">Acceso a la Información Pública</a></li>
 												</ul>
 											</div>
 										</li>
