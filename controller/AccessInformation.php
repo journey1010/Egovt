@@ -95,9 +95,11 @@ class AccessInformation extends BaseViewInterfaz
                 $pathFullFile[0]
             );
 
-            $this->sendMail($descripcion,  $pathFullFile[0],$tipoDocumento, $numeroDocumento, $nombreCompleto,  $email);
-            echo json_encode(['status' => 'success', 'message' => 'Se ha enviado su solicitud con exito.']);
-            return;
+            if($this->sendMail($descripcion,  $pathFullFile[0],$tipoDocumento, $numeroDocumento, $nombreCompleto,  $email)) {
+                echo json_encode(['status' => 'success', 'message' => 'Se ha enviado su solicitud con exito.']);
+                return;
+            }
+            echo json_encode(['status' => 'error', 'message' => 'No se ha enviado su solicitud']);
             
         } else {
             echo json_encode(['status'=>'error', 'message'=>'Tipo de solicitud no valida.']);
