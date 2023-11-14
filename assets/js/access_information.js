@@ -135,8 +135,16 @@ $(document).ready(function() {
         });
 
         if (todosLlenos) {
+          var recaptchaResponse = grecaptcha.getResponse();
+          if (recaptchaResponse.length === 0) {
+              Toast.fire({
+                  icon: "error",
+                  title: 'Por favor, verifica que no eres un robot.'
+              });
+              return; 
+          }
           let formData = new FormData();
-
+          formData.append('g-recaptcha-response',  recaptchaResponse);
           formData.append('personaEdad', $('#persona-edad').val());
           formData.append('tipoDocumento', $('#type-document').val());
           formData.append('dniVisita', $('#dniVisita').val());
