@@ -23,7 +23,6 @@ $(document).ready(function() {
 
         if (departamentoId) {
             $('#provincia').prop('disabled', false);
-
             $.getJSON('https://regionloreto.gob.pe/files/ubigeo-peru/ubigeo_peru_2016_provincias.json', function(provincias) {
                 provincias.filter(function(provincia) {
                     return provincia.department_id === departamentoId;
@@ -41,7 +40,6 @@ $(document).ready(function() {
 
         if (provinciaId) {
             $('#distrito').prop('disabled', false);
-
             $.getJSON('https://regionloreto.gob.pe/files/ubigeo-peru/ubigeo_peru_2016_distritos.json', function(distritos) {
                 distritos.filter(function(distrito) {
                     return distrito.province_id === provinciaId;
