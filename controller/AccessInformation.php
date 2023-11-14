@@ -4,6 +4,11 @@ require_once _ROOT_CONTROLLER . 'BaseViewInterfaz.php';
 require_once _ROOT_CONTROLLER . 'GestorArchivos.php';
 require_once _ROOT_MODEL . 'AccessInformationModel.php';
 
+require _ROOT_PATH . '/vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class AccessInformation extends BaseViewInterfaz
 {
     private $gestorArchivos;
@@ -18,7 +23,10 @@ class AccessInformation extends BaseViewInterfaz
         $pathJs = self::$pathJs;
         $moreScript = <<<html
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="{$pathJs}access_information.js"></script>
+        <script src="{$pathJs}access_information.js?v=1.1.3"></script>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            async defer>
+        </script>
         html;
         $dataFooter = [
             'año' => date('Y'),
@@ -36,7 +44,10 @@ class AccessInformation extends BaseViewInterfaz
     public function save()
     {   
         $pathFullFile[0] = null;
-
+        if(!$this->reCaptcha()){
+            echo json_encode(['status'=>'error', 'message'=> 'Solicitud no enviada.']);
+            return;
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $personaEdad = filter_input(INPUT_POST, 'personaEdad', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $tipoDocumento = filter_input(INPUT_POST, 'tipoDocumento', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -100,21 +111,57 @@ class AccessInformation extends BaseViewInterfaz
 
     private function sendMail($descripcion, $archivo, $tipoDocumento, $numeroDocumento, $nombreCompleto, $correo )
     {
-        $mensaje = "Solicitante: $nombreCompleto\n";
-        $mensaje .= "Tipo de Documento: $tipoDocumento\n";
-        $mensaje .= "Número de Documento: $numeroDocumento\n";
-        $mensaje .= "Correo Electrónico: $correo\n";
-        $mensaje .= "Descripción: $descripcion\n";
-        if(!empty($archivo)){
-            $mensaje .= "Adjunto: https//.regionloreto.gob.pe/files/". "access-information/" . date('Y/m/')."$descripcion\n";
+
+        $mensaje = "Adjunto: https://regionloreto.gob.pe/files/". "access-information/" . date('Y/m/')."$descripcion";
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->SMTPDebug = 2;                                       
+            $mail->isSMTP();                                            
+            $mail->Host       = 'smtp.gmail.com';                       
+            $mail->SMTPAuth   = true;                                   
+            $mail->Username   = 'regionloreto.gob.pe@gmail.com';                    
+            $mail->Password   = 'kgluckjsonrpghkt';               
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
+            $mail->Port       = 587;                                    
+
+            $mail->setFrom('regionloreto.gob.pe@gmail.com', 'Acceso a la informaciíon');
+            $mail->addAddress('journii167@gmail.com', 'Mesa de partes');    
+            $mail->isHTML(true);                                  
+            $mail->Subject = 'Solicitud de acceso a la informacion - Portal de Transparencia';
+            $mail->Body = " Solicitante: $nombreCompleto <br>
+                            Tipo de Documento: $tipoDocumento<br>
+                            Número de Documento: $numeroDocumento<br>
+                            Correo Electrónico: $correo<br>
+                            Descripción: $descripcion<br>
+                            Archivo adjunto: $mensaje
+            ";
+            $mail->AltBody = "Solicitante: $nombreCompleto\n";
+            $mail->AltBody .= "Tipo de Documento: $tipoDocumento\n";
+            $mail->AltBody .= "Número de Documento: $numeroDocumento\n";
+            $mail->AltBody .= "Correo Electrónico: $correo\n";
+            $mail->AltBody .= "Descripción: $descripcion\n";
+            $mail->AltBody .= "Archivo adjunto: $mensaje\n";
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            return false;
         }
+    }
 
-        $headers = "From: journii167@gmail.com\r\n";
-        $headers .= "Reply-To: $correo\r\n";
-        $headers .= "X-Mailer: PHP/" . phpversion();
-
-        $para = $correo;
-        $asunto = 'Solicitud de acceso a la información - portal de transparencia';
-        mail($para, $asunto, $mensaje, $headers);
+    private function reCaptcha()
+    {
+        $secretKey = "6LeMRQ4pAAAAACZCB9qLkJO-IaDPVdPnrEmxIhNG";
+        $responseKey = $_POST['g-recaptcha-response'];
+        $userIP = $_SERVER['REMOTE_ADDR'];
+        $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$responseKey&remoteip=$userIP";
+        $response = file_get_contents($url);
+        $response = json_decode($response);
+        if ($response->success) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

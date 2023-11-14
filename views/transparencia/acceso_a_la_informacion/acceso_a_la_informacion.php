@@ -1,3 +1,4 @@
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <main>
     <div class="mt-4 p-4">
         <h1 class="text-monospace ml-3" style="font-size: 40px">Transparencia <i class="fas fa-angle-right"></i>
@@ -7,7 +8,11 @@
     </div>
     <article class="dsSingleContent pt-4 pb-2 pt-md-7 pb-md-1 pt-lg-4 pb-lg-10 pt-xl-3 pb-xl-16">
         <div class="container card">
-            <div class="row mt-3 mb-3">  
+            <div class="row mt-3 mb-3">
+                <div class="col-12">
+                    <label class="form-label">Descargar Formulario en Formato pdf: </label>
+                    <a  class="form-label alert-link" href="https://cdn.www.gob.pe/uploads/document/file/2686056/SDTact.pdf.pdf.pdf?v=1678810064">DESCARGAR</a>
+                </div>
                 <div class="col-12">
                     <label class="form-label">1. Persona que solicita </label>
                 </div>
@@ -95,4 +100,5 @@
 			</div>
         </div>
     </article>
+    <div class="g-recaptcha" data-sitekey="6LeMRQ4pAAAAALnrP6RFulOt77vQkT48PXV5nZQ_"></div>
 </main>
