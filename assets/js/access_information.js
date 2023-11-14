@@ -10,7 +10,7 @@ let Toast = Swal.mixin({
 });
 
 $(document).ready(function() {
-    $.getJSON('https://egovt.test/files/ubigeo-peru/ubigeo_peru_2016_departamentos.json', function(departamentos) {
+    $.getJSON('https://regionloreto.gob.pe/files/ubigeo-peru/ubigeo_peru_2016_departamentos.json', function(departamentos) {
         departamentos.forEach(function(departamento) {
             $('#departamento').append(new Option(departamento.name, departamento.id));
         });
@@ -23,8 +23,7 @@ $(document).ready(function() {
 
         if (departamentoId) {
             $('#provincia').prop('disabled', false);
-
-            $.getJSON('https://egovt.test/files/ubigeo-peru/ubigeo_peru_2016_provincias.json', function(provincias) {
+            $.getJSON('https://regionloreto.gob.pe/files/ubigeo-peru/ubigeo_peru_2016_provincias.json', function(provincias) {
                 provincias.filter(function(provincia) {
                     return provincia.department_id === departamentoId;
                 }).forEach(function(provincia) {
@@ -41,8 +40,7 @@ $(document).ready(function() {
 
         if (provinciaId) {
             $('#distrito').prop('disabled', false);
-
-            $.getJSON('https://egovt.test/files/ubigeo-peru/ubigeo_peru_2016_distritos.json', function(distritos) {
+            $.getJSON('https://regionloreto.gob.pe/files/ubigeo-peru/ubigeo_peru_2016_distritos.json', function(distritos) {
                 distritos.filter(function(distrito) {
                     return distrito.province_id === provinciaId;
                 }).forEach(function(distrito) {
@@ -129,7 +127,6 @@ $(document).ready(function() {
                     icon: "info",
                     title: 'Por favor, completa todos los campos obligatorios.'
                   });
-                alert('Por favor, completa todos los campos obligatorios.');
                 todosLlenos = false;
                 return false;
             }
@@ -170,7 +167,7 @@ $(document).ready(function() {
                   if(response.status == 'success'){
                     Swal.fire({
                       title: "Enviado",
-                      text: "Su solicitud fue enviada.",
+                      text: "Su solicitud fue enviada. Sera notificado vía correo electrónico en un período no mayor a 10 días.",
                       icon: "success"
                     });
                   } else {
