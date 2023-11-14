@@ -113,7 +113,7 @@
 									<li>
 										<i class="fa fa-envelope icn mr-1 mr-sm-0"><span class="sr-only">icon</span></i>
 										<strong class="title font-weight-normal text-white">Correo Electrónico:</strong>
-										<a href="mailto:demo@example.com">mesadepartes@regionloreto.gob.pe</a>
+										<a href="mesadepartes@regionloreto.gob.pe">mesadepartes@regionloreto.gob.pe</a>
 									</li>
 								</ul>
 							</div>
