@@ -102,5 +102,4 @@
         </div>
         <div class="g-recaptcha" data-sitekey="6LeMRQ4pAAAAALnrP6RFulOt77vQkT48PXV5nZQ_"></div>
     </article>
-    <div class="g-recaptcha" data-sitekey="6LeMRQ4pAAAAALnrP6RFulOt77vQkT48PXV5nZQ_"></div>
 </main>
