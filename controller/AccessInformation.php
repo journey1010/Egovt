@@ -44,10 +44,6 @@ class AccessInformation extends BaseViewInterfaz
     public function save()
     {   
         $pathFullFile[0] = null;
-        if(!$this->reCaptcha()){
-            echo json_encode(['status'=>'error', 'message'=> 'Solicitud no enviada.']);
-            return;
-        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $personaEdad = filter_input(INPUT_POST, 'personaEdad', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $tipoDocumento = filter_input(INPUT_POST, 'tipoDocumento', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -145,21 +141,6 @@ class AccessInformation extends BaseViewInterfaz
             $mail->send();
             return true;
         } catch (Exception $e) {
-            return false;
-        }
-    }
-
-    private function reCaptcha()
-    {
-        $secretKey = "6LeMRQ4pAAAAACZCB9qLkJO-IaDPVdPnrEmxIhNG";
-        $responseKey = $_POST['g-recaptcha-response'];
-        $userIP = $_SERVER['REMOTE_ADDR'];
-        $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$responseKey&remoteip=$userIP";
-        $response = file_get_contents($url);
-        $response = json_decode($response);
-        if ($response->success) {
-            return true;
-        } else {
             return false;
         }
     }
