@@ -20,8 +20,8 @@ class AccessInformationModel
         )
     {
         $conexion = new MySQLConnection();
-        $sql = "INSERT INTO access_to_information (full_name, type_doc, doc_number, range_age, email, phone, address, departamento, provincia, distrito, descriptions, file)
-                values  (:nombreCompleto, :tipoDocumento, :numeroDocumento, :personaEdad, :email, :telefono, :direccion, :departamento, :provincia, :distrito, :descripcion, :archivo) ";
+        $sql = "INSERT INTO access_to_information (full_name, type_doc, doc_number, range_age, email, phone, address, departamento, provincia, distrito, descriptions, file, date_register)
+                values  (:nombreCompleto, :tipoDocumento, :numeroDocumento, :personaEdad, :email, :telefono, :direccion, :departamento, :provincia, :distrito, :descripcion, :archivo, :date_register) ";
         $params = [
             ':nombreCompleto'=> $nombreCompleto,  
             ':tipoDocumento'=> $tipoDocumento,
@@ -34,7 +34,8 @@ class AccessInformationModel
             ':provincia' => $provincia,
             ':distrito'=> $distrito, 
             ':descripcion'=> $descripcion,
-            ':archivo'=> $archivo
+            ':archivo'=> $archivo,
+            ':date_register' => date('Y-m-d')
         ];
         $stmt = $conexion->query($sql, $params, '', false);
         return  true;
