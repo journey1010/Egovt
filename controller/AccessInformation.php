@@ -45,19 +45,19 @@ class AccessInformation extends BaseViewInterfaz
     {   
         $pathFullFile[0] = null;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $personaEdad = filter_input(INPUT_POST, 'personaEdad', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $tipoDocumento = filter_input(INPUT_POST, 'tipoDocumento', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $numeroDocumento = filter_input(INPUT_POST, 'dniVisita', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $nombres = filter_input(INPUT_POST, 'nombres', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $primerApellido = filter_input(INPUT_POST, 'primerApellido', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $segundoApellido = filter_input(INPUT_POST, 'segundoApellido', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-            $telefono = filter_input(INPUT_POST, 'telefono', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $direccion = filter_input(INPUT_POST, 'direccion', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $departamento = filter_input(INPUT_POST, 'departamento', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $provincia = filter_input(INPUT_POST, 'provincia', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $distrito = filter_input(INPUT_POST, 'distrito', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $personaEdad = htmlspecialchars(filter_input(INPUT_POST, 'personaEdad', FILTER_DEFAULT));
+            $tipoDocumento = htmlspecialchars(filter_input(INPUT_POST, 'tipoDocumento', FILTER_DEFAULT));
+            $numeroDocumento = htmlspecialchars(filter_input(INPUT_POST, 'dniVisita', FILTER_DEFAULT));
+            $nombres = htmlspecialchars(filter_input(INPUT_POST, 'nombres', FILTER_DEFAULT));
+            $primerApellido = htmlspecialchars(filter_input(INPUT_POST, 'primerApellido', FILTER_DEFAULT));
+            $segundoApellido = htmlspecialchars(filter_input(INPUT_POST, 'segundoApellido', FILTER_DEFAULT));
+            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL); // Esto se mantiene para emails
+            $telefono = htmlspecialchars(filter_input(INPUT_POST, 'telefono', FILTER_DEFAULT));
+            $direccion = htmlspecialchars(filter_input(INPUT_POST, 'direccion', FILTER_DEFAULT));
+            $departamento = htmlspecialchars(filter_input(INPUT_POST, 'departamento', FILTER_DEFAULT));
+            $provincia = htmlspecialchars(filter_input(INPUT_POST, 'provincia', FILTER_DEFAULT));
+            $distrito = htmlspecialchars(filter_input(INPUT_POST, 'distrito', FILTER_DEFAULT));
+            $descripcion = htmlspecialchars(filter_input(INPUT_POST, 'descripcion', FILTER_DEFAULT));            
         
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 echo json_encode(['status'=>'error', 'message'=>'Correo electrónico no es valido']);
@@ -113,17 +113,9 @@ class AccessInformation extends BaseViewInterfaz
         $mail = new PHPMailer(true);
 
         try {
-            $mail->SMTPDebug = 0;                                       
-            $mail->isSMTP();                                            
-            $mail->Host       = 'smtp.gmail.com';                       
-            $mail->SMTPAuth   = true;                                   
-            $mail->Username   = 'regionloreto.gob.pe@gmail.com';                    
-            $mail->Password   = 'kgluckjsonrpghkt';               
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
-            $mail->Port       = 587;                                    
-
-            $mail->setFrom('regionloreto.gob.pe@gmail.com', 'Acceso a la informaciíon');
-            $mail->addAddress('journii167@gmail.com', 'Mesa de partes');    
+            $mail->isMail();                                     
+            $mail->setFrom('_mainaccount@regionloreto.gob.pe', 'SOLICITO - Acceso a la informaciíon');
+            $mail->addAddress('ginopaflo001608@gmail.com', 'Mesa de partes');    
             $mail->isHTML(true);                                  
             $mail->Subject = 'Solicitud de acceso a la informacion - Portal de Transparencia';
             $mail->Body = " Solicitante: $nombreCompleto <br>
