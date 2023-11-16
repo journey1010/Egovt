@@ -5,7 +5,7 @@
         <h1 class="text-monospace ml-3" style="font-size: 40px">Transparencia <i class="fas fa-angle-right"></i>
             Solicitud de Acceso  a la Información
         </h1>
-        <h4 class="ml-3">Puede Solicitar InformaciónPuedes solicitar y recibir información pública de las instituciones del Estado, de acuerdo al Texto Único Ordenado de la Ley Nº 27806.</h4>
+        <h4 class="ml-3">Puede solicitar y recibir información pública de las instituciones del Estado, de acuerdo al Texto Único Ordenado de la Ley Nº 27806.</h4>
     </div>
     <article class="dsSingleContent pt-4 pb-2 pt-md-7 pb-md-1 pt-lg-4 pb-lg-10 pt-xl-3 pb-xl-16">
         <div class="container card">
