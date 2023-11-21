@@ -23,7 +23,7 @@ class AccessInformation extends BaseViewInterfaz
         $pathJs = self::$pathJs;
         $moreScript = <<<html
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="{$pathJs}access_information.js?v=1.1.3"></script>
+        <script src="{$pathJs}access_information.js?v=1.1.5"></script>
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
             async defer>
         </script>
@@ -109,12 +109,7 @@ class AccessInformation extends BaseViewInterfaz
 
     private function sendMail($descripcion, $archivo, $tipoDocumento, $numeroDocumento, $nombreCompleto, $correo )
     {
-        if(!empty($archivo)) {
-            $mensaje = "Adjunto: https://regionloreto.gob.pe/files/". "access-information/" . date('Y/m/')."$archivo";
-        } else {
-            $mensaje = 'No hay adjuntos.'
-        }
-        
+        $mensaje = "Adjunto: https://regionloreto.gob.pe/files/". "access-information/" . date('Y/m/')."$archivo";
         $mail = new PHPMailer(true);
 
         try {

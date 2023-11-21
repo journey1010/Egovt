@@ -55,8 +55,7 @@ $(document).ready(function() {
 
 
 $(document).on("click", "#BuscarDNI", buscarDNI);
-function buscarDNI(e) {
-  e.preventDefault();
+function buscarDNI() {
   let dni = $("#dniVisita").val();
   if (dni == "") {
     Toast.fire({
@@ -65,8 +64,8 @@ function buscarDNI(e) {
     });
   } else {
     $.ajax({
-      url: "/administrador/vistias/consultar/"+dni,
-      method: "POST",
+      url: '/consultar/'+dni,
+      method: 'POST',
       dataType: 'json',
       beforeSend: function () {
         $("#BuscarDNI").html("Buscando ...");
@@ -116,7 +115,7 @@ $(document).ready(function() {
             '#dniVisita', '#nombres', '#primer-apellido', '#type-document',
             '#segundo-apellido', '#email', '#phone', 
             '#direccion', '#departamento', '#provincia', 
-            '#distrito', '#descripcion'
+            '#distrito', '#descripcion', '#archivo-adjunto'
         ];
 
         let todosLlenos = true;

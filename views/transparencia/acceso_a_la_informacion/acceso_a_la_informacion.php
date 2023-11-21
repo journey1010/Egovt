@@ -84,7 +84,7 @@
                 <div class="col-md-12 col-sm-12">
                     <label class="form-label">Descripción de la solicitud (máximo 500 caracteres)</label>
                     <textarea id="descripcion" class="form-control" maxlength="500"></textarea>
-                    <label class="form-label">Adjuntar información complementaria a la solicitud que permita facilitar la evaluación por parte de la entidad. (Opcional).</label>
+                    <label class="form-label">Adjuntar Formato de solicitud de acceso a la información complementaria a la solicitud que permita facilitar la evaluación por parte de la entidad. (Obligatorio).</label>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="archivo-adjunto" onchange="
                         if (this.files.length > 0) {
