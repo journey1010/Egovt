@@ -109,7 +109,12 @@ class AccessInformation extends BaseViewInterfaz
 
     private function sendMail($descripcion, $archivo, $tipoDocumento, $numeroDocumento, $nombreCompleto, $correo )
     {
-        $mensaje = "Adjunto: https://regionloreto.gob.pe/files/". "access-information/" . date('Y/m/')."$descripcion";
+        if(!empty($archivo)) {
+            $mensaje = "Adjunto: https://regionloreto.gob.pe/files/". "access-information/" . date('Y/m/')."$archivo";
+        } else {
+            $mensaje = 'No hay adjuntos.'
+        }
+        
         $mail = new PHPMailer(true);
 
         try {
