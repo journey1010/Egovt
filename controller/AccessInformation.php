@@ -27,7 +27,19 @@ class AccessInformation extends BaseViewInterfaz
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
             async defer>
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(select2);
+            function select2() {
+                $(".select2").select2({
+                    closeOnSelect: true,
+                });
+            }
+        </script>
         html;
+        $data = [
+            'dependencias' => AccessInformationModel::getOficinas()
+        ];
         $dataFooter = [
             'año' => date('Y'),
             'scripts' => $moreScript
@@ -37,7 +49,7 @@ class AccessInformation extends BaseViewInterfaz
         $render->setCacheDir(self::$pathCache . 'transparencia/acceso_a_la_informacion/main/');
         $render->setCacheTime(2678400);
         $render->render('header', '', false);
-        $render->render('transparencia/acceso_a_la_informacion/acceso_a_la_informacion', '', false);
+        $render->render('transparencia/acceso_a_la_informacion/acceso_a_la_informacion', $data, false);
         $render->render('footer', $dataFooter, false);
     }
 

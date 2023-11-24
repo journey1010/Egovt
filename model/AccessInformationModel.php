@@ -40,4 +40,14 @@ class AccessInformationModel
         $stmt = $conexion->query($sql, $params, '', false);
         return  true;
     }
+
+    public static function getOficinas()
+    {
+        $conexion = new MySQLConnection();
+        $sql = "SELECT * FROM oficinas";
+        $params = [];
+        $stmt = $conexion->query($sql, $params, '', false);
+        $repuesta = $stmt->fetchAll();
+        return $repuesta;
+    }
 }

@@ -1,5 +1,6 @@
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <main>
     <div class="mt-4 p-4">
         <h1 class="text-monospace ml-3" style="font-size: 40px">Transparencia <i class="fas fa-angle-right"></i>
@@ -18,18 +19,12 @@
                     <label class="form-label">1. Persona que solicita </label>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <label class="form-label">Persona</label>
-                    <select id="persona-edad" class="form-control">
-                        <option value="mayor">Mayor de Edad</option>
-                        <option value="menor">Menor de Edad</option>
-                    </select>
-                </div>
-                <div class="col-md-4 col-sm-6">
                     <label class="form-label">Tipo de documento</label>
                     <select id="type-document" class="form-control">
                         <option value="DNI">DNI</option>
                         <option value="PASAPORTE">PASAPORTE</option>
                         <option value="CARNET-EXTRANJERIA">CARNET DE EXTRANJERÍA</option>
+                        <option value="RUC">RUC</option>
                     </select>
                 </div>
                 <div class="col-md-4 col-sm-6">
@@ -94,6 +89,16 @@
                         } ">
                         <label class="custom-file-label" for="archivo-adjunto" data-browse="Elegir archivo">Elegir archivo</label>
                     </div>
+                    <label class="form-label">Dependencia de la cual se require su información</label>
+                    <select id="dependencia" class="form-control select2">
+                        <?php
+                            foreach($dependencias as $key):
+                        ?>
+                        <option value="<?= $key['nombre'] ?>"> <?= $key['nombre'] ?></option>
+                        <?php
+                            endforeach;
+                        ?>
+                    </select>
                 </div>
                 <div class="col-md-12 col-sm-12 pt-2">
                     <button type="button" class="btn btn-primary form-control">Guardar</button>
@@ -104,3 +109,4 @@
     </article>
     
 </main>
+
