@@ -23,7 +23,7 @@ class AccessInformation extends BaseViewInterfaz
         $pathJs = self::$pathJs;
         $moreScript = <<<html
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="{$pathJs}access_information.js?v=1.1.5"></script>
+        <script src="{$pathJs}access_information.js?v=1.1.10"></script>
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
             async defer>
         </script>
