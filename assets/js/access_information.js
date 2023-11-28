@@ -115,7 +115,7 @@ $(document).ready(function() {
             '#dniVisita', '#nombres', '#primer-apellido', '#type-document',
             '#segundo-apellido', '#email', '#phone', 
             '#direccion', '#departamento', '#provincia', 
-            '#distrito', '#descripcion', '#archivo-adjunto'
+            '#distrito', '#descripcion', '#archivo-adjunto', '#dependencia'
         ];
 
         let todosLlenos = true;
@@ -142,7 +142,6 @@ $(document).ready(function() {
           }
           let formData = new FormData();
           formData.append('g-recaptcha-response',  recaptchaResponse);
-          formData.append('personaEdad', $('#persona-edad').val());
           formData.append('tipoDocumento', $('#type-document').val());
           formData.append('dniVisita', $('#dniVisita').val());
           formData.append('nombres', $('#nombres').val());
@@ -155,6 +154,7 @@ $(document).ready(function() {
           formData.append('provincia', $('#provincia option:selected').text());
           formData.append('distrito', $('#distrito option:selected').text());
           formData.append('descripcion', $('#descripcion').val());
+          formData.append('dependencia', $('#dependencia').val());
   
           let archivoAdjunto = $('#archivo-adjunto')[0].files;
           if (archivoAdjunto) {

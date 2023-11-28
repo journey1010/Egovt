@@ -57,20 +57,19 @@ class AccessInformation extends BaseViewInterfaz
     {   
         $pathFullFile[0] = null;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $personaEdad = htmlspecialchars(filter_input(INPUT_POST, 'personaEdad', FILTER_DEFAULT));
             $tipoDocumento = htmlspecialchars(filter_input(INPUT_POST, 'tipoDocumento', FILTER_DEFAULT));
             $numeroDocumento = htmlspecialchars(filter_input(INPUT_POST, 'dniVisita', FILTER_DEFAULT));
-            $nombres = htmlspecialchars(filter_input(INPUT_POST, 'nombres', FILTER_DEFAULT));
+            $nombres = htmlspecialchars(filter_input(INPUT_POST,  'nombres', FILTER_DEFAULT));
             $primerApellido = htmlspecialchars(filter_input(INPUT_POST, 'primerApellido', FILTER_DEFAULT));
             $segundoApellido = htmlspecialchars(filter_input(INPUT_POST, 'segundoApellido', FILTER_DEFAULT));
-            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL); // Esto se mantiene para emails
+            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $telefono = htmlspecialchars(filter_input(INPUT_POST, 'telefono', FILTER_DEFAULT));
             $direccion = htmlspecialchars(filter_input(INPUT_POST, 'direccion', FILTER_DEFAULT));
             $departamento = htmlspecialchars(filter_input(INPUT_POST, 'departamento', FILTER_DEFAULT));
             $provincia = htmlspecialchars(filter_input(INPUT_POST, 'provincia', FILTER_DEFAULT));
             $distrito = htmlspecialchars(filter_input(INPUT_POST, 'distrito', FILTER_DEFAULT));
             $descripcion = htmlspecialchars(filter_input(INPUT_POST, 'descripcion', FILTER_DEFAULT));            
-        
+            $dependencia = htmlspecialchars(filter_input(INPUT_POST, 'dependencia', FILTER_DEFAULT));
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 echo json_encode(['status'=>'error', 'message'=>'Correo electrónico no es valido']);
                 return;
@@ -91,12 +90,10 @@ class AccessInformation extends BaseViewInterfaz
                     return;
                 }
             } 
-
-            AccessInformationModel::save(
+            $accessInformationModel = new AccessInformationModel(
                 $nombreCompleto,
                 $tipoDocumento,
-                $numeroDocumento,
-                $personaEdad,         
+                $numeroDocumento,        
                 $email,
                 $telefono,
                 $direccion,
@@ -104,10 +101,14 @@ class AccessInformation extends BaseViewInterfaz
                 $provincia,
                 $distrito,
                 $descripcion,
-                $pathFullFile[0]
+                $pathFullFile[0],
+                $dependencia
             );
+            $accessInformationModel->save();
+            $localStorage = _ROOT_FILES . 'access-information/' . date('Y/m/');
+            $pdf = $accessInformationModel->makepdf($localStorage);
 
-            if($this->sendMail($descripcion,  $pathFullFile[0],$tipoDocumento, $numeroDocumento, $nombreCompleto,  $email)) {
+            if($this->sendMail($descripcion,  $pathFullFile[0],$tipoDocumento, $numeroDocumento, $nombreCompleto,  $email, $pdf )) {
                 echo json_encode(['status' => 'success', 'message' => 'Se ha enviado su solicitud con exito.']);
                 return;
             }
@@ -119,10 +120,17 @@ class AccessInformation extends BaseViewInterfaz
         }
     }
 
-    private function sendMail($descripcion, $archivo, $tipoDocumento, $numeroDocumento, $nombreCompleto, $correo )
+    private function sendMail($descripcion, $archivo, $tipoDocumento, $numeroDocumento, $nombreCompleto, $correo, $pdf )
     {
-        $mensaje = "Adjunto: https://regionloreto.gob.pe/files/". "access-information/" . date('Y/m/')."$archivo";
         $mail = new PHPMailer(true);
+        
+        $localStorage = 'https://regionloreto.gob.pe/'.$pdf;
+
+        if(!empty($archivo)){
+            $mensaje = "Adjunto: https://regionloreto.gob.pe/files/". "access-information/" . date('Y/m/')."$archivo";
+        }{
+            $mensaje = 'Sin archivos adjuntos';
+        }
 
         try {
             $mail->isMail();                                     
@@ -135,14 +143,15 @@ class AccessInformation extends BaseViewInterfaz
                             Número de Documento: $numeroDocumento<br>
                             Correo Electrónico: $correo<br>
                             Descripción: $descripcion<br>
-                            Archivo adjunto: $mensaje
+                            Solicitud de accesso en PDF: $localStorage<br>
+                            Archivos adicionales que se adjuntan: $mensaje
             ";
             $mail->AltBody = "Solicitante: $nombreCompleto\n";
             $mail->AltBody .= "Tipo de Documento: $tipoDocumento\n";
             $mail->AltBody .= "Número de Documento: $numeroDocumento\n";
             $mail->AltBody .= "Correo Electrónico: $correo\n";
             $mail->AltBody .= "Descripción: $descripcion\n";
-            $mail->AltBody .= "Archivo adjunto: $mensaje\n";
+            $mail->AltBody .= "Archivos adicionales que se adjuntan: $mensaje\n";
 
             $mail->send();
             return true;
