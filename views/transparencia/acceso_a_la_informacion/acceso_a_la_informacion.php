@@ -102,10 +102,12 @@
                 </div>
                 <div class="col-md-12 col-sm-12 pt-2">
                     <button type="button" class="btn btn-primary form-control">Guardar</button>
+                    
+                </div>
+                <div class="mr-3 mt-4">
                     <div class="pt-1 g-recaptcha" data-sitekey="6LeMRQ4pAAAAALnrP6RFulOt77vQkT48PXV5nZQ_"></div>
                 </div>
 			</div>
         </div>
     </article>
-    
 </main>

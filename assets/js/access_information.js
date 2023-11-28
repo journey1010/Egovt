@@ -115,7 +115,7 @@ $(document).ready(function() {
             '#dniVisita', '#nombres', '#primer-apellido', '#type-document',
             '#segundo-apellido', '#email', '#phone', 
             '#direccion', '#departamento', '#provincia', 
-            '#distrito', '#descripcion', '#archivo-adjunto', '#dependencia'
+            '#distrito', '#descripcion', '#dependencia'
         ];
 
         let todosLlenos = true;
@@ -170,6 +170,9 @@ $(document).ready(function() {
               dataType: 'json',
               processData: false, 
               contentType: false, 
+              beforeSend:function(){
+                $('.btn-primary').html('Espere ...');
+              },
               success: function(response) {
                   if(response.status == 'success'){
                     Swal.fire({
@@ -184,6 +187,7 @@ $(document).ready(function() {
                       icon: "error"
                     });
                   }
+                  $('.btn-primary').html('Guardar');
               },
               error: function(xhr, status, error) {
                 Swal.fire({
@@ -191,6 +195,7 @@ $(document).ready(function() {
                   text: "No pudo enviarse su solicitud",
                   icon: "error"
                 });;
+                $('.btn-primary').html('Guardar');
               }
           });
         }
