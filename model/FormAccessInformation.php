@@ -244,7 +244,7 @@ class CustomPDF {
         $this->pdf->setFont('times', '', 7);
         $this->pdf->Cell($this->totalWidth/2, 20, '', 'LBR', 0 , 'L', false);
         $this->pdf->SetXY(25+$this->totalWidth/2, $this->alturaTotal);
-        $this->pdf->SetFont('helvetica', 'B', 10);
+        $this->pdf->SetFont('helvetica', 'B', 8);
         $this->pdf->Cell($this->totalWidth/2, 20, $fecha, 'BR', 0 , 'C', false);
         $this->pdf->SetFont('helvetica', '', 7);
 
