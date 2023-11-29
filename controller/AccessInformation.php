@@ -123,8 +123,6 @@ class AccessInformation extends BaseViewInterfaz
     private function sendMail($descripcion, $archivo, $tipoDocumento, $numeroDocumento, $nombreCompleto, $correo, $pdf )
     {
         $mail = new PHPMailer(true);
-        
-        $localStorage = 'https://regionloreto.gob.pe/'.$pdf;
 
         if(!empty($archivo)){
             $mensaje = "Adjunto: https://regionloreto.gob.pe/files/". "access-information/" . date('Y/m/')."$archivo";
@@ -143,7 +141,7 @@ class AccessInformation extends BaseViewInterfaz
                             Número de Documento: $numeroDocumento<br>
                             Correo Electrónico: $correo<br>
                             Descripción: $descripcion<br>
-                            Solicitud de accesso en PDF: $localStorage<br>
+                            Solicitud de accesso en PDF: $pdf<br>
                             Archivos adicionales que se adjuntan: $mensaje
             ";
             $mail->AltBody = "Solicitante: $nombreCompleto\n";
@@ -151,6 +149,7 @@ class AccessInformation extends BaseViewInterfaz
             $mail->AltBody .= "Número de Documento: $numeroDocumento\n";
             $mail->AltBody .= "Correo Electrónico: $correo\n";
             $mail->AltBody .= "Descripción: $descripcion\n";
+            $mail->AltBody .= "Solicitud de accesso en PDF: $pdf\n";
             $mail->AltBody .= "Archivos adicionales que se adjuntan: $mensaje\n";
 
             $mail->send();
