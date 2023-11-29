@@ -63,6 +63,7 @@
                 <div class="col-md-4 col-sm-6">
                     <label class="form-label">Departamento</label>
                     <select id="departamento" class="form-control">
+                        <option value="">Seleccione un departamento</option>
                     </select>
                 </div>
                 <div class="col-md-4 col-sm-6">

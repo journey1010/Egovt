@@ -101,8 +101,8 @@ class AccessInformation extends BaseViewInterfaz
                 $provincia,
                 $distrito,
                 $descripcion,
-                $pathFullFile[0],
-                $dependencia
+                $dependencia,
+                $pathFullFile[0]
             );
             $accessInformationModel->save();
             $localStorage = _ROOT_FILES . 'access-information/' . date('Y/m/');

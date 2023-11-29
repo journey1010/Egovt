@@ -224,13 +224,28 @@ class CustomPDF {
         $this->pdf->SetXY(25+$this->totalWidth/2, $this->alturaTotal);
         $this->pdf->Cell($this->totalWidth/2, 1, 'FECHA Y HORA DE RECEPCIÓN', 'TR', 0 , 'L', false);
         
+
+        date_default_timezone_set('America/Lima'); 
+        $fechaOriginal = date('Y-m-d H:i'); 
+        $fecha = new DateTime($fechaOriginal); 
+        $formatter = new IntlDateFormatter(
+            'es_ES', 
+            IntlDateFormatter::FULL, 
+            IntlDateFormatter::SHORT,
+            'America/Lima', 
+            IntlDateFormatter::GREGORIAN,
+            'EEEE, d \'de\' MMMM \'de\' y, HH:mm' 
+        );
+        
+        $fecha = $formatter->format($fecha); 
+
         $this->alturaTotal +=1;
         $this->pdf->SetXY(25, $this->alturaTotal);
         $this->pdf->setFont('times', '', 7);
         $this->pdf->Cell($this->totalWidth/2, 20, '', 'LBR', 0 , 'L', false);
         $this->pdf->SetXY(25+$this->totalWidth/2, $this->alturaTotal);
         $this->pdf->SetFont('helvetica', 'B', 10);
-        $this->pdf->Cell($this->totalWidth/2, 20, date('Y-m-d H:i') , 'BR', 0 , 'C', false);
+        $this->pdf->Cell($this->totalWidth/2, 20, $fecha, 'BR', 0 , 'C', false);
         $this->pdf->SetFont('helvetica', '', 7);
 
         $this->alturaTotal +=42;
