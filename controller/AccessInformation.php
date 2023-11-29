@@ -106,7 +106,7 @@ class AccessInformation extends BaseViewInterfaz
             );
             $accessInformationModel->save();
             $localStorage = _ROOT_FILES . 'access-information/' . date('Y/m/');
-            $pdf = _BASE_URL . "/access-information/" . date('Y/m/') . $accessInformationModel->makepdf($localStorage);
+            $pdf =  "https://regionloreto.gob.pe/files/access-information/" . date('Y/m/') . $accessInformationModel->makepdf($localStorage);
 
             if($this->sendMail($descripcion,  $pathFullFile[0],$tipoDocumento, $numeroDocumento, $nombreCompleto,  $email, $pdf )) {
                 echo json_encode(['status' => 'success', 'message' => 'Se ha enviado su solicitud con exito.']);
