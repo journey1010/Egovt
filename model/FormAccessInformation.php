@@ -259,9 +259,9 @@ class CustomPDF {
     }
 
     public function outputPDF($localStorage) {
-        $filename = date('doc-form-Ymdhis').'.pdf';
+        $filename = 'doc-form-'.date('Ymdhis').'.pdf';
         $path= $localStorage . $filename;
         $this->pdf->Output($path, 'F');
-        return $localStorage.$filename;
+        return $filename;
     }
 }
