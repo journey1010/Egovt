@@ -82,6 +82,7 @@
         {"method" : "GET", "pattern" : "/servicios/menu-aplicaciones", "handler" : "ServiciosController@ServiciosMain"},
         {"method" : "GET", "pattern" : "/publicaciones/?page={pagina}", "handler": "PublicacionesController@showPublicaciones"},
         {"method" : "GET", "pattern" : "/transparencia/acceso-a-la-informacion", "handler": "AccessInformation@showView"},
-        {"method" : "POST", "pattern" : "/transparencia/acceso-a-la-informacion/save", "handler": "AccessInformation@save"}
+        {"method" : "POST", "pattern" : "/transparencia/acceso-a-la-informacion/save", "handler": "AccessInformation@save"},
+        {"method" : "GET", "pattern" : "/feedback", "handler" : "FeedbackController@mainView"}
     ]
 }

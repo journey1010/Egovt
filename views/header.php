@@ -212,6 +212,9 @@
 										<li class="nav-item dropdown ddohOpener">
 											<a class="nav-link dropdown-toggle " href="https://www.gob.pe/institucion/regionloreto/contacto-y-numeros-de-emergencias" alt="contacto" aria-haspopup="true" aria-expanded="false">Contacto</a>
 										</li>
+										<li class="nav-item dropdown ddohOpener">
+											<a class="nav-link dropdown-toggle " href="/feedback" alt="comentarios y sugerencias" aria-haspopup="true" aria-expanded="false">Comentarios y Sugerencias</a>
+										</li>
 									</ul>
 								</div>
 							</div>
