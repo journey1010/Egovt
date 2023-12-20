@@ -10,7 +10,8 @@ class FeedbackController extends BaseViewInterfaz
 
         $pathJs = self::$pathJs;
         $moreScript = <<<html
-        <script src="{$pathJs}feedback.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{$pathJs}feedback.js?v=1.2"></script>
         html;
 
         $dataFooter = [
@@ -21,7 +22,7 @@ class FeedbackController extends BaseViewInterfaz
         $render->setCacheDir(self::$pathCache . 'feedback/');
         $render->setCacheTime(2678400);
         $render->render('header', '', false);
-        $render->render('feedback', $data, true);
+        $render->render('feedback', $data, false);
         $render->render('footer', $dataFooter, false);
     }
 }
