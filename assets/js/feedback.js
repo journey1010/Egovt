@@ -34,17 +34,30 @@ $(document).ready(function() {
             },
             error: function(xhr) {
                 if (xhr.status === 422) {
-                    var errors = xhr.responseJSON.errors;
-                    var errorMessages = Object.values(errors).map(function(errorArray) {
-                        return errorArray.join('\n');
-                    }).join('\n');
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        var errorMessage = '';
+                        var messageObject = xhr.responseJSON.message;
+                        
+                        for (var key in messageObject) {
+                            if (messageObject.hasOwnProperty(key)) {
+                                errorMessage += messageObject[key] + '\n';
+                            }
+                        }
         
-                    Swal.fire({
-                        title: 'Error',
-                        text: errorMessages,
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
+                        Swal.fire({
+                            title: 'Error',
+                            text: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Error de validación no especificado.',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                        });
+                    }
                 } else {
                     Swal.fire({
                         title: 'Error',
