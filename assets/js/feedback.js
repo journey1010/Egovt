@@ -2,12 +2,17 @@ $(document).ready(function() {
     $(".btn-feedback").click(function(event) {
         event.preventDefault(); 
 
-        let formData = {};
-        $(".commentForm").find("input, select, textarea").each(function() {
-            if (this.name && this.value) {
-                formData[this.name] = this.value;
-            }
-        });
+        var formData = {
+            user_name: $('input[name="user_name"]').val(),
+            email: $('input[type="email"]').val(),
+            phone: $('input[name="phone"]').val(),
+            experience: $('select[name="experience"]').val(),
+            com_design: $('textarea[name="com_design"]').val(),
+            com_content: $('textarea[name="com_content"]').val(),
+            com_funtionallity: $('textarea[name="com_funtionallity"]').val(),
+            com_ease_use: $('textarea[name="com_ease_use"]').val(),
+            com_suggest: $('textarea[name="com_suggest"]').val()
+        }; 
 
         $.ajax({
             type: "POST",
