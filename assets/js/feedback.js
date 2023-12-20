@@ -32,13 +32,27 @@ $(document).ready(function() {
                 }
 
             },
-            error: function(xhr, status, error) {
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Ocurrió un error al enviar los datos',
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                });
+            error: function(xhr) {
+                if (xhr.status === 422) {
+                    var errors = xhr.responseJSON.errors;
+                    var errorMessages = Object.values(errors).map(function(errorArray) {
+                        return errorArray.join('\n');
+                    }).join('\n');
+        
+                    Swal.fire({
+                        title: 'Error',
+                        text: errorMessages,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Hubo un problema al enviar los datos',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                }
             }
         });
     });
