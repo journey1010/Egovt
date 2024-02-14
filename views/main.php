@@ -111,6 +111,14 @@
 							<h2 class="mb-0">Denuncias<br>Ciudadanas</h2>
 						</a>
 					</li>
+					<li>
+						<a href="https://www.gob.pe/sencico//" alt="SENCICO" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
+							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
+							<i class="fal fa-construction"><span class="sr-only">icon</span></i>
+							</span>
+							<h2 class="mb-0">SENCICO</h2>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
