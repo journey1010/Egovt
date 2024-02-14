@@ -111,14 +111,6 @@
 							<h2 class="mb-0">Denuncias<br>Ciudadanas</h2>
 						</a>
 					</li>
-					<li>
-						<a href="https://www.gob.pe/sencico//" alt="SENCICO" class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10">
-							<span class="icnWrap d-flex align-items-center justify-content-center mx-auto mb-4 rounded-circle">
-							<i class="fal fa-construction"><span class="sr-only">icon</span></i>
-							</span>
-							<h2 class="mb-0">SENCICO</h2>
-						</a>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -255,10 +247,10 @@
 							<div class="echColumn d-block w-100 bgCover position-relative" style="background-image: url('<?= _ROOT_ASSETS . 'images/enlaces_externos/sencico.jpg' ?>');">
 								<div class="echcCaptionWrap position-absolute w-100 text-white px-3 py-2 px-sm-5 py-sm-4">
 									<h3 class="mb-0 text-white">
-										<strong class="d-block font-weight-normal fontBase echCatTitle mb-1">Capacitación</strong>
+										<strong class="d-block font-weight-normal fontBase echCatTitle mb-1">Portal</strong>
 										<span class="d-block">SENCICO</span>
 									</h3>
-									<a href="https://cursos.sencico.gob.pe/" alt="Cursos sencico" class="d-inline-block" title="Cursos sencico"><i class="rounded-circle icomoon-arrowRight d-flex align-items-center justify-content-center bg-white text-dark spanLinkGo"><span class="sr-only">icon</span></i></a>
+									<a href="https://www.gob.pe/sencico//" alt="sencico" class="d-inline-block" title="SENCICO"><i class="rounded-circle icomoon-arrowRight d-flex align-items-center justify-content-center bg-white text-dark spanLinkGo"><span class="sr-only">icon</span></i></a>
 								</div>
 							</div>
 						</div>
