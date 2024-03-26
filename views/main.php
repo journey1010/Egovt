@@ -123,6 +123,18 @@
 			</div>
 		</div>
 	</aside>
+	<aside class="aboutMayorBlock pt-md-7 pt-xl-11 pb-7 pb-md-13 pb-lg-20 pb-xl-28">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-6 pt-4">
+					<h2 class="lh44 mb-6">PRESUPUESTO PARTICIPATIVO</h2>
+				</div>
+				<div class="col-md-6 pt-4">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/ubRwTRYzTbU?si=BLqxj-tXHh8YWPrH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</aside>
 	<article class="aboutMayorBlock pt-md-7 pt-xl-11 pb-7 pb-md-13 pb-lg-20 pb-xl-28">
 		<div class="container">
 			<div class="row">
